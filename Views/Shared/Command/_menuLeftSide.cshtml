@@ -1,0 +1,479 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@* @model ModelQRCode *@
+@using APEL.Helper
+@{
+#pragma warning disable CS8602
+    string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+    string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+
+    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrSiasatanRole") ?? "";
+    var _aduanPkEnc = ApelUser.GetApel(Context.Session).ADUAN_PK_ENC;
+    var _siasatanPkEnc = ApelUser.GetApel(Context.Session).SIASATAN_PK_ENC;
+    var _statusSstn = ApelUser.GetApel(Context.Session).STATUS_SSTN;
+
+    var _sts_ringksn = ApelUser.GetApel(Context.Session).STS_RNGKSAN;
+    var _sts_laporan = ApelUser.GetApel(Context.Session).STS_LAPORAN;
+
+    string _butiranaduan = HttpContextAccessor.HttpContext.Session.GetString("_butiranaduan") ?? "";
+    //string _laporanpolis = HttpContextAccessor.HttpContext.Session.GetString("_laporanpolis") ?? "";
+    string _ringkasankjdn = HttpContextAccessor.HttpContext.Session.GetString("_ringkasankjdn") ?? "";
+    string _diaripnyst = HttpContextAccessor.HttpContext.Session.GetString("_diaripnyst") ?? "";
+    string _frmpengadusaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmpengadusaksi") ?? "";
+    string _attchpengadusaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchpengadusaksi") ?? "";
+    string _attchokt = HttpContextAccessor.HttpContext.Session.GetString("_attchokt") ?? "";
+    string _frmokt = HttpContextAccessor.HttpContext.Session.GetString("_frmokt") ?? "";
+    string _attchdoclain = HttpContextAccessor.HttpContext.Session.GetString("_attchdoclain") ?? "";
+    string _attchbrgbukti = HttpContextAccessor.HttpContext.Session.GetString("_attchbrgbukti") ?? "";
+    string _minitsstn = HttpContextAccessor.HttpContext.Session.GetString("_minitsstn") ?? "";
+    string _cttsstn = HttpContextAccessor.HttpContext.Session.GetString("_cttsstn") ?? "";
+    string _rmsnsstn = HttpContextAccessor.HttpContext.Session.GetString("_rmsnsstn") ?? "";
+
+    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+#pragma warning restore CS8602
+
+    var _disablelink = "disable-link";
+    var _color = "color:lightgray";
+    var _bullet = "";
+    var _disablelinkS = "disable-link";
+    var _colorS = "color:lightgray";
+    var _bulletS = "";
+}
+
+<style>
+    .menu-item2 {
+        margin: 0 0 -5px 0;
+    }
+    .menu-item3 {
+        margin: 0 0 -15px 0;
+    }
+    .menu-item4 {
+        margin: -10px 0 -13px 0;
+    }
+
+    .disable-link {
+        pointer-events: none;
+        cursor: default;
+        color: lightgray;
+    }
+    .default {
+        cursor: default;
+        color: #696969;
+    }
+</style>
+
+@if (_sts_ringksn == "APPROVED")
+{
+    _disablelink = "";
+    _color = "";
+    _bullet = "bullet bullet-dot";
+}
+@if (_statusSstn == "N")
+{
+    _disablelinkS = "";
+    _colorS = "";
+    _bulletS = "bullet bullet-dot";
+}
+
+<!--begin::Aside Menu-->
+<div class="hover-scroll-overlay-y px-2 my-2 my-lg-2" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="{default: '#kt_aside_toolbar, #kt_aside_footer', lg: '#kt_header, #kt_aside_toolbar, #kt_aside_footer'}" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="5px">
+    <!--begin::Menu-->
+    <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
+        @if (_userLogin != "")
+        {
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item">
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Senarai/SiasatanSkrinList">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Kembali</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <div class="menu-item">
+                <!--begin:Menu content-->
+                <div class="menu-content">
+                    <span class="menu-heading fw-bold text-uppercase fs-7">Penanda</span>
+                </div>
+                <!--end:Menu content-->
+            </div>
+            <div class="menu-item" aria-haspopup="true">
+                <div class="menu-item3">
+                    <a href="#" class="menu-link">
+                        <span class="menu-icon default">
+                            <i class="bi bi-info-circle-fill text-success fa-xl"></i>
+                        </span>
+                        <span class="menu-text default">Ada Maklumat</span>
+                    </a>
+                </div>
+            </div>
+            <div class="menu-item" aria-haspopup="true">
+                <div class="menu-item3">
+                    <a href="#" class="menu-link">
+                        <span class="menu-icon default">
+                            <i class="bi bi-info-circle-fill text-secondary fa-xl" "></i>
+                    </span>
+                    <span class="menu-text default">Tiada Maklumat</span>
+                </a>
+            </div>
+        </div>
+        <div class="menu-item pt-5">
+                <!--begin:Menu content-->
+                <div class="menu-content">
+                    <span class="menu-heading fw-bold text-uppercase fs-7">Chat</span>
+                </div>
+                <!--end:Menu content-->
+            </div>
+        <!--end:Menu item-->
+        <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item">
+                <!--begin:Menu item-->
+                <div class="menu-item4">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/Chat">
+                            <span class="menu-icon">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                            </span>
+                            <span class="menu-title">Minit Siasatan</span><i class="bi bi-info-circle-fill @_minitsstn fa-xl"></i>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                </div>
+                <!--end:Menu item-->
+        <div class="menu-item pt-1">
+            <!--begin:Menu content-->
+            <div class="menu-content">
+                <span class="menu-heading fw-bold text-uppercase fs-7">Senarai Dokumen Siasatan</span>
+            </div>
+            <!--end:Menu content-->
+        </div>
+        <!--end:Menu item-->
+        <!--begin:Menu item Siasatan -->
+        <!--begin:Menu item-->
+        <div data-kt-menu-trigger="click" class="menu-item">
+            <!--begin:Menu item-->
+            <div class="menu-item2">
+                @using (Html.BeginForm("LaporanAduan", "Siasatan", FormMethod.Post, new { id = "MyLaporanAduanID" }))
+                {
+                <!--begin:Menu link-->
+                <a class="menu-link" onclick="document.getElementById('LaporanAduan').click()">
+                    <span class="menu-icon">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                    </span>
+                    <span class="menu-title">Laporan Aduan</span><i class="bi bi-info-circle-fill @_butiranaduan fa-xl"></i>
+                </a>
+                <input type="hidden" id="idAduanPkEnc" name="CADUAN_PK_ENC" value="@_aduanPkEnc" />
+                <input type="submit" id="LaporanAduan" formaction="@_path01/Siasatan/LaporanAduan" style="display:none" />
+                <!--end:Menu link-->
+                }
+            </div>
+            <!--end:Menu item-->
+        </div>
+        <!--end:Menu item-->
+        <!--begin:Menu item-->
+        @*<div data-kt-menu-trigger="click" class="menu-item">
+            <!--begin:Menu item-->
+            <div class="menu-item2">
+                <!--begin:Menu link-->
+                <a class="menu-link" href="@_path01/Siasatan/LaporanPolis">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title">Lampiran Laporan Polis</span><i class="bi bi-info-circle-fill @_laporanpolis fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>*@
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/DiariPenyiasat">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title">Pegawai Penyiasat</span><i class="bi bi-info-circle-fill @_diaripnyst fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/InitialEvent">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title">Ringkasan Kejadian</span><i class="bi bi-info-circle-fill @_ringkasankjdn fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelink">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/CatatanDiari">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bullet"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_color'>Catatan Diari Siasatan</span><i class="bi bi-info-circle-fill @_cttsstn fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelink">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/FrmPengaduSaksi">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bullet"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_color'>Borang Percakapan Pengadu/Saksi</span><i class="bi bi-info-circle-fill @_frmpengadusaksi fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelink">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/FrmPercakapanOkt">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bullet"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_color'>Borang Percakapan OKT</span><i class="bi bi-info-circle-fill @_frmokt fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelink">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/AttachPengaduSaksi">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bullet"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_color'>Lampiran Rakaman Pengadu/Saksi</span><i class="bi bi-info-circle-fill @_attchpengadusaksi fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelink">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/AttachOkt">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bullet"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_color'>Lampiran Rakaman Okt</span><i class="bi bi-info-circle-fill @_attchokt fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelink">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/AttachDocLain">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bullet"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_color'>Lampiran Dokumen Lain</span><i class="bi bi-info-circle-fill @_attchdoclain fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelink">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/AttachEvidence">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bullet"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_color'>Lampiran Barang Bukti</span><i class="bi bi-info-circle-fill @_attchbrgbukti fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <div class="menu-item pt-3">
+                <!--begin:Menu content-->
+                <div class="menu-content">
+                    <span class="menu-heading fw-bold text-uppercase fs-7">Pengesahan</span>
+                </div>
+                <!--end:Menu content-->
+            </div>
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item @_disablelinkS">
+                <!--begin:Menu item-->
+                <div class="menu-item2">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="@_path01/Siasatan/LaporanSiasatan">
+                        <span class="menu-icon">
+                            <span class="menu-bullet">
+                                <span class="@_bulletS"></span>
+                            </span>
+                        </span>
+                        <span class="menu-title" style='@_colorS'>Laporan Siasatan</span><i class="bi bi-info-circle-fill @_rmsnsstn fa-xl"></i>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+            <div class="menu-item bg-light-warning here show mt-5">
+                <!--begin:Menu link-->
+                <a class="menu-link active bg-light-warning" href="@_path01/Login/Logout">
+                    <span class="menu-icon bg-light-warning">
+                        <!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
+                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24" />
+                                    <path d="M14.0069431,7.00607258 C13.4546584,7.00607258 13.0069431,6.55855153 13.0069431,6.00650634 C13.0069431,5.45446114 13.4546584,5.00694009 14.0069431,5.00694009 L15.0069431,5.00694009 C17.2160821,5.00694009 19.0069431,6.7970243 19.0069431,9.00520507 L19.0069431,15.001735 C19.0069431,17.2099158 17.2160821,19 15.0069431,19 L3.00694311,19 C0.797804106,19 -0.993056895,17.2099158 -0.993056895,15.001735 L-0.993056895,8.99826498 C-0.993056895,6.7900842 0.797804106,5 3.00694311,5 L4.00694793,5 C4.55923268,5 5.00694793,5.44752105 5.00694793,5.99956624 C5.00694793,6.55161144 4.55923268,6.99913249 4.00694793,6.99913249 L3.00694311,6.99913249 C1.90237361,6.99913249 1.00694311,7.89417459 1.00694311,8.99826498 L1.00694311,15.001735 C1.00694311,16.1058254 1.90237361,17.0008675 3.00694311,17.0008675 L15.0069431,17.0008675 C16.1115126,17.0008675 17.0069431,16.1058254 17.0069431,15.001735 L17.0069431,9.00520507 C17.0069431,7.90111468 16.1115126,7.00607258 15.0069431,7.00607258 L14.0069431,7.00607258 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.006943, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-9.006943, -12.000000) " />
+                                    <rect fill="#000000" opacity="0.3" transform="translate(14.000000, 12.000000) rotate(-270.000000) translate(-14.000000, -12.000000) " x="13" y="6" width="2" height="12" rx="1" />
+                                    <path d="M21.7928932,9.79289322 C22.1834175,9.40236893 22.8165825,9.40236893 23.2071068,9.79289322 C23.5976311,10.1834175 23.5976311,10.8165825 23.2071068,11.2071068 L20.2071068,14.2071068 C19.8165825,14.5976311 19.1834175,14.5976311 18.7928932,14.2071068 L15.7928932,11.2071068 C15.4023689,10.8165825 15.4023689,10.1834175 15.7928932,9.79289322 C16.1834175,9.40236893 16.8165825,9.40236893 17.2071068,9.79289322 L19.5,12.0857864 L21.7928932,9.79289322 Z" fill="#000000" fill-rule="nonzero" transform="translate(19.500000, 12.000000) rotate(-90.000000) translate(-19.500000, -12.000000) " />
+                                </g>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </span>
+                    <span class="menu-title"><font color="maroon"><b>Sign Out</b></font></span>
+                </a>
+                <!--end:Menu link-->
+            </div>
+            <!--end:Menu item-->
+        }
+        else
+        {
+            <!--begin:Menu item-->
+            <div class="menu-item bg-light-warning">
+                <!--begin:Menu link-->
+                <button type="button" class="btn font-weight-bolder btn-sm btn-light-warning px-5" data-bs-toggle="modal" data-bs-target="#IdModalLoginCenter">
+                    <span class="menu-icon">
+                        <!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
+                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Navigation\Sign-in.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24" />
+                                    <rect fill="#000000" opacity="0.3" transform="translate(9.000000, 12.000000) rotate(-270.000000) translate(-9.000000, -12.000000) " x="8" y="6" width="2" height="12" rx="1" />
+                                    <path d="M20,7.00607258 C19.4477153,7.00607258 19,6.55855153 19,6.00650634 C19,5.45446114 19.4477153,5.00694009 20,5.00694009 L21,5.00694009 C23.209139,5.00694009 25,6.7970243 25,9.00520507 L25,15.001735 C25,17.2099158 23.209139,19 21,19 L9,19 C6.790861,19 5,17.2099158 5,15.001735 L5,8.99826498 C5,6.7900842 6.790861,5 9,5 L10.0000048,5 C10.5522896,5 11.0000048,5.44752105 11.0000048,5.99956624 C11.0000048,6.55161144 10.5522896,6.99913249 10.0000048,6.99913249 L9,6.99913249 C7.8954305,6.99913249 7,7.89417459 7,8.99826498 L7,15.001735 C7,16.1058254 7.8954305,17.0008675 9,17.0008675 L21,17.0008675 C22.1045695,17.0008675 23,16.1058254 23,15.001735 L23,9.00520507 C23,7.90111468 22.1045695,7.00607258 21,7.00607258 L20,7.00607258 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.000000, 12.000000) rotate(-90.000000) translate(-15.000000, -12.000000) " />
+                                    <path d="M16.7928932,9.79289322 C17.1834175,9.40236893 17.8165825,9.40236893 18.2071068,9.79289322 C18.5976311,10.1834175 18.5976311,10.8165825 18.2071068,11.2071068 L15.2071068,14.2071068 C14.8165825,14.5976311 14.1834175,14.5976311 13.7928932,14.2071068 L10.7928932,11.2071068 C10.4023689,10.8165825 10.4023689,10.1834175 10.7928932,9.79289322 C11.1834175,9.40236893 11.8165825,9.40236893 12.2071068,9.79289322 L14.5,12.0857864 L16.7928932,9.79289322 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.500000, 12.000000) rotate(-90.000000) translate(-14.500000, -12.000000) " />
+                                </g>
+                            </svg><!--end::Svg Icon-->
+                        </span>
+                        <!--end::Svg Icon-->
+                    </span>
+                    <span class="menu-title"><font color="maroon"><b>Sign In</b></font></span>
+                </button>
+                <!--end:Menu link-->
+            </div>
+            <!--end:Menu item-->
+        }
+
+
+    </div>
+    <!--end::Menu-->
+</div>
+<!--end::Aside Menu-->
+<script>
+    function myClickButton(id) {
+        if (id == "UnderConstraction") {
+            $('#IdClickUnderConstraction').click();
+        } else if (id == "BackToDashboard") {
+            $('#IdClickBackToDashboard').click();
+        } else if (id == "DdmsSkrinUrusetia") {
+            $('#IdClickDdmsSkrinUrusetia').click();
+        } else if (id == "DdmsSelenggaraKategori") {
+            $('#IdClickDdmsSelenggaraKategori').click();
+        } else if (id == "DdmsSelenggaraPerkaraUtama") {
+            $('#IdClickDdmsSelenggaraPerkaraUtama').click();
+        }
+    @*Siasatan*@
+                                  else if (id == "SiasatanSkrinList") {
+            $('#IdClickSiasatanList').click();
+        }
+    }
+</script>
+@using (Html.BeginForm("", "Siasatan", FormMethod.Post))
+{
+    <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="@_path01/Siasatan/UnderConstraction" style="display: none;">Skrin Senarai Fail</button>
+    <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="@_path01/Siasatan/BackToDashboard" style="display: none;">Skrin Kelulusan</button>
+}
+@using (Html.BeginForm("", "Senarai", FormMethod.Post))
+{
+    <button type="submit" class="menu-link" id="IdClickSiasatanList" formaction="@_path01/Senarai/SiasatanSkrinList" style="display: none;">Skrin Senarai Siasatan</button>
+}

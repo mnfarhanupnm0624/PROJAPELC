@@ -1,0 +1,63 @@
+﻿@using APEL.Models
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@model CarianApelCMain
+@{
+    ViewData["Title"] = "APEL C";
+    Layout = "/Views/Shared/Command/_LayoutDemo8AfterLogin.cshtml";
+#pragma warning disable CS8602
+    string _stafFkEnc = HttpContextAccessor.HttpContext.Session.GetString("_hrStafFkEnc") ?? "0";
+    string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+#pragma warning restore CS8602
+    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    var _path = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+    //var _bgColorTable = "#FAEBD7";
+}
+<input type="hidden" id="IdPathServer" value="@_path">
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        printpagebutton: none;
+    }
+
+    {
+        font-size: 16px; /* Adjust the size as needed */
+    }
+</style>
+
+<script language="Javascript" type="text/javascript">
+    function exit() {
+        history.back();
+    }
+
+    function printpage() {
+        //Get the print button and put it into a variable
+
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden'
+        printButton.style.visibility = 'hidden';
+
+        //Print the page content
+        window.print();
+
+        //Set the print button to 'visible' again
+        //[Delete this line if you want it to stay hidden after printing]
+        printButton.style.visibility = 'visible';
+
+    }
+
+</script>
+<!-- Custom styles for this template -->
+<link href="/apelc/css/dashboard.css" rel="stylesheet">
+
+<input type="hidden" id="IdPathServerMain" value="//sysmel">
+<input type="hidden" id="IdDateYear" value="2024">
+
+<div class="text-center">
+    <h1 class="display-4">Dashboard</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

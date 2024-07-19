@@ -1,0 +1,88 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@* @model ModelQRCode *@
+@{
+	ViewData["Title"] = "Home Page";
+#pragma warning disable CS8602
+	string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+#pragma warning restore CS8602
+    var _path01 = Configuration.GetSection("MySetting")["ServerPathMain"] ?? "";
+	var _path5 = _path01;
+    if (_path5.Length > 1) {
+        _path5 = '/' + _path01;
+    }
+}
+<input type="hidden" id="IdPathServer" value="@_path5">
+<div class="container-xxl">
+	@using (Html.BeginForm("MtdGetQRCode", "GenerateQRCode", FormMethod.Post)){
+		<div class="card shadow-sm">
+			<div class="card-header cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#IdCardCarian" style="background-color: antiquewhite;">
+				<h3 class="card-title">
+					<i class="fas fa-search fs-2x"></i>
+					<span>&nbsp;&nbsp; QRCode Text Input</span>
+				</h3>
+			</div>
+			<div class="card-body">
+				<div class="row g-0">
+					<div class="col-sm-12">
+						<div class="form-floating mb-7 row">
+						@* 	@Html.DropDownListFor(m => m.CEVENT, new SelectList(Model.ListEventMajlis, "Key", "ViewField"), "-- Please Select --", new { @class = "form-control text-maroon", id = "IdDdEventMajlis", style = "background-color: #d9fdfe;" }) *@
+							<label for="floatingInput"><span class="required">Majlis Anugerah : </span></label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-floating mb-7 me-7 row">
+							@* @Html.TextBoxFor(m => m.CMASA_MULA, new { @class = "form-control text-maroon-bold", @id = "IdTextCMasaMula", style = "background-color: #d9fdfe;", @type="datetime-local", step="1"  }) *@
+							<label for="floatingInput"><span class="required">Tarikh/Masa Mula</span></label>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-floating mb-7 me-7 row">
+							@* @Html.TextBoxFor(m => m.CMASA_TAMAT, new { @class = "form-control text-maroon-bold", @id = "IdTextCMasaTamat", style = "background-color: #d9fdfe;", @type="datetime-local", step="1"  }) *@
+							<label for="floatingInput"><span class="required">Tarikh/Masa Tamat</span></label>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-floating mb-7 row">
+							@* @Html.DropDownListFor(m => m.CSEMAKMASA, new SelectList(Model.ListYaTidak, "Key", "ViewField"), "-- Please Select --", new { @class = "form-control text-maroon", id = "IdDdAdaSelaMasa", style = "background-color: #d9fdfe;" }) *@
+							<label for="floatingInput"><span class="required">Semak Masa Slide</span></label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-floating mb-7 row">
+							@* @Html.TextBoxFor(m => m.QRCodeText, new { @class = "form-control text-maroon", @id = "IdQRText", style = "background-color: #FFFFFA;" }) *@
+							<label for="floatingInput"><span>QR Code Text</span></label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12" style="text-align: center;">
+						<button type="button" class="btn btn-sm btn-light-primary" id="IdBtnGenerateQRCOde"><i class="la la-qrcode fs-2x"></i> Generate QR Code</button>
+						<button type="submit" class="btn btn-sm btn-primary" id="IdBtnGenerateQRCOdeCapai" formaction="@_path5/GenerateQRCode/MtdGetQRCode" style="display: none;">Generate QR Code</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-12" style="text-align: center;">
+						@if (ViewBag.QrCodeUri != null)
+						{
+							<img src="@ViewBag.QrCodeUri" style="width:400px; height: 400px" />
+						}
+					</div>
+				</div>
+		</div>
+		</div>
+	}
+</div>
+
+@section scripts
+{
+    <script src="~/js/QRCode/QRCode.js" type="text/javascript"></script>
+}

@@ -1,0 +1,1111 @@
+﻿@* @{
+    ViewData["Title"] = "APEL C";
+} *@
+
+@* <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+ *@
+
+<!DOCTYPE html>
+<!--
+Author: Keenthemes
+Product Name: Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme
+Purchase: https://1.envato.market/EA4JP
+Website: http://www.keenthemes.com
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html lang="en">
+<!--begin::Head-->
+<head>
+    <base href="" />
+    <title>Sistem APEL</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Sistem APEL" />
+    <meta name="keywords" content="Sistem APEL" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sistem APEL" />
+    <meta property="og:site_name" content="UPNM" />
+    <link rel="shortcut icon" href="/apel/images/logo_UPNM.jpg" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Vendor Stylesheets(used by this page)-->
+    <link href="/apel/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/apel/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="/apel/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/apel/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/apel/assets/css/demo8_mtepi.css" rel="stylesheet" type="text/css" />
+    <link href="/apel/css/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="/apel/css/apel.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
+    <!--begin::Theme mode setup on page load-->
+    <script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-theme-mode")) { themeMode = document.documentElement.getAttribute("data-theme-mode"); } else { if (localStorage.getItem("data-theme") !== null) { themeMode = localStorage.getItem("data-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-theme", themeMode); }</script>
+    <!--end::Theme mode setup on page load-->
+    <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+            <!--begin::Aside-->
+            <div id="kt_aside" class="mtepi" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+                <!--begin::Aside Toolbarl-->
+                <div class="mtepi-toolbar flex-column-auto" id="kt_aside_toolbar">
+                    <!--begin::Aside user-->
+                    <!--begin::User-->
+                    <div class="mtepi-user d-flex align-items-sm-center justify-content-center py-5">
+                        <!--begin::Symbol-->
+                        <div class="symbol symbol-50px">
+                            <img id="idImejProfile" src="https://esmartcard.upnm.edu.my/img/staf/1854.jpg" class="symbol-label" style="height:60px; width:50px;" />
+                        </div>
+                        <!--end::Symbol-->
+                        <!--begin::Wrapper-->
+                        <div class="aside-user-info flex-row-fluid flex-wrap ms-5">
+                            <!--begin::Section-->
+                            <div class="d-flex">
+                                <!--begin::Info-->
+                                <div class="flex-grow-1">
+                                    <!--begin::Username-->
+                                    <a href="#" class="text-maroon text-hover-primary fs-6 fw-bold">1845-24</a>
+                                    <!--end::Username-->
+                                    <!--begin::Description-->
+                                    <span class="text-gray-800 fw-semibold d-block fs-8 mt-1">
+                                        SUPERUSER
+                                    </span>
+                                    <!--end::Description-->
+                                    <!--begin::Description-->
+                                    <span class="text-gray-600 fw-semibold d-block fs-8">mnfarhan@upnm.edu.my</span>
+                                    <!--end::Description-->
+                                    <!--begin::Label-->
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Info-->
+                                <!--begin::User menu-->
+                                <div class="me-n4">
+                                    <!--begin::Action-->
+                                    <a href="#" class="btn btn-icon btn-sm btn-active-color-primary mt-n2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" data-kt-menu-overflow="true">
+                                        <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
+                                        <span class="svg-icon svg-icon-muted svg-icon-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3" d="M22.1 11.5V12.6C22.1 13.2 21.7 13.6 21.2 13.7L19.9 13.9C19.7 14.7 19.4 15.5 18.9 16.2L19.7 17.2999C20 17.6999 20 18.3999 19.6 18.7999L18.8 19.6C18.4 20 17.8 20 17.3 19.7L16.2 18.9C15.5 19.3 14.7 19.7 13.9 19.9L13.7 21.2C13.6 21.7 13.1 22.1 12.6 22.1H11.5C10.9 22.1 10.5 21.7 10.4 21.2L10.2 19.9C9.4 19.7 8.6 19.4 7.9 18.9L6.8 19.7C6.4 20 5.7 20 5.3 19.6L4.5 18.7999C4.1 18.3999 4.1 17.7999 4.4 17.2999L5.2 16.2C4.8 15.5 4.4 14.7 4.2 13.9L2.9 13.7C2.4 13.6 2 13.1 2 12.6V11.5C2 10.9 2.4 10.5 2.9 10.4L4.2 10.2C4.4 9.39995 4.7 8.60002 5.2 7.90002L4.4 6.79993C4.1 6.39993 4.1 5.69993 4.5 5.29993L5.3 4.5C5.7 4.1 6.3 4.10002 6.8 4.40002L7.9 5.19995C8.6 4.79995 9.4 4.39995 10.2 4.19995L10.4 2.90002C10.5 2.40002 11 2 11.5 2H12.6C13.2 2 13.6 2.40002 13.7 2.90002L13.9 4.19995C14.7 4.39995 15.5 4.69995 16.2 5.19995L17.3 4.40002C17.7 4.10002 18.4 4.1 18.8 4.5L19.6 5.29993C20 5.69993 20 6.29993 19.7 6.79993L18.9 7.90002C19.3 8.60002 19.7 9.39995 19.9 10.2L21.2 10.4C21.7 10.5 22.1 11 22.1 11.5ZM12.1 8.59998C10.2 8.59998 8.6 10.2 8.6 12.1C8.6 14 10.2 15.6 12.1 15.6C14 15.6 15.6 14 15.6 12.1C15.6 10.2 14 8.59998 12.1 8.59998Z" fill="currentColor" />
+                                                <path d="M17.1 12.1C17.1 14.9 14.9 17.1 12.1 17.1C9.30001 17.1 7.10001 14.9 7.10001 12.1C7.10001 9.29998 9.30001 7.09998 12.1 7.09998C14.9 7.09998 17.1 9.29998 17.1 12.1ZM12.1 10.1C11 10.1 10.1 11 10.1 12.1C10.1 13.2 11 14.1 12.1 14.1C13.2 14.1 14.1 13.2 14.1 12.1C14.1 11 13.2 10.1 12.1 10.1Z" fill="currentColor" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </a>
+                                    <!--begin::User account menu-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <div class="menu-content d-flex align-items-center px-3">
+                                                <!--begin::Avatar-->
+                                                <div class="symbol symbol-90px me-5">
+                                                    <img id="idImejProfileSetting" src="https://esmartcard.upnm.edu.my/img/staf/1854.jpg" class="symbol-label" style="height:60px; width:50px;" />
+                                                </div>
+                                                <!--end::Avatar-->
+                                                <!--begin::Username-->
+                                                <div class="d-flex flex-column">
+                                                    <div class="fw-bold d-flex align-items-center fs-5">
+                                                        mohamadnoorfarhan
+                                                        <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Staff</span>
+                                                    </div>
+                                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">mnfarhan@upnm.edu.my</a>
+                                                </div>
+                                                <!--end::Username-->
+                                            </div>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu separator-->
+                                        <div class="separator my-2"></div>
+                                        <!--end::Menu separator-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-5">
+                                            <a href="/apel/" class="menu-link px-5">My Profile</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu separator-->
+                                        <div class="separator my-2"></div>
+                                        <!--end::Menu separator-->
+                                        <!--begin::Menu item-->
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-5">
+                                            <a href="/apel/Login/Logout" class="menu-link px-5">Sign Out</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::User account menu-->
+                                    <!--end::Action-->
+                                </div>
+                                <!--end::User menu-->
+                            </div>
+                            <!--end::Section-->
+                        </div>
+                        <!--end::Wrapper-->
+
+                    </div>
+                    <!--end::User-->
+                    <!--end::Aside user-->
+                </div>
+                <!--end::Aside Toolbarl-->
+                <!--begin::Menu separator-->
+                <div class="separator my-2"></div>
+                <!--end::Menu separator-->
+                <!--begin::Aside menu-->
+                <div class="mtepi-menu flex-column-fluid">
+
+
+
+                    <!--begin::Aside Menu-->
+                    <div class="hover-scroll-overlay-y px-2 my-5 my-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="{default: '#kt_aside_toolbar, #kt_aside_footer', lg: '#kt_header, #kt_aside_toolbar, #kt_aside_footer'}" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="5px">
+                        <!--begin::Menu-->
+                        <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
+
+                            <!--begin:Menu item-->
+                            <div class="menu-item">
+                                <!--begin:Menu content-->
+                                <div class="menu-content">
+                                    <span class="menu-heading fw-bold text-uppercase fs-7">Module</span>
+                                </div>
+                                <!--end:Menu content-->
+                            </div>
+                            <!--end:Menu item-->
+                            <!--begin:Menu item-->
+                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion " style="display: block;">
+                                <!--begin:Menu link-->
+                                <span class="menu-link">
+                                    <span class="menu-icon">
+                                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
+                                        <span class="svg-icon svg-icon-2">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.5 11C8.98528 11 11 8.98528 11 6.5C11 4.01472 8.98528 2 6.5 2C4.01472 2 2 4.01472 2 6.5C2 8.98528 4.01472 11 6.5 11Z" fill="currentColor" />
+                                                <path opacity="0.3" d="M13 6.5C13 4 15 2 17.5 2C20 2 22 4 22 6.5C22 9 20 11 17.5 11C15 11 13 9 13 6.5ZM6.5 22C9 22 11 20 11 17.5C11 15 9 13 6.5 13C4 13 2 15 2 17.5C2 20 4 22 6.5 22ZM17.5 22C20 22 22 20 22 17.5C22 15 20 13 17.5 13C15 13 13 15 13 17.5C13 20 15 22 17.5 22Z" fill="currentColor" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-title">Permohonan APELC</span>
+                                    <span class="menu-arrow"></span>
+                                </span>
+                                <!--end:Menu link-->
+                                <!--begin:Menu sub-->
+                                <div class="menu-sub menu-sub-accordion">
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item ">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" onclick="myClickButton('UnderConstraction');">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Senarai Permohonan</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                </div>
+                                <!--end:Menu sub-->                            
+                            </div>
+                            <!--end:Menu item-->
+                            <!--begin:Menu item Siasatan -->
+                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion  ">
+                                <!--begin:Menu link DDM-->
+                                <span class="menu-link">
+                                    <span class="menu-icon">
+                                <!--begin::Svg Icon | path: icons/duotune/graphs/gra006.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg fill="currentColor" height="200px" width="200px" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.992 511.992" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 511.992 511.992"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="m287.998,97.851v-62.672c0-16.354-18.555-25.786-31.784-16.171-35.293,25.651-59.654,64.675-64.213,110.839h64c17.671,0 31.997-14.325 31.997-31.996z"></path> <path d="m511.791,136.617c-2.491-48.88-27.155-90.534-64.051-117.528-13.18-9.643-31.741-0.133-31.741,16.198v77.561c0,26.95-22.05,49-49,49h-78.997-64-32.003v49.75l-182.624,182.624c-12.5,12.492-12.499,32.758 0.001,45.25l48,48c6.242,6.25 14.438,9.375 22.625,9.375s16.383-2.625 22.625-8.875l182.625-182.125h66.747c5,0.002 9.233-0.082 13.917-0.478 84.584-7.158 150.197-83.975 145.876-168.752zm-415.79,296.23c-17.673,0-32-14.328-32-32 0-17.674 14.327-32 32-32 17.674,0 32,14.326 32,32 0,17.672-14.326,32-32,32zm176-191h-32l16-32h32l-16,32zm64,0h-32l16-32h32l-16,32zm64,0h-32l16-32h32l-16,32z"></path> </g> </g></svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                </span>
+                                    <span class="menu-title">Selenggara</span>
+                                    <span class="menu-arrow"></span>
+                                </span>
+                                <!--end:Menu link-->
+                                <!--begin:Menu sub-->
+                                <div class="menu-sub menu-sub-accordion">
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item ">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" onclick="myClickButton('UnderConstraction');">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Senarai Kawalan Akses</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                </div>
+                                <!--end:Menu sub-->
+                                <!--begin:Menu sub-->
+                                <div class="menu-sub menu-sub-accordion">
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item ">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" onclick="myClickButton('UnderConstraction');">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Caj</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                </div>
+                                <!--end:Menu sub-->
+                                <!--begin:Menu sub-->
+                                <div class="menu-sub menu-sub-accordion">
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item ">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" onclick="myClickButton('UnderConstraction');">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Rubrik Pemarkahan</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                </div>
+                                <!--end:Menu sub-->
+                                <!--begin:Menu sub-->
+                                <div class="menu-sub menu-sub-accordion">
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item ">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" onclick="myClickButton('UnderConstraction');">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Daftar Kursus</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                </div>
+                                <!--end:Menu sub-->
+                                <!--begin:Menu sub-->
+                                <div class="menu-sub menu-sub-accordion">
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item ">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" onclick="myClickButton('UnderConstraction');">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Ujian Cabaran</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                </div>
+                                <!--end:Menu sub-->
+                            </div>
+
+                            <!-- START HUBUNGI KAMI MODUL -->
+
+                            <li class="">
+                                <a href="uiuser/usr_hubungi_ksl.php">
+                                    <i class="menu-icon glyphicon glyphicon-phone-alt red"></i>
+                                    <span class="title">Hubungi Kami</span>
+
+                                </a>
+
+                            <li class="open" style="background-color: #e47662;padding: 8px;margin-top: 5px;">
+                                <div class="clearfix">
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd;text-decoration: underline;"><b>PASUKAN PENGURUS SISTEM APEL.C</b></font><br>
+                                </div>
+                            </li>
+
+                            <li class="open" style="background-color: #e47662;padding: 6px;">
+                                <div class="clearfix">
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd"><i class="glyphicon glyphicon glyphicons glyphicons-cars green"></i> <b>UNIT KESELAMATAN</b></font><br>
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd"><i class="glyphicon glyphicon-user"></i> Puan Nor Azlin</font><br>
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd"><i class="ace-icon fa fa-envelope-o green"></i> n.azlinsafina@upnm.edu.my</font><br>
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd"><i class="ace-icon glyphicon glyphicon-phone-alt green"></i> 603-9051 3400 / 2217</font>
+                                </div>
+                            </li>
+                            <li class="open" style="background-color: #e47662;">
+                                <div class="clearfix">
+                                    <hr style="margin-top: 5px;margin-bottom: 5px;">
+                                </div>
+                            </li>
+                            <li class="open" style="background-color: #e47662;padding: 6px;">
+                                <div class="clearfix">
+
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd"><i class="glyphicon glyphicon-user"></i> Nurshuhaida binti Rusli</font><br>
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd"><i class="ace-icon fa fa-envelope-o green"></i> nurshuhaida@upnm.edu.my</font><br>
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd"><i class="ace-icon glyphicon glyphicon-phone-alt green"></i> 603-9051 3400 / 1086</font>
+                                </div>
+                            </li>
+
+                            </li>
+
+                            <!-- END HUBUNGI KAMI MODUL -->
+                            <!--begin:Menu item-->
+                            <div class="menu-item bg-light-warning here show mt-5">
+                                <!--begin:Menu link-->
+                                <a class="menu-link active bg-light-warning" href="/apel/Login/Logout">
+                                    <span class="menu-icon bg-light-warning">
+                                        <!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M14.0069431,7.00607258 C13.4546584,7.00607258 13.0069431,6.55855153 13.0069431,6.00650634 C13.0069431,5.45446114 13.4546584,5.00694009 14.0069431,5.00694009 L15.0069431,5.00694009 C17.2160821,5.00694009 19.0069431,6.7970243 19.0069431,9.00520507 L19.0069431,15.001735 C19.0069431,17.2099158 17.2160821,19 15.0069431,19 L3.00694311,19 C0.797804106,19 -0.993056895,17.2099158 -0.993056895,15.001735 L-0.993056895,8.99826498 C-0.993056895,6.7900842 0.797804106,5 3.00694311,5 L4.00694793,5 C4.55923268,5 5.00694793,5.44752105 5.00694793,5.99956624 C5.00694793,6.55161144 4.55923268,6.99913249 4.00694793,6.99913249 L3.00694311,6.99913249 C1.90237361,6.99913249 1.00694311,7.89417459 1.00694311,8.99826498 L1.00694311,15.001735 C1.00694311,16.1058254 1.90237361,17.0008675 3.00694311,17.0008675 L15.0069431,17.0008675 C16.1115126,17.0008675 17.0069431,16.1058254 17.0069431,15.001735 L17.0069431,9.00520507 C17.0069431,7.90111468 16.1115126,7.00607258 15.0069431,7.00607258 L14.0069431,7.00607258 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.006943, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-9.006943, -12.000000) " />
+                                                    <rect fill="#000000" opacity="0.3" transform="translate(14.000000, 12.000000) rotate(-270.000000) translate(-14.000000, -12.000000) " x="13" y="6" width="2" height="12" rx="1" />
+                                                    <path d="M21.7928932,9.79289322 C22.1834175,9.40236893 22.8165825,9.40236893 23.2071068,9.79289322 C23.5976311,10.1834175 23.5976311,10.8165825 23.2071068,11.2071068 L20.2071068,14.2071068 C19.8165825,14.5976311 19.1834175,14.5976311 18.7928932,14.2071068 L15.7928932,11.2071068 C15.4023689,10.8165825 15.4023689,10.1834175 15.7928932,9.79289322 C16.1834175,9.40236893 16.8165825,9.40236893 17.2071068,9.79289322 L19.5,12.0857864 L21.7928932,9.79289322 Z" fill="#000000" fill-rule="nonzero" transform="translate(19.500000, 12.000000) rotate(-90.000000) translate(-19.500000, -12.000000) " />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-title"><font color="maroon"><b>Sign Out</b></font></span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+
+
+
+
+
+                        </div>
+                        <!--end::Menu-->
+                    </div>
+                    <!--end::Aside Menu-->
+                    <script>
+                        function myClickButton(id) {
+                            if (id == "UnderConstraction") {
+                                $('#IdClickUnderConstraction').click();
+                            } else if (id == "BackToDashboard") {
+                                $('#IdClickBackToDashboard').click();
+                            }
+                            else if (id == "SelenggaraZonList") {
+                                $('#IdClickSelenggaraZonList').click();
+                            }
+                            else if (id == "SelenggaraBlokList") {
+                                $('#IdClickSelenggaraBlokList').click();
+                            }
+                            else if (id == "SelenggaraKatAduanList") {
+                                $('#IdClickSelenggaraKatAduanList').click();
+                            }
+                            else if (id == "SelenggaraSubKatAduanList") {
+                                $('#IdClickSelenggaraSubKatAduanList').click();
+                            }
+                            else if (id == "SelenggaraJenisKenderaanList") {
+                                $('#IdClickSelenggaraJenisKenderaanList').click();
+                            }
+                            else if (id == "CarianStatistikAduan") {
+                                $('#IdClickCarianStatistikAduan').click();
+                            }
+                            else if (id == "DashboardStatistikAduan") {
+                                $('#IdClickDashboardStatistikAduan').click();
+                            }
+                            else if (id == "DashboardStatistikSiasatan") {
+                                $('#IdClickDashboardStatistikSiasatan').click();
+                            }
+
+
+                            else if (id == "SiasatanSkrinList") {
+                                $('#IdClickSiasatanList').click();
+                            }
+                            else if (id == "AduanSkrinList") {
+                                $('#IdClickAduanList').click();
+                            }
+                            else if (id == "AduanSkrinInvList") {
+                                $('#IdClickAduanInvList').click();
+                            }
+
+                            else if (id == "EKunci") {
+                                $('#IdClickCarianEKunci').click();
+                            }
+
+                            else if (id == "ESaman") {
+                                $('#IdClickCarianESaman').click();
+                            }
+
+
+                        }
+                    </script>
+                    <form action="/apel/Siasatan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="/apel/Siasatan/UnderConstraction" style="display: none;">Skrin Senarai Fail</button>
+                        <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="/apel/Siasatan/BackToDashboard" style="display: none;">Skrin Kelulusan</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+                    </form><form action="/apel/Senarai" method="post">
+                        <button type="submit" class="menu-link" id="IdClickSiasatanList" formaction="/apel/Senarai/SiasatanSkrinList" style="display: none;">Skrin Senarai Siasatan</button>
+                        <button type="submit" class="menu-link" id="IdClickAduanList" formaction="/apel/Senarai/AduanSkrinList" style="display: none;">Skrin Senarai Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickAduanInvList" formaction="/apel/Senarai/AduanSkrinInvList" style="display: none;">Skrin Senarai Siasatan Aduan</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+                    </form><form action="/apel/Aduan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="/apel/Aduan/UnderConstraction" style="display: none;">Skrin Senarai Fail</button>
+                        <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="/apel/Aduan/BackToDashboard" style="display: none;">Skrin Kelulusan</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+                    </form><form action="/apel/SelenggaraAduan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraZonList" formaction="/apel/SelenggaraAduan/SelenggaraZonList" style="display: none;">Skrin Selenggara Zom</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraBlokList" formaction="/apel/SelenggaraAduan/SelenggaraBlokList" style="display: none;">Skrin Selenggara Blok</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraKatAduanList" formaction="/apel/SelenggaraAduan/SelenggaraKatAduanList" style="display: none;">Skrin Selenggara Kategori Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraSubKatAduanList" formaction="/apel/SelenggaraAduan/SelenggaraSubKatAduanList" style="display: none;">Skrin Selenggara Sub Kategori Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraJenisKenderaanList" formaction="/apel/SelenggaraAduan/SelenggaraJenisKenderaanList" style="display: none;">Skrin Selenggara Jenis Kenderaan</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+                    </form><form action="/apel/StatistikAduan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickCarianStatistikAduan" formaction="/apel/StatistikAduan/CarianStatistikAduan" style="display: none;">Skrin Carian Statistik Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickDashboardStatistikAduan" formaction="/apel/StatistikAduan/DashboardStatistikAduan" style="display: none;">Skrin Dashboard Statistik Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickDashboardStatistikSiasatan" formaction="/apel/StatistikAduan/DashboardStatistikSiasatan" style="display: none;">Skrin Dashboard Statistik Siasatan</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+                    </form>
+                    <form action="/apel/EKunci" method="post">
+                        <button type="submit" class="menu-link" id="IdClickCarianEKunci" formaction="/apel/EKunci/EKunci" style="display: none;">Skrin Carian E-Kunci</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+                    </form><form action="/apel/ESaman" method="post">
+                        <button type="submit" class="menu-link" id="IdClickCarianESaman" formaction="/apel/ESaman/ESaman" style="display: none;">Skrin Carian E-Saman</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+                    </form>
+                </div>
+                <!--end::Aside menu-->
+            </div>
+            <!--end::Aside-->
+            <!--begin::Wrapper-->
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                <!--begin::Header-->
+                <div id="kt_header" class="header align-items-stretch matas">
+                    <!--begin::Brand-->
+                    <div class="header-brand">
+                        <!--begin::Logo-->
+                        <a href="/apel/Home/Dashboard">
+                            <img id="IdLayout_ImageKiri" alt="Logo" src="/apel/images/LOGO-UTM.png" class="h-50px h-lg-50px" />
+                        </a>
+                        <!--end::Logo-->
+                        <!--begin::Aside minimize-->
+                        <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary mtepi-minimize" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr092.svg-->
+                            <span class="svg-icon svg-icon-1 me-n1 minimize-default">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.3" x="8.5" y="11" width="12" height="2" rx="1" fill="currentColor" />
+                                    <path d="M10.3687 11.6927L12.1244 10.2297C12.5946 9.83785 12.6268 9.12683 12.194 8.69401C11.8043 8.3043 11.1784 8.28591 10.7664 8.65206L7.84084 11.2526C7.39332 11.6504 7.39332 12.3496 7.84084 12.7474L10.7664 15.3479C11.1784 15.7141 11.8043 15.6957 12.194 15.306C12.6268 14.8732 12.5946 14.1621 12.1244 13.7703L10.3687 12.3073C10.1768 12.1474 10.1768 11.8526 10.3687 11.6927Z" fill="currentColor" />
+                                    <path opacity="0.5" d="M16 5V6C16 6.55228 15.5523 7 15 7C14.4477 7 14 6.55228 14 6C14 5.44772 13.5523 5 13 5H6C5.44771 5 5 5.44772 5 6V18C5 18.5523 5.44771 19 6 19H13C13.5523 19 14 18.5523 14 18C14 17.4477 14.4477 17 15 17C15.5523 17 16 17.4477 16 18V19C16 20.1046 15.1046 21 14 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H14C15.1046 3 16 3.89543 16 5Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr076.svg-->
+                            <span class="svg-icon svg-icon-1 minimize-active">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.3" width="12" height="2" rx="1" transform="matrix(-1 0 0 1 15.5 11)" fill="currentColor" />
+                                    <path d="M13.6313 11.6927L11.8756 10.2297C11.4054 9.83785 11.3732 9.12683 11.806 8.69401C12.1957 8.3043 12.8216 8.28591 13.2336 8.65206L16.1592 11.2526C16.6067 11.6504 16.6067 12.3496 16.1592 12.7474L13.2336 15.3479C12.8216 15.7141 12.1957 15.6957 11.806 15.306C11.3732 14.8732 11.4054 14.1621 11.8756 13.7703L13.6313 12.3073C13.8232 12.1474 13.8232 11.8526 13.6313 11.6927Z" fill="currentColor" />
+                                    <path d="M8 5V6C8 6.55228 8.44772 7 9 7C9.55228 7 10 6.55228 10 6C10 5.44772 10.4477 5 11 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H11C10.4477 19 10 18.5523 10 18C10 17.4477 9.55228 17 9 17C8.44772 17 8 17.4477 8 18V19C8 20.1046 8.89543 21 10 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H10C8.89543 3 8 3.89543 8 5Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Aside minimize-->
+                        <!--begin::Aside toggle-->
+                        <div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
+                            <div class="btn btn-icon btn-active-color-primary w-30px h-30px" id="kt_aside_mobile_toggle">
+                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
+                                <span class="svg-icon svg-icon-1">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z" fill="currentColor" />
+                                        <path opacity="0.3" d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                        </div>
+                        <!--end::Aside toggle-->
+                    </div>
+                    <!--end::Brand-->
+                    <!--begin::Toolbar-->
+                    <div class="toolbar d-flex align-items-stretch">
+
+                        <!--begin::Toolbar container-->
+                        <div class="container-fluid py-6 py-lg-0 d-flex flex-column flex-lg-row align-items-lg-stretch justify-content-lg-between">
+                            <!--begin::Page title-->
+                            <div class="page-title d-flex justify-content-center flex-column me-5">
+                                <!--begin::Title-->
+                                <h1 class="d-flex flex-column text-dark fw-bold fs-3 mb-0">Dashboard</h1>
+                                <!--end::Title-->
+                                <!--begin::Breadcrumb-->
+                                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 pt-1">
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-muted">
+                                        <a href="/" class="text-muted text-hover-primary">Home</a>
+                                    </li>
+                                    <!--end::Item-->
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item">
+                                        <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                    </li>
+                                    <!--end::Item-->
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-muted">
+                                        <a href="/apel/Senarai/AduanSkrinList" class="text-muted text-hover-primary">Dashboard</a>
+                                    </li>
+                                    <!--end::Item-->
+                                </ul>
+                                <!--end::Breadcrumb-->
+                            </div>
+                            <!--end::Page title-->
+                            <!--end::Toolbar container  align-items-stretch overflow-auto pt-3 pt-lg-0-->
+                            <div class="d-flex">
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Label fs-7 fw-bold text-gray-650 pe-4 text-nowrap d-none d-xxl-block-->
+                                    <span class="fs-2">
+                                        <button class="btn btn-light-info">Today : <b>Jul 06</b></button>
+                                    </span>
+                                    <!--end::Label-->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end::Toolbar-->
+                </div>
+                <!--end::Header-->
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    <!--begin::Post-->
+                    <div class="post d-flex flex-column-fluid" id="kt_post">
+                        <!--begin::Container-->
+
+                        <style>
+                            .align-items-center {
+                                align-items: center !important;
+                            }
+
+                            .justify-content-center {
+                                justify-content: center !important;
+                            }
+
+                            .icon-center {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                            .text-center {
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                            .text-bigger {
+                                font-size: 20px;
+                                font-weight: bold;
+                            }
+                        </style>
+
+                        <input type="hidden" id="IdPathServer" value="/apel">
+
+                        <div class="container-xxl custom-bg-image">
+                            <div class="card card-xl-stretch">
+
+                                <!--begin::Entry-->
+                                <div class="d-flex flex-column-fluid">
+                                    <div class="container">
+
+                                        <!-- Content Header (Page header) -->
+                                        <section class="content-header">
+                                            <div class="text-center mt-5 mb-5">
+                                                <h1>Dashboard Statistik bagi 2024</h1>
+                                            </div>
+                                        </section>
+
+                                        <!-- Main content -->
+                                        <!-- <section class="content"> -->
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <!--begin::Mixed Widget 1-->
+                                                <div class="card card-custom bg-gray-100 card-stretch gutter-b">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body p-0 position-relative overflow-hidden">
+                                                        <!--begin::Stats-->
+                                                        <div class="card-spacer mt-n3">
+                                                            <!--begin::Row-->
+                                                            <div class="row m-0">
+                                                                <div class="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
+                                                                    <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                                                    <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2 ">
+                                                                        <!--begin::Svg Icon | path:/metronic/themes/metronic/theme/html/demo1/dist/assets/media/svg/icons/Media/Equalizer.svg-->
+                                                                        <!--end::Svg Icon-->
+                                                                        <i class="fas fa-4x fa-users icon-center" aria-hidden="true"></i>
+                                                                    </span>
+                                                                    <input type="hidden" id="idJumlahKesDashboard" value="33">
+                                                                    <a href="#" class="text-warning d-flex text-center flex-column text-black text-bigger">Jumlah Kes</a>
+                                                                    <h3 class="display-3 text-center">
+                                                                        33
+                                                                    </h3>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row m-0">
+
+                                                                <div class="col bg-light-danger px-6 py-8 rounded-xl mr-7 mb-7">
+                                                                    <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                                                    <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
+                                                                        <i class="fas fa-4x fa-user-tie icon-center" aria-hidden="true"></i>
+                                                                    </span>
+                                                                    <input type="hidden" id="idStafDashboard" value="32">
+                                                                    <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2 d-flex text-center text-bigger">Staf</a>
+                                                                    <h3 class="display-3 text-center">
+                                                                        32
+                                                                    </h3>
+                                                                </div>
+
+                                                                <div class="col bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                                                                    <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                                                    <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
+                                                                        <i class="fas fa-4x fa-graduation-cap icon-center" aria-hidden="true"></i>
+                                                                    </span>
+                                                                    <input type="hidden" id="idPelajarDashboard" value="1">
+                                                                    <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2 d-flex text-center text-bigger">Pelajar</a>
+                                                                    <h3 class="display-3 text-center">
+                                                                        1
+                                                                    </h3>
+                                                                </div>
+
+                                                                <div class="col bg-light-success px-6 py-8 rounded-xl mr-7 mb-7">
+                                                                    <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                                                    <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
+                                                                        <!--begin::Svg Icon | path:/metronic/themes/metronic/theme/html/demo1/dist/assets/media/svg/icons/Communication/Urgent-mail.svg-->
+                                                                        <!--end::Svg Icon-->
+                                                                        <i class="fas fa-4x fa-user icon-center" aria-hidden="true"></i>
+                                                                    </span>
+                                                                    <input type="hidden" id="idPelawatDashboard" value="0">
+                                                                    <a href="#" class="text-success font-weight-bold font-size-h6 mt-2 d-flex text-center text-bigger">Pelawat</a>
+                                                                    <h3 class="display-3 text-center">
+                                                                        0
+                                                                    </h3>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <!--end::Row-->
+                                                        </div>
+                                                        <!--end::Stats-->
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                                <!--end::Mixed Widget 1-->
+
+                                                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                                    <h1 class="h3">Graf Permohonan</h1>
+                                                    <div class="btn-toolbar mb-2 mb-md-0">
+                                                        <div class="btn-group me-2">
+                                                            <input type="button" id="printpagebutton" onclick="printpage()" class="btn btn-sm btn-secondary" value="Print" />
+
+
+                                                            <button type="button" class="btn btn-sm btn-secondary">
+                                                                <select class="form-select kt-select2 datatable-input" id="idonchangedashboard" name="statuslulus" style=" color: #3f4254; background-color: #e4e6ef ">
+
+                                                                    <span data-feather="calendar"></span>
+                                                                    <option value="T">Tahun Ini</option>
+                                                                    <option value="B">Bulan Ini</option>
+                                                                    <option value="M">Minggu Ini</option>
+                                                                    <option value="H">Hari Ini</option>
+                                                                    <option value="S">Keseluruhan</option>
+                                                                </select>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Entry-->
+
+                            </div>
+                        </div>
+
+
+
+
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Post-->
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+                    <!--begin::Container-->
+                    <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <!--begin::Copyright-->
+                        <div class="text-dark order-2 order-md-1">
+                            <span class="text-muted fw-semibold me-1">2022&copy;</span>
+                            <a href="https://www.utm.my" target="_blank" class="text-gray-800 text-hover-primary">Universiti Teknologi Malaysia</a>
+                        </div>
+                        <!--end::Copyright-->
+                        <!--begin::Menu-->
+                        <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+                            <li class="menu-item">
+                                <a href="apel/Home/SessionVariable" target="_blank" class="menu-link px-2">Session</a>
+                            </li>
+                        </ul>
+                        <!--end::Menu-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Footer-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Root-->
+    <!--end::Main-->
+    <!--begin::Scrolltop-->
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+        <span class="svg-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+    </div>
+    <!--end::Scrolltop-->
+    <!--begin::Modals-->
+    <!--begin::Modal - Invite Friends-->
+    <div class="modal fade" id="IdModalLoginCenter" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog mw-650px-->
+        <div class="modal-dialog">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body">
+                    <!--begin::Heading-->
+                    <div class="text-center mb-13">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Login <i>(HR System)</i></h1>
+                        <input type="hidden" id="IdPathServerMain" value="/apel">
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Notice-->
+                    <div class="row">
+                        <div class="col-sm-12" style="padding-right:10px;">
+                            <!--begin::Label-->
+                            <label class="form-label required text-maroon">User ID</label>
+                            <!--end::Label-->
+                            <!--begin::Input form-control-solid-->
+                            <input class="form-control" id="IdUserIDText" name="USERNAME" placeholder="User ID" onkeyup="this.value = this.value.toLowerCase();" style="padding-right:10px;" />
+                            <!--end::Input-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!--begin::Label-->
+                            <label class="form-label required text-maroon">Password</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input class="form-control" id="IdPaswordText" name="PASSWORD" placeholder="password" type="password" />
+                            <!--end::Input-->
+                        </div>
+                    </div>
+                    <!--end::Notice-->
+                </div>
+                <!--end::Modal body-->
+                <!--begin::Modal footer-->
+                <div class="modal-footer flex-right" style="background-color: antiquewhite;">
+                    <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
+                    <button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
+                    <div>
+                        <small id="IdModalLoginLable"></small>
+                    </div>
+                </div>
+                <!--end::Modal footer-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Invite Friend-->
+    <!--end::Modals-->
+    <!--begin::Javascript-->
+    <script>var hostUrl = "assets/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="/apel/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/apel/assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Vendors Javascript(used by this page)-->
+    <script src="/apel/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="/apel/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <!--end::Vendors Javascript-->
+    <!--begin::Custom Javascript(used by this page)-->
+    <script src="/apel/js/sweetalert.js"></script>
+    <script src="/apel/js/Home/Index.js"></script>
+    <!-- script src="assets/js/widgets.bundle.js"></script>
+    <script src="assets/js/custom/widgets.js"></script>
+    <script src="assets/js/custom/apps/chat/chat.js"></script>
+    <script src="assets/js/custom/utilities/modals/users-search.js"></script -->
+
+    <script src="/apel/js/Home/Dashboard.js?v=7Rm5ciT71oeTItdjeUuJ4gwUrKumu-CpHgaRMYrDPuA" type="text/javascript"></script>
+    <!--begin::Custom Javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"
+            integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="/apel/js/dashboard.js?v=yPJo47PKv7cQr_A7o4rggkgyXlwYP9fPm88NBtCOJPY" type="text/javascript"></script>
+    <!--end::Custom Javascript-->
+
+    <script>
+
+        'use strict'
+
+        feather.replace({ 'aria-hidden': 'true' })
+        var table
+
+        //// Graphs
+        var ctx = document.getElementById('myChart');
+
+        //var xValues = ["Staf", "Pelajar ", "Pelawat "];
+
+        var yValuesDraf = ["0", "0", "0"];
+        var yValuesHantar = ["26", "0", "0"];
+        var yValuesSelesai = ["5", "1", "0"];
+        var yValuesBatal = ["1", "0", "0"];
+        var labelcomplainer = ["STAF UTM", "PELAJAR UTM", "PELAWAT UTM"];
+
+
+        var barColors = ["yellow", "red", "purple", "green"];
+
+
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: labelcomplainer,
+                datasets: [{
+                    label: 'Draf',
+                    backgroundColor: 'rgba(255,0,0,0.3)',
+                    borderColor: 'rgba(255,0,0,0.3)',
+                    data: yValuesDraf,
+                    borderWidth: 1,
+                    datalabels: {
+                        color: 'blue',
+                        anchor: 'end',
+                        align: 'top',
+                        offset: 3
+                    }
+                }, {
+                    label: 'Hantar',
+                    backgroundColor: 'rgba(0,255,0,0.3)',
+                    borderColor: 'rgba(0,255,0,0.3)',
+                    data: yValuesHantar,
+                    borderWidth: 1,
+                    datalabels: {
+                        color: 'blue',
+                        anchor: 'end',
+                        align: 'top',
+                        offset: 3
+                    }
+                }, {
+                    label: 'Selesai',
+                    backgroundColor: 'rgba(0,0,255,0.3)',
+                    borderColor: 'rgba(0,0,255,0.3)',
+                    data: yValuesSelesai,
+                    borderWidth: 1,
+                    datalabels: {
+                        color: 'blue',
+                        anchor: 'end',
+                        align: 'top',
+                        offset: 3
+                    }
+                }, {
+                    label: 'Batal',
+                    backgroundColor: 'rgba(255,0,255,0.3)',
+                    borderColor: 'rgba(255,0,255,0.3)',
+                    data: yValuesBatal,
+                    borderWidth: 1,
+                    datalabels: {
+                        color: 'blue',
+                        anchor: 'end',
+                        align: 'top',
+                        offset: 3
+                    }
+                }]
+
+            },
+            plugins: [ChartDataLabels],
+            options: {
+                legend: { display: false },
+                //    title: {
+                //        display: true,
+                //        text: "Statistik Sysmel " + dateYear
+                //    }
+            },
+        });
+
+    </script>
+
+    <!--end::Custom Javascript-->
+    <!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>
+
+<form action="/apel/Senarai/SiasatanSkrinList" method="post" id="myform"></form>
+
+<script>
+
+    var _path = $('#IdPathServerMain').val();
+
+    //alert(_path);
+    //check session
+    var checkSessionTime = function () {
+        var time;
+        window.onload = resetTimer();
+
+        var timeIdle;
+        window.onload = resetIdleTimer;
+        // DOM Events
+        window.onload = resetIdleTimer;
+        window.onmousemove = resetIdleTimer;
+        window.onmousedown = resetIdleTimer;  // catches touchscreen presses as well
+        window.ontouchstart = resetIdleTimer; // catches touchscreen swipes as well
+        window.onclick = resetIdleTimer;      // catches touchpad clicks as well
+        window.onkeypress = resetIdleTimer;
+        window.addEventListener('scroll', resetIdleTimer, true); // improved; see comments
+
+        //check session
+        function checkLogout() {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                url: _path + '/Home/checkSession',
+                data: '{}',
+                success: function (data) {
+                    if (data.sessionValue == true) {
+                        resetTimer();
+                    }
+                    else {
+                        //alert(1);
+                        location.href = _path + '/Login/Logout';
+                    }
+                },
+                error: function (xhr) {
+                    //alert(2);
+                    location.href = _path + '/Login/Logout';
+                }
+            });
+        }
+
+        //check session
+        function resetTimer() {
+            clearTimeout(time);
+            time = setTimeout(checkLogout, 900000) // 15 minit
+            // 1000 milliseconds = 1 second
+        }
+
+        //check idle
+        function logout() {
+            var url_back = window.location.href;
+
+            let timerInterval
+            Swal.fire({
+                title: 'You have been idle for too long!',
+                html: 'You will be logout in <b></b> seconds.<br> <strong>Continue?</strong>',
+                type: "warning",
+                confirmButtonText: 'Yes, stay login!',
+                timer: 10000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    //Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('b')
+                            .textContent = Swal.getTimerLeft() / 1000
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    Swal.fire({
+                        title: 'Logging Out',
+                        text: 'Redirecting...',
+                        type: 'info',
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        //url:  _path + '/Home/setSession',
+                        url: _path + '/Login/Logout',
+                        data: '{}',
+                        success: function () {
+                        },
+                        error: function () {
+                        }
+                    });
+                    //location.href = '/Login/Logout/'
+                    //alert(123);
+                    //location.href =  _path + '/Login/Logout/?service=' + url_back;
+                    location.href = _path + '/Login/Logout';
+                }
+            })
+        }
+
+        //check idle
+        function resetIdleTimer() {
+            clearTimeout(timeIdle);
+            timeIdle = setTimeout(logout, 900000) // 15 minit
+            //timeIdle = setTimeout(logout, 30000)
+        }
+    };
+
+    window.onload = function () {
+        checkSessionTime();
+    }
+
+</script>
+<!-- CKEditor -->
+<script src="/apel/js/CKEditor/ckeditor.js?dt=20240706090205&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
+

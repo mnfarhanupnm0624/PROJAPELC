@@ -1,0 +1,58 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@{
+    var _path = @Configuration.GetSection("MySetting")["ServerPath"];
+    #pragma warning disable CS8602
+    string _noaduan = HttpContextAccessor.HttpContext.Session.GetString("_noaduan") ?? "No Aduan";
+    #pragma warning restore CS8602
+
+    var url = Context.Request.Path;
+    string[] getUrl = url.ToString().Split('/');
+    string menus = getUrl[getUrl.Length - 2];
+    string[] menuChecks = new String[] { "", "", "" };
+
+    if (menus == "Siasatan")
+    {
+        string menus2 = getUrl[getUrl.Length - 1];
+        menus = menus2;
+        if (menus == "Daftar") { menuChecks[0] = "active"; }
+        if (menus == "Dokumen") { menuChecks[1] = "active"; }
+        if (menus == "LaporanSiasatan") { menuChecks[2] = "active"; }
+        //if (menus == "Pengesahan") { menuChecks[2] = "active"; }
+    }
+    else
+    {
+        if (menus == "Daftar") { menuChecks[0] = "active"; }
+        if (menus == "Dokumen") { menuChecks[1] = "active"; }
+        if (menus == "LaporanSiasatan") { menuChecks[2] = "active"; }
+        //if (menus == "Pengesahan") { menuChecks[2] = "active"; }
+    }
+
+}
+
+<!--begin::Navs-->
+<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
+    <!--begin::Nav item-->
+    <li class="nav-item mt-2">
+        <a class="nav-link text-active-primary ms-0 me-10 py-5 @menuChecks[0]" href="@_path/Siasatan/Daftar/?id=@_noaduan">Daftar Diari PP dan PPP</a>
+    </li>
+    <!--end::Nav item-->
+    <!--begin::Nav item-->
+    <li class="nav-item mt-2">
+        <a class="nav-link text-active-primary ms-0 me-10 py-5 @menuChecks[1]" href="@_path/Siasatan/Dokumen/?id=@_noaduan">Senarai Dokumen Siasatan</a>
+    </li>
+    <!--end::Nav item-->
+    <!--begin::Nav item-->
+    <li class="nav-item mt-2">
+        <a class="nav-link text-active-primary ms-0 me-10 py-5 @menuChecks[2]" href="@_path/Siasatan/LaporanSiasatan/?id=@_noaduan">Laporan Siasatan</a>
+    </li>
+    <!--end::Nav item-->
+    <!--begin::Nav item-->
+    @*<li class="nav-item mt-2">
+        <a class="nav-link text-active-primary ms-0 me-10 py-5 @menuChecks[2]" href="@_path/Siasatan/Pengesahan">Pengesahan</a>
+    </li>*@
+    <!--end::Nav item-->
+    
+
+</ul>
+<!--begin::Navs-->

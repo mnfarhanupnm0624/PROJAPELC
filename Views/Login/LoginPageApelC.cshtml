@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sistem Pendaftaran APEL</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+            <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
+                <div class="row w-100">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auto-form-wrapper" style="padding-left:0 !important; padding-right:0 !important">
+                            <form id="form1" name="form1" action="class/login_exe.php" method="post">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <div class="col-md-12 text-center">
+                                                    <img src="images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
+                                                    <h3>Sistem Pendaftaran APEL</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">ID Pengguna</label>
+                                                        <div class="col-sm-8">
+                                                            <input id="username" name="username" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Kata Laluan</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="password" name="password" id="password" class="form-control" placeholder="******" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Jenis APEL</label>
+                                                        <div class="col-sm-8">
+                                                            <select id="dd_jnsApel" name="dd_jnsApel" class="form-control" onChange="get_jnsApel()">
+                                                                <option value="">- SILA PILIH -</option>
+                                                                <option value="APEL.A"> APEL.A</option>
+                                                                <option value="APEL.C" disabled> APEL.C</option>
+                                                                <option value="APEL.C" disabled> APEL.Q</option>
+                                                            </select>
+                                                            <input id="txt_jnsApel" name="txt_jnsApel" type="hidden" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label"><a href="PemohonRegistration.cshtml">Daftar Baru</a></label>
+                                                        <label class="col-sm-8 col-form-label">
+                                                            <a data-toggle="modal" href="#forgotpwdModal" class="float-right-lg"> Lupa Kata Laluan</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <button type="button" id="btn_login" name="btn_login" class="btn btn-primary submit-btn btn-block" onClick="validate_login()">Log Masuk</button>
+                                                <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-block text-center my-3">
+                                        <small><!--<a href="https://myapel.upnm.edu.my/admin" target="_blank">Pentadbir?</a> -->&copy; 2023 v2.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Forgot Password Modal Start -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="forgotpwdModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="frmForgot" id="frmForgot" method="post" action="class/secure/forgot-password-recovery-mail.php">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Lupa Kata Laluan</h3>
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="inputSuccess">ID Pengguna</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                                    <input name="user-login-name" type="text" id="user-login-name" class="form-control" placeholder="eg: user@gmail.com" autofocus>
+                                </div>
+                                <br />
+                                <label class="col-lg-4 control-label" for="inputSuccess">Kata Laluan Baru</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icon_key"></i></span>
+                                    <input name="user-password" type="password" id="user-password" class="form-control" placeholder="********" autofocus>
+                                </div>
+                                <br />
+                                <label class="col-lg-6 control-label" for="inputSuccess">Pengesahan Kata Laluan Baru</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                                    <input class="form-control" type="password" name="user-repassword" id="user-repassword" placeholder="********">
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="forgot-password" name="forgot-password" class="btn btn-primary" onClick="return validate(this);">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Forgot Password Modal End -->
+
+    <script type="text/javascript">
+        function validate(btn) {
+            form = document.frmForgot;
+            var usrname = document.getElementById("user-login-name").value;
+            var usrpwd = document.getElementById("user-password").value;
+            var usrrepwd = document.getElementById("user-repassword").value;
+            var n = usrpwd.length;
+            <!--var usrmail = document.getElementById("user-email").value; -->
+
+                    if (btn.name == 'forgot-password') {
+                if (usrname == '' || usrpwd == '' || usrrepwd == '') {
+                    alert("Sila isi ID Pengguna, Kata Laluan dan Pengesahan Kata Laluan Baru!");
+                    document.getElementById("user-login-name").focus();
+                    return false;
+                } else if (n < 6) {
+                    alert("Pastikan Kata Laluan tidak kurang dari 6 digit.");
+                    document.getElementById("user-password").focus();
+                    return false;
+                } else if (usrpwd != usrrepwd) {
+                    alert("Kata Laluan tidak sepadan !");
+                    document.getElementById("user-password").focus();
+                    return false;
+                } else {
+                    form.submit();
+                }
+            }
+        }
+
+        function validate_login() {
+            form = document.form1;
+            var selected = document.getElementById("dd_jnsApel").value;
+
+            if (selected == "") {
+                alert("Sila pilih Jenis Apel.");
+                return;
+            } else {
+                form.submit();
+            }
+        }
+
+        function get_jnsApel() {
+            var selected = document.getElementById("dd_jnsApel").value;
+            document.getElementById("txt_jnsApel").value = selected;
+        }
+    </script>
+</body>
+
+</html>

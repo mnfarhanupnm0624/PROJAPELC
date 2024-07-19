@@ -1,0 +1,147 @@
+﻿@using APEL.Models
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@model ModelParameterHr
+@{
+    ViewData["Title"] = "ScreenEncryptDecrypt";
+#pragma warning disable CS8602
+    string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+#pragma warning restore CS8602
+    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    var _path5 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+    var _bgColorTable = "#FAEBD7";
+    var _bgColorArrow = "#FFFAF0";
+}
+<input type="hidden" id="IdPathServer" value="@_path5">
+<div class="container-xxl">
+    <div class="card">
+        <div class="card-header" style="background-color: @_bgColorTable;">
+            <h3 class="card-title">
+                <span>&nbsp;&nbsp; Screen Encrypt Decrypt</span>
+            </h3>
+            <div class="card-toolbar">
+                <a href="@_path5/">Back</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-7">
+                        <input type="text" class="form-control text-maroon" id="IdCKey" name="Key" placeholder="Text Code" value="@Model.Key" />
+                        <label for="floatingInput">Text</label>
+                    </div>
+                    <div class="form-floating mb-7">
+                        <input type="text" class="form-control text-maroon" id="IdCViewField" name="ViewField" placeholder="Encrypt Text" value="@Model.ViewField" />
+                        <label for="floatingInput">Encrypt Text</label>
+                    </div>
+                    <div class="form-group">
+                        <input id="IdBtnScrypt" type="button" value="Encrypt" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-7">
+                        <input type="text" class="form-control text-maroon" id="IdCValue" name="Value" placeholder="Encrypt Code" value="@Model.Value" />
+                        <label for="floatingInput">Encrypt Text</label>
+                    </div>
+                    <div class="form-floating mb-7">
+                        <input type="text" class="form-control text-maroon" id="IdCResultSet" name="RESULTSET" placeholder="Decrypt Text" value="@Model.RESULTSET" />
+                        <label for="floatingInput">Decrypt Text</label>
+                    </div>
+                    <div class="form-group">
+                        <input id="IdBtnDecrypt" type="button" value="Decrypt" class="btn btn-warning" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator my-2"></div>
+    <div class="card">
+        <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#IdCardBodyOldMethod" style="background-color: @_bgColorTable;">
+            <h3 class="card-title">
+                <span>&nbsp;&nbsp; Screen Encrypt Decrypt Old Metod 8 bit</span>
+            </h3>
+            <div class="card-toolbar rotate-180">
+                <i id="IdSearchOldMethodClose" class="las la-angle-double-up la-2x text-maroon circle-icon" style="background-color: @_bgColorArrow;"></i>
+            </div>
+        </div>
+        <div class="card-body collapse hide" id="IdCardBodyOldMethod">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.OldText01, new { @class = "form-control text-maroon", @id = "IdOldText01", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Text</span></label>
+                    </div>
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.OldText01Enc, new { @class = "form-control text-maroon", @id = "IdOldText01Enc", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Encrypt Text</span></label>
+                    </div>
+                    <div class="form-group">
+                        <input id="IdBtnOldEncrypt" type="button" value="Encrypt" class="btn btn-light-primary" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.OldText02Enc, new { @class = "form-control text-maroon", @id = "IdOldText02Enc", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Encrypt Text</span></label>
+                    </div>
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.OldText02, new { @class = "form-control text-maroon", @id = "IdOldText02", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Decrypt Text</span></label>
+                    </div>
+                    <div class="form-group">
+                        <input id="IdBtnOldDecrypt" type="button" value="Decrypt" class="btn btn-light-warning" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator my-2"></div>
+    <div class="card shadow-sm">
+        <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#IdCardBodyPublic" style="background-color: @_bgColorTable;">
+            <h3 class="card-title">
+                <span>&nbsp;&nbsp; Screen Encrypt Decrypt Public 16 bit</span>
+            </h3>
+            <div class="card-toolbar rotate-180">
+                <i id="IdSearchPublicClose" class="las la-angle-double-up la-2x text-maroon circle-icon" style="background-color: @_bgColorArrow;"></i>
+            </div>
+        </div>
+        <div class="card-body collapse hide" id="IdCardBodyPublic">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.PublicText01, new { @class = "form-control text-maroon", @id = "IdPublicText01", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Text</span></label>
+                    </div>
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.PublicText01Enc, new { @class = "form-control text-maroon", @id = "IdPublicText01Enc", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Encrypt Text</span></label>
+                    </div>
+                    <div class="form-group">
+                        <input id="IdBtnPublicEncrypt" type="button" value="Encrypt" class="btn btn-light-primary" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.PublicText02Enc, new { @class = "form-control text-maroon", @id = "IdPublicText02Enc", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Encrypt Text</span></label>
+                    </div>
+                    <div class="form-floating mb-7">
+                        @Html.TextBoxFor(m => m.PublicText02, new { @class = "form-control text-maroon", @id = "IdPublicText02", style = "background-color: #d9fdfe;" })
+                        <label for="floatingInput"><span>Decrypt Text</span></label>
+                    </div>
+                    <div class="form-group">
+                        <input id="IdBtnPublicDecrypt" type="button" value="Decrypt" class="btn btn-light-warning" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/js/Home/ScreenEncryptDecrypt.js" type="text/javascript"></script>
+}

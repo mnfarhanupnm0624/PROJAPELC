@@ -1,0 +1,429 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@{
+	#pragma warning disable CS8602
+	string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+    string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? ""; 
+	var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    var _path00 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+    #pragma warning restore CS8602
+}
+<!DOCTYPE html>
+<!--
+Author: Keenthemes
+Product Name: Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme
+Purchase: https://1.envato.market/EA4JP
+Website: http://www.keenthemes.com
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html lang="en">
+	<!--begin::Head-->
+	<head><base href=""/>
+		<title>Sistem APEL</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="Sistem APEL" />
+		<meta name="keywords" content="Sistem Sokongan" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Sistem Sokongan" />
+		<meta property="og:url" content="https://apel.upnm.edu.my/" />
+		<meta property="og:site_name" content="HR UTMDigital" />
+		<link rel="canonical" href="https://apel.upnm.edu.my/" />
+		<link rel="shortcut icon" href="~/images/faviconuutm.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Vendor Stylesheets(used by this page)-->
+		<link href="~/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="~/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Vendor Stylesheets-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="~/assets/css/demo8_mtepi.css" rel="stylesheet" type="text/css" />
+		<link href="~/css/sweetalert.css" rel="stylesheet" type="text/css" />
+		<link href="~/css/apel.css" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
+		<!--begin::Theme mode setup on page load-->
+	<script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-theme-mode")) { themeMode = document.documentElement.getAttribute("data-theme-mode"); } else { if (localStorage.getItem("data-theme") !== null) { themeMode = localStorage.getItem("data-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-theme", themeMode); }</script>
+		<!--end::Theme mode setup on page load-->
+		<!--begin::Main-->
+		<!--begin::Root-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Aside-->
+				<div id="kt_aside" class="mtepi" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+					<!--begin::Aside Toolbarl-->
+					<div class="mtepi-toolbar flex-column-auto" id="kt_aside_toolbar">
+						<!--begin::Aside user-->
+						<!--begin::User-->
+						<div class="mtepi-user d-flex align-items-sm-center justify-content-center py-5">
+							<partial name="~/Views/Shared/Command/_menuProfile.cshtml" />
+						</div>
+						<!--end::User-->
+						<!--end::Aside user-->
+					</div>
+					<!--end::Aside Toolbarl-->
+					<!--begin::Menu separator-->
+					<div class="separator my-2"></div>
+					<!--end::Menu separator-->
+					<!--begin::Aside menu-->
+					<div class="mtepi-menu flex-column-fluid">
+						<partial name="~/Views/Shared/Command/_menuLeftSide.cshtml" />
+					</div>
+					<!--end::Aside menu-->
+					<!--begin::Footer-->
+					<div class="mtepi-footer flex-column-auto py-5" id="kt_aside_footer">
+						<a href="https://apel.upnm.edu.my//" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins" target="_blank">
+							<span class="btn-label">Manual Pengguna</span>
+							<!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
+							<span class="svg-icon btn-icon svg-icon-2">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM12.5 18C12.5 17.4 12.6 17.5 12 17.5H8.5C7.9 17.5 8 17.4 8 18C8 18.6 7.9 18.5 8.5 18.5L12 18C12.6 18 12.5 18.6 12.5 18ZM16.5 13C16.5 12.4 16.6 12.5 16 12.5H8.5C7.9 12.5 8 12.4 8 13C8 13.6 7.9 13.5 8.5 13.5H15.5C16.1 13.5 16.5 13.6 16.5 13ZM12.5 8C12.5 7.4 12.6 7.5 12 7.5H8C7.4 7.5 7.5 7.4 7.5 8C7.5 8.6 7.4 8.5 8 8.5H12C12.6 8.5 12.5 8.6 12.5 8Z" fill="currentColor" />
+									<rect x="7" y="17" width="6" height="2" rx="1" fill="currentColor" />
+									<rect x="7" y="12" width="10" height="2" rx="1" fill="currentColor" />
+									<rect x="7" y="7" width="6" height="2" rx="1" fill="currentColor" />
+									<path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor" />
+								</svg>
+							</span>
+							<!--end::Svg Icon-->
+						</a>
+					</div>
+					<!--end::Footer-->
+				</div>
+				<!--end::Aside-->
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+					<!--begin::Header-->
+				<div id="kt_header" class="header align-items-stretch matas">
+						<!--begin::Brand-->
+					<div class="header-brand">
+							<!--begin::Logo-->
+							<a href="/">
+							<img id="IdLayout_ImageKiri" alt="Logo" src="~/images/LOGO-UTM.png" class="h-50px h-lg-50px" />
+							</a>
+							<!--end::Logo-->
+							<!--begin::Aside minimize-->
+							<div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary mtepi-minimize" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
+								<!--begin::Svg Icon | path: icons/duotune/arrows/arr092.svg-->
+								<span class="svg-icon svg-icon-1 me-n1 minimize-default">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<rect opacity="0.3" x="8.5" y="11" width="12" height="2" rx="1" fill="currentColor" />
+										<path d="M10.3687 11.6927L12.1244 10.2297C12.5946 9.83785 12.6268 9.12683 12.194 8.69401C11.8043 8.3043 11.1784 8.28591 10.7664 8.65206L7.84084 11.2526C7.39332 11.6504 7.39332 12.3496 7.84084 12.7474L10.7664 15.3479C11.1784 15.7141 11.8043 15.6957 12.194 15.306C12.6268 14.8732 12.5946 14.1621 12.1244 13.7703L10.3687 12.3073C10.1768 12.1474 10.1768 11.8526 10.3687 11.6927Z" fill="currentColor" />
+										<path opacity="0.5" d="M16 5V6C16 6.55228 15.5523 7 15 7C14.4477 7 14 6.55228 14 6C14 5.44772 13.5523 5 13 5H6C5.44771 5 5 5.44772 5 6V18C5 18.5523 5.44771 19 6 19H13C13.5523 19 14 18.5523 14 18C14 17.4477 14.4477 17 15 17C15.5523 17 16 17.4477 16 18V19C16 20.1046 15.1046 21 14 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H14C15.1046 3 16 3.89543 16 5Z" fill="currentColor" />
+									</svg>
+								</span>
+								<!--end::Svg Icon-->
+								<!--begin::Svg Icon | path: icons/duotune/arrows/arr076.svg-->
+								<span class="svg-icon svg-icon-1 minimize-active">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<rect opacity="0.3" width="12" height="2" rx="1" transform="matrix(-1 0 0 1 15.5 11)" fill="currentColor" />
+										<path d="M13.6313 11.6927L11.8756 10.2297C11.4054 9.83785 11.3732 9.12683 11.806 8.69401C12.1957 8.3043 12.8216 8.28591 13.2336 8.65206L16.1592 11.2526C16.6067 11.6504 16.6067 12.3496 16.1592 12.7474L13.2336 15.3479C12.8216 15.7141 12.1957 15.6957 11.806 15.306C11.3732 14.8732 11.4054 14.1621 11.8756 13.7703L13.6313 12.3073C13.8232 12.1474 13.8232 11.8526 13.6313 11.6927Z" fill="currentColor" />
+										<path d="M8 5V6C8 6.55228 8.44772 7 9 7C9.55228 7 10 6.55228 10 6C10 5.44772 10.4477 5 11 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H11C10.4477 19 10 18.5523 10 18C10 17.4477 9.55228 17 9 17C8.44772 17 8 17.4477 8 18V19C8 20.1046 8.89543 21 10 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H10C8.89543 3 8 3.89543 8 5Z" fill="currentColor" />
+									</svg>
+								</span>
+								<!--end::Svg Icon-->
+							</div>
+							<!--end::Aside minimize-->
+							<!--begin::Aside toggle-->
+							<div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
+								<div class="btn btn-icon btn-active-color-primary w-30px h-30px" id="kt_aside_mobile_toggle">
+									<!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
+									<span class="svg-icon svg-icon-1">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z" fill="currentColor" />
+											<path opacity="0.3" d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z" fill="currentColor" />
+										</svg>
+									</span>
+									<!--end::Svg Icon-->
+								</div>
+							</div>
+							<!--end::Aside toggle-->
+						</div>
+						<!--end::Brand-->
+						<!--begin::Toolbar-->
+						<div class="toolbar d-flex align-items-stretch">
+							<partial name="~/Views/Shared/Command/_menuTopBar.cshtml" />
+						</div>
+						<!--end::Toolbar-->
+					</div>
+					<!--end::Header-->
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Post-->
+						<div class="post d-flex flex-column-fluid" id="kt_post">
+							<!--begin::Container-->
+								@RenderBody()
+							<!--end::Container-->
+						</div>
+						<!--end::Post-->
+					</div>
+					<!--end::Content-->
+					<!--begin::Footer-->
+					<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+						<!--begin::Container-->
+						<div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+							<!--begin::Copyright-->
+							<div class="text-dark order-2 order-md-1">
+								<span class="text-muted fw-semibold me-1">2022&copy;</span>
+								<a href="https://www.utm.my" target="_blank" class="text-gray-800 text-hover-primary">Universiti Teknologi Malaysia</a>
+							</div>
+							<!--end::Copyright-->
+							<!--begin::Menu-->
+							<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+								<li class="menu-item">
+									<a href="@_getPath/Home/SessionVariable" target="_blank" class="menu-link px-2">Session</a>
+								</li>
+							</ul>
+							<!--end::Menu-->
+						</div>
+						<!--end::Container-->
+					</div>
+					<!--end::Footer-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+		<!--end::Main-->
+		<!--begin::Scrolltop-->
+		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+			<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+			<span class="svg-icon">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+					<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+				</svg>
+			</span>
+			<!--end::Svg Icon-->
+		</div>
+		<!--end::Scrolltop-->
+		<!--begin::Modals-->
+		<!--begin::Modal - Invite Friends-->
+	<div class="modal fade" id="IdModalLoginCenter" tabindex="-1" aria-hidden="true">
+		<!--begin::Modal dialog mw-650px-->
+			<div class="modal-dialog">
+				<!--begin::Modal content-->
+				<div class="modal-content">
+					<!--begin::Modal header-->
+					<div class="modal-header pb-0 border-0 justify-content-end">
+						<!--begin::Close-->
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+							<span class="svg-icon svg-icon-1">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+								</svg>
+							</span>
+							<!--end::Svg Icon-->
+						</div>
+						<!--end::Close-->
+					</div>
+					<!--begin::Modal header-->
+					<!--begin::Modal body-->
+					<div class="modal-body">
+						<!--begin::Heading-->
+					<div class="text-center mb-13">
+							<!--begin::Title-->
+							<h1 class="mb-3">Login <i>(HR System)</i></h1>
+						<input type="hidden" id="IdPathServerMain" value="@_path00">
+							<!--end::Title-->
+						</div>
+						<!--end::Heading-->
+						<!--begin::Notice-->
+							<div class="row">
+							<div class="col-sm-12" style="padding-right:10px;">
+									<!--begin::Label-->
+									<label class="form-label required text-maroon">User ID</label>
+									<!--end::Label-->
+									<!--begin::Input form-control-solid-->
+									<input class="form-control" id="IdUserIDText" name="USERNAME" placeholder="User ID" style="padding-right:10px;" />
+									<!--end::Input-->
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<!--begin::Label-->
+									<label class="form-label required text-maroon">Password</label>
+									<!--end::Label-->
+									<!--begin::Input-->
+									<input class="form-control" id="IdPaswordText" name="PASSWORD" placeholder="password" type="password" />
+									<!--end::Input-->
+								</div>
+							</div>
+						<!--end::Notice-->
+					</div>
+					<!--end::Modal body-->
+				<!--begin::Modal footer-->
+				<div class="modal-footer flex-right" style="background-color: antiquewhite;">
+					<button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
+					<button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
+					&nbsp;
+					<button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
+					<div>
+						<small id="IdModalLoginLable"></small>
+					</div>
+				</div>
+				<!--end::Modal footer-->
+				</div>
+				<!--end::Modal content-->
+			</div>
+			<!--end::Modal dialog-->
+		</div>
+		<!--end::Modal - Invite Friend-->
+		<!--end::Modals-->
+		<!--begin::Javascript-->
+		<script>var hostUrl = "assets/";</script>
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="~/assets/plugins/global/plugins.bundle.js"></script>
+		<script src="~/assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Vendors Javascript(used by this page)-->
+		<script src="~/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+		<script src="~/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		<!--end::Vendors Javascript-->
+		<!--begin::Custom Javascript(used by this page)-->
+		<script src="~/js/sweetalert.js"></script>
+		<script src="~/js/Home/Index.js"></script>
+		<!-- script src="assets/js/widgets.bundle.js"></script>
+		<script src="assets/js/custom/widgets.js"></script>
+		<script src="assets/js/custom/apps/chat/chat.js"></script>
+		<script src="assets/js/custom/utilities/modals/users-search.js"></script -->
+	@await RenderSectionAsync("Scripts", required: false)
+		<!--end::Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>
+
+@if (_userLogin != "")
+{
+	<script>
+
+		var _path = $('#IdPathServer').val();
+
+		//alert(_path);
+		//check session
+		var checkSessionTime = function () {
+			var time;
+			window.onload = resetTimer();
+
+			var timeIdle;
+			window.onload = resetIdleTimer;
+			// DOM Events
+			window.onload = resetIdleTimer;
+			window.onmousemove = resetIdleTimer;
+			window.onmousedown = resetIdleTimer;  // catches touchscreen presses as well
+			window.ontouchstart = resetIdleTimer; // catches touchscreen swipes as well
+			window.onclick = resetIdleTimer;      // catches touchpad clicks as well
+			window.onkeypress = resetIdleTimer;
+			window.addEventListener('scroll', resetIdleTimer, true); // improved; see comments
+
+			//check session
+			function checkLogout() {
+				$.ajax({
+					type: 'POST',
+					dataType: 'json',
+					contentType: 'application/json',
+					url: _path + '/Home/checkSession',
+					data: '{}',
+					success: function (data) {
+						if (data.sessionValue == true) {
+							resetTimer();
+						}
+						else {
+							//alert(1);
+							location.href = _path + '/Login/Logout';
+						}
+					},
+					error: function (xhr) {
+						//alert(2);
+						location.href = _path + '/Login/Logout';
+					}
+				});
+			}
+
+			//check session
+			function resetTimer() {
+				clearTimeout(time);
+				time = setTimeout(checkLogout, 900000)
+				// 1000 milliseconds = 1 second
+			}
+
+			//check idle
+			function logout() {
+				var url_back = window.location.href;
+
+				let timerInterval
+				Swal.fire({
+					title: 'You have been idle for too long!',
+					html: 'You will be logout in <b></b> seconds.<br> <strong>Continue?</strong>',
+					type: "warning",
+					confirmButtonText: 'Yes, stay login!',
+					timer: 10000,
+					timerProgressBar: true,
+					onBeforeOpen: () => {
+						//Swal.showLoading()
+						timerInterval = setInterval(() => {
+							Swal.getContent().querySelector('b')
+								.textContent = Swal.getTimerLeft() / 1000
+						}, 100)
+					},
+					onClose: () => {
+						clearInterval(timerInterval)
+					}
+				}).then((result) => {
+					if (result.dismiss === Swal.DismissReason.timer) {
+						Swal.fire({
+							title: 'Logging Out',
+							text: 'Redirecting...',
+							type: 'info',
+							showConfirmButton: false
+						});
+						$.ajax({
+							type: 'POST',
+							dataType: 'json',
+							contentType: 'application/json',
+							//url:  _path + '/Home/setSession',
+							url: _path + '/Login/Logout',
+							data: '{}',
+							success: function () {
+							},
+							error: function () {
+							}
+						});
+						//location.href = '/Login/Logout/'
+						//alert(123);
+						//location.href =  _path + '/Login/Logout/?service=' + url_back;
+						location.href = _path + '/Login/Logout';
+					}
+				})
+			}
+
+			//check idle
+			function resetIdleTimer() {
+				clearTimeout(timeIdle);
+				timeIdle = setTimeout(logout, 900000)
+				//timeIdle = setTimeout(logout, 30000)
+			}
+		};
+
+		window.onload = function () {
+			checkSessionTime();
+		}
+
+	</script>
+
+}

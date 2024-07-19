@@ -1,0 +1,795 @@
+﻿:root {
+    --bg-all-tanah: #f8f8ff;
+    --bg-hijaumuda: #f4ffee, #ececec, #f6f7fa;
+    --bg-hover00: #FAEBD7;
+    --bg-hover01: #F8F0E3;
+    --bg-hover02: #FFFAF0;
+    --bg-show-01: #D4D4F4;
+    --bg-text-hover00: #f26745;
+    --mn-color-text: #575F52;
+    --mn-text-hover: #800000;
+}
+/*ECFCCC #F4DDFF #F8FAF4 #e8ffdd #F0E0F8 #D4D4F4 kundang*/
+@media print {
+    .print-content-only {
+        padding: 0 !important;
+        background: 0 0 !important
+    }
+
+        .print-content-only .container,
+        .print-content-only .container-fluid,
+        .print-content-only .container-lg,
+        .print-content-only .container-md,
+        .print-content-only .container-sm,
+        .print-content-only .container-xl,
+        .print-content-only .container-xxl,
+        .print-content-only .page,
+        .print-content-only .page-title .content,
+        .print-content-only .wrapper {
+            background: 0 0 !important;
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .print-content-only .mtepi,
+        .print-content-only .btn,
+        .print-content-only .drawer,
+        .print-content-only .footer,
+        .print-content-only .header,
+        .print-content-only .scrolltop,
+        .print-content-only .sidebar,
+        .print-content-only .toolbar {
+            display: none !important
+        }
+}
+
+@media print {
+    .print-content-only {
+        padding: 0 !important;
+        background: 0 0 !important
+    }
+
+        .print-content-only .container,
+        .print-content-only .container-fluid,
+        .print-content-only .container-lg,
+        .print-content-only .container-md,
+        .print-content-only .container-sm,
+        .print-content-only .container-xl,
+        .print-content-only .container-xxl,
+        .print-content-only .page,
+        .print-content-only .page-title .content,
+        .print-content-only .wrapper {
+            background: 0 0 !important;
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .print-content-only .mtepi,
+        .print-content-only .btn,
+        .print-content-only .drawer,
+        .print-content-only .footer,
+        .print-content-only .header,
+        .print-content-only .scrolltop,
+        .print-content-only .sidebar,
+        .print-content-only .toolbar {
+            display: none !important
+        }
+}
+
+body {
+    background-color: var(--kt-page-bg)
+}
+
+@media (min-width:992px) {
+    .container,
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        padding: 0 30px
+    }
+
+    .wrapper {
+        transition: padding-left .3s ease;
+        padding-top: 74px;
+        padding-left: 265px
+    }
+
+    [data-kt-aside-minimize=on]
+    .wrapper {
+        transition: padding-left .3s ease;
+        padding-left: 0
+    }
+}
+
+@media (min-width:992px) {
+    .header {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        height: 74px;
+        transition: left .3s ease;
+        z-index: 100;
+        box-shadow: var(--kt-header-box-shadow);
+        background-color: var(--kt-header-bg-color);
+        border-bottom: var(--kt-header-border-bottom);
+        top: 0;
+        right: 0;
+        left: 0
+    }
+
+        .header .header-brand {
+            height: 74px;
+            padding: 0 25px;
+            width: 265px;
+            border-bottom: var(--kt-header-border-bottom);
+            flex-shrink: 0
+        }
+
+        .header .mtepi-minimize .minimize-active {
+            display: none
+        }
+
+        .header .mtepi-minimize.active .minimize-default {
+            display: none
+        }
+
+        .header .mtepi-minimize.active .minimize-active {
+            display: inline-block
+        }
+}
+
+@media (max-width:991.98px) {
+    .header {
+        flex-direction: column
+    }
+
+    .header-brand {
+        padding: 0 15px;
+        background-color: #1e1e2d;
+        display: flex;
+        align-items: center;
+        height: 55px;
+        width: 100%
+    }
+
+        .header-brand .mtepi-minimize {
+            display: none
+        }
+
+    .header-tablet-and-mobile-fixed .header-brand {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 100;
+        height: 55px
+    }
+}
+
+.matas {
+    background-color: var(--bg-all-tanah)
+}
+
+.mtepi {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-all-tanah);
+    padding: 0
+}
+
+    .mtepi .mtepi-toolbar .mtepi-user {
+        border-top: 1px solid #2d2d43;
+        padding: 0 25px
+    }
+
+[data-theme=dark]
+.mtepi .mtepi-toolbar .mtepi-user {
+    border-top: 0
+}
+
+.mtepi .mtepi-toolbar .mtepi-search {
+    border-top: 1px solid #2d2d43;
+    border-bottom: 1px solid #2d2d43;
+    padding: 0 25px
+}
+
+    .mtepi .mtepi-toolbar .mtepi-search .search-icon {
+        color: #dadada
+    }
+
+    .mtepi .mtepi-toolbar .mtepi-search .search-input {
+        background-color: #2c2c41;
+        border-color: #2c2c41;
+        color: #878aa0
+    }
+
+        .mtepi .mtepi-toolbar .mtepi-search .search-input::placeholder {
+            color: #7e8299
+        }
+
+        .mtepi .mtepi-toolbar .mtepi-search .search-input::-moz-placeholder {
+            color: #7e8299;
+            opacity: 1
+        }
+
+.mtepi .mtepi-footer {
+    padding: 0 15px
+}
+
+    .mtepi .mtepi-footer .btn-custom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+        color: var(--mn-color-text);
+        background-color: var(--bg-show-01);
+    }
+
+        .mtepi .mtepi-footer .btn-custom.active,
+        .mtepi .mtepi-footer .btn-custom.show,
+        .mtepi .mtepi-footer .btn-custom:active:not(.btn-active),
+        .mtepi .mtepi-footer .btn-custom:focus:not(.btn-active),
+        .mtepi .mtepi-footer .btn-custom:hover:not(.btn-active),
+        .btn-check:active + .mtepi .mtepi-footer .btn-custom,
+        .btn-check:checked + .mtepi .mtepi-footer .btn-custom,
+        .show > .mtepi .mtepi-footer .btn-custom {
+            color: var(--mn-color-text);
+            background-color: var(--bg-hover01) !important
+        }
+
+        .mtepi .mtepi-footer .btn-custom .btn-label {
+            transition: opacity .3s ease;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            opacity: 1
+        }
+
+        .mtepi .mtepi-footer .btn-custom .btn-icon {
+            display: inline-block;
+            transition: opacity .3s ease;
+            overflow: hidden;
+            opacity: 0;
+            margin: 0;
+            width: 0
+        }
+
+            .mtepi .mtepi-footer .btn-custom .btn-icon,
+            .mtepi .mtepi-footer .btn-custom .btn-icon .svg-icon,
+            .mtepi .mtepi-footer .btn-custom .btn-icon i {
+                color: #b5b5c3
+            }
+
+.mtepi .hover-scroll-overlay-y {
+    --scrollbar-space: 0.4rem;
+    scrollbar-color: #4d4d69 transparent
+}
+
+    .mtepi .hover-scroll-overlay-y::-webkit-scrollbar-thumb {
+        background-color: #4d4d69
+    }
+
+    .mtepi .hover-scroll-overlay-y::-webkit-scrollbar-corner {
+        background-color: transparent
+    }
+
+    .mtepi .hover-scroll-overlay-y:hover {
+        scrollbar-color: #51516f transparent
+    }
+
+        .mtepi .hover-scroll-overlay-y:hover::-webkit-scrollbar-thumb {
+            background-color: #51516f
+        }
+
+        .mtepi .hover-scroll-overlay-y:hover::-webkit-scrollbar-corner {
+            background-color: transparent
+        }
+
+@media (min-width:992px) {
+    .mtepi {
+        position: fixed;
+        top: 74px;
+        left: 0;
+        bottom: 0;
+        z-index: 101;
+        overflow: hidden;
+        width: 265px;
+        transition: left .3s ease
+    }
+
+        .mtepi .mtepi-menu {
+            width: 265px
+        }
+
+    [data-kt-aside-minimize=on]
+    .mtepi {
+        left: -265px;
+        transition: left .3s ease
+    }
+
+    [dir=rtl]
+    .mtepi-minimize .svg-icon {
+        transform: rotateZ(180deg)
+    }
+}
+
+@media (max-width:991.98px) {
+    .mtepi {
+        display: none
+    }
+
+        .mtepi .mtepi-logo {
+            display: none
+        }
+}
+
+.mtepi-menu .menu .menu-item .menu-content,
+.mtepi-menu .menu .menu-item .menu-link {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(.75rem + 10px)
+}
+
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(1.5rem + 10px)
+}
+
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(2.25rem + 10px)
+}
+
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(3rem + 10px)
+}
+
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: .75rem;
+    padding-right: 0
+}
+
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(1.5rem);
+    padding-right: 0
+}
+
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(2.25rem);
+    padding-right: 0
+}
+
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu.menu-fit .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(3rem);
+    padding-right: 0
+}
+
+.mtepi-menu .menu .menu-item .menu-link {
+    color: var(--mn-color-text)
+}
+
+    .mtepi-menu .menu .menu-item .menu-link .menu-title {
+        color: var(--mn-color-text)
+    }
+
+    .mtepi-menu .menu .menu-item .menu-link .menu-icon,
+    .mtepi-menu .menu .menu-item .menu-link .menu-icon .svg-icon,
+    .mtepi-menu .menu .menu-item .menu-link .menu-icon i {
+        color: var(--mn-color-text)
+    }
+
+    .mtepi-menu .menu .menu-item .menu-link .menu-bullet .bullet {
+        background-color: var(--mn-color-text)
+    }
+
+    .mtepi-menu .menu .menu-item .menu-link .menu-arrow:after {
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: var(--mn-color-text);
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%234A4B68'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%234A4B68'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: var(--mn-color-text);
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%234A4B68'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%234A4B68'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e")
+    }
+
+.mtepi-menu .menu .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here) .menu-title,
+.mtepi-menu .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) .menu-title {
+    color: var(--mn-text-hover)
+}
+
+.mtepi-menu .menu .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here) .menu-icon,
+.mtepi-menu .menu .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here) .menu-icon .svg-icon,
+.mtepi-menu .menu .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here) .menu-icon i,
+.mtepi-menu .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) .menu-icon,
+.mtepi-menu .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) .menu-icon .svg-icon,
+.mtepi-menu .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) .menu-icon i {
+    color: var(--mn-text-hover)
+}
+
+.mtepi-menu .menu .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here) .menu-bullet .bullet,
+.mtepi-menu .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) .menu-bullet .bullet {
+    background-color: #800000
+}
+
+.mtepi-menu .menu .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here) .menu-arrow:after,
+.mtepi-menu .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) .menu-arrow:after {
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    background-color: var(--mn-text-hover);
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    background-color: var(--mn-text-hover);
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e");
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e")
+}
+
+.mtepi-menu .menu .menu-item.here > .menu-link {
+    transition: color .2s ease;
+    background-color: transparent;
+    color: #800000
+}
+
+    .mtepi-menu .menu .menu-item.here > .menu-link .menu-title {
+        color: #000000
+    }
+
+    .mtepi-menu .menu .menu-item.here > .menu-link .menu-icon,
+    .mtepi-menu .menu .menu-item.here > .menu-link .menu-icon .svg-icon,
+    .mtepi-menu .menu .menu-item.here > .menu-link .menu-icon i {
+        background-color: transparent;
+        color: #000000
+    }
+
+    .mtepi-menu .menu .menu-item.here > .menu-link .menu-bullet .bullet {
+        background-color: #E6E6F4
+    }
+
+    .mtepi-menu .menu .menu-item.here > .menu-link .menu-arrow:after {
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: #dadae6;
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: #dadae6;
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e")
+    }
+
+.mtepi-menu .menu .menu-item.show > .menu-link {
+    transition: color .2s ease;
+    background-color: var(--bg-show-01);
+    color: #800000
+}
+
+    .mtepi-menu .menu .menu-item.show > .menu-link .menu-title {
+        color: #800000
+    }
+
+    .mtepi-menu .menu .menu-item.show > .menu-link .menu-icon,
+    .mtepi-menu .menu .menu-item.show > .menu-link .menu-icon .svg-icon,
+    .mtepi-menu .menu .menu-item.show > .menu-link .menu-icon i {
+        color: #800000
+    }
+
+    .mtepi-menu .menu .menu-item.show > .menu-link .menu-bullet .bullet {
+        background-color: #dadae6
+    }
+
+    .mtepi-menu .menu .menu-item.show > .menu-link .menu-arrow:after {
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: #dadae6;
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: #dadae6;
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e")
+    }
+
+.mtepi-menu .menu .menu-item .menu-link.active {
+    transition: color .2s ease;
+    background-color: var(--bg-show-01);
+    color: #800000
+}
+
+    .mtepi-menu .menu .menu-item .menu-link.active .menu-title {
+        color: #fff
+    }
+
+    .mtepi-menu .menu .menu-item .menu-link.active .menu-icon,
+    .mtepi-menu .menu .menu-item .menu-link.active .menu-icon .svg-icon,
+    .mtepi-menu .menu .menu-item .menu-link.active .menu-icon i {
+        color: #fff
+    }
+
+    .mtepi-menu .menu .menu-item .menu-link.active .menu-bullet .bullet {
+        background-color: var(--bg-show-01)
+    }
+
+    .mtepi-menu .menu .menu-item .menu-link.active .menu-arrow:after {
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: var(--bg-show-01);
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: var(--bg-show-01);
+        -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e");
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%23ffffff'%3e%3cpath d='M3.27989 3.23571L1.53642 4.97917C1.36382 5.15176 1.36383 5.43158 1.53642 5.60417C1.70901 5.77676 1.98882 5.77676 2.16139 5.60417L4.47096 3.29463C4.63371 3.13192 4.63371 2.86809 4.47096 2.70538L2.16139 0.395812C1.98883 0.22325 1.70901 0.22325 1.53642 0.395812C1.36383 0.568437 1.36383 0.84825 1.53642 1.02081L3.27989 2.76429C3.41006 2.89446 3.41006 3.10554 3.27989 3.23571Z'/%3e%3c/svg%3e")
+    }
+
+.mtepi-menu .menu .separator {
+    border-bottom: 1px dashed #2d2d43
+}
+
+.mtepi-menu .menu > .menu-item {
+    padding: 0 .6rem
+}
+
+.mtepi-menu .menu-item {
+    padding: 0
+}
+
+    .mtepi-menu .menu-item .menu-link {
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        border-radius: .475rem
+    }
+
+    .mtepi-menu .menu-item .menu-icon {
+        justify-content: flex-start
+    }
+
+.mtepi-menu .menu > .menu-sub-item {
+    padding: 0 .8rem
+}
+
+.mtepi-menu .menu-sub-item {
+    padding: 0
+}
+
+    .mtepi-menu .menu-sub-item .menu-link {
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        border-radius: .475rem
+    }
+
+    .mtepi-menu .menu-sub-item .menu-icon {
+        justify-content: flex-end
+    }
+
+.mtepi-menu .menu .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here),
+.mtepi-menu .menu .menu-item:not(.here).menu-link:hover:not(.disabled):not(.active):not(.here) {
+    transition: color .2s ease;
+    background-color: var(--bg-hover00);
+    color: #1e1e2d;
+}
+
+.mtepi-menu .menu .menu-sub-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here),
+.mtepi-menu .menu .menu-sub-item:not(.here).menu-link:hover:not(.disabled):not(.active):not(.here) {
+    transition: color .2s ease;
+    background-color: var(--bg-hover01);
+    color: var(--mn-text-hover);
+}
+
+.mtepi-menu .menu .menu-sub-item.hover:not(.here) > .menu-sub:not(.disabled):not(.active):not(.here),
+.mtepi-menu .menu .menu-sub-item:not(.here).menu-sub:hover:not(.disabled):not(.active):not(.here) {
+    transition: color .2s ease;
+    background-color: var(--bg-hover02);
+    color: #1e1e2d
+}
+
+.mtepi-menu .menu .menu-sub-item .menu-link {
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.mtepi-menu .menu .menu-sub-item .menu-sub .menu-item {
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-link {
+    padding-left: calc(.75rem + 10px)
+}
+
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(1.5rem + 10px)
+}
+
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-inner > .menu-item > .menu-link,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-content,
+.mtepi-menu .menu .menu-sub:not([data-popper-placement]) > .menu-sub-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-sub:not([data-popper-placement]) > .menu-item > .menu-link {
+    padding-left: calc(2.25rem + 10px)
+}
+
+.custom-bg-image {
+    /* The image used background-image: url("~/images/Welcome14.png");*/
+    /* Full height height: 100%;*/
+    /* Center and scale the image nicely background-size: contain cover; background-position: center; flex: 1 0 auto; background-position-x: center; background-attachment: fixed*/
+    background-repeat: no-repeat;
+    background-size: 95%;
+    background-position-y: bottom;
+    background-position-x: center;
+    background-attachment: inherit;
+}
+
+.mtepi-menu .menu .menu-item.show > .menu-link {
+    transition: color .2s ease;
+    background-color: var(--bg-hover00);
+    color: #800000;
+}
+
+.mtepi-menu .menu .menu-item.show2 > .menu-link {
+    transition: color .2s ease;
+    background-color: var(--kt-secondary);
+    color: #800000;
+}
+
+.mtepi-menu .menu .menu-item .menu-link.active2 {
+    background-color: var(--kt-secondary);
+}
+
+    .mtepi-menu .menu .menu-item .menu-link.active2 .menu-title {
+        color: var(--mn-color-text);
+    }

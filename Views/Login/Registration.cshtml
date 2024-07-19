@@ -1,0 +1,171 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sistem Pendaftaran APEL</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+            <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
+                <div class="row w-100">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auto-form-wrapper auto-form-wrapper-sm">
+                            <form id="frm_register" name="frm_register" action="class/register_process.php" method="post">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <div class="col-md-12 text-center">
+                                                    <img src="images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
+                                                    <h3>Sistem Pendaftaran APEL</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Nama</label>
+                                                        <div class="col-sm-8">
+                                                            <input id="txt_fullname" name="txt_fullname" type="text" class="form-control txt_upper" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label id="lbl_ic" class="col-sm-4 col-form-label">No Kad Pengenalan <font size="-6">(eg: 150101235112)</font></label>
+                                                        <div class="col-sm-8">
+                                                            <input id="txt_iddesc" name="txt_iddesc" type="text" maxlength="12" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Emel</label>
+                                                        <div class="col-sm-8">
+                                                            <input id="txt_email" name="txt_email" type="email" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Kata Laluan</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="password" name="txt_password" id="txt_password" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Pengesahan Kata Laluan</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="password" name="txt_repassword" id="txt_repassword" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <button type="submit" id="btn_register" name="btn_register" class="btn btn-primary submit-btn btn-block" onClick="return validate(this);">Daftar</button>
+                                                <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-block text-center my-3">
+                                    <span class="text-small font-weight-semibold">Telah berdaftar ?</span>
+                                    <label class="text-small"><a href="index.php">Log Masuk</a></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/misc.js"></script>
+    <!-- endinject -->
+
+    <script type="text/javascript">
+        function validate(btn) {
+            form = document.frm_register;
+            var idno = document.getElementById("txt_iddesc").value;
+            var name = document.getElementById("txt_fullname").value;
+            var email = document.getElementById("txt_email").value;
+            var pwd1 = document.getElementById("txt_password").value;
+            var pwd2 = document.getElementById("txt_repassword").value;
+            
+            var n = pwd1.length;
+
+            if (btn.name == 'btn_register') {
+                if (idno == '') {
+                    alert("Sila isi No Kad Pengenalan anda !");
+                    document.getElementById("txt_iddesc").focus();
+                    return false;
+                } else if (name == '') {
+                    alert("Sila isi Nama !");
+                    document.getElementById("txt_fullname").focus();
+                    return false;
+                } else if (!filter.test(email)) {
+                    alert("Sila isi alamat emel yang betul !");
+                    document.getElementById("txt_email").focus();
+                    return false;
+                } else if (pwd1 == '') {
+                    alert("Sila isi Kata Laluan !");
+                    document.getElementById("txt_password").focus();
+                    return false;
+                } else if (n < 6) {
+                    alert("Pastikan Kata Laluan tidak kurang dari 6 digit.");
+                    document.getElementById("txt_password").focus();
+                    return false;
+                } else if (pwd1 != pwd2) {
+                    alert("Kata Laluan tidak sepadan !");
+                    document.getElementById("txt_password").focus();
+                    return false;
+                } else {
+                    if (!confirm("Sila pastikan maklumat yang diisi adalah tepat. Anda pasti untuk menyimpan rekod ini?")) {
+                        return false;
+                    } else {
+                        form.submit();
+                    }
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
