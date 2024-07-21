@@ -1,13 +1,13 @@
 ﻿//using Net6HrPublicLibrary.Model;
-////using APEL.PublicServices.Login;
-////using APEL.PublicShared;
-//using APEL.LocalServices.Login;
-//using APEL.LocalShared;
-//using APEL.Models;
+////using APELC.PublicServices.Login;
+////using APELC.PublicShared;
+//using APELC.LocalServices.Login;
+//using APELC.LocalShared;
+//using APELC.Models;
 //using System.Net;
 //using System.Diagnostics;
 
-namespace APEL.LocalServices.Login
+namespace APELC.LocalServices.Login
 {
     //    public class LoginProcess
     //    {

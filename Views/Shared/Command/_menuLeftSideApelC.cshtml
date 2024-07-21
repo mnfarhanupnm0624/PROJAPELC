@@ -1,6 +1,6 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
-@using APEL.Helper
+@using APELC.Helper
 @{
 #pragma warning disable CS8602
     string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
@@ -344,7 +344,7 @@
 
                 <li class="open" style="background-color: #e47662;padding: 8px;margin-top: 5px;">
                     <div class="clearfix">
-                        &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd;text-decoration: underline;"><b>PASUKAN PENGURUS SISTEM APEL.C</b></font><br>
+                        &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd;text-decoration: underline;"><b>PASUKAN PENGURUS SISTEM APELC.C</b></font><br>
                     </div>
                 </li>
 

@@ -1,7 +1,7 @@
-﻿using APEL.LocalServices.Siasatan;
+﻿using APELC.LocalServices.Siasatan;
 using System.ComponentModel.DataAnnotations;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class CarianLampiran
     {

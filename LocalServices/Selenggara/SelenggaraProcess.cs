@@ -1,11 +1,11 @@
 ﻿//using Net6HrPublicLibrary.Model;
 //using Net6HrPublicLibrary.PublicServices.Public;
 //using Net6HrPublicLibrary.PublicShared;
-//using APEL.LocalServices.Senarai;
-//using APEL.LocalShared;
-//using APEL.Models;
+//using APELC.LocalServices.Senarai;
+//using APELC.LocalShared;
+//using APELC.Models;
 
-//namespace APEL.LocalServices.Aduan
+//namespace APELC.LocalServices.Aduan
 //{
 //    public class SelenggaraProcess
 //    {

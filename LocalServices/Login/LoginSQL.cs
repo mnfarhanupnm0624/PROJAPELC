@@ -1,4 +1,4 @@
-﻿namespace APEL.LocalServices.Login
+﻿namespace APELC.LocalServices.Login
 {
     public class LoginSQL
     {

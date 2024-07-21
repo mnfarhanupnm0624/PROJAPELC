@@ -1,10 +1,10 @@
 ﻿//using Net6HrPublicLibrary.PublicShared;
-//using APEL.LocalServices.Siasatan;
-//using APEL.LocalShared;
-//using APEL.Models;
+//using APELC.LocalServices.Siasatan;
+//using APELC.LocalShared;
+//using APELC.Models;
 //using System.Xml.Linq;
 
-//namespace APEL.LocalServices.Status
+//namespace APELC.LocalServices.Status
 //{
 //    public class StatusProcess
 //    {

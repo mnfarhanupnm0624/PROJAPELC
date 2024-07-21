@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 //using Net6HrPublicLibrary.PublicShared;
-using APEL.LocalShared;
-using APEL.Models;
+using APELC.LocalShared;
+using APELC.Models;
 //using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace APEL.Controllers
+namespace APELC.Controllers
 {
 	public class GenerateQRCodeController : Controller
 	{

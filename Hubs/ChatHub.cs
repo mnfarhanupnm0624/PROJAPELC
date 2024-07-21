@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using APEL.Helper;
-using APEL.LocalServices.Siasatan;
-using APEL.Models;
+using APELC.Helper;
+using APELC.LocalServices.Siasatan;
+using APELC.Models;
 //using System.IdentityModel.Tokens.Jwt;
 //using System.Web.Mvc;
 using System.Xml.Linq;
 
-namespace APEL.Hubs
+namespace APELC.Hubs
 {
     //[Authorize]
     public class ChatHub : Hub

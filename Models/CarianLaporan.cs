@@ -1,7 +1,7 @@
-﻿using APEL.LocalServices.Siasatan;
-using APEL.LocalShared;
+﻿using APELC.LocalServices.Siasatan;
+using APELC.LocalShared;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class CarianLaporan
     {

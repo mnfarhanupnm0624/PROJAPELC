@@ -1,4 +1,4 @@
-﻿namespace APEL.LocalServices.Aduan
+﻿namespace APELC.LocalServices.Aduan
 {
     public class SelenggaraSQL
     {

@@ -1,5 +1,5 @@
 ﻿//using Dapper;
-using APEL.Models;
+using APELC.Models;
 //using Net6HrPublicLibrary.PublicShared;
 //using Oracle.ManagedDataAccess.Client;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//namespace APEL.PublicServices.Login
+//namespace APELC.PublicServices.Login
 //{
 //    public class LoginDBLibrary
 //    {
@@ -263,7 +263,7 @@ using System.Threading.Tasks;
 //        }
 
 //    }
-//}//namespace APEL.PublicServices.Login
+//}//namespace APELC.PublicServices.Login
 //{
 //    public class LoginDBLibrary
 //    {

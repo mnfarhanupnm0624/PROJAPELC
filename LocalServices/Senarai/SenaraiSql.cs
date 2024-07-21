@@ -1,6 +1,6 @@
-﻿using APEL.LocalShared;
+﻿using APELC.LocalShared;
 
-namespace APEL.LocalServices.Senarai
+namespace APELC.LocalServices.Senarai
 {
     public class SenaraiSql
     {

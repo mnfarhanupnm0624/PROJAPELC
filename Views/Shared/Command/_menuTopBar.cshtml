@@ -1,6 +1,6 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
-@using APEL.Helper
+@using APELC.Helper
 @{
 #pragma warning disable CS8602
     string _titleTop = HttpContextAccessor.HttpContext.Session.GetString("_titleTop") ?? "Dashboard";

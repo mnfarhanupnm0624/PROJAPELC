@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 //using Net6HrPublicLibrary.PublicShared;
-using APEL.Models;
+using APELC.Models;
 using System.Net;
 
-namespace APEL.LocalShared
+namespace APELC.LocalShared
 {
 	public class SecurityConstants
 	{

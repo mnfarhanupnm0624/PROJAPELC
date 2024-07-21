@@ -1,9 +1,9 @@
-﻿using APEL.Models;
+﻿using APELC.Models;
 //using Newtonsoft.Json;
 
-namespace APEL.Helper
+namespace APELC.Helper
 {
-    public static class ApelUser
+    public static class ApelCUser
     {
         private static IHttpContextAccessor httpContextAccessor;
         public static void Configure(IHttpContextAccessor accessor)

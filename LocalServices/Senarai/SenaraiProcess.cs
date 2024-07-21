@@ -2,11 +2,11 @@
 //using Net6HrPublicLibrary.PublicServices.Login;
 //using Net6HrPublicLibrary.PublicServices.Public;
 ////using Net6HrPublicLibrary.PublicShared;
-//using APEL.LocalServices.Siasatan;
-//using APEL.LocalShared;
-//using APEL.Models;
+//using APELC.LocalServices.Siasatan;
+//using APELC.LocalShared;
+//using APELC.Models;
 
-//namespace APEL.LocalServices.Senarai
+//namespace APELC.LocalServices.Senarai
 //{
 //    public class SenaraiProcess
 //    {

@@ -1,8 +1,8 @@
 ﻿//using Net6HrPublicLibrary.PublicShared;
-//using APEL.LocalServices.Public;
-//using APEL.LocalShared;
+//using APELC.LocalServices.Public;
+//using APELC.LocalShared;
 
-//namespace APEL.Models
+//namespace APELC.Models
 //{
 //    public class CarianStaff
 //    {

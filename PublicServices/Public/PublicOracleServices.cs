@@ -1,6 +1,6 @@
 ﻿using Dapper;
-using APEL.Models;
-using APEL.LocalShared;
+using APELC.Models;
+using APELC.LocalShared;
 //using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//namespace APEL.PublicServices.Public
+//namespace APELC.PublicServices.Public
 //{
 //    public class PublicOracleServices
 //    {

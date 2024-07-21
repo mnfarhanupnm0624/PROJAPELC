@@ -1,7 +1,7 @@
-﻿using APEL.LocalShared;
+﻿using APELC.LocalShared;
 using System.ComponentModel.DataAnnotations;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class ModelQRCode
     {

@@ -2,7 +2,7 @@
 using System.Security.Policy;
 //using System.Web.Mvc;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class ModelHrPengadu
     {

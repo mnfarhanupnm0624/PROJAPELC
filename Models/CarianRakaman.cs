@@ -1,6 +1,6 @@
-﻿using APEL.LocalServices.Siasatan;
+﻿using APELC.LocalServices.Siasatan;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class CarianRakaman
     {

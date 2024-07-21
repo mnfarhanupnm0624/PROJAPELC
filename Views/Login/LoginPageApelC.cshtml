@@ -64,9 +64,9 @@
                                                         <div class="col-sm-8">
                                                             <select id="dd_jnsApel" name="dd_jnsApel" class="form-control" onChange="get_jnsApel()">
                                                                 <option value="">- SILA PILIH -</option>
-                                                                <option value="APEL.A"> APEL.A</option>
-                                                                <option value="APEL.C" disabled> APEL.C</option>
-                                                                <option value="APEL.C" disabled> APEL.Q</option>
+                                                                <option value="APELC.A"> APELC.A</option>
+                                                                <option value="APELC.C" disabled> APELC.C</option>
+                                                                <option value="APELC.C" disabled> APELC.Q</option>
                                                             </select>
                                                             <input id="txt_jnsApel" name="txt_jnsApel" type="hidden" value="">
                                                         </div>
@@ -90,7 +90,7 @@
                                         </div>
                                     </div>
                                     <div class="text-block text-center my-3">
-                                        <small><!--<a href="https://myapel.upnm.edu.my/admin" target="_blank">Pentadbir?</a> -->&copy; 2023 v2.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
+                                        <small><!--<a href="https://myAPELC.upnm.edu.my/admin" target="_blank">Pentadbir?</a> -->&copy; 2023 v2.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
                                     </div>
                                 </div>
                             </form>
@@ -191,7 +191,7 @@
             var selected = document.getElementById("dd_jnsApel").value;
 
             if (selected == "") {
-                alert("Sila pilih Jenis Apel.");
+                alert("Sila pilih Jenis APELC.");
                 return;
             } else {
                 form.submit();

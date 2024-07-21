@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using APEL.Helper;
-using APEL.LocalServices.Senarai;
-//using APEL.LocalServices.Aduan;
-using APEL.Models;
+using APELC.Helper;
+using APELC.LocalServices.Senarai;
+//using APELC.LocalServices.Aduan;
+using APELC.Models;
 //using Newtonsoft.Json;
-//using APEL.LocalServices.Public;
+//using APELC.LocalServices.Public;
 //using Net6HrPublicLibrary.PublicShared;
 using System.Xml.Linq;
 
 
-namespace APEL.Controllers
+namespace APELC.Controllers
 {
     public class ApelCController : Controller
     {

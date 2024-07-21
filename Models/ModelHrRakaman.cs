@@ -1,6 +1,6 @@
 ﻿//using System.Web.Mvc;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class ModelHrRakaman
     {

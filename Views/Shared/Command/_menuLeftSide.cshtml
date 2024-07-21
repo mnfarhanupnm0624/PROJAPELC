@@ -1,7 +1,7 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
 @* @model ModelQRCode *@
-@using APEL.Helper
+@using APELC.Helper
 @{
 #pragma warning disable CS8602
     string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";

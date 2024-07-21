@@ -1,6 +1,6 @@
 ﻿//using Net6HrPublicLibrary.PublicShared;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class ModelHrPolis
     {

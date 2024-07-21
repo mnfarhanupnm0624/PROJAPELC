@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Policy;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class ModelHrMessage
     {

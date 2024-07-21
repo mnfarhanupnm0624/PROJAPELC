@@ -2,14 +2,14 @@
 //using Net6HrPublicLibrary.Model;
 //using Net6HrPublicLibrary.PublicServices.Login;
 ////using Net6HrPublicLibrary.PublicShared;
-using APEL.LocalServices.Login;
-//using APEL.PublicServices.Login;
-using APEL.LocalShared;
-using APEL.Models;
+using APELC.LocalServices.Login;
+//using APELC.PublicServices.Login;
+using APELC.LocalShared;
+using APELC.Models;
 using System.Diagnostics;
 //using System.IdentityModel.Tokens.Jwt;
 
-namespace APEL.Controllers
+namespace APELC.Controllers
 {
     public class LoginController : Controller
     {
@@ -30,7 +30,7 @@ namespace APEL.Controllers
             HttpContext.Response.Cookies.Delete("SSOJWT");
             return RedirectToAction("LoginPageApelC", "Login");
             return Redirect("/Login/LoginPageApelC");
-            return Redirect("https://myapel.upnm.edu.my/index.php");
+            return Redirect("https://myAPELC.upnm.edu.my/index.php");
         }
 
         // GET: MtdGetVerifyUserByCookies

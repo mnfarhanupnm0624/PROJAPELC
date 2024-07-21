@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using APEL.Models;
+using APELC.Models;
 using System.Diagnostics;
 
-namespace APEL.Controllers
+namespace APELC.Controllers
 {
     public class HomeController : Controller
     {

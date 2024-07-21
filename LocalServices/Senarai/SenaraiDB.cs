@@ -1,11 +1,11 @@
 ﻿//using Dapper;
 using Net6HrPublicLibrary.Model;
 //using Net6HrPublicLibrary.PublicShared;
-using APEL.LocalShared;
-using APEL.Models;
+using APELC.LocalShared;
+using APELC.Models;
 //using Oracle.ManagedDataAccess.Client;
 
-namespace APEL.LocalServices.Senarai
+namespace APELC.LocalServices.Senarai
 {
     public class SenaraiDB
     {

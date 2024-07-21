@@ -1,11 +1,11 @@
 ﻿//using Dapper;
-//using APEL.Model;
-using APEL.LocalShared;
-using APEL.LocalServices.Login;
-using APEL.Models;
+//using APELC.Model;
+using APELC.LocalShared;
+using APELC.LocalServices.Login;
+using APELC.Models;
 //using Oracle.ManagedDataAccess.Client;
 
-//namespace APEL.LocalServices.Login
+//namespace APELC.LocalServices.Login
 //{
 //    public class LoginDB
 //    {

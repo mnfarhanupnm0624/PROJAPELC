@@ -1,12 +1,12 @@
 ﻿//using Dapper;
 //using Net6HrPublicLibrary.Model;
-//using APEL.LocalServices.Public;
-//using APEL.PublicShared;
-using APEL.LocalShared;
-using APEL.Models;
+//using APELC.LocalServices.Public;
+//using APELC.PublicShared;
+using APELC.LocalShared;
+using APELC.Models;
 //using Oracle.ManagedDataAccess.Client;
 
-//namespace APEL.LocalServices.Public
+//namespace APELC.LocalServices.Public
 //{
 //    public class PublicServices
 //    {

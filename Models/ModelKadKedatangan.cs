@@ -1,4 +1,4 @@
-﻿namespace APEL.Models
+﻿namespace APELC.Models
 {
     public class ModelKadKedatangan
     {

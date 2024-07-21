@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using APEL.LocalServices.Senarai;
-using APEL.Models;
+using APELC.LocalServices.Senarai;
+using APELC.Models;
 
-namespace APEL.Controllers
+namespace APELC.Controllers
 {
     public class SenaraiController : Controller
     {

@@ -1,11 +1,11 @@
 ﻿using Net6HrPublicLibrary.Model;
-using APEL.LocalServices.Siasatan;
-using APEL.Models;
+//using APELC.LocalServices.Siasatan;
+using APELC.Models;
 using System.Xml.Linq;
 
-namespace APEL.Helper
+namespace APELC.Helper
 {
-    public class ApelHelper
+    public class ApelCHelper
     {
         public SessionModel GetApelInfo(CarianSiasatanMain aduanInfo)
         {

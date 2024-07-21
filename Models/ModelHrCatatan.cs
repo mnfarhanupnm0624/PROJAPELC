@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace APEL.Models
+namespace APELC.Models
 {
     public class ModelHrCatatan
     {
