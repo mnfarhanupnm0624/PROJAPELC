@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using APELC.Helper;
-using APELC.LocalServices.Siasatan;
+using APELC.LocalServices.ApelC;
 using APELC.Models;
 //using System.IdentityModel.Tokens.Jwt;
 //using System.Web.Mvc;
@@ -22,7 +22,7 @@ namespace APELC.Hubs
             if (httpContext != null)
             {
                 string _penciptaFk = httpContext.Session.GetString("_hrStafFk") ?? "";
-                //string _siasatanPkEnc = ApelUser.GetApel(httpContext.Session).SIASATAN_PK_ENC ?? "";
+                //string _siasatanPkEnc = ApelUser.GetApel(httpContext.Session).ApelC_PK_ENC ?? "";
                 string _role = httpContext.Session.GetString("_hrSiasatanRole") ?? "";
                 string _userAll = "";
                 if (_role == "PNYST_KANAN")

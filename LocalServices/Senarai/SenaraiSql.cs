@@ -21,7 +21,7 @@ namespace APELC.LocalServices.Senarai
                 AND A.STAF_PK = A.COMPLAINER_FK AND A.TKH_HAPUS IS NULL AND B.TKH_HAPUS IS NULL AND A.STATUS_AKTIF = 'Y') AS INFO_PENGADU_STAF,
                 (SELECT (UPPER(TRIM(NAMA)) || '~' || NO_KP_BARU) FROM HR_MAKLUMAT_PERIBADI WHERE MAKLUMAT_PERIBADI_PK = A.MAKLUMAT_PERIBADI_FK AND TKH_HAPUS IS NULL) AS INFO_LAIN,
                 B.STATUS_KES_SSTN_FK AS STATUS_FK,
-                B.SIASATAN_PK AS SIASATAN_PK
+                B.ApelC_PK AS SIASATAN_PK
               FROM
                 HR_BK_ADUAN A
                 INNER JOIN HR_INV_SIASATAN B ON B.ADUAN_FK = A.ADUAN_PK AND B.TKH_HAPUS IS NULL 
@@ -32,7 +32,7 @@ namespace APELC.LocalServices.Senarai
             string _SQL = SqlGetApelPengaduInfo;
             if (stafPk > 0)
             {
-                _SQL += " INNER JOIN HR_INV_DAFTAR_PNYST C ON C.SIASATAN_FK = B.SIASATAN_PK AND C.TKH_HAPUS IS NULL";
+                _SQL += " INNER JOIN HR_INV_DAFTAR_PNYST C ON C.ApelC_FK = B.ApelC_PK AND C.TKH_HAPUS IS NULL";
                 _SQL += " WHERE A.TKH_HAPUS IS NULL";
                 _SQL += " AND C.STAF_PP_FK = " + stafPk + " ";
             }

@@ -9,7 +9,7 @@
 
     string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrSiasatanRole") ?? "";
     var _aduanPkEnc = ApelUser.GetApel(Context.Session).ADUAN_PK_ENC;
-    var _siasatanPkEnc = ApelUser.GetApel(Context.Session).SIASATAN_PK_ENC;
+    var _siasatanPkEnc = ApelUser.GetApel(Context.Session).ApelC_PK_ENC;
     var _statusSstn = ApelUser.GetApel(Context.Session).STATUS_SSTN;
 
     var _sts_ringksn = ApelUser.GetApel(Context.Session).STS_RNGKSAN;

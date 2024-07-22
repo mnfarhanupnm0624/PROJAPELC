@@ -1,4 +1,4 @@
-﻿using APELC.LocalServices.Siasatan;
+﻿using APELC.LocalServices.ApelC;
 using System.ComponentModel.DataAnnotations;
 
 namespace APELC.Models

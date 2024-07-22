@@ -133,7 +133,7 @@
                                         @using (Html.BeginForm("Daftar", "Siasatan", FormMethod.Post, new { id = "MyID" }))
                                         {
                                             <input type="hidden" id="idAduanPkEnc" name="CADUAN_PK_ENC" value="@_cari.ADUAN_PK_ENC" />
-                                            <input type="hidden" id="idSiasatanPkEnc" name="CSIASATAN_PK_ENC" value="@_cari.SIASATAN_PK_ENC" />
+                                            <input type="hidden" id="idSiasatanPkEnc" name="CSIASATAN_PK_ENC" value="@_cari.ApelC_PK_ENC" />
                                             <a style="color:blue; cursor:pointer;" onclick="document.getElementById('Daftar@(rowNo)').click()">@_cari.REPORT_NO</a>
                                             <input type="submit" id="Daftar@(rowNo)" formaction="@_path/Siasatan/Daftar" style="display:none" />
                                         }

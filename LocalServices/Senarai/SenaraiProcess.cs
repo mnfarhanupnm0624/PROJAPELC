@@ -2,7 +2,7 @@
 //using Net6HrPublicLibrary.PublicServices.Login;
 //using Net6HrPublicLibrary.PublicServices.Public;
 ////using Net6HrPublicLibrary.PublicShared;
-//using APELC.LocalServices.Siasatan;
+//using APELC.LocalServices.ApelC;
 //using APELC.LocalShared;
 //using APELC.Models;
 
@@ -64,7 +64,7 @@
 //        private static ModelHrPengadu MtdHrPengaduPindahFromLibrary(ModelHrPengadu _data)
 //        {
 //            //string _aduanPkEnc = EncryptHr.NewEncrypt(_data.ADUAN_PK.ToString(), _encryptCode);
-//            //string _siasatanPkEnc = EncryptHr.NewEncrypt(_data.SIASATAN_PK.ToString(), _encryptCode);
+//            //string _siasatanPkEnc = EncryptHr.NewEncrypt(_data.ApelC_PK.ToString(), _encryptCode);
 //            //string? _pelajarinfo = _data.COMPLAINER_NO_KP != null ? SiasatanDB.DB_GetInfoPelajarDetails(_data.COMPLAINER_NO_KP) : null; // Pelajar
 //            if (_pelajarinfo != null)
 //            {
@@ -78,7 +78,7 @@
 //            {
 //                ADUAN_PK = _data.ADUAN_PK,
 //                ADUAN_PK_ENC = _aduanPkEnc,
-//                SIASATAN_PK = _data.SIASATAN_PK,
+//                SIASATAN_PK = _data.ApelC_PK,
 //                SIASATAN_PK_ENC = _siasatanPkEnc,
 //                REPORT_NO = _data.REPORT_NO,
 //                TKH_ADUAN = _data.TKH_ADUAN,

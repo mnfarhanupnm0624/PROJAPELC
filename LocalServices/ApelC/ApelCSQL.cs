@@ -91,7 +91,7 @@
                 A.ADUAN_PK AS ADUAN_PK,
                 A.TKH_ADUAN,
                 A.STATUS_FK AS STATUS_FK,
-                C.SIASATAN_PK AS SIASATAN_PK,
+                C.ApelC_PK AS SIASATAN_PK,
                 D.STAF_PP_FK AS STAF_PP_FK,
                 D.KOD_PRNN_PNYST,
                 TO_CHAR(D.TKH_CIPTA,'DD/MM/YYYY') AS DATE_TKH_PNYST,
@@ -118,7 +118,7 @@
                 HR_BK_ADUAN A
                 LEFT JOIN HR_BK_TINDAKAN B ON B.ADUAN_FK = A.ADUAN_PK AND B.TKH_HAPUS IS NULL
                 INNER JOIN HR_INV_SIASATAN C ON C.TINDAKAN_FK = B.TINDAKAN_PK AND C.TKH_HAPUS IS NULL
-                INNER JOIN HR_INV_DAFTAR_PNYST D ON D.SIASATAN_FK = C.SIASATAN_PK AND D.TKH_HAPUS IS NULL
+                INNER JOIN HR_INV_DAFTAR_PNYST D ON D.ApelC_FK = C.ApelC_PK AND D.TKH_HAPUS IS NULL
              ";
 
         internal static string SQL_MtdGetStafPenyiasatList()
@@ -128,7 +128,7 @@
                        A.TKH_HAPUS IS NULL
                        AND B.STATUS_FK IN ('378') ";
 
-            _SQL += @" AND D.SIASATAN_FK = :SIASATAN_PK";
+            _SQL += @" AND D.ApelC_FK = :SIASATAN_PK";
 
             _SQL += @" ORDER BY A.TKH_ADUAN DESC ";
 

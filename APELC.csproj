@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\apel\**" />
+    <Content Remove="wwwroot\apel\**" />
+    <EmbeddedResource Remove="wwwroot\apel\**" />
+    <None Remove="wwwroot\apel\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Login\LoginPageApelC.cshtml" />
     <Content Remove="Views\Senarai\ListReqApelQ.cshtml" />
   </ItemGroup>
@@ -38,7 +45,6 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="wwwroot\apel\images\" />
   </ItemGroup>
 
   <ItemGroup>
