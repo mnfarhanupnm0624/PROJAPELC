@@ -6,9 +6,9 @@ using APELC.LocalShared;
 using APELC.Models;
 //using Oracle.ManagedDataAccess.Client;
 
-namespace APELC.LocalServices.Aduan
+namespace APELC.LocalServices.ApelCDB
 {
-    public class AduanDB
+    public class ApelCDB
     {
         //static readonly string ConnOraHr = PublicConstant.ConnUtmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
@@ -20,7 +20,7 @@ namespace APELC.LocalServices.Aduan
         //    {
         //        using (var dbConn = new OracleConnection(ConnOraHr))
         //        {
-        //            _data = dbConn.QueryFirstOrDefault<ModelHrStaffMaklumatPeribadi>(AduanSQL.DB_MtdGetMaklumatAsas(), new { STAF_PK = _stafPk });
+        //            _data = dbConn.QueryFirstOrDefault<ModelHrStaffMaklumatPeribadi>(ApelCSQL.DB_MtdGetMaklumatAsas(), new { STAF_PK = _stafPk });
         //            if (_data != null)
         //            {
         //                _data.STAF_PK_ENC = EncryptHr.NewEncrypt(_data.STAF_PK.ToString(), _encryptCode);
@@ -36,33 +36,33 @@ namespace APELC.LocalServices.Aduan
         //    return _data;
         //}
 
-        //internal static ModelHrPengaduMaklumat DB_MtdGetApelPengadu(int _aduanPk)
+        //internal static ModelHrPemohonMaklumat DB_MtdGetApelPemohon(int _ApelCPk)
         //{
-        //    ModelHrPengaduMaklumat _data = new();
+        //    ModelHrPemohonMaklumat _data = new();
         //    try
         //    {
         //        using (var dbConn = new OracleConnection(ConnOraHr))
         //        {
-        //            _data = dbConn.QueryFirstOrDefault<ModelHrPengaduMaklumat>(AduanSQL.SQL_MtdGetApelPengadu(), new { ADUAN_PK = _aduanPk });
+        //            _data = dbConn.QueryFirstOrDefault<ModelHrPemohonMaklumat>(ApelCSQL.SQL_MtdGetApelPemohon(), new { ADUAN_PK = _ApelCPk });
         //        }
         //    }
         //    catch (Exception e)
         //    {
         //        var log = NLog.LogManager.GetCurrentClassLogger();
-        //        log.Info("DB_MtdGetApelPengadu e ~ " + e);
+        //        log.Info("DB_MtdGetApelPemohon e ~ " + e);
         //    }
 
         //    return _data;
         //}
 
-        public static IEnumerable<ModelHrStafPenyiasat> DB_MtdGetStafPenyiasatList(int AduanPk)
+        public static IEnumerable<ModelHrStafPenyiasat> DB_MtdGetStafPenyiasatList(int ApelCPk)
         {
             List<ModelHrStafPenyiasat> list = null;
             try
             {
                 //using (var dbConn = new OracleConnection(ConnOraHr))
                 //{
-                //    IEnumerable<ModelHrStafPenyiasat> _getList = dbConn.Query<ModelHrStafPenyiasat>(SelenggaraSQL.SQL_MtdGetStafPenyiasatList(), new { Aduan_PK = AduanPk });
+                //    IEnumerable<ModelHrStafPenyiasat> _getList = dbConn.Query<ModelHrStafPenyiasat>(SelenggaraSQL.SQL_MtdGetStafPenyiasatList(), new { Aduan_PK = ApelCPk });
                 //    if (_getList != null)
                 //    {
                 //        list = _getList.ToList();
@@ -85,7 +85,7 @@ namespace APELC.LocalServices.Aduan
         //    _return.RESULTSET_TEXT = "BEGIN GET STUDENT RECORD";
         //    try
         //    {
-        //        string _sQl = AduanSQL.SQL_GetStudentRecord(_nokp);
+        //        string _sQl = ApelCSQL.SQL_GetStudentRecord(_nokp);
         //        //var log = NLog.LogManager.GetCurrentClassLogger();
         //        //log.Info("MtdGetDataPelajarByNokp _sQl ~ " + _sQl);
 
@@ -118,11 +118,11 @@ namespace APELC.LocalServices.Aduan
         //    }
         //}
 
-        //public static IEnumerable<ParameterHrModel> DB_ListKatPengadu()
+        //public static IEnumerable<ParameterHrModel> DB_ListKatPemohon()
         //{
         //    using (var dbConn = new OracleConnection(ConnOraHr))
         //    {
-        //        return dbConn.Query<ParameterHrModel>(SelenggaraSQL.SQL_ListKatPengadu());
+        //        return dbConn.Query<ParameterHrModel>(SelenggaraSQL.SQL_ListKatPemohon());
         //    }
         //}
 

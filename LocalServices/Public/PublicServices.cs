@@ -346,13 +346,13 @@ using APELC.Models;
 //            return _list;
 //        }
 
-//        internal static ModelKadKedatangan MtdGetNoKerjaCutiSokongLulus(string noPekerjaPengadu)
+//        internal static ModelKadKedatangan MtdGetNoKerjaCutiSokongLulus(string noPekerjaPemohon)
 //        {
 //            ModelKadKedatangan _backData = new ModelKadKedatangan()
 //            {
-//                KAD_NOKERJA = noPekerjaPengadu
+//                KAD_NOKERJA = noPekerjaPemohon
 //            };
-//            KadKedatanganModel _getData = PublicOracleServices.MtdGetNoKerjaCutiSokongLulus(noPekerjaPengadu);
+//            KadKedatanganModel _getData = PublicOracleServices.MtdGetNoKerjaCutiSokongLulus(noPekerjaPemohon);
 //            if (_getData != null)
 //            {
 //                _backData = MtdPindahFromLibraryAsasCuti(_getData);

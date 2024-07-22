@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "APEL": {
+    "APELC": {
       "applicationUrl": "https://localhost:7152;http://localhost:5105",
       "commandName": "Project",
       "dotnetRunMessages": true,
@@ -17,26 +17,26 @@
       },
       "launchBrowser": true
     },
-    "DatabaseMySQL8": {
-      "commandName": "Executable",
-      "ConnectionStrings": {
-        "Default": "Server=172.16.2.247;User ID=apelUPNM;Password=AP3L@MySQL;Database=apelc"
-      },
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "launchBrowser": true
-    },
-    "DatabaseSybase": {
-      "commandName": "Executable",
-      "ConnectionStrings": {
-        "Default": "Server=172.16.2.14;User ID=apel;Password=AP3L@SybaseL;Database=stafdb;View=v630staf_apel"
-      },
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "launchBrowser": true
-    },
+    //"DatabaseMySQL8": {
+    //  "commandName": "Executable",
+    //  "ConnectionStrings": {
+    //    "Default": "Server=172.16.2.247;User ID=apelUPNM;Password=AP3L@MySQL;Database=apelc"
+    //  },
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development"
+    //  },
+    //  "launchBrowser": true
+    //},
+    //"DatabaseSybase": {
+    //  "commandName": "Executable",
+    //  "ConnectionStrings": {
+    //    "Default": "Server=172.16.2.14;User ID=apel;Password=AP3L@SybaseL;Database=stafdb;View=v630staf_apel"
+    //  },
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development"
+    //  },
+    //  "launchBrowser": true
+    //},
     //"DatabasePgSql": {
     //  "commandName": "Executable",
     //  "ConnectionStrings": {

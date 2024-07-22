@@ -7,20 +7,20 @@
     string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
     string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
 
-    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrSiasatanRole") ?? "";
-    var _aduanPkEnc = ApelUser.GetApel(Context.Session).ADUAN_PK_ENC;
-    var _siasatanPkEnc = ApelUser.GetApel(Context.Session).ApelC_PK_ENC;
-    var _statusSstn = ApelUser.GetApel(Context.Session).STATUS_SSTN;
+    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    var _aduanPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+    var _siasatanPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+    var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
 
-    var _sts_ringksn = ApelUser.GetApel(Context.Session).STS_RNGKSAN;
-    var _sts_laporan = ApelUser.GetApel(Context.Session).STS_LAPORAN;
+    var _statusRyApelC = ApelCUser.GetApel(Context.Session).STATUS_RAYUAN;
+    var _statusUjianCbrnApelC = ApelCUser.GetApel(Context.Session).STATUS_UJIAN_CBRN;
 
-    string _butiranaduan = HttpContextAccessor.HttpContext.Session.GetString("_butiranaduan") ?? "";
+    string _butiranpermohonanapelc = HttpContextAccessor.HttpContext.Session.GetString("_butiranpermohonanapelc") ?? "";
     //string _laporanpolis = HttpContextAccessor.HttpContext.Session.GetString("_laporanpolis") ?? "";
     string _ringkasankjdn = HttpContextAccessor.HttpContext.Session.GetString("_ringkasankjdn") ?? "";
     string _diaripnyst = HttpContextAccessor.HttpContext.Session.GetString("_diaripnyst") ?? "";
-    string _frmpengadusaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmpengadusaksi") ?? "";
-    string _attchpengadusaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchpengadusaksi") ?? "";
+    string _frmPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmPemohonsaksi") ?? "";
+    string _attchPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchPemohonsaksi") ?? "";
     string _attchokt = HttpContextAccessor.HttpContext.Session.GetString("_attchokt") ?? "";
     string _frmokt = HttpContextAccessor.HttpContext.Session.GetString("_frmokt") ?? "";
     string _attchdoclain = HttpContextAccessor.HttpContext.Session.GetString("_attchdoclain") ?? "";
@@ -63,13 +63,13 @@
     }
 </style>
 
-@if (_sts_ringksn == "APPROVED")
+@if (_statusRyApelC == "APPROVED")
 {
     _disablelink = "";
     _color = "";
     _bullet = "bullet bullet-dot";
 }
-@if (_statusSstn == "N")
+@if (_statusMhApelC == "N")
 {
     _disablelinkS = "";
     _colorS = "";
@@ -178,9 +178,9 @@
                             <span class="bullet bullet-dot"></span>
                         </span>
                     </span>
-                    <span class="menu-title">Laporan Aduan</span><i class="bi bi-info-circle-fill @_butiranaduan fa-xl"></i>
+                    <span class="menu-title">Laporan Aduan</span><i class="bi bi-info-circle-fill @_butiranpermohonanapelc fa-xl"></i>
                 </a>
-                <input type="hidden" id="idAduanPkEnc" name="CADUAN_PK_ENC" value="@_aduanPkEnc" />
+                <input type="hidden" id="idAduanPkEnc" name="CMOHON_PK_ENC" value="@_aduanPkEnc" />
                 <input type="submit" id="LaporanAduan" formaction="@_path01/Siasatan/LaporanAduan" style="display:none" />
                 <!--end:Menu link-->
                 }
@@ -265,13 +265,13 @@
                 <!--begin:Menu item-->
                 <div class="menu-item2">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="@_path01/Siasatan/FrmPengaduSaksi">
+                    <a class="menu-link" href="@_path01/Siasatan/FrmPemohonSaksi">
                         <span class="menu-icon">
                             <span class="menu-bullet">
                                 <span class="@_bullet"></span>
                             </span>
                         </span>
-                        <span class="menu-title" style='@_color'>Borang Percakapan Pengadu/Saksi</span><i class="bi bi-info-circle-fill @_frmpengadusaksi fa-xl"></i>
+                        <span class="menu-title" style='@_color'>Borang Percakapan Pemohon/Saksi</span><i class="bi bi-info-circle-fill @_frmPemohonsaksi fa-xl"></i>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -301,13 +301,13 @@
                 <!--begin:Menu item-->
                 <div class="menu-item2">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="@_path01/Siasatan/AttachPengaduSaksi">
+                    <a class="menu-link" href="@_path01/Siasatan/AttachPemohonSaksi">
                         <span class="menu-icon">
                             <span class="menu-bullet">
                                 <span class="@_bullet"></span>
                             </span>
                         </span>
-                        <span class="menu-title" style='@_color'>Lampiran Rakaman Pengadu/Saksi</span><i class="bi bi-info-circle-fill @_attchpengadusaksi fa-xl"></i>
+                        <span class="menu-title" style='@_color'>Lampiran Rakaman Pemohon/Saksi</span><i class="bi bi-info-circle-fill @_attchPemohonsaksi fa-xl"></i>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -475,5 +475,5 @@
 }
 @using (Html.BeginForm("", "Senarai", FormMethod.Post))
 {
-    <button type="submit" class="menu-link" id="IdClickSiasatanList" formaction="@_path01/Senarai/SiasatanSkrinList" style="display: none;">Skrin Senarai Siasatan</button>
+    <button type="submit" class="menu-link" id="IdClickSiasatanList" formaction="@_path01/Senarai/SiasatanSkrinList" style="display: none;">Skrin Senarai Permohonan </button>
 }

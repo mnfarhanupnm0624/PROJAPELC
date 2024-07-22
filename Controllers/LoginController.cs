@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-//using Net6HrPublicLibrary.Model;
-//using Net6HrPublicLibrary.PublicServices.Login;
-////using Net6HrPublicLibrary.PublicShared;
 using APELC.LocalServices.Login;
-//using APELC.PublicServices.Login;
-using APELC.LocalShared;
+using APELC.PublicServices.Login;
 using APELC.Models;
 using System.Diagnostics;
+using APELC.LocalShared;
 //using System.IdentityModel.Tokens.Jwt;
 
 namespace APELC.Controllers
@@ -15,10 +12,13 @@ namespace APELC.Controllers
     {
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
         readonly string _screenCodeFunction = "HM100";
-        public IActionResult Login()
+        public IActionResult LoginPageApelC()
         {
+            //return View("LoginPageApelC", "Login");
+            //return RedirectToPage("LoginPageApelC", "Login");
+            //return RedirectToAction("/Login/LoginPageApelC");
             return Redirect("/Login/LoginPageApelC");
-            return View();
+            //return View();
         }
 
         public IActionResult Logout()
@@ -26,11 +26,11 @@ namespace APELC.Controllers
             HttpContext.Session.Clear();
             HttpContext.Response.Cookies.Delete("sresu");
             HttpContext.Response.Cookies.Delete("dswap");
-            HttpContext.Session.Remove("ApelUser");
+            HttpContext.Session.Remove("ApelCUser");
             HttpContext.Response.Cookies.Delete("SSOJWT");
             return RedirectToAction("LoginPageApelC", "Login");
-            return Redirect("/Login/LoginPageApelC");
-            return Redirect("https://myAPELC.upnm.edu.my/index.php");
+            //return Redirect("Views/Login/LoginPageApelC");
+            //return Redirect("https://localdevmywww.localdevmyapelc.upnm.edu.my/");
         }
 
         // GET: MtdGetVerifyUserByCookies
@@ -245,7 +245,7 @@ namespace APELC.Controllers
 
             if (_result.ROLE != null)
             {
-                HttpContext.Session.SetString("_hrSiasatanRole", _result.ROLE);
+                HttpContext.Session.SetString("_hrApelCRole", _result.ROLE);
             }
             if (_result.NAMA_PERANAN != null)
             {

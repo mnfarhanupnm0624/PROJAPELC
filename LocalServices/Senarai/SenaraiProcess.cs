@@ -12,27 +12,27 @@
 //    {
 //        readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
-//        internal static List<ModelHrPengadu> MtdGetPengaduList(string? _noaduan, string? _katPengadu, string? _cKampus, string? _cStsAduan, string? _cKatAduan, string? _cTkhMula, string? _cTkhTamat, string userAll, string userPnyst)
+//        internal static List<ModelHrPemohon> MtdGetPemohonList(string? _noaduan, string? _katPemohon, string? _cKampus, string? _cStsAduan, string? _cKatAduan, string? _cTkhMula, string? _cTkhTamat, string userAll, string userPnyst)
 //        {
 //            //int _stafPk = userPnyst != null ? NumberHelper.ToIntiger(EncryptHr.NewDecrypt(userPnyst, _encryptCode)) : 0;
-//            //IEnumerable<ModelHrPengadu> _dataList = SenaraiDB.DB_MtdGetPengaduList(_noaduan, _katPengadu, _cKampus, _cStsAduan, _cKatAduan, _cTkhMula, _cTkhTamat, userAll, _stafPk);
-//            List<ModelHrPengadu> _list = new();
+//            //IEnumerable<ModelHrPemohon> _dataList = SenaraiDB.DB_MtdGetPemohonList(_noaduan, _katPemohon, _cKampus, _cStsAduan, _cKatAduan, _cTkhMula, _cTkhTamat, userAll, _stafPk);
+//            List<ModelHrPemohon> _list = new();
 //            if (_dataList != null)
 //            {
 //                foreach (var row in _dataList)
 //                {
 //                    if (row.COMPLAINER_FK != null) // Staff
 //                    {
-//                        if (row.INFO_PENGADU_STAF != null)
+//                        if (row.INFO_Pemohon_STAF != null)
 //                        {
-//                            string[] _staf = row.INFO_PENGADU_STAF.Split('~');
-//                            row.NAMA_PENGADU = _staf[0];
+//                            string[] _staf = row.INFO_Pemohon_STAF.Split('~');
+//                            row.NAMA_PEMOHON = _staf[0];
 //                            row.NO_ID = _staf[1];
 //                            row.NO_KP = _staf[2];
 //                        }
 //                        else
 //                        {
-//                            row.NAMA_PENGADU = "TIADA";
+//                            row.NAMA_PEMOHON = "TIADA";
 //                        }
 //                    }
 //                    if (row.MAKLUMAT_PERIBADI_FK != null) // Lain-Lain
@@ -40,13 +40,13 @@
 //                        string? _lain = row.INFO_LAIN;
 //                        if (_lain != null && _lain.Length > 1)
 //                        {
-//                            row.NAMA_PENGADU = MtdGetSplitAyat(_lain, 0);
+//                            row.NAMA_PEMOHON = MtdGetSplitAyat(_lain, 0);
 //                            row.NO_KP = MtdGetSplitAyat(_lain, 1);
 //                            row.NO_ID = "-";
 //                        }
 //                        else
 //                        {
-//                            row.NAMA_PENGADU = "TIADA";
+//                            row.NAMA_PEMOHON = "TIADA";
 //                        }
 //                    }
 
@@ -55,13 +55,13 @@
 //                    row.LABEL_STATUS = n[0];
 //                    row.STATUS_DESC = n[1];
 
-//                    _list.Add(MtdHrPengaduPindahFromLibrary(row));
+//                    _list.Add(MtdHrPemohonPindahFromLibrary(row));
 //                }
 //            }
 //            return _list;
 //        }
 
-//        private static ModelHrPengadu MtdHrPengaduPindahFromLibrary(ModelHrPengadu _data)
+//        private static ModelHrPemohon MtdHrPemohonPindahFromLibrary(ModelHrPemohon _data)
 //        {
 //            //string _aduanPkEnc = EncryptHr.NewEncrypt(_data.ADUAN_PK.ToString(), _encryptCode);
 //            //string _siasatanPkEnc = EncryptHr.NewEncrypt(_data.ApelC_PK.ToString(), _encryptCode);
@@ -69,22 +69,22 @@
 //            if (_pelajarinfo != null)
 //            {
 //                string[] _student = _pelajarinfo.Split('~');
-//                _data.NAMA_PENGADU = _student[0];
+//                _data.NAMA_PEMOHON = _student[0];
 //                _data.NO_ID = _student[1];
 //                _data.NO_KP = _student[2];
 //            }
 
-//            return new ModelHrPengadu()
+//            return new ModelHrPemohon()
 //            {
 //                ADUAN_PK = _data.ADUAN_PK,
-//                ADUAN_PK_ENC = _aduanPkEnc,
+//                MOHON_PK_ENC = _aduanPkEnc,
 //                SIASATAN_PK = _data.ApelC_PK,
 //                SIASATAN_PK_ENC = _siasatanPkEnc,
-//                REPORT_NO = _data.REPORT_NO,
+//                MOHON_NO = _data.MOHON_NO,
 //                TKH_ADUAN = _data.TKH_ADUAN,
 //                DATE_TKH_ADUAN = _data.DATE_TKH_ADUAN,
 //                MASA_TKH_ADUAN = _data.MASA_TKH_ADUAN,
-//                NAMA_PENGADU = _data.NAMA_PENGADU,
+//                NAMA_PEMOHON = _data.NAMA_PEMOHON,
 //                NO_ID = _data.NO_ID,
 //                NO_KP = _data.NO_KP,
 //                STATUS_DESC = _data.STATUS_DESC,

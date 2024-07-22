@@ -1,4 +1,74 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@* @model ModelQRCode *@
+@using APELC.Helper
+@{
+#pragma warning disable CS8602
+    string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+    string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+
+    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    var _MohonApelCPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+    var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
+
+    var _statusRyApelC = ApelCUser.GetApel(Context.Session).STATUS_RAYUAN;
+    var _statusUjianCbrnApelC = ApelCUser.GetApel(Context.Session).STATUS_UJIAN_CBRN;
+
+    string _butiranpermohonanapelc = HttpContextAccessor.HttpContext.Session.GetString("_butiranpermohonanapelc") ?? "";
+    //string _laporanpolis = HttpContextAccessor.HttpContext.Session.GetString("_laporanpolis") ?? "";
+
+
+    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+#pragma warning restore CS8602
+
+    var _disablelink = "disable-link";
+    var _color = "color:lightgray";
+    var _bullet = "";
+    var _disablelinkS = "disable-link";
+    var _colorS = "color:lightgray";
+    var _bulletS = "";
+}
+
+<style>
+    .menu-item2 {
+        margin: 0 0 -5px 0;
+    }
+
+    .menu-item3 {
+        margin: 0 0 -15px 0;
+    }
+
+    .menu-item4 {
+        margin: -10px 0 -13px 0;
+    }
+
+    .disable-link {
+        pointer-events: none;
+        cursor: default;
+        color: lightgray;
+    }
+
+    .default {
+        cursor: default;
+        color: #696969;
+    }
+</style>
+
+@if (_statusRyApelC == "APPROVED")
+{
+    _disablelink = "";
+    _color = "";
+    _bullet = "bullet bullet-dot";
+}
+@if (_statusMhApelC == "N")
+{
+    _disablelinkS = "";
+    _colorS = "";
+    _bulletS = "bullet bullet-dot";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -90,7 +160,7 @@
                                         </div>
                                     </div>
                                     <div class="text-block text-center my-3">
-                                        <small><!--<a href="https://myAPELC.upnm.edu.my/admin" target="_blank">Pentadbir?</a> -->&copy; 2023 v2.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
+                                        <small><!--<a href="https://mywww.localdevmyapelc.upnm.edu.my/admin" target="_blank">Pentadbir?</a> -->&copy; 2023 v2.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
                                     </div>
                                 </div>
                             </form>
@@ -191,7 +261,7 @@
             var selected = document.getElementById("dd_jnsApel").value;
 
             if (selected == "") {
-                alert("Sila pilih Jenis APELC.");
+                alert("Sila pilih Jenis APEL");
                 return;
             } else {
                 form.submit();

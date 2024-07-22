@@ -1,10 +1,10 @@
 ﻿//using APELC.LocalServices.Public;
-using APELC.LocalServices.ApelC;
+//using APELC.LocalServices.ApelC;
 using APELC.LocalShared;
 
 namespace APELC.Models
 {
-    public class CarianSiasatanMain
+    public class CarianPermohonanApelCMain
     {
         public string? RESULTSET { set; get; }
         public string? RESULTSET_TEXT { set; get; }
@@ -23,20 +23,20 @@ namespace APELC.Models
         // Siasatan
         public string? CNOADUAN { set; get; }
         public string? CKATEGORIADUAN { set; get; }
-        public string? CKATEGORIPENGADU { set; get; }
-        public string? CSTSPENGADU { set; get; }
+        public string? CKATEGORIPemohon { set; get; }
+        public string? CSTSPemohon { set; get; }
         public string? CTKH_ADUANMULA { set; get; }
         public string? CTKH_ADUANTAMAT { set; get; }
 
-        //RUJUK KEPADA HR_BK_ADUAN
-        public string? CADUAN_PK_ENC { set; get; }
+        //RUJUK KEPADA APELC_MOHON
+        public string? CMOHON_PK_ENC { set; get; }
 
-        //RUJUK KEPADA HR_INV_SIASATAN
+        //RUJUK KEPADA APELC_RAYUAN
         public string? CSIASATAN_PK_ENC { set; get; }
 
-        public List<ModelHrPengadu> ListCarianPengadu = new();
+        public List<ModelPemohonApelC> ListCarianPemohon = new();
         public List<ModelHrStafPenyiasat> ListCarianStaf = new();
-        public ModelHrPengadu Pengadu = new();
+        public ModelPemohonApelC Pemohon = new();
         public ModelHrStaffPeribadi stafPeribadi = new();
         public ModelHrStaffPeribadi stafPeribadi2 = new();
         public ModelPelajarPeribadi pelajarInfo = new();
@@ -50,7 +50,7 @@ namespace APELC.Models
         //public List<ModelParameterHr> ListJabatan = PublicServices.ListBahagianAll("").ToList();
         //public List<ModelParameterHr> ListKampus = new SecurityConstants().ItemListKampus;
         //public List<ModelParameterHr> ListKatAduan = SiasatanProcess.ListKatAduan().ToList();
-        //public List<ModelParameterHr> ListKatPengadu = SiasatanProcess.ListKatPengadu().ToList();
+        //public List<ModelParameterHr> ListKatPemohon = SiasatanProcess.ListKatPemohon().ToList();
         //public List<ModelParameterHr> ListStsAduan = SiasatanProcess.ListStsAduan().ToList();
         //public List<ModelParameterHr> ListJawatanAll = SiasatanProcess.ListJawatanAll("KP").ToList();
         //public List<ModelParameterHr> ListStsAktif = SiasatanProcess.ListStsAktif().ToList();

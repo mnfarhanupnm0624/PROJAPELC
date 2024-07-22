@@ -20,7 +20,7 @@
 //            {
 //                try
 //                {
-//                    CarianSiasatanMain _data = SiasatanProcess.MtdGetMaklumatAduanPenerima(_aduanPkEnc);
+//                    CarianApelCMain _data = SiasatanProcess.MtdGetMaklumatAduanPenerima(_aduanPkEnc);
 //                    if (_data != null)
 //                    {
 //                        str[0] = "text-success";
@@ -93,7 +93,7 @@
 //                catch (Exception e)
 //                {
 //                    var log = NLog.LogManager.GetCurrentClassLogger();
-//                    log.Info("SemakSemuaMenu StatusProcess Borang Rakaman Pengadu/Saksi e ~ " + e);
+//                    log.Info("SemakSemuaMenu StatusProcess Borang Rakaman Pemohon/Saksi e ~ " + e);
 //                }
 
 //                try
@@ -110,7 +110,7 @@
 //                catch (Exception e)
 //                {
 //                    var log = NLog.LogManager.GetCurrentClassLogger();
-//                    log.Info("SemakSemuaMenu StatusProcess Lampiran Rakaman Pengadu/Saksi e ~ " + e);
+//                    log.Info("SemakSemuaMenu StatusProcess Lampiran Rakaman Pemohon/Saksi e ~ " + e);
 //                }
 
 //                try

@@ -28,6 +28,6 @@ namespace APELC.Models
 
         // DDL List
         //public List<ModelParameterHr> ListKatPrckpn = SiasatanProcess.ListKatPrckpn().ToList();
-        //public List<ModelParameterHr> ListKatSaksi = SiasatanProcess.ListKatPengadu().ToList();
+        //public List<ModelParameterHr> ListKatSaksi = SiasatanProcess.ListKatPemohon().ToList();
     }
 }

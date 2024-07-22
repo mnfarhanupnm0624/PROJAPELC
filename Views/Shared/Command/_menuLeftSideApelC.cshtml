@@ -6,20 +6,20 @@
     string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
     string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
 
-    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrSiasatanRole") ?? "";
-    var _aduanPkEnc = ApelUser.GetApel(Context.Session).ADUAN_PK_ENC;
-    var _siasatanPkEnc = ApelUser.GetApel(Context.Session).ApelC_PK_ENC;
-    var _statusSstn = ApelUser.GetApel(Context.Session).STATUS_SSTN;
+    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    var _mohonPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+    var _siasatanPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+    var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
 
-    var _sts_ringksn = ApelUser.GetApel(Context.Session).STS_RNGKSAN;
-    var _sts_laporan = ApelUser.GetApel(Context.Session).STS_LAPORAN;
+    var _statusRyApelC = ApelCUser.GetApel(Context.Session).STATUS_RAYUAN;
+    var _statusUjianCbrnApelC = ApelCUser.GetApel(Context.Session).STATUS_UJIAN_CBRN;
 
-    string _butiranaduan = HttpContextAccessor.HttpContext.Session.GetString("_butiranaduan") ?? "";
+    string _butiranpermohonanapelc = HttpContextAccessor.HttpContext.Session.GetString("_butiranpermohonanapelc") ?? "";
     //string _laporanpolis = HttpContextAccessor.HttpContext.Session.GetString("_laporanpolis") ?? "";
     string _ringkasankjdn = HttpContextAccessor.HttpContext.Session.GetString("_ringkasankjdn") ?? "";
     string _diaripnyst = HttpContextAccessor.HttpContext.Session.GetString("_diaripnyst") ?? "";
-    string _frmpengadusaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmpengadusaksi") ?? "";
-    string _attchpengadusaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchpengadusaksi") ?? "";
+    string _frmPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmPemohonsaksi") ?? "";
+    string _attchPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchPemohonsaksi") ?? "";
     string _attchokt = HttpContextAccessor.HttpContext.Session.GetString("_attchokt") ?? "";
     string _frmokt = HttpContextAccessor.HttpContext.Session.GetString("_frmokt") ?? "";
     string _attchdoclain = HttpContextAccessor.HttpContext.Session.GetString("_attchdoclain") ?? "";
@@ -60,13 +60,13 @@
     }
 </style>
 
-@if (_sts_ringksn == "APPROVED")
+@if (_statusRyApelC == "APPROVED")
 {
     _disablelink = "";
     _color = "";
     _bullet = "bullet bullet-dot";
 }
-@if (_statusSstn == "N")
+@if (_statusMhApelC == "N")
 {
     _disablelinkS = "";
     _colorS = "";
@@ -146,7 +146,7 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="/apel/" class="menu-link px-5">My Profile</a>
+                                <a href="/apelc/" class="menu-link px-5">My Profile</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu separator-->
@@ -160,7 +160,7 @@
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="/apel/Login/Logout" class="menu-link px-5">Sign Out</a>
+                                <a href="/apelc/Login/Logout" class="menu-link px-5">Sign Out</a>
                             </div>
                             <!--end::Menu item-->
                         </div>
@@ -376,7 +376,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item bg-light-warning here show mt-5">
                     <!--begin:Menu link-->
-                    <a class="menu-link active bg-light-warning" href="/apel/Login/Logout">
+                    <a class="menu-link active bg-light-warning" href="/apelc/Login/Logout">
                         <span class="menu-icon bg-light-warning">
                             <!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
                             <span class="svg-icon svg-icon-primary svg-icon-2x">

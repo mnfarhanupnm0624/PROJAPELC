@@ -12,15 +12,15 @@ namespace APELC.LocalServices.Senarai
         //static readonly string ConnOraHr = PublicConstant.ConnUtmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
-        // Get Senarai Aduan Kes Siasatan Pengadu
-        //public static IEnumerable<ModelHrPengadu> DB_MtdGetPengaduList(string? _noaduan, string? _katPengadu, string? _cKampus, string? _cStsAduan, string? _cKatAduan, string? _cTkhMula, string? _cTkhTamat, string userAll, int stafPk)
+        // Get Senarai Aduan Kes Siasatan Pemohon
+        //public static IEnumerable<ModelHrPemohon> DB_MtdGetPemohonList(string? _noaduan, string? _katPemohon, string? _cKampus, string? _cStsAduan, string? _cKatAduan, string? _cTkhMula, string? _cTkhTamat, string userAll, int stafPk)
         //{
-        //    List<ModelHrPengadu> list = null;
+        //    List<ModelHrPemohon> list = null;
         //    try
         //    {
         //        using (var dbConn = new OracleConnection(ConnOraHr))
         //        {
-        //            IEnumerable<ModelHrPengadu> _getList = dbConn.Query<ModelHrPengadu>(SenaraiSql.SQL_MtdGetPengaduList(_noaduan, _katPengadu, _cKampus, _cStsAduan, _cKatAduan, _cTkhMula, _cTkhTamat, userAll, stafPk));
+        //            IEnumerable<ModelHrPemohon> _getList = dbConn.Query<ModelHrPemohon>(SenaraiSql.SQL_MtdGetPemohonList(_noaduan, _katPemohon, _cKampus, _cStsAduan, _cKatAduan, _cTkhMula, _cTkhTamat, userAll, stafPk));
         //            if (_getList != null)
         //            {
         //                list = _getList.ToList();
@@ -30,7 +30,7 @@ namespace APELC.LocalServices.Senarai
         //    catch (Exception ex)
         //    {
         //        var log = NLog.LogManager.GetCurrentClassLogger();
-        //        log.Info("SenaraiDB DB_MtdGetPengaduList try catch ex.Message ~ " + ex.Message);
+        //        log.Info("SenaraiDB DB_MtdGetPemohonList try catch ex.Message ~ " + ex.Message);
         //    }
 
         //    return list;

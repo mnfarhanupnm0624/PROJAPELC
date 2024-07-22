@@ -11,6 +11,12 @@
       "type": "postgresql.container",
       "connectionId": "PGSQL",
       "dynamicId": null
+    },
+    "sqlite1": {
+      "secretStore": "LocalSecretsFile",
+      "type": "sqlite.local",
+      "connectionId": "SQLLite_DB",
+      "dynamicId": null
     }
   }
 }

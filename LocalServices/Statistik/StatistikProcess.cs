@@ -11,16 +11,16 @@ namespace APELC.LocalServices.Aduan
     {
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
-        //internal static CarianAduanMain MtdGetMaklumatAduanPengadu(string _aduanPkEnc)
+        //internal static CarianAduanMain MtdGetMaklumatAduanPemohon(string _aduanPkEnc)
         //{
         //    CarianAduanMain _data = new();
         //    int _aduanPk = _aduanPkEnc != null ? NumberHelper.ToIntiger(EncryptHr.NewDecrypt(_aduanPkEnc, _encryptCode)) : 0;
-        //    ModelHrPengaduMaklumat pengadu = AduanDB.DB_MtdGetApelPengadu(_aduanPk);
-        //    if (pengadu != null)
+        //    ModelHrPemohonMaklumat Pemohon = AduanDB.DB_MtdGetApelPemohon(_aduanPk);
+        //    if (Pemohon != null)
         //    {
-        //        if (pengadu.COMPLAINER_FK != null) // Staff
+        //        if (Pemohon.COMPLAINER_FK != null) // Staff
         //        {
-        //            int _stafPk = int.Parse(pengadu.COMPLAINER_FK);
+        //            int _stafPk = int.Parse(Pemohon.COMPLAINER_FK);
         //            ModelHrStaffMaklumatPeribadi peribadi = AduanDB.DB_MtdGetMaklumatAsas(_stafPk);
         //            if (peribadi != null)
         //            {
@@ -31,26 +31,26 @@ namespace APELC.LocalServices.Aduan
         //                _data.stafPeribadi = peribadi;
         //            }
         //        }
-        //        if (pengadu.COMPLAINER_NO_KP != null) // Pelajar
+        //        if (Pemohon.COMPLAINER_NO_KP != null) // Pelajar
         //        {
-        //            ModelMaklumatPeribadiPelajar pelajar = AduanDB.MtdGetDataPelajarByNokp(pengadu.COMPLAINER_NO_KP);
+        //            ModelMaklumatPeribadiPelajar pelajar = AduanDB.MtdGetDataPelajarByNokp(Pemohon.COMPLAINER_NO_KP);
         //            if (pelajar != null)
         //            {
         //                _data.pelajarInfo = pelajar;
         //            }
         //        }
 
-        //        pengadu.LABEL_STATUS = LabelStatusDesc(pengadu.STATUS_FK);
-        //        string[] n = pengadu.LABEL_STATUS.Split('~');
-        //        pengadu.STATUS_DESC = n[1];
+        //        Pemohon.LABEL_STATUS = LabelStatusDesc(Pemohon.STATUS_FK);
+        //        string[] n = Pemohon.LABEL_STATUS.Split('~');
+        //        Pemohon.STATUS_DESC = n[1];
 
-        //        pengadu = MtdHrPengaduPindahFromLibrary(pengadu);
-        //        _data.Pengadu = pengadu;
+        //        Pemohon = MtdHrPemohonPindahFromLibrary(Pemohon);
+        //        _data.Pemohon = Pemohon;
         //    }
         //    return _data;
         //}
 
-        //private static ModelHrPengaduMaklumat MtdHrPengaduPindahFromLibrary(ModelHrPengaduMaklumat _data)
+        //private static ModelHrPemohonMaklumat MtdHrPemohonPindahFromLibrary(ModelHrPemohonMaklumat _data)
         //{
         //    string _aduanPkEnc = EncryptHr.NewEncrypt(_data.ADUAN_PK.ToString(), _encryptCode);
         //    string _AduanPkEnc = EncryptHr.NewEncrypt(_data.Aduan_PK.ToString(), _encryptCode);
@@ -65,17 +65,17 @@ namespace APELC.LocalServices.Aduan
         //        _complainStudentEnc = EncryptHr.NewEncrypt(_data.COMPLAINER_NO_KP.ToString(), _encryptCode);
         //    }
 
-        //    return new ModelHrPengaduMaklumat()
+        //    return new ModelHrPemohonMaklumat()
         //    {
         //        ADUAN_PK = _data.ADUAN_PK,
-        //        ADUAN_PK_ENC = _aduanPkEnc,
+        //        MOHON_PK_ENC = _aduanPkEnc,
         //        Aduan_PK = _data.Aduan_PK,
-        //        Aduan_PK_ENC = _AduanPkEnc,
-        //        REPORT_NO = _data.REPORT_NO,
+        //        MOHON_PK_ENC = _AduanPkEnc,
+        //        MOHON_NO = _data.MOHON_NO,
         //        TKH_ADUAN = _data.TKH_ADUAN,
         //        DATE_TKH_ADUAN = _data.DATE_TKH_ADUAN,
         //        MASA_TKH_ADUAN = _data.MASA_TKH_ADUAN,
-        //        NAMA_PENGADU = _data.NAMA_PENGADU,
+        //        NAMA_PEMOHON = _data.NAMA_PEMOHON,
         //        NO_ID = _data.NO_ID,
         //        NO_KP = _data.NO_KP,
         //        STATUS_DESC = _data.STATUS_DESC,
@@ -203,10 +203,10 @@ namespace APELC.LocalServices.Aduan
         //    }
         //    return _list;
         //}
-        //// DDL - Kategori Pengadu
-        //internal static IEnumerable<ModelParameterHr> ListKatPengadu()
+        //// DDL - Kategori Pemohon
+        //internal static IEnumerable<ModelParameterHr> ListKatPemohon()
         //{
-        //    IEnumerable<ParameterHrModel> _dataLib = SelenggaraDB.DB_ListKatPengadu().ToList();
+        //    IEnumerable<ParameterHrModel> _dataLib = SelenggaraDB.DB_ListKatPemohon().ToList();
         //    List<ModelParameterHr> _list = new List<ModelParameterHr>();
         //    foreach (var row in _dataLib)
         //    {

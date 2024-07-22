@@ -36,20 +36,20 @@ namespace APELC.LocalServices.Aduan
         //    return _data;
         //}
 
-        //internal static ModelHrPengaduMaklumat DB_MtdGetApelPengadu(int _aduanPk)
+        //internal static ModelHrPemohonMaklumat DB_MtdGetApelPemohon(int _aduanPk)
         //{
-        //    ModelHrPengaduMaklumat _data = new();
+        //    ModelHrPemohonMaklumat _data = new();
         //    try
         //    {
         //        using (var dbConn = new OracleConnection(ConnOraHr))
         //        {
-        //            _data = dbConn.QueryFirstOrDefault<ModelHrPengaduMaklumat>(AduanSQL.SQL_MtdGetApelPengadu(), new { ADUAN_PK = _aduanPk });
+        //            _data = dbConn.QueryFirstOrDefault<ModelHrPemohonMaklumat>(AduanSQL.SQL_MtdGetApelPemohon(), new { ADUAN_PK = _aduanPk });
         //        }
         //    }
         //    catch (Exception e)
         //    {
         //        var log = NLog.LogManager.GetCurrentClassLogger();
-        //        log.Info("DB_MtdGetApelPengadu e ~ " + e);
+        //        log.Info("DB_MtdGetApelPemohon e ~ " + e);
         //    }
 
         //    return _data;
@@ -118,11 +118,11 @@ namespace APELC.LocalServices.Aduan
         //    }
         //}
 
-        //public static IEnumerable<ParameterHrModel> DB_ListKatPengadu()
+        //public static IEnumerable<ParameterHrModel> DB_ListKatPemohon()
         //{
         //    using (var dbConn = new OracleConnection(ConnOraHr))
         //    {
-        //        return dbConn.Query<ParameterHrModel>(AduanSQL.SQL_ListKatPengadu());
+        //        return dbConn.Query<ParameterHrModel>(AduanSQL.SQL_ListKatPemohon());
         //    }
         //}
 

@@ -7,6 +7,11 @@
       "type": "postgresql",
       "connectionId": "PGSQL",
       "dynamicId": null
+    },
+    "sqlite1": {
+      "type": "sqlite",
+      "connectionId": "SQLLite_DB",
+      "dynamicId": null
     }
   }
 }

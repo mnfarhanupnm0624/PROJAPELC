@@ -12,7 +12,7 @@ namespace APELC.Models
         //RUJUK KEPADA HR_BK_LAPORAN_POLIS
         public int ADUAN_FK { set; get; }
         public int SIASATAN_FK { set; get; }
-        public string? ADUAN_PK_ENC { set; get; }
+        public string? MOHON_PK_ENC { set; get; }
         public string? SIASATAN_PK_ENC { set; get; }
         public string? NO_LPRN_POLIS { set; get; }
         public string? DATE_TKH_LPRN { set; get; }

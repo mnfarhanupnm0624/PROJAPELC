@@ -16,7 +16,7 @@ namespace APELC.Helper
         public static SessionModel GetApel(this ISession session)
         {
             var user = new SessionModel();
-            var value = session.GetString("ApelUser");
+            var value = session.GetString("ApelCUser");
 
             //if (value != null)
             //{

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using APELC.Helper;
-using APELC.LocalServices.ApelC;
+//using APELC.LocalServices.ApelC;
 using APELC.Models;
 //using System.IdentityModel.Tokens.Jwt;
 //using System.Web.Mvc;
@@ -22,19 +22,19 @@ namespace APELC.Hubs
             if (httpContext != null)
             {
                 string _penciptaFk = httpContext.Session.GetString("_hrStafFk") ?? "";
-                //string _siasatanPkEnc = ApelUser.GetApel(httpContext.Session).ApelC_PK_ENC ?? "";
-                string _role = httpContext.Session.GetString("_hrSiasatanRole") ?? "";
+                //string _siasatanPkEnc = ApelCUser.GetApel(httpContext.Session).MOHON_PK_ENC ?? "";
+                string _role = httpContext.Session.GetString("_hrApelCRole") ?? "";
                 string _userAll = "";
                 if (_role == "PNYST_KANAN")
                 {
-                    _userAll = "ALL"; // Dapatkan Semua Senarai Siasatan
+                    _userAll = "ALL"; // Dapatkan Semua Senarai Permohonan 
                 }
 
                 CarianMessage _data = new();
                 //_data = SiasatanProcess.MtdGetMaklumatPenyiasatChat(_siasatanPkEnc, _penciptaFk, _userAll);
                 if (_data != null)
                 {
-                    string _pegChat = _data.pegChat.REPORT_NO ?? "";
+                    string _pegChat = _data.pegChat.MOHON_NO ?? "";
                     Groups.AddToGroupAsync(Context.ConnectionId, _pegChat);
                 }
 

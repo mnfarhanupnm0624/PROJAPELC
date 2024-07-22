@@ -42,7 +42,7 @@ namespace APELC.Controllers
         //private bool saveAduanOnSession(CarianAduanMain aduanModel)
         //{
         //    var aduanHelper = new AduanHelper();
-        //    HttpContext.Session.SetString("ApelUser", JsonConvert.SerializeObject(aduanHelper.GetApelInfo(aduanModel)));
+        //    HttpContext.Session.SetString("ApelCUser", JsonConvert.SerializeObject(aduanHelper.GetApelInfo(aduanModel)));
         //    return true;
         //}
 
@@ -69,7 +69,7 @@ namespace APELC.Controllers
         //    MtdGetDashboardSession("Senarai Aduan", "Senarai Aduan");
 
         //    string _eUserIdIn = HttpContext.Session.GetString("_userId") ?? "";
-        //    string _aduanPkEnc = ApelUser.GetApel(HttpContext.Session).ADUAN_PK_ENC ?? "";
+        //    string _aduanPkEnc = ApelCUser.GetApel(HttpContext.Session).MOHON_PK_ENC ?? "";
 
         //    if (_eUserIdIn != "")
         //    {

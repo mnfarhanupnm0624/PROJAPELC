@@ -530,12 +530,12 @@ using System.Threading.Tasks;
 //        }
 
 
-//        public static KadKedatanganModel MtdGetNoKerjaCutiSokongLulus(string noPekerjaPengadu)
+//        public static KadKedatanganModel MtdGetNoKerjaCutiSokongLulus(string noPekerjaPemohon)
 //        {
 //            KadKedatanganModel _returnRecord = new KadKedatanganModel()
 //            {
-//                KAD_NOKERJA = noPekerjaPengadu,
-//                KAD_NOKERJA_ENC = EncryptHr.NewEncrypt(noPekerjaPengadu, _encryptCode),
+//                KAD_NOKERJA = noPekerjaPemohon,
+//                KAD_NOKERJA_ENC = EncryptHr.NewEncrypt(noPekerjaPemohon, _encryptCode),
 //                KAD_PEGSOKONG = "TIADA",
 //                KAD_PEGLULUS = "TIADA",
 //                RESULTSET = "0"
@@ -544,7 +544,7 @@ using System.Threading.Tasks;
 //            {
 //                using (var dbConn = new OracleConnection(ConnOraSmu))
 //                {
-//                    KadKedatanganModel _returnData = dbConn.QueryFirstOrDefault<KadKedatanganModel>(PublicSql.SQL_GetNoKerjaCutiSokongLulus(), new { KAD_NOKERJA = noPekerjaPengadu });
+//                    KadKedatanganModel _returnData = dbConn.QueryFirstOrDefault<KadKedatanganModel>(PublicSql.SQL_GetNoKerjaCutiSokongLulus(), new { KAD_NOKERJA = noPekerjaPemohon });
 //                    if (_returnData != null)
 //                    {
 //                        _returnRecord = _returnData;
@@ -554,7 +554,7 @@ using System.Threading.Tasks;
 //            catch (Exception e)
 //            {
 //                var log = NLog.LogManager.GetCurrentClassLogger();
-//                log.Info("NoPekerjaPengadu-" + noPekerjaPengadu + " MtdGetNoKerjaCutiSokongLulus e ~ " + e);
+//                log.Info("NoPekerjaPemohon-" + noPekerjaPemohon + " MtdGetNoKerjaCutiSokongLulus e ~ " + e);
 //            }
 //            return _returnRecord;
 //        }

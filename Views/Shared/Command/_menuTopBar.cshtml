@@ -7,7 +7,7 @@
     string _titleSmall = HttpContextAccessor.HttpContext.Session.GetString("_titleSmall") ?? "Dashboard";
     string _titleSmallSub = HttpContextAccessor.HttpContext.Session.GetString("_titleSmallSub") ?? "Dashboard";
     string _titleSmallSubDtl = HttpContextAccessor.HttpContext.Session.GetString("_titleSmallSubDtl") ?? "Dashboard";
-    var _noreport = ApelUser.GetApel(Context.Session).REPORT_NO;
+    var _noreport = ApelCUser.GetApel(Context.Session).MOHON_NO;
 #pragma warning restore CS8602
     var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
     var _path5 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
@@ -50,7 +50,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-muted">
-                    <a href="/apel/Senarai/AduanSkrinList" class="text-muted text-hover-primary">@_titleSmall</a>
+                    <a href="/apelc/Senarai/AduanSkrinList" class="text-muted text-hover-primary">@_titleSmall</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->

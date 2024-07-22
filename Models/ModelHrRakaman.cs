@@ -17,14 +17,14 @@ namespace APELC.Models
         public string? CHECKED2 { set; get; }
 
         //RUJUK KEPADA HR_BK_ADUAN
-        public string? INFO_PENGADU_STAF { set; get; }
+        public string? INFO_Pemohon_STAF { set; get; }
         public string? COMPLAINER_FK { set; get; }
-        public string? NAMA_PENGADU { set; get; }
+        public string? NAMA_PEMOHON { set; get; }
         public string? NO_ID { set; get; }
         public string? NO_KP { set; get; }
         public string? KATEGORI_SAKSI { set; get; }
         public string? COMPLAINER_NO_KP { set; get; }
-        public string? INFO_PENGADU_PELAJAR { set; get; }
+        public string? INFO_Pemohon_PELAJAR { set; get; }
 
         //RUJUK KEPADA HR_INV_DAFTAR_PNYST
         public int DAFTAR_PNYST_PK { set; get; }

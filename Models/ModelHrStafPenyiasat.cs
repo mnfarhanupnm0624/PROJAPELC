@@ -23,7 +23,7 @@ namespace APELC.Models
 
         //RUJUK KEPADA HR_BK_ADUAN
         public int ADUAN_PK { set; get; }
-        public string? ADUAN_PK_ENC { set; get; }
+        public string? MOHON_PK_ENC { set; get; }
 
         //RUJUK KEPADA HR_BK_TINDAKAN
         public string? STATUS_FK { set; get; }
@@ -71,6 +71,6 @@ namespace APELC.Models
         public string? CKOD_PRNN_PNYST_FK_ENC { set; get; }
 
         //Chat 
-        public string? REPORT_NO { set; get; }
+        public string? MOHON_NO { set; get; }
     }
 }
