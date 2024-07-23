@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using APELC.Helper;
 //using APELC.LocalServices.ApelC;
-using APELC.Models;
+using APELC.Model;
 //using System.IdentityModel.Tokens.Jwt;
 //using System.Web.Mvc;
 using System.Xml.Linq;

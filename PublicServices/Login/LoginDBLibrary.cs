@@ -1,9 +1,9 @@
-﻿//using Dapper;
-using APELC.Models;
-//using Net6HrPublicLibrary.PublicShared;
-//using Oracle.ManagedDataAccess.Client;
+﻿using Dapper;
+using APELC.Model;
+using APELC.PublicShared;
+////using Oracle.ManagedDataAccess.Client;
 using System;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +14,16 @@ using System.Threading.Tasks;
 //    public class LoginDBLibrary
 //    {
 //        public static PublicConstant;
-//        using var MySqlconnection = PublicConstant.MySqlConnector();
-//        public static readonly MySqlconnection = PublicConstant.MySqlConnector();
+//        using var MySqlconnection = PublicConstant.MySql.Data.MySqlClient.MySqlConnection();
+//        public static readonly MySqlconnection = PublicConstant.MySql.Data.MySqlClient.MySqlConnection();
 //        MySqlconnection.Open();
 //        //using var command = new MySqlCommand("SELECT field FROM table;", connection);
 //        //using var reader = command.ExecuteReader();
 //        //while (reader.Read())
 //        //Console.WriteLine(reader.GetString(0));
 
-//        //static readonly string ConnOraHr = PublicConstant.ConnUtmDbDs();
-//        //static readonly string ConOraAkademik = PublicConstant.ConnUtmDbAkademik();
+//        //static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+//        //static readonly string ConOraAkademik = PublicConstant.ConnUpnmDbAkademik();
 
 //        public static UserIdModel MtdGetHrPengguna(string id)
 //        {
@@ -40,7 +40,7 @@ using System.Threading.Tasks;
 //            _return.RESULTSET = "0";
 //            try
 //            {
-//                using (var dbConn = new MySQLConn(ConnOraHr))
+//                using (var dbConn = new MySQLConn(ConnMySQLHrUpnm))
 //                {
 //                    UserIdModel _returnNew = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { ID_PENGGUNA = id });
 //                    if (_returnNew != null && _returnNew.RESULTSET == "2")
@@ -66,7 +66,7 @@ using System.Threading.Tasks;
 //                             FROM HR_STAF B, PENGGUNA A  
 //                            WHERE B.NO_PEKERJA = :NO_PEKERJA 
 //                              AND B.STAF_PK = A.STAF_FK AND ROWNUM = 1 ";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { NO_PEKERJA = id });
 //            }
@@ -84,7 +84,7 @@ using System.Threading.Tasks;
 //                            WHERE A.ID_PENGGUNA = :ID_PENGGUNA ";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { ID_PENGGUNA = id });
 //                if (_hasil != null) _result = _hasil;
@@ -106,7 +106,7 @@ using System.Threading.Tasks;
 //                              AND ROWNUM = 1 ";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (/*var dbConn = new OracleConnection(ConnOraHr*/))
+//            using (/*var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm*/))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { NO_PEKERJA = _noPekerja });
 //                if (_hasil != null)
@@ -123,7 +123,7 @@ using System.Threading.Tasks;
 //            var _sql = @"SELECT ACADEMIC.DECRYPT(HEXTORAW(:KOD)) AS USER_GROUP FROM DUAL";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConOraAkademik))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConOraAkademik))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { KOD = _key });
 //                if (_hasil != null)
@@ -148,7 +148,7 @@ using System.Threading.Tasks;
 //                                TKH_LUPUT_KATALALUAN = :TKH_LUPUT_KATALALUAN
 //                            WHERE ID_PENGGUNA = :ID_PENGGUNA ";
 //            int _data = 0;
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                _data = dbConn.Execute(_sql, pengguna);
 //            }
@@ -163,7 +163,7 @@ using System.Threading.Tasks;
 //            int _data = 0;
 //            try
 //            {
-//                using (var dbConn = new OracleConnection(ConnOraHr))
+//                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //                {
 //                    _data = dbConn.Execute(_sql, _pengguna);
 //                }
@@ -182,7 +182,7 @@ using System.Threading.Tasks;
 //                            "     '2' as RESULTSET FROM DUAL ";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, _data);
 //                if (_hasil != null) _result = _hasil;
@@ -200,7 +200,7 @@ using System.Threading.Tasks;
 //                            AND (sysdate between A.TKH_MULA and A.TKH_TAMAT) 
 //                             ORDER BY KOD_FUNGSI ";
 //            AND A.TKH_HAPUS is null AND(B.KOD_FUNGSI like 'HM95%' OR B.KOD_FUNGSI = 'DEVELOPER')
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<string>(_sql, new { ID_PENGGUNA = userName });
 //            }
@@ -219,7 +219,7 @@ using System.Threading.Tasks;
 //            AND A.TKH_HAPUS is null AND(B.KOD_FUNGSI like 'HM95%' OR B.KOD_FUNGSI = 'DEVELOPER')
 //            var log = NLog.LogManager.GetCurrentClassLogger();
 //            log.Info("MtdGetFunctions  _sql ~ " + _sql);
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<string>(_sql);
 //            }
@@ -230,7 +230,7 @@ using System.Threading.Tasks;
 //            var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NOPEKERJA ";
 //            UserDTOModel _result = new();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                UserDTOModel _hasil = dbConn.QueryFirstOrDefault<UserDTOModel>(_sql, new { NOPEKERJA = photo.NOPEKERJA });
 //                if (_hasil != null && _hasil.RESULTSET == "2")
@@ -251,7 +251,7 @@ using System.Threading.Tasks;
 //                                      AND TKH_HAPUS IS NULL
 //                                      AND SYSDATE BETWEEN TKH_MULA AND TKH_TAMAT ";
 //            bool _result = false;
-//            //using (/*var dbConn = new OracleConnection(ConnOraHr)*/)
+//            //using (/*var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm)*/)
 //            //{
 //            //    ParameterHrModel _hasil = dbConn.QueryFirstOrDefault<ParameterHrModel>(_sql, new { KOD_APPROVAL = _kod, STAF_FK = _stafFk });
 //            //    if (_hasil != null && _hasil.Tahun == "1")
@@ -268,16 +268,16 @@ using System.Threading.Tasks;
 //    public class LoginDBLibrary
 //    {
 //        public static PublicConstant;
-//        using var MySqlconnection = PublicConstant.MySqlConnector();
-//        public static readonly MySqlconnection = PublicConstant.MySqlConnector();
+//        using var MySqlconnection = PublicConstant.MySql.Data.MySqlClient.MySqlConnection();
+//        public static readonly MySqlconnection = PublicConstant.MySql.Data.MySqlClient.MySqlConnection();
 //        MySqlconnection.Open();
 //        //using var command = new MySqlCommand("SELECT field FROM table;", connection);
 //        //using var reader = command.ExecuteReader();
 //        //while (reader.Read())
 //        //Console.WriteLine(reader.GetString(0));
 
-//        //static readonly string ConnOraHr = PublicConstant.ConnUtmDbDs();
-//        //static readonly string ConOraAkademik = PublicConstant.ConnUtmDbAkademik();
+//        //static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+//        //static readonly string ConOraAkademik = PublicConstant.ConnUpnmDbAkademik();
 
 //        public static UserIdModel MtdGetHrPengguna(string id)
 //        {
@@ -294,7 +294,7 @@ using System.Threading.Tasks;
 //            _return.RESULTSET = "0";
 //            try
 //            {
-//                using (var dbConn = new MySQLConn(ConnOraHr))
+//                using (var dbConn = new MySQLConn(ConnMySQLHrUpnm))
 //                {
 //                    UserIdModel _returnNew = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { ID_PENGGUNA = id });
 //                    if (_returnNew != null && _returnNew.RESULTSET == "2")
@@ -320,7 +320,7 @@ using System.Threading.Tasks;
 //                             FROM HR_STAF B, PENGGUNA A  
 //                            WHERE B.NO_PEKERJA = :NO_PEKERJA 
 //                              AND B.STAF_PK = A.STAF_FK AND ROWNUM = 1 ";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { NO_PEKERJA = id });
 //            }
@@ -338,7 +338,7 @@ using System.Threading.Tasks;
 //                            WHERE A.ID_PENGGUNA = :ID_PENGGUNA ";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { ID_PENGGUNA = id });
 //                if (_hasil != null) _result = _hasil;
@@ -360,7 +360,7 @@ using System.Threading.Tasks;
 //                              AND ROWNUM = 1 ";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (/*var dbConn = new OracleConnection(ConnOraHr*/))
+//            using (/*var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm*/))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { NO_PEKERJA = _noPekerja });
 //                if (_hasil != null)
@@ -377,7 +377,7 @@ using System.Threading.Tasks;
 //            var _sql = @"SELECT ACADEMIC.DECRYPT(HEXTORAW(:KOD)) AS USER_GROUP FROM DUAL";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConOraAkademik))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConOraAkademik))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { KOD = _key });
 //                if (_hasil != null)
@@ -402,7 +402,7 @@ using System.Threading.Tasks;
 //                                TKH_LUPUT_KATALALUAN = :TKH_LUPUT_KATALALUAN
 //                            WHERE ID_PENGGUNA = :ID_PENGGUNA ";
 //            int _data = 0;
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                _data = dbConn.Execute(_sql, pengguna);
 //            }
@@ -417,7 +417,7 @@ using System.Threading.Tasks;
 //            int _data = 0;
 //            try
 //            {
-//                using (var dbConn = new OracleConnection(ConnOraHr))
+//                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //                {
 //                    _data = dbConn.Execute(_sql, _pengguna);
 //                }
@@ -436,7 +436,7 @@ using System.Threading.Tasks;
 //                            "     '2' as RESULTSET FROM DUAL ";
 //            UserIdModel _result = new UserIdModel();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, _data);
 //                if (_hasil != null) _result = _hasil;
@@ -454,7 +454,7 @@ using System.Threading.Tasks;
 //                            AND (sysdate between A.TKH_MULA and A.TKH_TAMAT) 
 //                             ORDER BY KOD_FUNGSI ";
 //            AND A.TKH_HAPUS is null AND(B.KOD_FUNGSI like 'HM95%' OR B.KOD_FUNGSI = 'DEVELOPER')
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<string>(_sql, new { ID_PENGGUNA = userName });
 //            }
@@ -473,7 +473,7 @@ using System.Threading.Tasks;
 //            AND A.TKH_HAPUS is null AND(B.KOD_FUNGSI like 'HM95%' OR B.KOD_FUNGSI = 'DEVELOPER')
 //            var log = NLog.LogManager.GetCurrentClassLogger();
 //            log.Info("MtdGetFunctions  _sql ~ " + _sql);
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<string>(_sql);
 //            }
@@ -484,7 +484,7 @@ using System.Threading.Tasks;
 //            var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NOPEKERJA ";
 //            UserDTOModel _result = new();
 //            _result.RESULTSET = "0";
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                UserDTOModel _hasil = dbConn.QueryFirstOrDefault<UserDTOModel>(_sql, new { NOPEKERJA = photo.NOPEKERJA });
 //                if (_hasil != null && _hasil.RESULTSET == "2")
@@ -505,7 +505,7 @@ using System.Threading.Tasks;
 //                                      AND TKH_HAPUS IS NULL
 //                                      AND SYSDATE BETWEEN TKH_MULA AND TKH_TAMAT ";
 //            bool _result = false;
-//            //using (/*var dbConn = new OracleConnection(ConnOraHr)*/)
+//            //using (/*var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm)*/)
 //            //{
 //            //    ParameterHrModel _hasil = dbConn.QueryFirstOrDefault<ParameterHrModel>(_sql, new { KOD_APPROVAL = _kod, STAF_FK = _stafFk });
 //            //    if (_hasil != null && _hasil.Tahun == "1")

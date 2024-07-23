@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net6HrPublicLibrary.Model
+namespace APELC.Model
 {
     public class UserIdModel
     {
@@ -26,7 +26,7 @@ namespace Net6HrPublicLibrary.Model
         public int? BIL_GAGAL_LOGIN { set; get; }
         public string? AKTIF_FLAG { set; get; }
         public string? PENGGUNA_BARU_FLAG { set; get; }
-        public int KLINIK_FK { set; get; }
+        public int? KLINIK_FK { set; get; }
         public string? AKADEMIK { set; get; }
         public string? KUMPULAN { set; get; }
         public string? USER_GROUP { set; get; }
@@ -38,13 +38,14 @@ namespace Net6HrPublicLibrary.Model
         public string? KOD_JAWATAN { set; get; }
         public string? JAWATAN_DESC { set; get; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? MODAL_TKH_MULA { set; get; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? MODAL_TKH_TAMAT { set; get; }
         public string? MODAL_KOD_PERANAN { set; get; }
         public string? MODAL_KOD_PERANAN_DD { set; get; }
-        public string? SPR_NOKP { set; get; }
-        
+
         public string? ENC_FROM_DASHBOARD { set; get; }
         public string? ARRAY_FROM_ENC { set; get; }
     }

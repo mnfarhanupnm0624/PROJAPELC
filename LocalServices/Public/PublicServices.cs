@@ -1,23 +1,23 @@
 ﻿//using Dapper;
-//using Net6HrPublicLibrary.Model;
+//using APELC.Model;
 //using APELC.LocalServices.Public;
 //using APELC.PublicShared;
 using APELC.LocalShared;
-using APELC.Models;
-//using Oracle.ManagedDataAccess.Client;
+using APELC.Model;
+////using Oracle.ManagedDataAccess.Client;
 
 //namespace APELC.LocalServices.Public
 //{
 //    public class PublicServices
 //    {
 //        static string _encryptCode = SecurityConstants.EncryptCode();
-//        static readonly string ConnOraHrDs = SecurityConstants.ConnUtmDbDs();
+//        static readonly string ConnMySQLHrUpnmDs = SecurityConstants.ConnUpnmDbDs();
 //        internal static bool MtdTestConnection()
 //        {
 //            bool _return = true;
 //            try
 //            {
-//                //using (var dbConn = new OracleConnection(ConnOraHrDs))
+//                //using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnmDs))
 //                //{
 //                //    int _xx = dbConn.QueryFirstOrDefault<int>("SELECT 7 FROM DUAL ");
 //                //    if (_xx > 0)

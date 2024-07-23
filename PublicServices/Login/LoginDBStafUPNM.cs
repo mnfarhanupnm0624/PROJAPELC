@@ -1,59 +1,49 @@
-﻿using Net6HrPublicLibrary.Model;
+﻿using APELC.Model;
+using Dapper;
+using APELC.PublicShared;
+////using Oracle.ManagedDataAccess.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace APELC.PublicServices.Login
 {
     public class LoginDBStafUPNM
     {
-    }
-}
+        static readonly string ConnSyAkademik = PublicConstant.ConnUpnmDbAkademik();
+        static readonly string _encryptCode = PublicConstant.EncryptCode();
 
-
-//using Dapper;
-//using Net6HrPublicLibrary.Model;
-//using Net6HrPublicLibrary.PublicShared;
-//using Oracle.ManagedDataAccess.Client;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-namespace Net6HrPublicLibrary.PublicServices.Login
-{
-    public class LoginDBStafUPNM
-    {
-        //static readonly string ConnOraAkademik = PublicConstant.ConnUtmDbAkademik();
-        //static readonly string _encryptCode = SampleConstant.EncryptCode();
-
-        static readonly string _VW_STUDENT_AKTIF =
+        static readonly string _VW_STAF_AKTIF =
            @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
                       NAMA, KURSUS AS KOD_KURSUS, KOD_KOLEJ AS KOD_KOLEJ, KOD_KAMPUS, KOD_FAKULTI as KOD_PTJ, 
                       EMAIL, HANDPHONE, GAMBAR as PHOTO, NAMA_PENDEK as USERNAME,
                       KOLEJ AS NAMA_KOLEJ, '1' as RESULTSET
                  FROM SENARAI.VW_STUDENT_AKTIF_KESELURUHAN ";
 
-        //static readonly string _VW_STUDENT_AKTIF =
+        //static readonly string _VW_STAF_AKTIF =
         //    @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
         //              NAMA, KURSUS AS KOD_KURSUS, KOD_KOLEJ AS KOD_KOLEJ, KOD_KAMPUS, KOD_FAKULTI as KOD_PTJ, 
         //              EMAIL, HANDPHONE, GAMBAR as PHOTO, NAMA_PENDEK as USERNAME,
         //              KOLEJ AS NAMA_KOLEJ, '1' as RESULTSET
         //         FROM SENARAI.VW_STUDENT_AKTIF_KESELURUHAN ";
 
-        public static string SQL_GetStudentRecord(string _nokp)
+        public static string SQL_GetStaffRecord(string _nokp)
         {
-            string _sQL = _VW_STUDENT_AKTIF;
+            string _sQL = _VW_STAF_AKTIF;
             _sQL += " WHERE ( IC = '" + _nokp + "') ";
             //var log = NLog.LogManager.GetCurrentClassLogger();
-            //log.Info("SQL_GetStudentRecord  _sQL ~ " + _sQL);
+            //log.Info("SQL_GetStaffRecord  _sQL ~ " + _sQL);
             return _sQL;
         }
 
-        //public static string SQL_GetStudentRecord(string _nokp)
+        //public static string SQL_GetStaffRecord(string _nokp)
         //{
-        //    string _sQL = _VW_STUDENT_AKTIF;
+        //    string _sQL = _VW_STAF_AKTIF;
         //    _sQL += " WHERE ( IC = '" + _nokp + "') ";
         //    //var log = NLog.LogManager.GetCurrentClassLogger();
-        //    //log.Info("SQL_GetStudentRecord  _sQL ~ " + _sQL);
+        //    //log.Info("SQL_GetStaffRecord  _sQL ~ " + _sQL);
         //    return _sQL;
         //}
 
@@ -61,14 +51,14 @@ namespace Net6HrPublicLibrary.PublicServices.Login
         {
             UserDTOModel _return = new UserDTOModel();
             _return.RESULTSET = "0";
-            _return.RESULTSET_TEXT = "BEGIN GET STUDENT RECORD";
+            _return.RESULTSET_TEXT = "BEGIN GET STAF RECORD";
             //try
             //{
-            //    string _sQl = SQL_GetStudentRecord(_nokp);
+            //    string _sQl = SQL_GetStaffRecord(_nokp);
             //    //var log = NLog.LogManager.GetCurrentClassLogger();
             //    //log.Info("MtdGetDataPelajarByNokp _sQl ~ " + _sQl);
 
-            //    using (var dbConn = new OracleConnection(ConnOraAkademik))
+            //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
             //    {
             //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(_sQl);
             //        //log.Info("MtdGetDataPelajarByNokp try catch _data.RESULTSET ~ " + _data.RESULTSET);
@@ -97,14 +87,14 @@ namespace Net6HrPublicLibrary.PublicServices.Login
         //{
         //    UserDTOModel _return = new UserDTOModel();
         //    _return.RESULTSET = "0";
-        //    _return.RESULTSET_TEXT = "BEGIN GET STUDENT RECORD";
+        //    _return.RESULTSET_TEXT = "BEGIN GET STAF RECORD";
         //    //try
         //    //{
-        //    //    string _sQl = SQL_GetStudentRecord(_nokp);
+        //    //    string _sQl = SQL_GetStaffRecord(_nokp);
         //    //    //var log = NLog.LogManager.GetCurrentClassLogger();
         //    //    //log.Info("MtdGetDataPelajarByNokp _sQl ~ " + _sQl);
 
-        //    //    using (var dbConn = new OracleConnection(ConnOraAkademik))
+        //    //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
         //    //    {
         //    //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(_sQl);
         //    //        //log.Info("MtdGetDataPelajarByNokp try catch _data.RESULTSET ~ " + _data.RESULTSET);
@@ -136,9 +126,9 @@ namespace Net6HrPublicLibrary.PublicServices.Login
         //_return.RESULTSET_TEXT = "BEGIN GET PHOTO STUDENT";
         //try
         //{
-        //    using (var dbConn = new OracleConnection(ConnOraAkademik))
+        //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
         //    {
-        //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(SQL_GetStudentRecord(_nokp));
+        //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(SQL_GetStaffRecord(_nokp));
         //        if (_data != null && _data.RESULTSET == "1")
         //        {
         //            _return.PHOTO = _data.PHOTO;

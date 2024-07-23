@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net6HrPublicLibrary.PublicServices.Public
+namespace APELC.PublicServices.Public
 {
     internal class PublicSql
     {

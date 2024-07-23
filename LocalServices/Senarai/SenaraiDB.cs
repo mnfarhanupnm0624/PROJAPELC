@@ -1,15 +1,14 @@
-﻿//using Dapper;
-using Net6HrPublicLibrary.Model;
-//using Net6HrPublicLibrary.PublicShared;
+﻿using Dapper;
+using APELC.Model;
+using APELC.PublicShared;
 using APELC.LocalShared;
-using APELC.Models;
-//using Oracle.ManagedDataAccess.Client;
+////using Oracle.ManagedDataAccess.Client;
 
 namespace APELC.LocalServices.Senarai
 {
     public class SenaraiDB
     {
-        //static readonly string ConnOraHr = PublicConstant.ConnUtmDbDs();
+        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         // Get Senarai Aduan Kes Siasatan Pemohon
@@ -18,7 +17,7 @@ namespace APELC.LocalServices.Senarai
         //    List<ModelHrPemohon> list = null;
         //    try
         //    {
-        //        using (var dbConn = new OracleConnection(ConnOraHr))
+        //        using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //        {
         //            IEnumerable<ModelHrPemohon> _getList = dbConn.Query<ModelHrPemohon>(SenaraiSql.SQL_MtdGetPemohonList(_noaduan, _katPemohon, _cKampus, _cStsAduan, _cKatAduan, _cTkhMula, _cTkhTamat, userAll, stafPk));
         //            if (_getList != null)

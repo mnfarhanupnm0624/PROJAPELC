@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using APELC.LocalServices.Login;
 using APELC.PublicServices.Login;
-using APELC.Models;
+using APELC.Model;
 using System.Diagnostics;
 using APELC.LocalShared;
 //using System.IdentityModel.Tokens.Jwt;
@@ -14,10 +14,9 @@ namespace APELC.Controllers
         readonly string _screenCodeFunction = "HM100";
         public IActionResult LoginPageApelC()
         {
-            //return View("LoginPageApelC", "Login");
-            //return RedirectToPage("LoginPageApelC", "Login");
+
             //return RedirectToAction("/Login/LoginPageApelC");
-            return Redirect("/Login/LoginPageApelC");
+            return View("./Views/Login/LoginPageApelC.cshtml");
             //return View();
         }
 
@@ -30,7 +29,7 @@ namespace APELC.Controllers
             HttpContext.Response.Cookies.Delete("SSOJWT");
             return RedirectToAction("LoginPageApelC", "Login");
             //return Redirect("Views/Login/LoginPageApelC");
-            //return Redirect("https://localdevmywww.localdevmyapelc.upnm.edu.my/");
+            //return Redirect("https://wwww.localdevmyapelc.upnm.edu.my/");
         }
 
         // GET: MtdGetVerifyUserByCookies

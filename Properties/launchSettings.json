@@ -17,20 +17,20 @@
       },
       "launchBrowser": true
     },
-    //"DatabaseMySQL8": {
-    //  "commandName": "Executable",
-    //  "ConnectionStrings": {
-    //    "Default": "Server=172.16.2.247;User ID=apelUPNM;Password=AP3L@MySQL;Database=apelc"
-    //  },
-    //  "environmentVariables": {
-    //    "ASPNETCORE_ENVIRONMENT": "Development"
-    //  },
-    //  "launchBrowser": true
-    //},
+    "DatabaseMySQL8": {
+      "commandName": "Executable",
+      "ConnectionStrings": {
+        "Default": "server=172.16.2.247;uid=apelUPNM;pwd=AP3L@MySQL;database=apelc"
+      },
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchBrowser": true
+    },
     //"DatabaseSybase": {
     //  "commandName": "Executable",
     //  "ConnectionStrings": {
-    //    "Default": "Server=172.16.2.14;User ID=apel;Password=AP3L@SybaseL;Database=stafdb;View=v630staf_apel"
+    //    "Default": "server=172.16.2.14;uid=apel;pwd=AP3L@SybaseL;database=stafdb;View=v630staf_apel"
     //  },
     //  "environmentVariables": {
     //    "ASPNETCORE_ENVIRONMENT": "Development"

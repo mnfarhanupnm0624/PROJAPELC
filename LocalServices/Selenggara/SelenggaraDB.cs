@@ -1,16 +1,16 @@
 ﻿using Dapper;
-using Net6HrPublicLibrary.Model;
-//using Net6HrPublicLibrary.PublicShared;
+using APELC.Model;
+//using APELC.PublicShared;
 using APELC.LocalServices.Senarai;
 using APELC.LocalShared;
-using APELC.Models;
-//using Oracle.ManagedDataAccess.Client;
+using APELC.Model;
+////using Oracle.ManagedDataAccess.Client;
 
 namespace APELC.LocalServices.Aduan
 {
     public class SelenggaraDB
     {
-        //static readonly string ConnOraHr = PublicConstant.ConnUtmDbDs();
+        //static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         //internal static ModelHrStaffMaklumatPeribadi DB_MtdGetMaklumatAsas(int _stafPk)
@@ -18,7 +18,7 @@ namespace APELC.LocalServices.Aduan
         //    ModelHrStaffMaklumatPeribadi _data = new();
         //    try
         //    {
-        //        using (var dbConn = new OracleConnection(ConnOraHr))
+        //        using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //        {
         //            _data = dbConn.QueryFirstOrDefault<ModelHrStaffMaklumatPeribadi>(AduanSQL.DB_MtdGetMaklumatAsas(), new { STAF_PK = _stafPk });
         //            if (_data != null)
@@ -41,7 +41,7 @@ namespace APELC.LocalServices.Aduan
         //    ModelHrPemohonMaklumat _data = new();
         //    try
         //    {
-        //        using (var dbConn = new OracleConnection(ConnOraHr))
+        //        using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //        {
         //            _data = dbConn.QueryFirstOrDefault<ModelHrPemohonMaklumat>(AduanSQL.SQL_MtdGetApelPemohon(), new { ADUAN_PK = _aduanPk });
         //        }
@@ -60,7 +60,7 @@ namespace APELC.LocalServices.Aduan
         //    List<ModelHrStafPenyiasat> list = null;
         //    try
         //    {
-        //        using (var dbConn = new OracleConnection(ConnOraHr))
+        //        using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //        {
         //            IEnumerable<ModelHrStafPenyiasat> _getList = dbConn.Query<ModelHrStafPenyiasat>(SelenggaraSQL.SQL_MtdGetStafPenyiasatList(), new { Aduan_PK = AduanPk });
         //            if (_getList != null)
@@ -89,7 +89,7 @@ namespace APELC.LocalServices.Aduan
         //        //var log = NLog.LogManager.GetCurrentClassLogger();
         //        //log.Info("MtdGetDataPelajarByNokp _sQl ~ " + _sQl);
 
-        //        using (var dbConn = new OracleConnection(ConnOraHr))
+        //        using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //        {
         //            ModelMaklumatPeribadiPelajar _data = dbConn.QueryFirstOrDefault<ModelMaklumatPeribadiPelajar>(_sQl);
         //            if (_data != null && _data.RESULTSET == "1")
@@ -112,7 +112,7 @@ namespace APELC.LocalServices.Aduan
         // DDL
         //public static IEnumerable<ParameterHrModel> DB_ListKatAduan()
         //{
-        //    using (var dbConn = new OracleConnection(ConnOraHr))
+        //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //    {
         //        return dbConn.Query<ParameterHrModel>(SelenggaraSQL.SQL_ListKatAduan());
         //    }
@@ -120,7 +120,7 @@ namespace APELC.LocalServices.Aduan
 
         //public static IEnumerable<ParameterHrModel> DB_ListKatPemohon()
         //{
-        //    using (var dbConn = new OracleConnection(ConnOraHr))
+        //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //    {
         //        return dbConn.Query<ParameterHrModel>(SelenggaraSQL.SQL_ListKatPemohon());
         //    }
@@ -128,7 +128,7 @@ namespace APELC.LocalServices.Aduan
 
         //public static IEnumerable<ParameterHrModel> DB_ListStsAduan()
         //{
-        //    using (var dbConn = new OracleConnection(ConnOraHr))
+        //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //    {
         //        return dbConn.Query<ParameterHrModel>(SelenggaraSQL.SQL_ListStsAduan());
         //    }
@@ -136,7 +136,7 @@ namespace APELC.LocalServices.Aduan
 
         //public static IEnumerable<ParameterHrModel> ListJawatanAll(string _kodjwtn)
         //{
-        //    using (var dbConn = new OracleConnection(ConnOraHr))
+        //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
         //    {
         //        return dbConn.Query<ParameterHrModel>(SelenggaraSQL.SqlJawatanList(_kodjwtn));
         //    }

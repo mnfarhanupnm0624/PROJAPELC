@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using APELC.Models;
+using APELC.Model;
 using System.Diagnostics;
 
 namespace APELC.Controllers

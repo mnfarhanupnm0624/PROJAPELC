@@ -1,19 +1,19 @@
-﻿//using Dapper;
-using Net6HrPublicLibrary.Model;
-//using Net6HrPublicLibrary.PublicShared;
-//using Oracle.ManagedDataAccess.Client;
+﻿using Dapper;
+using APELC.Model;
+using APELC.PublicShared;
+////using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net6HrPublicLibrary.PublicServices.Login
+namespace APELC.PublicServices.Login
 {
     public class LoginDBPelajarUPNM
     {
-        //static readonly string ConnOraAkademik = PublicConstant.ConnUtmDbAkademik();
-        //static readonly string _encryptCode = SampleConstant.EncryptCode();
+        static readonly string ConnSyAkademik = PublicConstant.ConnUpnmDbAkademik();
+        static readonly string _encryptCode = PublicConstant.EncryptCode();
 
         static readonly string _VW_STUDENT_AKTIF =
             @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
@@ -42,7 +42,7 @@ namespace Net6HrPublicLibrary.PublicServices.Login
             //    //var log = NLog.LogManager.GetCurrentClassLogger();
             //    //log.Info("MtdGetDataPelajarByNokp _sQl ~ " + _sQl);
 
-            //    using (var dbConn = new OracleConnection(ConnOraAkademik))
+            //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
             //    {
             //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(_sQl);
             //        //log.Info("MtdGetDataPelajarByNokp try catch _data.RESULTSET ~ " + _data.RESULTSET);
@@ -74,7 +74,7 @@ namespace Net6HrPublicLibrary.PublicServices.Login
             //_return.RESULTSET_TEXT = "BEGIN GET PHOTO STUDENT";
             //try
             //{
-            //    using (var dbConn = new OracleConnection(ConnOraAkademik))
+            //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
             //    {
             //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(SQL_GetStudentRecord(_nokp));
             //        if (_data != null && _data.RESULTSET == "1")

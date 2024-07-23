@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net6HrPublicLibrary.Model
+namespace APELC.Model
 {
     public class UserDTOModel
     {
         public string? RESULTSET { set; get; }
         public string? RESULTSET_TEXT { set; get; }
-        
         public string? USERNAME { set; get; }
         public string? PASSWORD { set; get; }
         public DateTime? PWDCHANGEDATE { set; get; }
@@ -29,15 +28,6 @@ namespace Net6HrPublicLibrary.Model
         public string? FLAG { set; get; }
         public int? BILANGAN { set; get; }
         public string? NOKP { set; get; }
-        public string? SPR_NOKP { set; get; }
-        public string? NAMA { set; get; }
-        public string? NOBARCODE { set; get; }
-        public string? KOD_KURSUS { set; get; }
-        public string? KOD_KOLEJ { set; get; }
-        public string? KOD_KAMPUS { set; get; }
-        public string? HANDPHONE { set; get; }
-        public string? NAMA_KOLEJ { set; get; }
-
         public string? ROLE { set; get; }
         public string? RESULTTEXT { set; get; }
         public int? PENCIPTA_FK { set; get; }
@@ -45,6 +35,6 @@ namespace Net6HrPublicLibrary.Model
         public string? NEWPASSWORD02 { set; get; }
         public string? KATALALUAN { set; get; }
         public string? KOD_PTJ { set; get; }
-        public Byte[] PHOTO { set; get; }
+        public Byte[]? PHOTO { set; get; }
     }
 }

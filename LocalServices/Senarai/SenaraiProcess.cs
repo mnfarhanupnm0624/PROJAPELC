@@ -1,7 +1,7 @@
-﻿//using Net6HrPublicLibrary.Model;
-//using Net6HrPublicLibrary.PublicServices.Login;
-//using Net6HrPublicLibrary.PublicServices.Public;
-////using Net6HrPublicLibrary.PublicShared;
+﻿//using APELC.Model;
+//using APELC.PublicServices.Login;
+//using APELC.PublicServices.Public;
+//using APELC.PublicShared;
 //using APELC.LocalServices.ApelC;
 //using APELC.LocalShared;
 //using APELC.Models;

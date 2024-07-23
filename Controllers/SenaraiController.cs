@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using APELC.LocalServices.Senarai;
-using APELC.Models;
+using APELC.Model;
 
 namespace APELC.Controllers
 {

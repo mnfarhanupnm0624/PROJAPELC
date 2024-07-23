@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net6HrPublicLibrary.Model
+namespace APELC.Model
 {
     public class StatistikFakultiUmumModel
     {

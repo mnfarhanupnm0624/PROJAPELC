@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-//using Net6HrPublicLibrary.PublicShared;
+//using APELC.PublicShared;
 using APELC.LocalShared;
-using APELC.Models;
+using APELC.Model;
 //using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;

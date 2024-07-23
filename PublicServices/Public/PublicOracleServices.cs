@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using APELC.Models;
+using APELC.Model;
 using APELC.LocalShared;
-//using Oracle.ManagedDataAccess.Client;
+////using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 //    public class PublicOracleServices
 //    {
 //        public static object PublicConstant;
-//        static readonly string ConnOraHr = PublicConstant.ConnUtmDbDs();
+//        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
 //        static readonly string ConnOraRujuk = PublicConstant.ConnOraRujuk();
-//        static readonly string ConnOraSmu = PublicConstant.ConnUtmDbSmu();
+//        static readonly string ConnOraSmu = PublicConstant.ConnUpnmDbSmu();
 //        static string _encryptCode = PublicConstant.New2022EncryptCode();
 
 //        public static string MtdGetHrNoRujukan(string kod)
@@ -61,7 +61,7 @@ using System.Threading.Tasks;
 
 //        private static ParameterHrModel MtdGetHrNoRujukanSemakSediada(string kod, string year)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraRujuk))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraRujuk))
 //            {
 //                return dbConn.QueryFirstOrDefault<ParameterHrModel>(PublicSql.SQLGetHrNoRujukanSemakSediada(), new { KOD = kod, TAHUN = year });
 //            }
@@ -69,7 +69,7 @@ using System.Threading.Tasks;
 
 //        public static HrAlamatModel MtdGetHrAlamatByPk(int _alamatFk)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.QueryFirstOrDefault<HrAlamatModel>(PublicSql.SQLGetHrAlamatByPk(), new { ALAMAT_PK = _alamatFk });
 //            }
@@ -77,7 +77,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> MtdGetCajKlinikList(int _klinikFk)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SQLGetCajKlinikList(), new { KLINIK_FK = _klinikFk });
 //            }
@@ -85,7 +85,7 @@ using System.Threading.Tasks;
 
 //        private static int MtdGetHrNoRujukanUpdate(string kod, string year, int no)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraRujuk))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraRujuk))
 //            {
 //                return dbConn.Execute(PublicSql.SQLGetHrNoRujukanUpdate(), new { KOD = kod, TAHUN = year, NOMBOR = no });
 //            }
@@ -93,7 +93,7 @@ using System.Threading.Tasks;
 
 //        private static int MtdGetHrNoRujukanInsert(string kod, string year, int no)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraRujuk))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraRujuk))
 //            {
 //                return dbConn.Execute(PublicSql.SQLGetHrNoRujukanInsert(), new { KOD = kod, TAHUN = year, NOMBOR = no });
 //            }
@@ -101,21 +101,21 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListSmuParameterKeyKodByKumpulan(int _kumpulan)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.ListSmuParameterKeyKodByKumpulan(), new { KUMPULAN_FK = _kumpulan });
 //            }
 //        }
 //        public static IEnumerable<ParameterHrModel> ListAdmParameterKeyKodByKumpulan(int _kumpulan)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.ListAdmParameterKeyKodByKumpulan(), new { KUMPULAN_FK = _kumpulan });
 //            }
 //        }
 //        public static IEnumerable<ParameterHrModel> ListSmuParameterEnglishWithCode(int _kumpulan, string _kod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.GetSmuParameterEnglishByKumpulanFk(), new { KUMPULAN_FK = _kumpulan });
 //            }
@@ -123,7 +123,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListTarafJawatan()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.GetTarafJawatanSub());
 //            }
@@ -131,7 +131,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ItemListSmuParameterEnglish(int _kumpulan)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.GetSmuParameterEnglishByKumpulanFk(), new { KUMPULAN_FK = _kumpulan });
 //            }
@@ -139,7 +139,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListOfLogCategory(int _category)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlListOfLogCategory(_category));
 //            }
@@ -147,7 +147,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListOfSubCategory()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlListOfSubCategory());
 //            }
@@ -155,7 +155,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListCountryAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlNegaraList());
 //            }
@@ -163,7 +163,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListAgamaAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlAgamaList());
 //            }
@@ -171,7 +171,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListBangsaAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlBangsaList());
 //            }
@@ -179,7 +179,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListBangsaAllEnglish()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlBangsaListEnglish());
 //            }
@@ -187,7 +187,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListJawatanAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlJawatanList());
 //            }
@@ -195,7 +195,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListNegeriAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlNegeriList());
 //            }
@@ -203,21 +203,21 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListFakulti2018()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlFakultiList());
 //            }
 //        }
 //        public static IEnumerable<ParameterHrModel> ListFakultiAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlFakultiList());
 //            }
 //        }
 //        public static IEnumerable<ParameterHrModel> ListFakultiByCampus(string _kodKampus)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlListFakultiByCampus(), new { KODKAMPUS = _kodKampus });
 //            }
@@ -225,7 +225,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ItemListPerananPengguna(string _kod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SQLItemListPerananPengguna(_kod));
 //            }
@@ -233,7 +233,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListBandarByNegeri(string kod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.getSqlBandarByKodNegeri(kod));
 //            }
@@ -241,7 +241,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListHrUnitByKodFakulti(string kod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.getSqlListHrUnitByKodFakulti(kod));
 //            }
@@ -253,7 +253,7 @@ using System.Threading.Tasks;
 //            {
 //                NO_KP_BARU = nokp
 //            };
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetHrStafMaklumatByNoKP(), new { NO_KP_BARU = nokp });
 //                if (_returnData != null)
@@ -273,8 +273,8 @@ using System.Threading.Tasks;
 //                NO_PEKERJA = _nopekerja,
 //                NO_PEKERJA_ENC = EncryptHr.NewEncrypt(_nopekerja, _encryptCode)
 //            };
-//            //log.Info("MtdGetHrStafMaklumatByNoPekerja ConnOraHr ~ " + ConnOraHr);
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            //log.Info("MtdGetHrStafMaklumatByNoPekerja ConnMySQLHrUpnm ~ " + ConnMySQLHrUpnm);
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetHrStafMaklumatByNoPekerja(), new { NO_PEKERJA = _nopekerja });
 //                //log.Info("MtdGetHrStafMaklumatByNoPekerja _returnData.RESULTSET ~ " + _returnData.RESULTSET);
@@ -292,7 +292,7 @@ using System.Threading.Tasks;
 //            IEnumerable<SmisKadAsasModel> _data = new List<SmisKadAsasModel>();
 //            try
 //            {
-//                using (var dbConn = new OracleConnection(ConnOraSmu))
+//                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraSmu))
 //                {
 //                    IEnumerable<SmisKadAsasModel> _data2 = dbConn.Query<SmisKadAsasModel>(PublicSql.SQL_MtdGetStafYangDiselia(noPekerja));
 //                    if (_data2 != null)
@@ -315,7 +315,7 @@ using System.Threading.Tasks;
 //                STAF_PK = _stafFk,
 //                STAF_PK_ENC = EncryptHr.NewEncrypt(_stafFk.ToString(), _encryptCode)
 //            };
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetHrStafMaklumatByStafFk(_stafFk), new { STAF_PK = _stafFk });
 //                if (_returnData != null)
@@ -353,7 +353,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListKodEssential()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlListKodEssential());
 //            }
@@ -361,7 +361,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListVerifierEssential(string _kod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlListApprovalStructureByCode(_kod));
 //            }
@@ -369,7 +369,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListApprovalStructureStafFkByCodeJabatan(string _kod, string _kodFakulti)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlListApprovalStructureStafFkByCodeJabatan(_kod, _kodFakulti));
 //            }
@@ -377,7 +377,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListApprovalStructureStafFkPPTPByCodeJabatan(string _kodFakulti)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlListApprovalStructureStafFkPPTPByJabatan(_kodFakulti));
 //            }
@@ -385,7 +385,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListPegawaiPsmByKod(string kod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                if (kod != null)
 //                {
@@ -400,7 +400,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListPegawaiPsmAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.ListPegawaiPsmAll());
 //            }
@@ -408,7 +408,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListHrParameterBangsa()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.GetHrParameterBangsa());
 //            }
@@ -416,7 +416,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ItemListHrParameter(int _kumpulan)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.GetHrParameterByKumpulanFk(), new { KUMPULAN_FK = _kumpulan });
 //            }
@@ -424,7 +424,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ItemListHrParameterEnglish(int _kumpulan)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.GetHrParameterEnglishByKumpulanFk(), new { KUMPULAN_FK = _kumpulan });
 //            }
@@ -432,21 +432,21 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ItemListPemilihanTrack()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.GetHrParameterByKumpulanFk(), new { KUMPULAN_FK = 614 });
 //            }
 //        }
 //        public static IEnumerable<ParameterHrModel> ListBahagianAll(string fakulti)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlBahagianList(fakulti));
 //            }
 //        }
 //        public static IEnumerable<ParameterHrModel> ListTahunAll()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.SqlTahunList());
 //            }
@@ -459,7 +459,7 @@ using System.Threading.Tasks;
 //                STAF_PK = _stafFk,
 //                STAF_PK_ENC = EncryptHr.NewEncrypt(_stafFk.ToString(), _encryptCode)
 //            };
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetBasicHrStafMaklumatByStafFk(), new { STAF_PK = _stafFk });
 //                if (_returnData != null)
@@ -477,7 +477,7 @@ using System.Threading.Tasks;
 //                NO_KP_BARU = nokp,
 //                NO_KP_BARU_ENC = EncryptHr.NewEncrypt(nokp, _encryptCode)
 //            };
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetBasicHrStafMaklumatByNoKP(), new { NO_KP_BARU = nokp });
 //                if (_returnData != null)
@@ -496,7 +496,7 @@ using System.Threading.Tasks;
 //                NO_KP_BARU = nokp,
 //                NO_KP_BARU_ENC = EncryptHr.NewEncrypt(nokp, _encryptCode)
 //            };
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.SqlGetMaklumatPeribadiByNokp(), new { NO_KP_BARU = nokp });
 //                if (_returnData != null)
@@ -518,7 +518,7 @@ using System.Threading.Tasks;
 //                NO_PEKERJA = _nopekerja,
 //                NO_PEKERJA_ENC = EncryptHr.NewEncrypt(_nopekerja, _encryptCode)
 //            };
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetBasicHrStafMaklumatByNoPekerja(), new { NO_PEKERJA = _nopekerja });
 //                if (_returnData != null)
@@ -542,7 +542,7 @@ using System.Threading.Tasks;
 //            };
 //            try
 //            {
-//                using (var dbConn = new OracleConnection(ConnOraSmu))
+//                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraSmu))
 //                {
 //                    KadKedatanganModel _returnData = dbConn.QueryFirstOrDefault<KadKedatanganModel>(PublicSql.SQL_GetNoKerjaCutiSokongLulus(), new { KAD_NOKERJA = noPekerjaPemohon });
 //                    if (_returnData != null)
@@ -564,7 +564,7 @@ using System.Threading.Tasks;
 //            int _bilReturn = 0;
 //            try
 //            {
-//                using (var dbConn = new OracleConnection(ConnOraHr))
+//                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //                {
 //                    int _returnData = dbConn.QueryFirstOrDefault<int>(PublicSql.SQL_GetBilStafAktifFakulti(_kodFakulti));
 //                    if (_returnData > 0)
@@ -586,7 +586,7 @@ using System.Threading.Tasks;
 //            int _bilReturn = 0;
 //            try
 //            {
-//                using (var dbConn = new OracleConnection(ConnOraHr))
+//                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //                {
 //                    int _returnData = dbConn.QueryFirstOrDefault<int>(PublicSql.SQL_GetBilStafAkademikPPP(_kod));
 //                    if (_returnData > 0)
@@ -605,7 +605,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<StatistikFakultiUmumModel> MtdGetStaffBreakdownStatistik(string _kod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<StatistikFakultiUmumModel>(PublicSql.Sql_GetStaffBreakdownStatistik(_kod));
 //            }
@@ -633,21 +633,21 @@ using System.Threading.Tasks;
 //        }
 //        private static ParameterHrModel MtdGetHrKlinikNoRujukanSemakSediada(string kod, string year)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraRujuk))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraRujuk))
 //            {
 //                return dbConn.QueryFirstOrDefault<ParameterHrModel>(PublicSql.SQLGetHrKlinikNoRujukanSemakSediada(), new { KOD = kod, TAHUN = year });
 //            }
 //        }
 //        private static int MtdGetHrKlinikNoRujukanUpdate(string kod, string year, int no)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraRujuk))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraRujuk))
 //            {
 //                return dbConn.Execute(PublicSql.SQLGetHrKlinikNoRujukanUpdate(), new { KOD = kod, TAHUN = year, NOMBOR = no });
 //            }
 //        }
 //        private static int MtdGetHrKlinikNoRujukanInsert(string kod, string year, int no)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraRujuk))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraRujuk))
 //            {
 //                return dbConn.Execute(PublicSql.SQLGetHrKlinikNoRujukanInsert(), new { KOD = kod, TAHUN = year, NOMBOR = no });
 //            }
@@ -655,7 +655,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<ParameterHrModel> ListHrmsKodCuti()
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraSmu))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraSmu))
 //            {
 //                return dbConn.Query<ParameterHrModel>(PublicSql.ListHrmsKodCuti());
 //            }
@@ -663,7 +663,7 @@ using System.Threading.Tasks;
 
 //        public static IEnumerable<HrStaffMaklumatPeribadiModel> MtdGetListStaffJabatan(string _userPTJ, string _noPekerja, string _nama, string _fakultiKod, string _bahagianKod)
 //        {
-//            using (var dbConn = new OracleConnection(ConnOraHr))
+//            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
 //                return dbConn.Query<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetListStaffJabatan(_userPTJ, _noPekerja, _nama, _fakultiKod, _bahagianKod));
 //            }
@@ -674,7 +674,7 @@ using System.Threading.Tasks;
 //            List<HrStaffMaklumatPeribadiModel> list = null;
 //            try
 //            {
-//                using (var dbConn = new OracleConnection(ConnOraHr))
+//                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //                {
 //                    IEnumerable<HrStaffMaklumatPeribadiModel> _getList = dbConn.Query<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetCarianStaffListSearch(_kampus, _fakulti, _jabatan, _unit, _jawatan, _nopekerja, _nokp, _nama, _userPtj));
 //                    if (_getList != null)

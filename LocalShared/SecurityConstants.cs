@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-//using Net6HrPublicLibrary.PublicShared;
-using APELC.Models;
+using APELC.PublicShared;
+using APELC.Model;
 using System.Net;
 
 namespace APELC.LocalShared
@@ -41,12 +41,12 @@ namespace APELC.LocalShared
 
         //public static string ConnOraRujuk()
         //{
-        //    return ConnUtmDbDs();
+        //    return ConnUpnmDbDs();
         //}
 
-        //public static string ConnUtmDbDs()
+        //public static string ConnUpnmDbDs()
         //{
-        //    //return PublicConstant.ConnUtmDbDs();
+        //    //return PublicConstant.ConnUpnmDbDs();
         //}
 
 

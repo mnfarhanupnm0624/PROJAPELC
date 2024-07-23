@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net6HrPublicLibrary.Model
+namespace APELC.Model
 {
     public class HrStaffMaklumatPeribadiModel
     {
@@ -20,13 +20,11 @@ namespace Net6HrPublicLibrary.Model
         public DateTime? TKH_MULA_KONTRAK { set; get; }
         public DateTime? TKH_SAH_JAWATAN { set; get; }
         public DateTime? TKH_TAMAT_KONTRAK { set; get; }
-        public DateTime? TKH_MATI { set; get; }
         public string? GELARAN_PROFESSIONAL { set; get; }
         public string? NO_PEKERJA { set; get; }
         public string? NO_PEKERJA_ENC { set; get; }
         public string? TKH_HENTI { set; get; }
-        
-    public string? KOD_FAKULTI { set; get; }
+        public string? KOD_FAKULTI { set; get; }
         public string? KOD_PTJ { set; get; }
         public string? KOD_JAWATAN { set; get; }
         public string? KOD_PTJ_ASAL { set; get; }
