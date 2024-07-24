@@ -16,11 +16,20 @@ namespace APELC.PublicServices.Login
         static readonly string _encryptCode = PublicConstant.EncryptCode();
 
         static readonly string _VW_STAF_AKTIF =
-           @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
-                      NAMA, KURSUS AS KOD_KURSUS, KOD_KOLEJ AS KOD_KOLEJ, KOD_KAMPUS, KOD_FAKULTI as KOD_PTJ, 
-                      EMAIL, HANDPHONE, GAMBAR as PHOTO, NAMA_PENDEK as USERNAME,
-                      KOLEJ AS NAMA_KOLEJ, '1' as RESULTSET
-                 FROM SENARAI.VW_STUDENT_AKTIF_KESELURUHAN ";
+           @" SELECT nopekerja AS NOPEKERJA,
+              gelar_nama AS NAMA,
+              kdjwthakiki AS KOD_JAWATAN_HAKIKI,
+              jawatanhakiki AS JAWATAN_HAKIKI,
+              kdjbtnhakiki AS KOD_JABATAN_HAKIKI,
+              jabatanhakiki AS JABATAN_HAKIKI,
+              kdjwtsemasa AS KOD_JAWATAN_SEMASA,
+              jawatansemasa AS JAWATAN_SEMASA,
+              kdjbtnsemasa AS JAWATAN_SEMASA,
+              jabatansemasa AS JABATAN_SEMASA,
+              email AS EMAIL,
+              handphone AS HANDPHONE,
+              kodstatus AS KOD_STATUS
+              FROM v630staf_apel where status='Aktif'; ";
 
         //static readonly string _VW_STAF_AKTIF =
         //    @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
@@ -33,23 +42,14 @@ namespace APELC.PublicServices.Login
         {
             string _sQL = _VW_STAF_AKTIF;
             _sQL += " WHERE ( IC = '" + _nokp + "') ";
-            //var log = NLog.LogManager.GetCurrentClassLogger();
-            //log.Info("SQL_GetStaffRecord  _sQL ~ " + _sQL);
+            var log = NLog.LogManager.GetCurrentClassLogger();
+            log.Info("SQL_GetStaffRecord  _sQL ~ " + _sQL);
             return _sQL;
         }
 
-        //public static string SQL_GetStaffRecord(string _nokp)
-        //{
-        //    string _sQL = _VW_STAF_AKTIF;
-        //    _sQL += " WHERE ( IC = '" + _nokp + "') ";
-        //    //var log = NLog.LogManager.GetCurrentClassLogger();
-        //    //log.Info("SQL_GetStaffRecord  _sQL ~ " + _sQL);
-        //    return _sQL;
-        //}
-
-        public static UserDTOModel MtdGetDataPelajarByNokp(string _nokp)
+        public static ModelUserDTO MtdGetDataPelajarByNokp(string _nokp)
         {
-            UserDTOModel _return = new UserDTOModel();
+            ModelUserDTO _return = new ModelUserDTO();
             _return.RESULTSET = "0";
             _return.RESULTSET_TEXT = "BEGIN GET STAF RECORD";
             //try
@@ -60,7 +60,7 @@ namespace APELC.PublicServices.Login
 
             //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
             //    {
-            //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(_sQl);
+            //        ModelUserDTO _data = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sQl);
             //        //log.Info("MtdGetDataPelajarByNokp try catch _data.RESULTSET ~ " + _data.RESULTSET);
             //        if (_data != null && _data.RESULTSET == "1")
             //        {
@@ -83,9 +83,9 @@ namespace APELC.PublicServices.Login
             return _return;
         }
 
-        //public static UserDTOModel MtdGetDataPelajarByNokp(string _nokp)
+        //public static ModelUserDTO MtdGetDataPelajarByNokp(string _nokp)
         //{
-        //    UserDTOModel _return = new UserDTOModel();
+        //    ModelUserDTO _return = new ModelUserDTO();
         //    _return.RESULTSET = "0";
         //    _return.RESULTSET_TEXT = "BEGIN GET STAF RECORD";
         //    //try
@@ -96,7 +96,7 @@ namespace APELC.PublicServices.Login
 
         //    //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
         //    //    {
-        //    //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(_sQl);
+        //    //        ModelUserDTO _data = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sQl);
         //    //        //log.Info("MtdGetDataPelajarByNokp try catch _data.RESULTSET ~ " + _data.RESULTSET);
         //    //        if (_data != null && _data.RESULTSET == "1")
         //    //        {
@@ -119,16 +119,16 @@ namespace APELC.PublicServices.Login
         //    return _return;
         //}
 
-        //public static UserDTOModel MtdGetPhotoStudent(string _nokp)
+        //public static ModelUserDTO MtdGetPhotoStudent(string _nokp)
         //{
-        //UserDTOModel _return = new UserDTOModel();
+        //ModelUserDTO _return = new ModelUserDTO();
         //_return.RESULTSET = "0";
         //_return.RESULTSET_TEXT = "BEGIN GET PHOTO STUDENT";
         //try
         //{
         //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
         //    {
-        //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(SQL_GetStaffRecord(_nokp));
+        //        ModelUserDTO _data = dbConn.QueryFirstOrDefault<ModelUserDTO>(SQL_GetStaffRecord(_nokp));
         //        if (_data != null && _data.RESULTSET == "1")
         //        {
         //            _return.PHOTO = _data.PHOTO;
@@ -144,6 +144,7 @@ namespace APELC.PublicServices.Login
         //}
         //return _return;
         //}
+
 
     }
 }

@@ -1,12 +1,14 @@
-﻿using Dapper;
+﻿//using Dapper;
+//using Oracle.ManagedDataAccess.Client;
 using APELC.Model;
-//using APELC.PublicShared;
+using APELC.PublicShared;
 using APELC.LocalServices.Senarai;
 using APELC.LocalShared;
-using APELC.Model;
-////using Oracle.ManagedDataAccess.Client;
+using System.IdentityModel.Tokens.Jwt;
 
-namespace APELC.LocalServices.Aduan
+
+
+namespace APELC.LocalServices.Selenggara
 {
     public class SelenggaraDB
     {

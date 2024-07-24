@@ -13,8 +13,8 @@
         public string? COMPLAINER_NO_KP { set; get; }
         public string? MAKLUMAT_PERIBADI_FK { set; get; }
 
-        //RUJUK KEPADA HR_BK_TINDAKAN
-        public string? STATUS_FK { set; get; }
+        //RUJUK KEPADA APELC_PERANAN_PENGGUNA
+        public string? STATUS_AKTIF_PEMOHON { set; get; }
 
         //RUJUK KEPADA HR_INV_SIASATAN
         public int SIASATAN_PK { set; get; }

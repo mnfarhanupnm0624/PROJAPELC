@@ -13,6 +13,7 @@ using APELC.PublicShared;
 using APELC.LocalServices.Senarai;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.IdentityModel.Tokens.Jwt;
 
 
 namespace APELC.LocalServices.Login
@@ -35,15 +36,15 @@ namespace APELC.LocalServices.Login
 //    MessageBox.Show(ex.Message);
 //}
 
-        public static UserDTOModel MtdGetPhotoStaf(UserDTOModel photo,MySqlConnection mySqlConnection)
+        public static ModelUserDTO MtdGetPhotoStaf(ModelUserDTO photo,MySqlConnection mySqlConnection)
         {
             //var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NOPEKERJA ";
             var _sql = LoginSQL.SQL_GetPhoto();
-            UserDTOModel _result = new();
+            ModelUserDTO _result = new();
             _result.RESULTSET = "0";
             using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
             {
-                UserDTOModel _hasil = dbConn.QueryFirstOrDefault<UserDTOModel>(_sql, new { HRSTAFFK = photo.HRSTAFFK });
+                ModelUserDTO _hasil = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sql, new { HRSTAFFK = photo.HRSTAFFK });
                 if (_hasil != null && _hasil.RESULTSET == "2")
                 {
                     _result = _hasil;
@@ -54,9 +55,9 @@ namespace APELC.LocalServices.Login
         }
 
         // Semakan Info Wujud Pengarah dari Info Staf_FK di Modul ACL
-        public static ModelParameterHr DB_MtdPngrhWujud(string? _stafFk, string? _peranan)
+        public static ModelParameterHr DB_MtdSuperUserWujud(string? _stafFk, string? _peranan)
         {
-            string _sql = LoginSQL.SQL_MtdPngrhWujud();
+            string _sql = LoginSQL.SQL_MtdSuperUserWujud();
             ModelParameterHr _result = new();
             _result.RESULTSET = "0";
 
@@ -73,9 +74,9 @@ namespace APELC.LocalServices.Login
         }
 
         // Semakan Info Wujud Penyiasat dari Info Staf_FK di Modul ACL
-        public static ModelParameterHr DB_MtdPnystKnnWujud(string? _stafFk, string? _peranan)
+        public static ModelParameterHr DB_MtdPentadbirAPELCWujud(string? _stafFk, string? _peranan)
         {
-            string _sql = LoginSQL.SQL_MtdPnystKnnWujud();
+            string _sql = LoginSQL.SQL_MtdPentadbirAPELCWujud();
             ModelParameterHr _result = new();
             _result.RESULTSET = "0";
 
@@ -92,9 +93,9 @@ namespace APELC.LocalServices.Login
         }
 
         // Semakan Info Wujud Penyiasat dari Info Staf_FK di Modul ACL
-        public static ModelParameterHr DB_MtdPnystWujud(string? _stafFk, string? _peranan)
+        public static ModelParameterHr DB_MtdPemohonWujud(string? _stafFk, string? _peranan)
         {
-            string _sql = LoginSQL.SQL_MtdPnystWujud();
+            string _sql = LoginSQL.SQL_MtdPemohonWujud();
             ModelParameterHr _result = new();
             _result.RESULTSET = "0";
 

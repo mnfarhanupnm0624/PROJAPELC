@@ -31,9 +31,9 @@ namespace APELC.PublicServices.Login
             return _sQL;
         }
 
-        public static UserDTOModel MtdGetDataPelajarByNokp(string _nokp)
+        public static ModelUserDTO MtdGetDataPelajarByNokp(string _nokp)
         {
-            UserDTOModel _return = new UserDTOModel();
+            ModelUserDTO _return = new ModelUserDTO();
             _return.RESULTSET = "0";
             _return.RESULTSET_TEXT = "BEGIN GET STUDENT RECORD";
             //try
@@ -44,7 +44,7 @@ namespace APELC.PublicServices.Login
 
             //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
             //    {
-            //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(_sQl);
+            //        ModelUserDTO _data = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sQl);
             //        //log.Info("MtdGetDataPelajarByNokp try catch _data.RESULTSET ~ " + _data.RESULTSET);
             //        if (_data != null && _data.RESULTSET == "1")
             //        {
@@ -67,16 +67,16 @@ namespace APELC.PublicServices.Login
             return _return;
         }
 
-        //public static UserDTOModel MtdGetPhotoStudent(string _nokp)
+        //public static ModelUserDTO MtdGetPhotoStudent(string _nokp)
         //{
-            //UserDTOModel _return = new UserDTOModel();
+            //ModelUserDTO _return = new ModelUserDTO();
             //_return.RESULTSET = "0";
             //_return.RESULTSET_TEXT = "BEGIN GET PHOTO STUDENT";
             //try
             //{
             //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnSyAkademik))
             //    {
-            //        UserDTOModel _data = dbConn.QueryFirstOrDefault<UserDTOModel>(SQL_GetStudentRecord(_nokp));
+            //        ModelUserDTO _data = dbConn.QueryFirstOrDefault<ModelUserDTO>(SQL_GetStudentRecord(_nokp));
             //        if (_data != null && _data.RESULTSET == "1")
             //        {
             //            _return.PHOTO = _data.PHOTO;

@@ -1,11 +1,11 @@
-﻿//using APELC.Model;
-//using APELC.PublicServices.Public;
-//using APELC.PublicShared;
-//using APELC.LocalServices.Senarai;
-//using APELC.LocalShared;
-//using APELC.Models;
+﻿using APELC.Model;
+using APELC.PublicServices.Public;
+using APELC.PublicShared;
+using APELC.LocalServices.Senarai;
+using APELC.LocalShared;
 
-//namespace APELC.LocalServices.Aduan
+
+//namespace APELC.LocalServices.Selenggara
 //{
 //    public class SelenggaraProcess
 //    {

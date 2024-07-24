@@ -1,4 +1,80 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@* @inject IConfiguration Configuration  *@
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IJsonHelper Json
+@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
+@* @model ModelQRCode *@
+@using APELC.Helper
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Html
+@using Microsoft.AspNetCore.Builder;
+@using Microsoft.AspNetCore.Hosting;
+@* @using Microsoft.Extensions.Configuration; *@
+@using Microsoft.Extensions.DependencyInjection;
+@using System.Collections.Specialized;
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@* @using System.Web;
+@using System.Web.UI;
+@using System.Web.UI.WebControls; *@
+@* @using System.Configuration; *@
+@using System.Data;
+@using System.Data.SqlClient;
+@* @using System.Web.Services; *@
+@* @using System.Web.Security; *@
+@* @using WebClientCore.Models.DisplayModels *@
+@using Microsoft.EntityFrameworkCore;
+@using Microsoft.Extensions.Hosting;
+@* @using SecurityMaintenance.Models; *@
+
+@{
+#pragma warning disable CS8602
+    // string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+    // string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+
+    // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    // var _MohonApelCPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+    // var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
+    // var _statusaktifPemohonApelC = ApelCUser.GetApel(Context.Session).STATUS_AKTIF_PEMOHON;
+
+    // public ConfigureServices(IServiceCollection services);
+    // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    // var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+#pragma warning restore CS8602
+
+    var _disablelink = "disable-link";
+    var _color = "color:lightgray";
+    var _bullet = "";
+    var _disablelinkS = "disable-link";
+    var _colorS = "color:lightgray";
+    var _bulletS = "";
+}
+
+<style>
+    .menu-item2 {
+        margin: 0 0 -5px 0;
+    }
+
+    .menu-item3 {
+        margin: 0 0 -15px 0;
+    }
+
+    .menu-item4 {
+        margin: -10px 0 -13px 0;
+    }
+
+    .disable-link {
+        pointer-events: none;
+        cursor: default;
+        color: lightgray;
+    }
+
+    .default {
+        cursor: default;
+        color: #696969;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,19 +82,23 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Sistem Pendaftaran APEL</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="/apelc/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/apelc/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/apelc/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="/apelc/css/style.css">
+    <link rel="stylesheet" href="/apelc/css/custom.css">
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="/apelc/images/favicon.png" />
 </head>
 
 <body>
@@ -34,17 +114,20 @@
                                         <div class="card-body">
                                             <div class="form-group row">
                                                 <div class="col-md-12 text-center">
-                                                    <img src="images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
+                                                    <img src="/apelc/images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
                                                     <h3>Sistem Pendaftaran APEL</h3>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label">Nama</label>
-                                                        <div class="col-sm-8">
-                                                            <input id="txt_fullname" name="txt_fullname" type="text" class="form-control txt_upper" />
-                                                        </div>
+                                                    <label id="lbl_kat_peranan" class="col-sm-4 col-form-label">Kategori Peranan</label>
+                                                     <div class="col-sm-8">
+                                                   <select id="idkatperanan" name="KATEGORI_PERANAN" class="form-select" onChange="get_kat_peranan()">
+                                                    <option value="">- SILA PILIH -</option> 
+                                                    </select>
+                                                    <input id="kat_peranan" name="kat_peranan" type="hidden" value="">
+                                                     </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,9 +144,29 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Nama</label>
+                                                        <div class="col-sm-8">
+                                                            <input id="txt_fullname" name="txt_fullname" type="text" class="form-control txt_upper" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                           
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
                                                         <label class="col-sm-4 col-form-label">Emel</label>
                                                         <div class="col-sm-8">
                                                             <input id="txt_email" name="txt_email" type="email" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">No telefon</label>
+                                                        <div class="col-sm-8">
+                                                            <input id="no_telefon" name="no_telefon" type="text" class="form-control" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -110,12 +213,12 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
-    <script src="vendors/js/vendor.bundle.addons.js"></script>
+    <script src="/apelc/js/vendor.bundle.base.js"></script>
+    <script src="/apelc/js/vendor.bundle.addons.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/misc.js"></script>
+    <script src="/apelc/js/off-canvas.js"></script>
+    <script src="/apelc/js/misc.js"></script>
     <!-- endinject -->
 
     <script type="text/javascript">

@@ -3,39 +3,39 @@
 @using APELC.Helper
 @{
 #pragma warning disable CS8602
-    string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
-    string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+//     string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+//     string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
 
-    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
-    var _mohonPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
-    var _siasatanPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
-    var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
+//     string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+//     var _mohonPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+//     var _rayuanPkEnc = ApelCUser.GetApel(Context.Session).RAYUAN_PK_ENC;
+//     var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
 
-    var _statusRyApelC = ApelCUser.GetApel(Context.Session).STATUS_RAYUAN;
-    var _statusUjianCbrnApelC = ApelCUser.GetApel(Context.Session).STATUS_UJIAN_CBRN;
+//     var _statusRyApelC = ApelCUser.GetApel(Context.Session).STATUS_RAYUAN;
+//     var _statusUjianCbrnApelC = ApelCUser.GetApel(Context.Session).STATUS_UJIAN_CBRN;
 
-    string _butiranpermohonanapelc = HttpContextAccessor.HttpContext.Session.GetString("_butiranpermohonanapelc") ?? "";
-    //string _laporanpolis = HttpContextAccessor.HttpContext.Session.GetString("_laporanpolis") ?? "";
-    string _ringkasankjdn = HttpContextAccessor.HttpContext.Session.GetString("_ringkasankjdn") ?? "";
-    string _diaripnyst = HttpContextAccessor.HttpContext.Session.GetString("_diaripnyst") ?? "";
-    string _frmPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmPemohonsaksi") ?? "";
-    string _attchPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchPemohonsaksi") ?? "";
-    string _attchokt = HttpContextAccessor.HttpContext.Session.GetString("_attchokt") ?? "";
-    string _frmokt = HttpContextAccessor.HttpContext.Session.GetString("_frmokt") ?? "";
-    string _attchdoclain = HttpContextAccessor.HttpContext.Session.GetString("_attchdoclain") ?? "";
-    string _attchbrgbukti = HttpContextAccessor.HttpContext.Session.GetString("_attchbrgbukti") ?? "";
-    string _minitsstn = HttpContextAccessor.HttpContext.Session.GetString("_minitsstn") ?? "";
+//     string _butiranpermohonanapelc = HttpContextAccessor.HttpContext.Session.GetString("_butiranpermohonanapelc") ?? "";
+//     //string _laporanpolis = HttpContextAccessor.HttpContext.Session.GetString("_laporanpolis") ?? "";
+//     string _ringkasankjdn = HttpContextAccessor.HttpContext.Session.GetString("_ringkasankjdn") ?? "";
+//     string _diaripnyst = HttpContextAccessor.HttpContext.Session.GetString("_diaripnyst") ?? "";
+//     string _frmPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmPemohonsaksi") ?? "";
+//     string _attchPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchPemohonsaksi") ?? "";
+//     string _attchokt = HttpContextAccessor.HttpContext.Session.GetString("_attchokt") ?? "";
+//     string _frmokt = HttpContextAccessor.HttpContext.Session.GetString("_frmokt") ?? "";
+//     string _attchdoclain = HttpContextAccessor.HttpContext.Session.GetString("_attchdoclain") ?? "";
+//     string _attchbrgbukti = HttpContextAccessor.HttpContext.Session.GetString("_attchbrgbukti") ?? "";
+//     string _minitsstn = HttpContextAccessor.HttpContext.Session.GetString("_minitsstn") ?? "";
 
-    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
-    var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
-#pragma warning restore CS8602
+//     var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+//     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+// #pragma warning restore CS8602
 
-    var _disablelink = "disable-link";
-    var _color = "color:lightgray";
-    var _bullet = "";
-    var _disablelinkS = "disable-link";
-    var _colorS = "color:lightgray";
-    var _bulletS = "";
+//     var _disablelink = "disable-link";
+//     var _color = "color:lightgray";
+//     var _bullet = "";
+//     var _disablelinkS = "disable-link";
+//     var _colorS = "color:lightgray";
+//     var _bulletS = "";
 }
 
 <style>
@@ -60,7 +60,7 @@
     }
 </style>
 
-@if (_statusRyApelC == "APPROVED")
+@* @if (_statusRyApelC == "APPROVED")
 {
     _disablelink = "";
     _color = "";
@@ -71,7 +71,7 @@
     _disablelinkS = "";
     _colorS = "";
     _bulletS = "bullet bullet-dot";
-}
+} *@
 
 <!--begin::Aside-->
 <div id="kt_aside" class="mtepi" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
@@ -82,7 +82,7 @@
         <div class="mtepi-user d-flex align-items-sm-center justify-content-center py-5">
             <!--begin::Symbol-->
             <div class="symbol symbol-50px">
-                <img id="idImejProfile" src="https://esmartcard.upnm.edu.my/img/staf/1854.jpg" class="symbol-label" style="height:60px; width:50px;" />
+                <img id="idImejProfile" src="https://esmartcard.upnm.edu.my/img/staf/'+;id='STAF_NO|+'.jpg" class="symbol-label" style="height:60px; width:50px;" />
             </div>
             <!--end::Symbol-->
             <!--begin::Wrapper-->
@@ -502,11 +502,11 @@
 }
 @using (Html.BeginForm("", "Selenggara", FormMethod.Post))
 {
-    <button type="submit" class="menu-link" id="IdClickSelenggaraAksesKawalanAPELC" formaction="@_path01/SelenggaraApelC/SelenggaraAksesKawalanAPELC" style="display: none;">Skrin Selenggara Senarai Akses Kawalan </button>
+   @*  <button type="submit" class="menu-link" id="IdClickSelenggaraAksesKawalanAPELC" formaction="@_path01/SelenggaraApelC/SelenggaraAksesKawalanAPELC" style="display: none;">Skrin Selenggara Senarai Akses Kawalan </button>
     <button type="submit" class="menu-link" id="IdClickSelenggaraCajPeranan" formaction="@_path01/SelenggaraApelC/SelenggaraCajPeranan" style="display: none;">Skrin Selenggara Caj Peranan </button>
     <button type="submit" class="menu-link" id="IdClickSelenggaraRubrikPemarkahan" formaction="@_path01/SelenggaraApelC/SelenggaraRubrikPemarkahan" style="display: none;">Skrin Selenggara Rubrik Pemarkahan </button>
     <button type="submit" class="menu-link" id="IdClickSelenggaraPendaftaran" formaction="@_path01/SelenggaraApelC/SelenggaraPendaftaran" style="display: none;">Skrin Selenggara Rubrik Pemarkahan </button>
     <button type="submit" class="menu-link" id="IdClickSelenggaraSetUjianCabaran" formaction="@_path01/SelenggaraApelC/SelenggaraSetUjianCabaran" style="display: none;">Skrin Selenggara Set Ujian Cabaran </button>
-    <button type="submit" class="menu-link" id="IdClickSelenggaraSetContohPortfolio" formaction="@_path01/SelenggaraApelC/SelenggaraSetContohPortfolio" style="display: none;">Skrin Selenggara Set Contoh Portfolio </button>
+    <button type="submit" class="menu-link" id="IdClickSelenggaraSetContohPortfolio" formaction="@_path01/SelenggaraApelC/SelenggaraSetContohPortfolio" style="display: none;">Skrin Selenggara Set Contoh Portfolio </button> *@
 
 }

@@ -1,4 +1,7 @@
-﻿namespace APELC.LocalServices.Login
+﻿using static LinqToDB.Reflection.Methods.LinqToDB;
+using static LinqToDB.Sql;
+
+namespace APELC.LocalServices.Login
 {
     public class LoginSQL
     {
@@ -12,6 +15,14 @@
                INNER JOIN HR_STAF ST ON ST.MAKLUMAT_PERIBADI_FK = HG.MAKLUMAT_PERIBADI_FK AND ST.TKH_HAPUS IS NULL
             WHERE 
                 ST.STAF_PK = :HRSTAFFK ";
+        }
+
+        internal static string SQL_GetKatPerananACL()
+        {
+            return @"
+            SELECT NAMA_PARAMETER as KATEGORI_PERANAN
+            FROM apelc.APELC_PARAMETER 
+            WHERE KUMPULAN_FK = 1 AND STATUS_AKTIF = 'Y'";
         }
 
         // Get Info Staf UTM
@@ -28,7 +39,7 @@
             WHERE
              ";
 
-        internal static string SQL_MtdPngrhWujud()
+        internal static string SQL_MtdSuperUserWujud()
         {
             string _SQL = SQL_MtdGetAclPeranan +
                 @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
@@ -38,7 +49,7 @@
             return _SQL;
         }
 
-        internal static string SQL_MtdPnystKnnWujud()
+        internal static string SQL_MtdPentadbirAPELCWujud()
         {
             string _SQL = SQL_MtdGetAclPeranan +
                 @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
@@ -48,7 +59,7 @@
             return _SQL;
         }
 
-        internal static string SQL_MtdPnystWujud()
+        internal static string SQL_MtdPemohonWujud()
         {
             string _SQL = SQL_MtdGetAclPeranan +
                 @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
@@ -58,6 +69,85 @@
             return _SQL;
         }
 
+        internal static string SQL_MtdPanelPenilaiWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
+
+        internal static string SQL_MtdModeratorWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
+
+        internal static string SQL_MtdPengawasUjianCbrnWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
+
+        internal static string SQL_MtdPenggubalWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
+
+        internal static string SQL_MtdPenilaiInstrumenWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
+
+        internal static string SQL_MtdBendahariWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
+
+        internal static string SQL_MtdJKFakultiWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
+
+        internal static string SQL_MtdSenatWujud()
+        {
+            string _SQL = SQL_MtdGetAclPeranan +
+                @" A.TKH_HAPUS IS NULL AND D.STATUS_AKTIF = 'Y' AND UPPER(A.NAMA_MODUL) = UPPER('apel')";
+
+            _SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+
+            return _SQL;
+        }
         internal static string SQL_MtdBntuPnystWujud()
         {
             return @"
