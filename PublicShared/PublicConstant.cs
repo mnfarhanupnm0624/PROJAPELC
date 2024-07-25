@@ -42,7 +42,7 @@ namespace APELC.PublicShared
         public static string ConnOraRujuk()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            return config["MySetting:UtmdbRujuk"];
+            return config["MySetting:UpnmdbRujuk"];
         }
         public static string ConnUpnmDbDs()
         {

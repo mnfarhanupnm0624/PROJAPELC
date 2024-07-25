@@ -1,4 +1,4 @@
-﻿//using Dapper;
+﻿using Dapper;
 ////using Oracle.ManagedDataAccess.Client;
 //namespace MySql.Data.MySqlClient.MySqlConnection;
 using APELC.Model;
@@ -19,8 +19,8 @@ namespace APELC.LocalServices.RegisterAccount
 {
     public class RegisterAccountDB
     {
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        public static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+        public readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
 //        myConnectionString = "server=127.0.0.1;uid=root;" +
 //    "pwd=12345;database=test";

@@ -9,6 +9,8 @@
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Builder;
 @using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Identity;
 @using Microsoft.Extensions.Configuration; 
 @using Microsoft.Extensions.DependencyInjection;
 @using System.Collections.Specialized;
@@ -26,30 +28,32 @@
 @* @using WebClientCore.Models.DisplayModels *@
 @using Microsoft.EntityFrameworkCore;
 @using Microsoft.Extensions.Hosting;
-@using System.Configuration
 @* @using SecurityMaintenance.Models; *@
+@using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+@* @using DependencyInjectionSample.Interfaces;
+@using DependencyInjectionSample.Services; *@
 
 @{
     #pragma warning disable CS8602
-    string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+    // string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
     // string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
 
-    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
-    var _MohonApelCPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
-    var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
-    var _statusaktifPemohonApelC = ApelCUser.GetApel(Context.Session).STATUS_AKTIF_PEMOHON;
+    // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    // var _MohonApelCPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
+    // var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
+    // var _statusaktifPemohonApelC = ApelCUser.GetApel(Context.Session).STATUS_AKTIF_PEMOHON;
 
     //public static ConfigureServices(IServiceCollection services);
     var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
 #pragma warning restore CS8602
 
-    var _disablelink = "disable-link";
-    var _color = "color:lightgray";
-    var _bullet = "";
-    var _disablelinkS = "disable-link";
-    var _colorS = "color:lightgray";
-    var _bulletS = "";
+    // var _disablelink = "disable-link";
+    // var _color = "color:lightgray";
+    // var _bullet = "";
+    // var _disablelinkS = "disable-link";
+    // var _colorS = "color:lightgray";
+    // var _bulletS = "";
 }
 
 <style>

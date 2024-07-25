@@ -29,7 +29,7 @@ namespace APELC.PublicServices.Login
         {
             var _sql = @"SELECT A.ID_PENGGUNA, A.KOD_PERANAN, A.KATALALUAN, A.STAF_FK, A.NAMA, NVL(A.EMAIL, 'null@email') as EMAIL, 
                                   A.TKH_UBAH_KATALALUAN, A.TKH_LUPUT_KATALALUAN, A.TKH_LUPUT_ID, A.BIL_GAGAL_LOGIN, A.KLINIK_FK,
-                                  AKTIF_FLAG, PENGGUNA_BARU_FLAG, '2' as RESULTSET, A.PASSWORD, B.NO_PEKERJA as NOPEKERJA, B.KOD_PTJ,
+                                  AKTIF_FLAG, PENGGUNA_BARU_FLAG, '2' as RESULTSET, A.PASSWORD, B.NO_PEKERJA as NO_PEKERJA, B.KOD_PTJ,
                                   (SELECT S.NO_KP_BARU FROM HR_MAKLUMAT_PERIBADI S WHERE S.MAKLUMAT_PERIBADI_PK = B.MAKLUMAT_PERIBADI_FK) as KAD_PENGENALAN,
                                   'null' AS SPR_NOKP
                              FROM PENGGUNA A, HR_STAF B 
@@ -62,7 +62,7 @@ namespace APELC.PublicServices.Login
                                   A.TKH_UBAH_KATALALUAN, A.TKH_LUPUT_KATALALUAN, A.TKH_LUPUT_ID, A.BIL_GAGAL_LOGIN, 
                                   AKTIF_FLAG, PENGGUNA_BARU_FLAG, '2' as RESULTSET, A.PASSWORD,
                                   (SELECT S.NO_KP_BARU FROM HR_MAKLUMAT_PERIBADI S WHERE S.MAKLUMAT_PERIBADI_PK = B.MAKLUMAT_PERIBADI_FK) as KAD_PENGENALAN,
-                                  B.NO_PEKERJA as NOPEKERJA, B.KOD_PTJ
+                                  B.NO_PEKERJA as NO_PEKERJA, B.KOD_PTJ
                              FROM HR_STAF B, PENGGUNA A  
                             WHERE B.NO_PEKERJA = :NO_PEKERJA 
                               AND B.STAF_PK = A.STAF_FK AND ROWNUM = 1 ";
@@ -99,7 +99,7 @@ namespace APELC.PublicServices.Login
                                   A.TKH_UBAH_KATALALUAN, A.TKH_LUPUT_KATALALUAN, A.TKH_LUPUT_ID, A.BIL_GAGAL_LOGIN, 
                                   AKTIF_FLAG, PENGGUNA_BARU_FLAG, '2' as RESULTSET, A.PASSWORD,
                                   (SELECT S.NO_KP_BARU FROM HR_MAKLUMAT_PERIBADI S WHERE S.MAKLUMAT_PERIBADI_PK = B.MAKLUMAT_PERIBADI_FK) as KAD_PENGENALAN,
-                                  B.NO_PEKERJA as NOPEKERJA, B.KOD_PTJ
+                                  B.NO_PEKERJA as NO_PEKERJA, B.KOD_PTJ
                              FROM HR_STAF B, PENGGUNA A  
                             WHERE B.NO_PEKERJA = :NO_PEKERJA 
                               AND B.STAF_PK = A.STAF_FK 
@@ -227,12 +227,12 @@ namespace APELC.PublicServices.Login
 
         public static ModelUserDTO MtdGetPhotoStaf(ModelUserDTO photo)
         {
-            var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NOPEKERJA ";
+            var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NO_PEKERJA ";
             ModelUserDTO _result = new();
             _result.RESULTSET = "0";
             using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
             {
-                ModelUserDTO _hasil = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sql, new { NOPEKERJA = photo.NOPEKERJA });
+                ModelUserDTO _hasil = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sql, new { NO_PEKERJA = photo.NO_PEKERJA });
                 if (_hasil != null && _hasil.RESULTSET == "2")
                 {
                     _result = _hasil;

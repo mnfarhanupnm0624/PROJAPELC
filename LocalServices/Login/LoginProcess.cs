@@ -117,7 +117,7 @@ namespace APELC.LocalServices.Login
             {
                 NOBARCODE = semakUsrHr.NOBARCODE,
                 SPR_NOKP = semakUsrHr.SPR_NOKP,
-                NOPEKERJA = semakUsrHr.NOPEKERJA,
+                NO_PEKERJA = semakUsrHr.NO_PEKERJA,
                 NAMA = semakUsrHr.NAMA,
                 KOD_KURSUS = semakUsrHr.KOD_KURSUS,
                 KOD_KOLEJ = semakUsrHr.KOD_KOLEJ,
@@ -295,45 +295,120 @@ namespace APELC.LocalServices.Login
             ModelUserDTO.NEWUSER = usrPsp.PENGGUNA_BARU_FLAG;
             ModelUserDTO.HRSTAFFK = usrPsp.STAF_FK.ToString();
             //ModelUserDTO.RESULTSET = usrPsp.RESULTSET;
-            ModelUserDTO.NOPEKERJA = usrPsp.NOPEKERJA;
+            ModelUserDTO.NO_PEKERJA = usrPsp.NO_PEKERJA;
             ModelUserDTO.KATALALUAN = usrPsp.KATALALUAN;
             ModelUserDTO.KOD_PTJ = usrPsp.KOD_PTJ;
             ModelUserDTO.RESULTTEXT = "";
 
-            // - Roles: Pengarah
-            ModelParameterHr _isPngrh = LoginDB.DB_MtdSuperUserWujud(usrPsp.STAF_FK.ToString(), "55");
-            if (_isPngrh.RESULTSET == "2")
+            // - Roles: Super User
+            ModelParameterHr _isSuperUser = LoginDB.DB_MtdSuperUserWujud(usrPsp.STAF_FK.ToString(), "4");
+            if (_isSuperUser.RESULTSET == "2")
             {
-                ModelUserDTO.NAMA_PERANAN = _isPngrh.ViewField;
-                ModelUserDTO.ROLE = "PNGRH";
-                ModelUserDTO.RESULTSET = _isPngrh.RESULTSET;
+                ModelUserDTO.NAMA_PERANAN = _isSuperUser.ViewField;
+                ModelUserDTO.ROLE = "SUPERUSER";
+                ModelUserDTO.RESULTSET = _isSuperUser.RESULTSET;
             }
 
-            // - Roles: Pegawai Penyiasat Kanan
-            ModelParameterHr _isPnystKnn = LoginDB.DB_MtdPentadbirAPELCWujud(usrPsp.STAF_FK.ToString(), "57");
-            if (_isPnystKnn.RESULTSET == "2")
+            // - Roles: Pentadbir APELC
+            ModelParameterHr _isPentadbirAPELC = LoginDB.DB_MtdPentadbirAPELCWujud(usrPsp.STAF_FK.ToString(), "5");
+            if (_isPentadbirAPELC.RESULTSET == "2")
             {
-                ModelUserDTO.NAMA_PERANAN = _isPnystKnn.ViewField;
-                ModelUserDTO.ROLE = "PNYST_KANAN";
-                ModelUserDTO.RESULTSET = _isPnystKnn.RESULTSET;
+                ModelUserDTO.NAMA_PERANAN = _isPentadbirAPELC.ViewField;
+                ModelUserDTO.ROLE = "PENTADBIR_APELC";
+                ModelUserDTO.RESULTSET = _isPentadbirAPELC.RESULTSET;
             }
 
-            // - Roles: Pegawai Penyiasat 
-            ModelParameterHr _isPnyst = LoginDB.DB_MtdPemohonWujud(usrPsp.STAF_FK.ToString(), "52");
-            if (_isPnyst.RESULTSET == "2")
+            // - Roles: Bendahari
+            ModelParameterHr _isBendahari = LoginDB.DB_MtdBendahariWujud(usrPsp.STAF_FK.ToString(), "6");
+            if (_isBendahari.RESULTSET == "2")
             {
-                ModelUserDTO.NAMA_PERANAN = _isPnyst.ViewField;
-                ModelUserDTO.ROLE = "PNYST";
-                ModelUserDTO.RESULTSET = _isPnyst.RESULTSET;
+                ModelUserDTO.NAMA_PERANAN = _isBendahari.ViewField;
+                ModelUserDTO.ROLE = "BENDAHARI";
+                ModelUserDTO.RESULTSET = _isBendahari.RESULTSET;
             }
-            // - Roles: Pembantu Penyiasat
-            bool _isBntuPnyst = LoginDB.DB_MtdBntuPnystWujud(usrPsp.STAF_FK.ToString());
-            if (_isBntuPnyst == true)
+
+            // - Roles: Pemohon
+            ModelParameterHr _isPemohon = LoginDB.DB_MtdPemohonWujud(usrPsp.STAF_FK.ToString(), "7");
+            if (_isPemohon.RESULTSET == "2")
             {
-                ModelUserDTO.NAMA_PERANAN = "PENYIASAT";
-                ModelUserDTO.ROLE = "PNYST";
-                ModelUserDTO.RESULTSET = "2";
+                ModelUserDTO.NAMA_PERANAN = _isPemohon.ViewField;
+                ModelUserDTO.ROLE = "PEMOHON";
+                ModelUserDTO.RESULTSET = _isPemohon.RESULTSET;
             }
+
+            // - Roles: Pengawas Ujian Cbrn
+            ModelParameterHr _isPengawasUjianCbrn = LoginDB.DB_MtdPengawasUjianCbrnWujud(usrPsp.STAF_FK.ToString(), "8");
+            if (_isPengawasUjianCbrn.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isPengawasUjianCbrn.ViewField;
+                ModelUserDTO.ROLE = "PENGAWAS UJIAN CABARAN";
+                ModelUserDTO.RESULTSET = _isPengawasUjianCbrn.RESULTSET;
+            }
+
+            // - Roles: Panel Penilai
+            ModelParameterHr _isPanelPenilai = LoginDB.DB_MtdPanelPenilaiWujud(usrPsp.STAF_FK.ToString(), "9");
+            if (_isPanelPenilai.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isPanelPenilai.ViewField;
+                ModelUserDTO.ROLE = "PANEL PENILAI";
+                ModelUserDTO.RESULTSET = _isPanelPenilai.RESULTSET;
+            }
+
+            // - Roles: Panel Moderator
+            ModelParameterHr _isModerator = LoginDB.DB_MtdModeratorWujud(usrPsp.STAF_FK.ToString(), "10");
+            if (_isModerator.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isModerator.ViewField;
+                ModelUserDTO.ROLE = "MODERATOR";
+                ModelUserDTO.RESULTSET = _isModerator.RESULTSET;
+            }
+
+            // - Roles: Penasihat Akademik
+            ModelParameterHr _isPenasihatAkademik = LoginDB.DB_MtdPenasihatAkademikWujud(usrPsp.STAF_FK.ToString(), "11");
+            if (_isPenasihatAkademik.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isPenasihatAkademik.ViewField;
+                ModelUserDTO.ROLE = "PENASIHAT AKADEMIK";
+                ModelUserDTO.RESULTSET = _isPenasihatAkademik.RESULTSET;
+            }
+
+            // - Roles: Penggubal
+            ModelParameterHr _isPenggubal = LoginDB.DB_MtdPenggubalWujud(usrPsp.STAF_FK.ToString(), "12");
+            if (_isPenggubal.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isPenggubal.ViewField;
+                ModelUserDTO.ROLE = "PENGGUBAL";
+                ModelUserDTO.RESULTSET = _isPenggubal.RESULTSET;
+            }
+
+            // - Roles: Penilai Instrumen
+            ModelParameterHr _isPenilaiInstrumen = LoginDB.DB_MtdPenilaiInstrumenWujud(usrPsp.STAF_FK.ToString(), "13");
+            if (_isPenilaiInstrumen.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isPenilaiInstrumen.ViewField;
+                ModelUserDTO.ROLE = "PENILAI INSTRUMEN";
+                ModelUserDTO.RESULTSET = _isPenilaiInstrumen.RESULTSET;
+            }
+
+            // - Roles: JK Fakulti
+            ModelParameterHr _isJKFakulti = LoginDB.DB_MtdJKFakultiWujud(usrPsp.STAF_FK.ToString(), "14");
+            if (_isJKFakulti.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isJKFakulti.ViewField;
+                ModelUserDTO.ROLE = "JK FAKULTI";
+                ModelUserDTO.RESULTSET = _isJKFakulti.RESULTSET;
+            }
+
+
+            // - Roles: Senat
+            ModelParameterHr _isSenat = LoginDB.DB_MtdSenatWujud(usrPsp.STAF_FK.ToString(), "15");
+            if (_isSenat.RESULTSET == "2")
+            {
+                ModelUserDTO.NAMA_PERANAN = _isSenat.ViewField;
+                ModelUserDTO.ROLE = "SENAT";
+                ModelUserDTO.RESULTSET = _isSenat.RESULTSET;
+            }
+
 
             return ModelUserDTO;
         }

@@ -115,3 +115,4 @@ $('#idonchangedashboard').on('change', function (e) {
         var selected = document.getElementById("dd_jnsApel").value;
         document.getElementById("txt_jnsApel").value = selected;
     }
+})

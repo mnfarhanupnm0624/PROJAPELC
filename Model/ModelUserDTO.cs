@@ -24,7 +24,7 @@
         public int? KLINIK_FK { set; get; }
         public string? KLINIK_FK_ENC { set; get; }
         public string? KODPTJ { set; get; }
-        public string? NOPEKERJA { set; get; }
+        public string? NO_PEKERJA { set; get; }
         public DateTime? TARIKH { set; get; }
         public string? FLAG { set; get; }
         public int? BILANGAN { set; get; }

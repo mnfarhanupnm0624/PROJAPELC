@@ -70,7 +70,7 @@ var Index = function () {
                                         location.href = _path01 + "/Home/Dashboard";
                                     }
                                     else {
-                                        if (res.NAMA_PERANAN == "SUPERUSER" || res.NAMA_PERANAN == "PENTADBIR APEL" || res.NAMA_PERANAN == "PEMOHON" || res.NAMA_PERANAN == "PENASIHAT AKADEMIK" || res.NAMA_PERANAN == "PENGAWAS UJIAN CABARAN" || res.NAMA_PERANAN == "PANEL PENILAI" || res.NAMA_PERANAN == "MODERATOR" || res.NAMA_PERANAN == "PENGGUBAL" || res.NAMA_PERANAN == "PENILAI INSTRUMEN" || res.NAMA_PERANAN == "JK FAKULTI(TIMBALAN DEKAN)" || res.NAMA_PERANAN == "SENAT(DEKAN)" || res.NAMA_PERANAN == "BENDAHARI") {
+                                        if (res.NAMA_PERANAN == "SUPERUSER" || res.NAMA_PERANAN == "PENTADBIR APEL" || res.NAMA_PERANAN == "PEMOHON" || res.NAMA_PERANAN == "PENASIHAT AKADEMIK" || res.NAMA_PERANAN == "PENGAWAS UJIAN CABARAN" || res.NAMA_PERANAN == "PANEL PENILAI" || res.NAMA_PERANAN == "MODERATOR" || res.NAMA_PERANAN == "PENGGUBAL" || res.NAMA_PERANAN == "PENILAI INSTRUMEN" || res.NAMA_PERANAN == "JK FAKULTI" || res.NAMA_PERANAN == "SENAT" || res.NAMA_PERANAN == "BENDAHARI") {
                                             document.getElementById("myform").submit();
                                         } else {
                                             $('#IdLayout_ImageKiri').click();

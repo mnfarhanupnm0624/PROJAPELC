@@ -20,6 +20,7 @@ namespace APELC.Model
         public string? NAMA { set; get; }
         public string? KAD_PENGENALAN { set; get; }
         public string? EMAIL { set; get; }
+        public string? HANDPHONE { set; get; }
         public DateTime? TKH_UBAH_KATALALUAN { set; get; }
         public DateTime? TKH_LUPUT_KATALALUAN { set; get; }
         public DateTime? TKH_LUPUT_ID { set; get; }
@@ -33,10 +34,17 @@ namespace APELC.Model
         public string? MULTI_PTJ { set; get; }
         public string? SSO_ID { set; get; }
         public string? PASSWORD { set; get; }
-        public string? NOPEKERJA { set; get; }
+        public string? NO_PEKERJA { set; get; }
         public string? KOD_PTJ { set; get; }
-        public string? KOD_JAWATAN { set; get; }
-        public string? JAWATAN_DESC { set; get; }
+        public string? KOD_STATUS { set; get; }
+        public string? KOD_JAWATAN_HAKIKI { set; get; }
+        public string? JAWATAN_HAKIKI { set; get; }
+        public string? KOD_JAWATAN_SEMASA { set; get; }
+        public string? JAWATAN_SEMASA { set; get; }
+        public string? KOD_JABATAN_HAKIKI { set; get; }
+        public string? JABATAN_HAKIKI { set; get; }
+        public string? KOD_JABATAN_SEMASA { set; get; }
+        public string? JABATAN_SEMASA { set; get; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? MODAL_TKH_MULA { set; get; }

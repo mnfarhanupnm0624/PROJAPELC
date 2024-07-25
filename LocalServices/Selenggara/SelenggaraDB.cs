@@ -1,4 +1,4 @@
-﻿//using Dapper;
+﻿using Dapper;
 //using Oracle.ManagedDataAccess.Client;
 using APELC.Model;
 using APELC.PublicShared;
@@ -12,8 +12,8 @@ namespace APELC.LocalServices.Selenggara
 {
     public class SelenggaraDB
     {
-        //static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        public static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+        public readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         //internal static ModelHrStaffMaklumatPeribadi DB_MtdGetMaklumatAsas(int _stafPk)
         //{

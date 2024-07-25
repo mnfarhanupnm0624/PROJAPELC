@@ -12,12 +12,11 @@ namespace APELC.PublicServices.Login
 {
     public class LoginDBStafUPNM
     {
-        static readonly string ConnSyAkademik = PublicConstant.ConnUpnmDbAkademik();
         static readonly string _encryptCode = PublicConstant.EncryptCode();
         static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
 
         static readonly string _VW_STAF_AKTIF =
-           @" SELECT nopekerja AS NOPEKERJA,
+           @" SELECT nopekerja AS NO_PEKERJA,
               gelar_nama AS NAMA,
               kdjwthakiki AS KOD_JAWATAN_HAKIKI,
               jawatanhakiki AS JAWATAN_HAKIKI,
@@ -25,7 +24,7 @@ namespace APELC.PublicServices.Login
               jabatanhakiki AS JABATAN_HAKIKI,
               kdjwtsemasa AS KOD_JAWATAN_SEMASA,
               jawatansemasa AS JAWATAN_SEMASA,
-              kdjbtnsemasa AS JAWATAN_SEMASA,
+              kdjbtnsemasa AS KOD_JABATAN_SEMASA,
               jabatansemasa AS JABATAN_SEMASA,
               email AS EMAIL,
               handphone AS HANDPHONE,
@@ -41,7 +40,9 @@ namespace APELC.PublicServices.Login
             {
                 using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
                 {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                     UserIdModel _returnNew = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { ID_PENGGUNA = id });
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                     if (_returnNew != null && _returnNew.RESULTSET == "2")
                     {
                         _return = _returnNew;

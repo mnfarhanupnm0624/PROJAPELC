@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿//using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using APELC.LocalServices.Login;
 using APELC.PublicServices.Login;
 using APELC.PublicShared;
@@ -13,8 +14,8 @@ namespace APELC.Controllers
 {
     public class LoginController : Controller
     {
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
-        readonly string _screenCodeFunction = "HM100";
+        public static string _encryptCode = SecurityConstants.EncryptCode();
+        public string _screenCodeFunction = "HM100";
         public IActionResult LoginPageApelC()
         {
 
@@ -203,7 +204,7 @@ namespace APELC.Controllers
         private bool MtdGetsaveJWTOnSession(ModelUserDTO _userSemak, string _token, JWTModel jwtmodel)
         {
             MtdGetCreateOldStyleSession(_userSemak);
-            // string _link2 = @"LocalApps?key=" + Encrypt.EncryptString4url((_userSemak.USERNAME + "~~" + _userSemak.NOPEKERJA), _encryptCode);
+            // string _link2 = @"LocalApps?key=" + Encrypt.EncryptString4url((_userSemak.USERNAME + "~~" + _userSemak.NO_PEKERJA), _encryptCode);
             //Session["_uR66gG88"] = _link2;
             HttpContext.Session.SetString("_token", _token);                                                       // save token
             HttpContext.Session.SetString("_expiredJWT", DateTime.Now.AddMinutes(240).ToString());                // save datetime expired
@@ -215,7 +216,7 @@ namespace APELC.Controllers
         {
             //var log = NLog.LogManager.GetCurrentClassLogger(); 
             //log.Info("MtdGetCreateOldStyleSession _result.USERNAME ~ " + _result.USERNAME);
-            //log.Info("MtdGetCreateOldStyleSession _result.NOPEKERJA ~ " + _result.NOPEKERJA);
+            //log.Info("MtdGetCreateOldStyleSession _result.NO_PEKERJA ~ " + _result.NO_PEKERJA);
             //log.Info("MtdGetCreateOldStyleSession _result.REALNAME ~ " + _result.REALNAME);
             //log.Info("MtdGetCreateOldStyleSession _result.EMAIL ~ " + _result.EMAIL);
             //log.Info("MtdGetCreateOldStyleSession _result.KOD_PTJ ~ " + _result.KOD_PTJ);
@@ -223,11 +224,11 @@ namespace APELC.Controllers
             //log.Info("MtdGetCreateOldStyleSession _result.SPR_NOKP ~ " + _result.SPR_NOKP);
             //log.Info("MtdGetCreateOldStyleSession _result.HRSTAFFK ~ " + _result.HRSTAFFK);
 #pragma warning disable CS8604 // Possible null reference argument.
-            //string functions = MtdGetFunctionListString(_result.USERNAME, _screenCodeFunction, _result.HRSTAFFK, _result.NOPEKERJA);
+            //string functions = MtdGetFunctionListString(_result.USERNAME, _screenCodeFunction, _result.HRSTAFFK, _result.NO_PEKERJA);
             //log.Info("MtdGetCreateOldStyleSession functions ~ " + functions);
 
-            HttpContext.Session.SetString("_nopekerja", _result.NOPEKERJA);
-            //HttpContext.Session.SetString("_nopekerjaEnc", _result.NOPEKERJA != null && _result.NOPEKERJA != "" ? EncryptHr.NewEncrypt(_result.NOPEKERJA, _encryptCode) : "-");
+            HttpContext.Session.SetString("_nopekerja", _result.NO_PEKERJA);
+            //HttpContext.Session.SetString("_nopekerjaEnc", _result.NO_PEKERJA != null && _result.NO_PEKERJA != "" ? EncryptHr.NewEncrypt(_result.NO_PEKERJA, _encryptCode) : "-");
             HttpContext.Session.SetString("_PENGGUNA_NAME", _result.REALNAME);
             HttpContext.Session.SetString("_countRecord", _result.COUNTRECORD);
             HttpContext.Session.SetString("_email", _result.EMAIL);

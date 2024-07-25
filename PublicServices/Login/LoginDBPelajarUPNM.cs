@@ -12,8 +12,8 @@ namespace APELC.PublicServices.Login
 {
     public class LoginDBPelajarUPNM
     {
-        static readonly string ConnSyAkademik = PublicConstant.ConnUpnmDbAkademik();
-        static readonly string _encryptCode = PublicConstant.EncryptCode();
+        public static readonly string ConnSyAkademik = PublicConstant.ConnUpnmDbAkademik();
+        public static readonly string _encryptCode = PublicConstant.EncryptCode();
 
         static readonly string _VW_STUDENT_AKTIF =
             @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
