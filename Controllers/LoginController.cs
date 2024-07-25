@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using APELC.LocalServices.Login;
 using APELC.PublicServices.Login;
+using APELC.PublicShared;
 using APELC.Model;
 using System.Diagnostics;
 using APELC.LocalShared;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Hosting;
 
 namespace APELC.Controllers
 {
@@ -133,80 +136,80 @@ namespace APELC.Controllers
             return Json(_data);
         }
 
-        // GET : LoginJwt
+        //GET : LoginJwt
         //public ActionResult LoginFromJWT()
         //{
-        //    //var log = NLog.LogManager.GetCurrentClassLogger();
-        //    //log.Info("LoginFromJWT Mula ~ ");
+        //    var log = NLog.LogManager.GetCurrentClassLogger();
+        //    log.Info("LoginFromJWT Mula ~ ");
         //    string _msg = "";
         //    var _token2 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJ6YW1hbiIsInJvbGVzIjpbIlNUQUYiXSwiaXNzIjoiaWRwIiwiZnVsbG5hbWUiOiJIQUlSVVpBTUFOIEJJTiBNT0hBTUVEICAgICAgICAgICAgICAgICAgIiwiZXhwIjoxNjAzNTkwNzk1LCJpYXQiOjE2MDM1OTA2NzUsImVtYWlsIjoiemFtYW5AdXRtLm15IiwiZW1wbG95ZWVOdW1iZXIiOiI3NTkwIn0.ffHwwJYaGs8S6PBl0_fPd_UJf3C5uurWOOs9s_OG9sAF8AbmTmVz7FKHtd-UKTke1Os9w_NI40LjRcjirVDlqMVCPpIPrfvu9rE_LRRI1jXvM_hLCoQ5g-7VgsdLCp9JTLbadNMMgtwuZoxZDucX_MUFx_qVLGzZ4GzElPfF598";
         //    if (_token2 != null)
         //        //HttpContext.Request.Cookies["sresu"];
-        //    if (Request.Cookies["SSOJWT"] != null)      //check cookie exist
-        //    {
-        //        var _token = Request.Cookies["SSOJWT"]; //.Value;   //get token from cookie   _token2;// 
-        //        //var handler = new JwtSecurityTokenHandler();
-        //        //var tokenS = handler.ReadToken(_token) as JwtSecurityToken;
-
-        //        //var _userid = tokenS.Claims.First(claim => claim.Type == "sub").Value;
-        //        //var _noPekerja = tokenS.Claims.First(claim => claim.Type == "employeeNumber").Value;
-        //        //ModelUserDTO _userSemak = LoginProcess.MtdSemakUserFromLoginFromJWT(_userid, _noPekerja);
-        //        //if (_userSemak.RESULTSET == "0")
-        //        //{
-        //        //    _msg = _userSemak.RESULTTEXT;
-        //        //    ViewBag.Msg = _msg;
-        //        //    if (_msg != "")
-        //        //    {
-        //        //        return RedirectToAction("Logout");
-        //        //    }
-        //        //}
-        //        //else
-        //        //{
-        //        //    if (_result.ROLE == "PENTADBIR" || _result.ROLE == "PEMOHON" || _result.ROLE == "PENASIHATAKAD" || _result.ROLE == "PANELPENILAI" || _result.ROLE == "MODERATOR" || _result.ROLE == "BENDAHARI" || _result.ROLE == "JKFAKULTI" || _result.ROLE == "SENAT")
-        //        //    {
-        //        //        MtdGetsaveJWTOnSession(_userSemak, _token, new JWTModel(_token));
-        //        //    }
-        //        //    else
-        //        //    {
-        //        //        return RedirectToAction("Logout");
-        //        //    }
-        //        //}
-
-        //        if (HttpContext.Session.GetString("_token") != null)               //if token exist but user goes login page
+        //        if (Request.Cookies["SSOJWT"] != null)      //check cookie exist
         //        {
-        //            var expired_jwt = System.Convert.ToDateTime(HttpContext.Session.GetString("_expiredJWT").ToString());
-        //            if (DateTime.Now < expired_jwt)         //if still valid
+        //            var _token = Request.Cookies["SSOJWT"]; //.Value;   //get token from cookie   _token2;// 
+        //                                                    //var handler = new JwtSecurityTokenHandler();
+        //                                                    //var tokenS = handler.ReadToken(_token) as JwtSecurityToken;
+
+        //            //var _userid = tokenS.Claims.First(claim => claim.Type == "sub").Value;
+        //            //var _noPekerja = tokenS.Claims.First(claim => claim.Type == "employeeNumber").Value;
+        //            //ModelUserDTO _userSemak = LoginProcess.MtdSemakUserFromLoginFromJWT(_userid, _noPekerja);
+        //            //if (_userSemak.RESULTSET == "0")
+        //            //{
+        //            //    _msg = _userSemak.RESULTTEXT;
+        //            //    ViewBag.Msg = _msg;
+        //            //    if (_msg != "")
+        //            //    {
+        //            //        return RedirectToAction("Logout");
+        //            //    }
+        //            //}
+        //            //else
+        //            //{
+        //            //    if (_result.ROLE == "PENTADBIR" || _result.ROLE == "PEMOHON" || _result.ROLE == "PENASIHATAKAD" || _result.ROLE == "PANELPENILAI" || _result.ROLE == "MODERATOR" || _result.ROLE == "BENDAHARI" || _result.ROLE == "JKFAKULTI" || _result.ROLE == "SENAT")
+        //            //    {
+        //            //        MtdGetsaveJWTOnSession(_userSemak, _token, new JWTModel(_token));
+        //            //    }
+        //            //    else
+        //            //    {
+        //            //        return RedirectToAction("Logout");
+        //            //    }
+        //            //}
+
+        //            if (HttpContext.Session.GetString("_token") != null)               //if token exist but user goes login page
         //            {
-        //                return RedirectToAction("Dashboard", "Home");
+        //                var expired_jwt = System.Convert.ToDateTime(HttpContext.Session.GetString("_expiredJWT").ToString());
+        //                if (DateTime.Now < expired_jwt)         //if still valid
+        //                {
+        //                    return RedirectToAction("Dashboard", "Home");
+        //                }
+        //                else    //if token already expired
+        //                {
+        //                    return RedirectToAction("Logout");
+        //                }
         //            }
-        //            else    //if token already expired
+        //            else   //not from my2 and token 
         //            {
-        //                return RedirectToAction("Logout");
+        //                return RedirectToAction("MtdGetVerifyUserByCookies");
         //            }
         //        }
-        //        else   //not from my2 and token 
+        //        else
         //        {
-        //            return RedirectToAction("MtdGetVerifyUserByCookies");
+        //            //return View("Logout");
+        //            //return RedirectToAction("LoginPage");
+        //            return RedirectToAction("Dashboard", "Home");
         //        }
-        //    }
-        //    else
-        //    {
-        //        //return View("Logout");
-        //        //return RedirectToAction("LoginPage");
-        //        return RedirectToAction("Dashboard", "Home");
-        //    }
         //}
 
-        //private bool MtdGetsaveJWTOnSession(ModelUserDTO _userSemak, string _token, JWTModel jwtmodel)
-        //{
-        //    MtdGetCreateOldStyleSession(_userSemak);
-        //    // string _link2 = @"LocalApps?key=" + Encrypt.EncryptString4url((_userSemak.USERNAME + "~~" + _userSemak.NOPEKERJA), _encryptCode);
-        //    //Session["_uR66gG88"] = _link2;
-        //    HttpContext.Session.SetString("_token", _token);                                                       // save token
-        //    HttpContext.Session.SetString("_expiredJWT", DateTime.Now.AddMinutes(240).ToString());                // save datetime expired
-        //    //FormsAuthentication.SetAuthCookie(token, false);
-        //    return true;
-        //}
+        private bool MtdGetsaveJWTOnSession(ModelUserDTO _userSemak, string _token, JWTModel jwtmodel)
+        {
+            MtdGetCreateOldStyleSession(_userSemak);
+            // string _link2 = @"LocalApps?key=" + Encrypt.EncryptString4url((_userSemak.USERNAME + "~~" + _userSemak.NOPEKERJA), _encryptCode);
+            //Session["_uR66gG88"] = _link2;
+            HttpContext.Session.SetString("_token", _token);                                                       // save token
+            HttpContext.Session.SetString("_expiredJWT", DateTime.Now.AddMinutes(240).ToString());                // save datetime expired
+            //FormsAuthentication.SetAuthCookie(token, false);
+            return true;
+        }
 
         private void MtdGetCreateOldStyleSession(ModelUserDTO _result)
         {
@@ -282,103 +285,103 @@ namespace APELC.Controllers
             }
         }
 
-        //private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
-        //{
-        //    IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
-        //    IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
-        //    List<string> _newList = _function.ToList();
-        //    foreach (var _item in _function2)
-        //    {
-        //        _newList.Add(_item);
-        //    }
-        //    _function = _newList;
-        //    return _function;
-        //}
-        //private string MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
-        //{
-        //    List<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction).ToList();
-        //    IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HM98");
-        //    IEnumerable<string> _function3 = LoginProcess.MtdGetFunctions(_username, "HM06");
-        //    IEnumerable<string> _function4 = LoginProcess.MtdGetFunctions(_username, "HM43");
-        //    IEnumerable<string> _function5 = LoginProcess.MtdGetFunctions(_username, "HM22");
-        //    List<string> _newList = _function.ToList();
-        //    if (_function2.Count() > 0)
-        //    {
-        //        foreach (var _item in _function2)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
-        //    if (_function3.Count() > 0)
-        //    {
-        //        foreach (var _item in _function3)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
-        //    if (_function4.Count() > 0)
-        //    {
-        //        foreach (var _item in _function4)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
-        //    if (_function5.Count() > 0)
-        //    {
-        //        foreach (var _item in _function5)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
+        private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        {
+            IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
+            IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
+            List<string> _newList = _function.ToList();
+            foreach (var _item in _function2)
+            {
+                _newList.Add(_item);
+            }
+            _function = _newList;
+            return _function;
+        }
+        private string MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        {
+            List<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction).ToList();
+            IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HM98");
+            IEnumerable<string> _function3 = LoginProcess.MtdGetFunctions(_username, "HM06");
+            IEnumerable<string> _function4 = LoginProcess.MtdGetFunctions(_username, "HM43");
+            IEnumerable<string> _function5 = LoginProcess.MtdGetFunctions(_username, "HM22");
+            List<string> _newList = _function.ToList();
+            if (_function2.Count() > 0)
+            {
+                foreach (var _item in _function2)
+                {
+                    _newList.Add(_item);
+                }
+            }
+            if (_function3.Count() > 0)
+            {
+                foreach (var _item in _function3)
+                {
+                    _newList.Add(_item);
+                }
+            }
+            if (_function4.Count() > 0)
+            {
+                foreach (var _item in _function4)
+                {
+                    _newList.Add(_item);
+                }
+            }
+            if (_function5.Count() > 0)
+            {
+                foreach (var _item in _function5)
+                {
+                    _newList.Add(_item);
+                }
+            }
 
-        //    bool _tpFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06001");
-        //    if (_tpFakulti)
-        //    {
-        //        _newList.Add("TP06001");
-        //    }
-        //    bool _ppFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06002");
-        //    if (_ppFakulti)
-        //    {
-        //        _newList.Add("PP06002");
-        //    }
-        //    bool _psmFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06004");
-        //    if (_ppFakulti)
-        //    {
-        //        _newList.Add("HM06S11B01");
-        //    }
-        //    bool _pghFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "03001");
-        //    if (_pghFakulti)
-        //    {
-        //        _newList.Add("HM22S29B01");
-        //    }
-        //    bool _kjbFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "04001");
-        //    if (_kjbFakulti)
-        //    {
-        //        _newList.Add("HM22S29B02");
-        //    }
+            //bool _tpFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06001");
+            //if (_tpFakulti)
+            //{
+            //    _newList.Add("TP06001");
+            //}
+            //bool _ppFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06002");
+            //if (_ppFakulti)
+            //{
+            //    _newList.Add("PP06002");
+            //}
+            //bool _psmFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06004");
+            //if (_ppFakulti)
+            //{
+            //    _newList.Add("HM06S11B01");
+            //}
+            //bool _pghFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "03001");
+            //if (_pghFakulti)
+            //{
+            //    _newList.Add("HM22S29B01");
+            //}
+            //bool _kjbFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "04001");
+            //if (_kjbFakulti)
+            //{
+            //    _newList.Add("HM22S29B02");
+            //}
 
-        //    string _balik = "";
-        //    foreach (var _item in _newList)
-        //    {
-        //        _balik += (_item + ":");
-        //    }
-        //    return _balik;
-        //}
+            string _balik = "";
+            foreach (var _item in _newList)
+            {
+                _balik += (_item + ":");
+            }
+            return _balik;
+        }
 
         //public IActionResult CapaiGambar(string id)
         //{
-        //    //var log = NLog.LogManager.GetCurrentClassLogger();
-        //    //log.Info("CapaiGambar id ~ " + id);
+        //    var log = NLog.LogManager.GetCurrentClassLogger();
+        //    log.Info("CapaiGambar id ~ " + id);
         //    string _kod = HttpContext.Session.GetString("_gdOk#yb") ?? "-";
 
         //    var _host = HttpContext.Request.Host;
         //    if (id != null && id != "" && id != "-")
         //    {
         //        string _stafPk = EncryptHr.NewDecrypt(id, _encryptCode);
-        //        //log.Info("CapaiGambar _noPekerja ~ " + _noPekerja);
+        //        log.Info("CapaiGambar _noPekerja ~ " + _noPekerja);
         //        ModelUserDTO _photo = new();
-        //        //_photo.HRSTAFFK = _stafPk;
-        //        //_photo = LoginProcess.MtdGetPhotoStaf(_photo);
+        //        _photo.HRSTAFFK = _stafPk;
+        //        _photo = LoginProcess.MtdGetPhotoStaf(_photo);
 
         //        if (_photo.PHOTO != null && _photo.PHOTO.Length > 0)
         //        {
@@ -394,8 +397,8 @@ namespace APELC.Controllers
         //    else
         //    {
         //        string _pic = @"/images/no_image.jpg";
-        //        //string wwwPath = this.Environment.WebRootPath;
-        //        //string contentPath = this.Environment.ContentRootPath;
+        //        string wwwPath = this.Environment.WebRootPath;
+        //        string contentPath = this.Environment.ContentRootPath;
         //        var _path = Path.Combine(_host.ToString(), _pic); //validate the path for security or use other means to generate the path.
         //        return File(_path, "image/jpeg");
         //    }
@@ -403,19 +406,19 @@ namespace APELC.Controllers
 
         //public IActionResult CapaiGambarStudent(string id)
         //{
-        //    //var log = NLog.LogManager.GetCurrentClassLogger();
-        //    //log.Info("CapaiGambar id ~ " + id);
+        //    var log = NLog.LogManager.GetCurrentClassLogger();
+        //    log.Info("CapaiGambar id ~ " + id);
         //    string _kod = HttpContext.Session.GetString("_gdOk#yb") ?? "-";
 
         //    var _host = HttpContext.Request.Host;
         //    if (id != null && id != "" && id != "-")
         //    {
-        //        //string _stafPk = EncryptHr.NewDecrypt(id, _encryptCode);
+        //        string _stafPk = EncryptHr.NewDecrypt(id, _encryptCode);
         //        string _nokp = EncryptHr.NewDecrypt(id, _encryptCode);
-        //        //log.Info("CapaiGambar _noPekerja ~ " + _noPekerja);
+        //        log.Info("CapaiGambar _noPekerja ~ " + _noPekerja);
         //        ModelUserDTO _photo = new();
         //        _photo.NOKP = _nokp;
-        //        _photo = LoginDBPelajar.MtdGetPhotoStudent(_nokp);
+        //        _photo = LoginDBPelajarUPNM.MtdGetPhotoStudent(_nokp);
 
         //        if (_photo.PHOTO != null && _photo.PHOTO.Length > 0)
         //        {
@@ -458,146 +461,146 @@ namespace APELC.Controllers
         }
 
         // GET AJAX : MtdGetEncryptCode
-        [HttpPost]
-//        public JsonResult MtdGetEncryptCode([FromBody] ModelParameterHr _data)
-//        {
-//            _data.RESULTSET = "0";
-//#pragma warning disable CS8602 // Dereference of a possibly null reference.
-//            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
-//#pragma warning restore CS8602 // Dereference of a possibly null reference.
-//            if (_eUserIdIn != "")
-//            {
-//                _data.ViewField = "";
-//#pragma warning disable CS8604 // Possible null reference argument.
-//                //string _viewField = EncryptHr.NewEncrypt(_data.Key, _encryptCode);
-//                string _viewField = EncryptHr.NewEncrypt(_data.Key, _encryptCode);
-//#pragma warning restore CS8604 // Possible null reference argument.
-//                _data.ViewField = _viewField;
-//                return Json(_data);
-//            }
-//            else
-//            {
-//                return Json(_data);
-//            }
-//        }
+        //[HttpPost]
+        //        public JsonResult MtdGetEncryptCode([FromBody] ModelParameterHr _data)
+        //        {
+        //            _data.RESULTSET = "0";
+        //#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        //            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
+        //#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        //            if (_eUserIdIn != "")
+        //            {
+        //                _data.ViewField = "";
+        //#pragma warning disable CS8604 // Possible null reference argument.
+        //                //string _viewField = EncryptHr.NewEncrypt(_data.Key, _encryptCode);
+        //                string _viewField = EncryptHr.NewEncrypt(_data.Key, _encryptCode);
+        //#pragma warning restore CS8604 // Possible null reference argument.
+        //                _data.ViewField = _viewField;
+        //                return Json(_data);
+        //            }
+        //            else
+        //            {
+        //                return Json(_data);
+        //            }
+        //        }
 
         // GET AJAX : MtdGetDecryptCode
-        [HttpPost]
-//        public JsonResult MtdGetDecryptCode([FromBody] ModelParameterHr _data)
-//        {
-//            _data.RESULTSET = "0";
-//            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
-//            if (_eUserIdIn != "")
-//            {
-//                _data.ViewField = "";
-//#pragma warning disable CS8604 // Possible null reference argument.
-//                //string _viewField = EncryptHr.DecryptString4url(_data.Value, _encryptCode);
-//                string _viewField = EncryptHr.NewDecrypt(_data.Value, _encryptCode);
-//#pragma warning restore CS8604 // Possible null reference argument.
-//                _data.Text = _viewField;
-//                return Json(_data);
-//            }
-//            else
-//            {
-//                return Json(_data);
-//            }
-//        }
+        //[HttpPost]
+        //        public JsonResult MtdGetDecryptCode([FromBody] ModelParameterHr _data)
+        //        {
+        //            _data.RESULTSET = "0";
+        //            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
+        //            if (_eUserIdIn != "")
+        //            {
+        //                _data.ViewField = "";
+        //#pragma warning disable CS8604 // Possible null reference argument.
+        //                string _viewField = EncryptHr.DecryptString4url(_data.Value, _encryptCode);
+        //                string _viewField = EncryptHr.NewDecrypt(_data.Value, _encryptCode);
+        //#pragma warning restore CS8604 // Possible null reference argument.
+        //                _data.Text = _viewField;
+        //                return Json(_data);
+        //            }
+        //            else
+        //            {
+        //                return Json(_data);
+        //            }
+        //        }
 
         // GET AJAX : MtdGetEncryptCode8bit
-        [HttpPost]
-//        public JsonResult MtdGetEncryptCode8bit([FromBody] ModelParameterHr _data)
-//        {
-//            _data.RESULTSET = "0";
-//#pragma warning disable CS8602 // Dereference of a possibly null reference.
-//            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
-//#pragma warning restore CS8602 // Dereference of a possibly null reference.
-//            if (_eUserIdIn != "")
-//            {
-//                _data.ViewField = "";
-//#pragma warning disable CS8604 // Possible null reference argument.
-//                string _viewField = EncryptHr.OldEncryptString4url(_data.Key, PublicConstant.OldEncryptCode());
-//#pragma warning restore CS8604 // Possible null reference argument.
-//                _data.ViewField = _viewField;
-//                return Json(_data);
-//            }
-//            else
-//            {
-//                return Json(_data);
-//            }
-//        }
+        //[HttpPost]
+        //        public JsonResult MtdGetEncryptCode8bit([FromBody] ModelParameterHr _data)
+        //        {
+        //            _data.RESULTSET = "0";
+        //#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        //            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
+        //#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        //            if (_eUserIdIn != "")
+        //            {
+        //                _data.ViewField = "";
+        //#pragma warning disable CS8604 // Possible null reference argument.
+        //                string _viewField = EncryptHr.OldEncryptString4url(_data.Key, PublicConstant.OldEncryptCode());
+        //#pragma warning restore CS8604 // Possible null reference argument.
+        //                _data.ViewField = _viewField;
+        //                return Json(_data);
+        //            }
+        //            else
+        //            {
+        //                return Json(_data);
+        //            }
+        //        }
 
 
         // GET AJAX : MtdGetDecryptCode8bit
-        [HttpPost]
-//        public JsonResult MtdGetDecryptCode8bit([FromBody] ModelParameterHr _data)
-//        {
-//            _data.RESULTSET = "0";
-//#pragma warning disable CS8602 // Dereference of a possibly null reference.
-//            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
-//#pragma warning restore CS8602 // Dereference of a possibly null reference.
-//            if (_eUserIdIn != "")
-//            {
-//                _data.ViewField = "";
-//#pragma warning disable CS8604 // Possible null reference argument.
-//                string _viewField = EncryptHr.OldDecryptString4url(_data.Value, PublicConstant.OldEncryptCode());
-//#pragma warning restore CS8604 // Possible null reference argument.
-//                _data.Text = _viewField;
-//                return Json(_data);
-//            }
-//            else
-//            {
-//                return Json(_data);
-//            }
-//        }
+        //[HttpPost]
+        //        public JsonResult MtdGetDecryptCode8bit([FromBody] ModelParameterHr _data)
+        //        {
+        //            _data.RESULTSET = "0";
+        //#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        //            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
+        //#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        //            if (_eUserIdIn != "")
+        //            {
+        //                _data.ViewField = "";
+        //#pragma warning disable CS8604 // Possible null reference argument.
+        //                string _viewField = EncryptHr.OldDecryptString4url(_data.Value, PublicConstant.OldEncryptCode());
+        //#pragma warning restore CS8604 // Possible null reference argument.
+        //                _data.Text = _viewField;
+        //                return Json(_data);
+        //            }
+        //            else
+        //            {
+        //                return Json(_data);
+        //            }
+        //        }
 
         // GET AJAX : MtdGetPublicEncryptCode16bit
-        [HttpPost]
-//        public JsonResult MtdGetPublicEncryptCode16bit([FromBody] ModelParameterHr _data)
-//        {
-//            _data.RESULTSET = "0";
-//#pragma warning disable CS8602 // Dereference of a possibly null reference.
-//            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
-//#pragma warning restore CS8602 // Dereference of a possibly null reference.
-//            if (_eUserIdIn != "")
-//            {
-//                _data.ViewField = "";
-//#pragma warning disable CS8604 // Possible null reference argument.
-//                string _viewField = EncryptHr.NewEncrypt(_data.Key, PublicConstant.New2022EncryptCode());
-//#pragma warning restore CS8604 // Possible null reference argument.
-//                _data.ViewField = _viewField;
-//                return Json(_data);
-//            }
-//            else
-//            {
-//                return Json(_data);
-//            }
-//        }
+        //[HttpPost]
+        //        public JsonResult MtdGetPublicEncryptCode16bit([FromBody] ModelParameterHr _data)
+        //        {
+        //            _data.RESULTSET = "0";
+        //#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        //            string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
+        //#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        //            if (_eUserIdIn != "")
+        //            {
+        //                _data.ViewField = "";
+        //#pragma warning disable CS8604 // Possible null reference argument.
+        //                string _viewField = EncryptHr.NewEncrypt(_data.Key, PublicConstant.New2022EncryptCode());
+        //#pragma warning restore CS8604 // Possible null reference argument.
+        //                _data.ViewField = _viewField;
+        //                return Json(_data);
+        //            }
+        //            else
+        //            {
+        //                return Json(_data);
+        //            }
+        //        }
 
 
         // GET AJAX : MtdGetPublicDecryptCode16bit
-        [HttpPost]
-        public JsonResult MtdGetPublicDecryptCode16bit([FromBody] ModelParameterHr _data)
-        {
-            _data.RESULTSET = "0";
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            string _eUserIdIn = "";
-           //string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-                     if (_eUserIdIn != "")
-            {
-                _data.ViewField = "";
-#pragma warning disable CS8604 // Possible null reference argument.
-                //string _viewField = EncryptHr.NewDecrypt(_data.Value, PublicConstant.New2022EncryptCode());
-                string _viewField = "";
-#pragma warning restore CS8604 // Possible null reference argument.
-                _data.Text = _viewField;
-                return Json(_data);
-            }
-            else
-            {
-                return Json(_data);
-            }
-        }
+        //[HttpPost]
+        //        public JsonResult MtdGetPublicDecryptCode16bit([FromBody] ModelParameterHr _data)
+        //        {
+        //            _data.RESULTSET = "0";
+        //#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        //            string _eUserIdIn = "";
+        //            //string _eUserIdIn = HttpContext.Session.GetString("_nopekerjaEnc") != null ? EncryptHr.NewDecrypt(HttpContext.Session.GetString("_nopekerjaEnc").ToString(), _encryptCode) : "";
+        //#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        //            if (_eUserIdIn != "")
+        //            {
+        //                _data.ViewField = "";
+        //#pragma warning disable CS8604 // Possible null reference argument.
+        //                //string _viewField = EncryptHr.NewDecrypt(_data.Value, PublicConstant.New2022EncryptCode());
+        //                string _viewField = "";
+        //#pragma warning restore CS8604 // Possible null reference argument.
+        //                _data.Text = _viewField;
+        //                return Json(_data);
+        //            }
+        //            else
+        //            {
+        //                return Json(_data);
+        //            }
+        //        }
 
-    }
+    } 
 }

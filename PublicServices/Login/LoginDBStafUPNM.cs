@@ -14,6 +14,7 @@ namespace APELC.PublicServices.Login
     {
         static readonly string ConnSyAkademik = PublicConstant.ConnUpnmDbAkademik();
         static readonly string _encryptCode = PublicConstant.EncryptCode();
+        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
 
         static readonly string _VW_STAF_AKTIF =
            @" SELECT nopekerja AS NOPEKERJA,
@@ -30,7 +31,30 @@ namespace APELC.PublicServices.Login
               handphone AS HANDPHONE,
               kodstatus AS KOD_STATUS
               FROM v630staf_apel where status='Aktif'; ";
+        public static UserIdModel MtdGetApelCPengguna(string id)
+        {
+            string _sql = _VW_STAF_AKTIF;
 
+            UserIdModel _return = new UserIdModel();
+            _return.RESULTSET = "0";
+            try
+            {
+                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
+                {
+                    UserIdModel _returnNew = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { ID_PENGGUNA = id });
+                    if (_returnNew != null && _returnNew.RESULTSET == "2")
+                    {
+                        _return = _returnNew;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                var log = NLog.LogManager.GetCurrentClassLogger();
+                log.Info("Public MtdGetApelCPengguna e ~ " + e);
+            }
+            return _return;
+        }
         //static readonly string _VW_STAF_AKTIF =
         //    @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
         //              NAMA, KURSUS AS KOD_KURSUS, KOD_KOLEJ AS KOD_KOLEJ, KOD_KAMPUS, KOD_FAKULTI as KOD_PTJ, 

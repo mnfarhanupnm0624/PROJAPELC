@@ -231,10 +231,10 @@ namespace APELC.LocalServices.Login
             return _userDTO;
         }
 
-        internal static bool MtdGetCheckApprovalStructure(string _stafFk, string _kod)
-        {
-            return LoginDBLibrary.MtdGetCheckApprovalStructure(_stafFk, _kod);
-        }
+        //internal static bool MtdGetCheckApprovalStructure(string _stafFk, string _kod)
+        //{
+        //    return LoginDBLibrary.MtdGetCheckApprovalStructure(_stafFk, _kod);
+        //}
 
         internal static ModelUserDTO MtdSemakPenggunaFromMainDashboard(string _enc)
         {
@@ -301,7 +301,7 @@ namespace APELC.LocalServices.Login
             ModelUserDTO.RESULTTEXT = "";
 
             // - Roles: Pengarah
-            ModelParameterHr _isPngrh = LoginDB.DB_MtdPngrhWujud(usrPsp.STAF_FK.ToString(), "55");
+            ModelParameterHr _isPngrh = LoginDB.DB_MtdSuperUserWujud(usrPsp.STAF_FK.ToString(), "55");
             if (_isPngrh.RESULTSET == "2")
             {
                 ModelUserDTO.NAMA_PERANAN = _isPngrh.ViewField;
@@ -310,7 +310,7 @@ namespace APELC.LocalServices.Login
             }
 
             // - Roles: Pegawai Penyiasat Kanan
-            ModelParameterHr _isPnystKnn = LoginDB.DB_MtdPnystKnnWujud(usrPsp.STAF_FK.ToString(), "57");
+            ModelParameterHr _isPnystKnn = LoginDB.DB_MtdPentadbirAPELCWujud(usrPsp.STAF_FK.ToString(), "57");
             if (_isPnystKnn.RESULTSET == "2")
             {
                 ModelUserDTO.NAMA_PERANAN = _isPnystKnn.ViewField;
@@ -319,7 +319,7 @@ namespace APELC.LocalServices.Login
             }
 
             // - Roles: Pegawai Penyiasat 
-            ModelParameterHr _isPnyst = LoginDB.DB_MtdPnystWujud(usrPsp.STAF_FK.ToString(), "52");
+            ModelParameterHr _isPnyst = LoginDB.DB_MtdPemohonWujud(usrPsp.STAF_FK.ToString(), "52");
             if (_isPnyst.RESULTSET == "2")
             {
                 ModelUserDTO.NAMA_PERANAN = _isPnyst.ViewField;

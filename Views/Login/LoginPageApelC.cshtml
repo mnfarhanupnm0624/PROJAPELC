@@ -1,5 +1,5 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
-@* @inject IConfiguration Configuration  *@
+@inject IConfiguration Configuration  
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @inject IJsonHelper Json
 @* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
@@ -9,7 +9,7 @@
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Builder;
 @using Microsoft.AspNetCore.Hosting;
-@* @using Microsoft.Extensions.Configuration; *@ 
+@using Microsoft.Extensions.Configuration; 
 @using Microsoft.Extensions.DependencyInjection;
 @using System.Collections.Specialized;
 @using System;
@@ -18,7 +18,7 @@
 @* @using System.Web;
 @using System.Web.UI;
 @using System.Web.UI.WebControls; *@
-@* @using System.Configuration; *@
+@using System.Configuration; 
 @using System.Data;
 @using System.Data.SqlClient;
 @* @using System.Web.Services; *@
@@ -39,7 +39,7 @@
     var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
     var _statusaktifPemohonApelC = ApelCUser.GetApel(Context.Session).STATUS_AKTIF_PEMOHON;
 
-    // public static ConfigureServices(IServiceCollection services);
+    //public static ConfigureServices(IServiceCollection services);
     var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
 #pragma warning restore CS8602
