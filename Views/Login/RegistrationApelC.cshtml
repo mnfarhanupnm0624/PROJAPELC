@@ -43,12 +43,12 @@
     // var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
 #pragma warning restore CS8602
 
-    var _disablelink = "disable-link";
-    var _color = "color:lightgray";
-    var _bullet = "";
-    var _disablelinkS = "disable-link";
-    var _colorS = "color:lightgray";
-    var _bulletS = "";
+    // var _disablelink = "disable-link";
+    // var _color = "color:lightgray";
+    // var _bullet = "";
+    // var _disablelinkS = "disable-link";
+    // var _colorS = "color:lightgray";
+    // var _bulletS = "";
 }
 
 <style>
@@ -200,7 +200,12 @@
                                 </div>
                                 <div class="text-block text-center my-3">
                                     <span class="text-small font-weight-semibold">Telah berdaftar ?</span>
-                                    <label class="text-small"><a href="index.php">Log Masuk</a></label>
+                                    <label class="text-small">
+                                        <a class="col-sm-6 col-form">
+                                            @* <a data-toggle="modal" href="#forgotpwdModal" class="float-right-lg"> Lupa Kata Laluan</a> *@
+                                            <button type="button" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal" class="btn btn-danger btn-block float-right-lg" type="reset">Log Masuk</button>
+                                        </a>
+                                    </label>
                                 </div>
                             </form>
                         </div>
@@ -222,51 +227,15 @@
     <!-- endinject -->
 
     <script type="text/javascript">
-        function validate(btn) {
-            form = document.frm_register;
-            var idno = document.getElementById("txt_iddesc").value;
-            var name = document.getElementById("txt_fullname").value;
-            var email = document.getElementById("txt_email").value;
-            var pwd1 = document.getElementById("txt_password").value;
-            var pwd2 = document.getElementById("txt_repassword").value;
-            
-            var n = pwd1.length;
-
-            if (btn.name == 'btn_register') {
-                if (idno == '') {
-                    alert("Sila isi No Kad Pengenalan anda !");
-                    document.getElementById("txt_iddesc").focus();
-                    return false;
-                } else if (name == '') {
-                    alert("Sila isi Nama !");
-                    document.getElementById("txt_fullname").focus();
-                    return false;
-                } else if (!filter.test(email)) {
-                    alert("Sila isi alamat emel yang betul !");
-                    document.getElementById("txt_email").focus();
-                    return false;
-                } else if (pwd1 == '') {
-                    alert("Sila isi Kata Laluan !");
-                    document.getElementById("txt_password").focus();
-                    return false;
-                } else if (n < 6) {
-                    alert("Pastikan Kata Laluan tidak kurang dari 6 digit.");
-                    document.getElementById("txt_password").focus();
-                    return false;
-                } else if (pwd1 != pwd2) {
-                    alert("Kata Laluan tidak sepadan !");
-                    document.getElementById("txt_password").focus();
-                    return false;
-                } else {
-                    if (!confirm("Sila pastikan maklumat yang diisi adalah tepat. Anda pasti untuk menyimpan rekod ini?")) {
-                        return false;
-                    } else {
-                        form.submit();
-                    }
-                }
+        function myClickButton(id) {
+            if (id == "UnderConstraction") {
+                $('#IdClickUnderConstraction').click();
+            } else if (id == "RegistrationApelC") {
+                $('#IdClickRegistrationApelC').click();
+            } else if (id == "BackToLogin") {
+                $('#IdClickBackToLogin').click();
             }
         }
-
     </script>
 
 </body>

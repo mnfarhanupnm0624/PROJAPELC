@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
 
+
 namespace APELC.Controllers
 {
     public class LoginController : Controller
@@ -286,88 +287,88 @@ namespace APELC.Controllers
             }
         }
 
-        private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
-        {
-            IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
-            IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
-            List<string> _newList = _function.ToList();
-            foreach (var _item in _function2)
-            {
-                _newList.Add(_item);
-            }
-            _function = _newList;
-            return _function;
-        }
-        private string MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
-        {
-            List<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction).ToList();
-            IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HM98");
-            IEnumerable<string> _function3 = LoginProcess.MtdGetFunctions(_username, "HM06");
-            IEnumerable<string> _function4 = LoginProcess.MtdGetFunctions(_username, "HM43");
-            IEnumerable<string> _function5 = LoginProcess.MtdGetFunctions(_username, "HM22");
-            List<string> _newList = _function.ToList();
-            if (_function2.Count() > 0)
-            {
-                foreach (var _item in _function2)
-                {
-                    _newList.Add(_item);
-                }
-            }
-            if (_function3.Count() > 0)
-            {
-                foreach (var _item in _function3)
-                {
-                    _newList.Add(_item);
-                }
-            }
-            if (_function4.Count() > 0)
-            {
-                foreach (var _item in _function4)
-                {
-                    _newList.Add(_item);
-                }
-            }
-            if (_function5.Count() > 0)
-            {
-                foreach (var _item in _function5)
-                {
-                    _newList.Add(_item);
-                }
-            }
+        //private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        //{
+        //    IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
+        //    IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
+        //    List<string> _newList = _function.ToList();
+        //    foreach (var _item in _function2)
+        //    {
+        //        _newList.Add(_item);
+        //    }
+        //    _function = _newList;
+        //    return _function;
+        //}
+        //private string MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        //{
+        //    List<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction).ToList();
+        //    IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HM98");
+        //    IEnumerable<string> _function3 = LoginProcess.MtdGetFunctions(_username, "HM06");
+        //    IEnumerable<string> _function4 = LoginProcess.MtdGetFunctions(_username, "HM43");
+        //    IEnumerable<string> _function5 = LoginProcess.MtdGetFunctions(_username, "HM22");
+        //    List<string> _newList = _function.ToList();
+        //    if (_function2.Count() > 0)
+        //    {
+        //        foreach (var _item in _function2)
+        //        {
+        //            _newList.Add(_item);
+        //        }
+        //    }
+        //    if (_function3.Count() > 0)
+        //    {
+        //        foreach (var _item in _function3)
+        //        {
+        //            _newList.Add(_item);
+        //        }
+        //    }
+        //    if (_function4.Count() > 0)
+        //    {
+        //        foreach (var _item in _function4)
+        //        {
+        //            _newList.Add(_item);
+        //        }
+        //    }
+        //    if (_function5.Count() > 0)
+        //    {
+        //        foreach (var _item in _function5)
+        //        {
+        //            _newList.Add(_item);
+        //        }
+        //    }
 
-            //bool _tpFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06001");
-            //if (_tpFakulti)
-            //{
-            //    _newList.Add("TP06001");
-            //}
-            //bool _ppFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06002");
-            //if (_ppFakulti)
-            //{
-            //    _newList.Add("PP06002");
-            //}
-            //bool _psmFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06004");
-            //if (_ppFakulti)
-            //{
-            //    _newList.Add("HM06S11B01");
-            //}
-            //bool _pghFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "03001");
-            //if (_pghFakulti)
-            //{
-            //    _newList.Add("HM22S29B01");
-            //}
-            //bool _kjbFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "04001");
-            //if (_kjbFakulti)
-            //{
-            //    _newList.Add("HM22S29B02");
-            //}
+        //    //bool _tpFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06001");
+        //    //if (_tpFakulti)
+        //    //{
+        //    //    _newList.Add("TP06001");
+        //    //}
+        //    //bool _ppFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06002");
+        //    //if (_ppFakulti)
+        //    //{
+        //    //    _newList.Add("PP06002");
+        //    //}
+        //    //bool _psmFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06004");
+        //    //if (_ppFakulti)
+        //    //{
+        //    //    _newList.Add("HM06S11B01");
+        //    //}
+        //    //bool _pghFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "03001");
+        //    //if (_pghFakulti)
+        //    //{
+        //    //    _newList.Add("HM22S29B01");
+        //    //}
+        //    //bool _kjbFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "04001");
+        //    //if (_kjbFakulti)
+        //    //{
+        //    //    _newList.Add("HM22S29B02");
+        //    //}
 
-            string _balik = "";
-            foreach (var _item in _newList)
-            {
-                _balik += (_item + ":");
-            }
-            return _balik;
-        }
+        //    string _balik = "";
+        //    foreach (var _item in _newList)
+        //    {
+        //        _balik += (_item + ":");
+        //    }
+        //    return _balik;
+        //}
 
         //public IActionResult CapaiGambar(string id)
         //{

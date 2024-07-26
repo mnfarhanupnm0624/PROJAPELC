@@ -1,12 +1,12 @@
-﻿@inject IHttpContextAccessor HttpContextAccessor
-@inject IConfiguration Configuration  
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@inject IJsonHelper Json
-@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
-@* @model ModelQRCode *@
-@using APELC.Helper
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Html
+﻿@inject IHttpContextAccessor HttpContextAccessor;
+@inject IConfiguration Configuration;  
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@inject IJsonHelper Json;
+@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel; *@
+@* @model ModelQRCode; *@
+@using APELC.Helper;
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Html;
 @using Microsoft.AspNetCore.Builder;
 @using Microsoft.AspNetCore.Hosting;
 @using Microsoft.AspNetCore.Authorization;
@@ -174,21 +174,25 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
-                                                    <a class="col-sm-6 col-form">
-                                                           @*  <a onclick="myClickButton('RegistrationApelC');">Daftar Baru</a> *@
-                                                            <button type="button" id="btn_daftar" name="btn_daftar" class="btn btn-success submit-btn btn-block" onClick="myClickButton('RegistrationApelC')">Daftar Akaun Baru</button>
-                                                    </a>
-                                                    <a class="col-sm-6 col-form">
+                                                        @* <a class="col-sm-6 col-form" id="IdClickRegistrationApelC" href="#IdClickRegistrationApelC"> *@
+                                                        <a class="col-sm-6 col-form"> 
+                                                            @* Daftar Baru  *@
+                                                           @*  <button onclick="myClickButton('RegistrationApelC')">Daftar Baru</button> *@
+                                                            <button type="button" id="IdClickRegistrationApelC" name="btn_daftar" class="btn btn-success submit-btn btn-block" onClick="myClickButton('RegistrationApelC')">Daftar Akaun Baru</button>
+                                                        </a>
+                                                        <a class="col-sm-6 col-form" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal">
+                                                            Lupa Kata Laluan
                                                             @* <a data-toggle="modal" href="#forgotpwdModal" class="float-right-lg"> Lupa Kata Laluan</a> *@
-                                                            <button type="button" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal" class="btn btn-danger btn-block float-right-lg" type="reset">Lupa Kata Laluan</button>
+                                                            @* <button type="button" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal" class="btn btn-danger btn-block float-right-lg" type="reset">Lupa Kata Laluan</button> *@
                                                     </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                
                                                 <button type="button" id="IdButtonSubmit" name="btn_login" class="btn btn-primary submit-btn btn-block">Log Masuk</button>
+                                                <br />
                                                  <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Sila Tunggu ...... </button>
+                                                 <br />
                                                 <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
                                             </div>
                                         </div>
@@ -238,23 +242,12 @@
                     <div class="modal-body">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-lg-4 control-label" for="inputSuccess">ID Pengguna</label>
+                                <label class="col-lg-4 control-label" for="inputSuccess">ID Pengguna (Alamat Emel)</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="icon_profile"></i></span>
                                     <input name="user-login-name" type="text" id="user-login-name" class="form-control" placeholder="eg: user@gmail.com" autofocus>
                                 </div>
                                 <br />
-                                <label class="col-lg-4 control-label" for="inputSuccess">Kata Laluan Baru</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icon_key"></i></span>
-                                    <input name="user-password" type="password" id="user-password" class="form-control" placeholder="********" autofocus>
-                                </div>
-                                <br />
-                                <label class="col-lg-6 control-label" for="inputSuccess">Pengesahan Kata Laluan Baru</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                                    <input class="form-control" type="password" name="user-repassword" id="user-repassword" placeholder="********">
-                                </div>
                             </div>
                         </fieldset>
                     </div>
