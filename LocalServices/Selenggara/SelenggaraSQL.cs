@@ -1,4 +1,9 @@
-﻿namespace APELC.LocalServices.Aduan
+﻿using APELC.LocalServices.ApelCDB;
+using Org.BouncyCastle.Asn1.X509;
+using static LinqToDB.Reflection.Methods.LinqToDB;
+using static LinqToDB.Sql;
+
+namespace APELC.LocalServices.Aduan
 {
     public class SelenggaraSQL
     {
@@ -185,144 +190,160 @@
 
         // Begin:
         // DDL
-        internal static string SQL_ListKatAduan()
+        internal static string SQL_ListKatPeranan()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 67 AND AKTIF = 'Y'
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+              NAMA_PARAMETER AS KATEGORI_PERANAN,
+              NAMA_PARAMETER_EN AS KATEGORI_PERANAN_EN 
+              FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=1 AND STATUS_AKTIF='Y'
+              AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_ListKatPemohon()
+        internal static string SQL_ListPerananAksesKawalan()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 83 AND AKTIF = 'Y'
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS PERANAN_AKSES_KAWALAN,
+            NAMA_PARAMETER_EN AS PERANAN_AKSES_KAWALAN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=2 AND STATUS_AKTIF='Y' 
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_ListStsAduan()
+      
+
+        internal static string SQL_ListSelenggaraRubrik()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 76 AND AKTIF = 'Y' AND PARAM_PK IN('378','380','381') 
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS JENIS_RUBRIK,
+            NAMA_PARAMETER_EN AS JENIS_RUBRIK_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=12 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_ListSenaraiZon()
+        internal static string SQL_StatusKehadiranUjianCabaran()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 76 AND AKTIF = 'Y' AND PARAM_PK IN('378','380','381') 
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            KOD AS KOD_KEHADIRAN,
+            NAMA_PARAMETER AS DESKRIPSI_KEHADIRAN,
+            NAMA_PARAMETER_EN AS DESKRIPSI_KEHADIRAN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=9 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_ListSenaraiBlok()
+        internal static string SQL_StatusAktifSkrinSelenggara()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 76 AND AKTIF = 'Y' AND PARAM_PK IN('378','380','381') 
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            KOD AS KOD_AKTIF,
+            NAMA_PARAMETER AS DESKRIPSI_AKTIF,
+            NAMA_PARAMETER_EN AS DESKRIPSI_AKTIF_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=10 AND STATUS_AKTIF='Y' 
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_ListSenaraiAras()
+        internal static string SQL_ListJenisUjianCbrn()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 76 AND AKTIF = 'Y' AND PARAM_PK IN('378','380','381') 
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            KOD AS KOD_KAEDAH_PENILAIAN_UJIAN_CABARAN,
+            NAMA_PARAMETER AS DESKRIPSI_JENIS_UJIAN_CABARAN,
+            NAMA_PARAMETER_EN AS DESKRIPSI_JENIS_UJIAN_CABARAN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=13 AND KOD=16 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_ListSenaraiBilik()
+        public static string SQL_LIST_JENIS_SISWAZAH()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 76 AND AKTIF = 'Y' AND PARAM_PK IN('378','380','381') 
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK, 
+            NAMA_PARAMETER AS DESKRIPSI_JENIS_SISWAZAH, 
+            NAMA_PARAMETER_EN AS DESKRIPSI_JENIS_SISWAZAH_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK = 27 AND STATUS_AKTIF = 'Y'
+            AND TKH_HAPUS IS NULLs
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_CAPAI_PENTERJEMAH_STAF_REKOD_HAPUS()
+        internal static string SQL_JENIS_SOALAN_UJIAN_CBRN()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 76 AND AKTIF = 'Y' AND PARAM_PK IN('378','380','381') 
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            KOD AS KOD_UJIAN_CABARAN,
+            NAMA_PARAMETER AS DESKRIPSI_JENIS_SOALAN_UJIAN_CABARAN,
+            NAMA_PARAMETER_EN AS DESKRIPSI_JENIS_SOALAN_UJIAN_CABARAN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=14 AND STATUS_AKTIF='Y' 
+            AND (KOD=98 OR KOD=99 OR KOD=100)
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_CAPAI_PENTERJEMAH_LAIN_LAIN_REKOD_HAPUS()
+        public static string SQL_NOMBOR_PERATUS_RUBRIK()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 76 AND AKTIF = 'Y' AND PARAM_PK IN('378','380','381') 
-                AND TKH_HAPUS IS NULL
+            SELECT NOMBOR AS NOMBOR_PERATUS 
+            FROM apelc.APELC_PARAMETER_NOMBOR 
+            WHERE KUMPULAN_NOMBOR_FK=23 AND STATUS_AKTIF='Y' 
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK "
+            ;
+        }
+
+        public static string SQL_KATEGORI_CAJ()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK, 
+            NAMA_PARAMETER AS KATEGORI_CAJ, 
+            NAMA_PARAMETER_EN AS KATEGORI_CAJ_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK = 5 AND STATUS_AKTIF = 'Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+         }
+
+        public static string SQL_JENIS_RUBRIK()
+        {
+            return @"
+             SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS JENIS_RUBRIK,
+            NAMA_PARAMETER_EN AS JENIS_RUBRIK_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=12 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+         }
+
+        public static string SQL_LIST_KUMPULAN_MODUL()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS DESKRIPSI_MODUL,
+            NAMA_PARAMETER AS DESKRIPSI_MODUL_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=24 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        public static string SqlJawatanList(string _kodjwtn)
+        public static string SQL_DESKRIPSI_RUBRIK()
         {
-            return @"SELECT A.KOD_JAWATAN as Key, A.KOD_JAWATAN || ' - ' || B.DESKRIPSI as ViewField 
-                    FROM HR_KOD_JAWATAN A, HR_KOD_JENIS_JAWATAN B 
-                    WHERE A.KOD_JENIS_JAWATAN = B.KOD_JENIS_JAWATAN AND A.KOD_KLASIFIKASI = B.KOD_KLASIFIKASI 
-                    AND A.KOD_JAWATAN LIKE '" + _kodjwtn + "%' AND A.TKH_HAPUS is null ORDER BY Key ";
+            return @"
+            SELECT PARAM_PK AS PARAM_PK, 
+            NAMA_PARAMETER AS DESKRIPSI_RUBRIK, 
+            NAMA_PARAMETER_EN AS DESKRIPSI_RUBRIK_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK = 22 AND STATUS_AKTIF = 'Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK";
+
         }
+            // End: 
+            // DDL
 
-        // End: 
-        // DDL
-
-        internal static string SQL_CAPAI_PENTERJEMAH_PELAJAR_REKOD_HAPUS()
+            internal static string SQL_CAPAI_PENTERJEMAH_PELAJAR_REKOD_HAPUS()
         {
             return @"
            SELECT  

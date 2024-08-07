@@ -27,6 +27,29 @@ namespace APELC.LocalServices.Senarai
                 INNER JOIN HR_INV_SIASATAN B ON B.ADUAN_FK = A.ADUAN_PK AND B.TKH_HAPUS IS NULL 
             ";
 
+        internal static string SQL_ListStsPermohonan()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS STATUS_MOHON,
+            NAMA_PARAMETER_EN AS STATUS_MOHON_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=8 AND STATUS_AKTIF='Y' 
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+
+        internal static string SQL_ListJenisJadual()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS JENIS_JADUAL,
+            NAMA_PARAMETER_EN AS JENIS_JADUAL_EN 
+            FROM apelc.APELC_PARAMETER 
+            WHERE KUMPULAN_FK=11 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+
         internal static string SQL_MtdGetPemohonList(string? _noaduan, string? _katPemohon, string? _cKampus, string? _cStsAduan, string? _cKatAduan, string? _cTkhMula, string? _cTkhTamat, string userAll, int stafPk)
         {
             string _SQL = SqlGetApelPemohonInfo;

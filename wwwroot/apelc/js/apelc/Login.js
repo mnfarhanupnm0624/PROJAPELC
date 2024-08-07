@@ -5,7 +5,7 @@ var Index = function () {
     var _dataTableInit = function () {
 
 
-        $('#IdButtonTest').click(function (e) {
+        $('#IdButtonTest').trigger("click",function (e) {
             swal({
                 title: "Berjaya!",
                 text: "Berjaya Log Masuk",
@@ -15,12 +15,12 @@ var Index = function () {
                 showLoaderOnConfirm: true
             }, function () {
                 setTimeout(function () {
-                    $('#IdLayout_ImageKiri').click();
+                    $('#IdLayout_ImageKiri').trigger("click");
                 }, 500);
             });
         });
 
-        $('#IdButtonSubmit').click(function (e) {
+        $('#IdButtonSubmit').trigger("click",function (e) {
             var _ok = true;
             var _path01 = $('#IdPathServerMain').val();
             var _userId = $('#Idusername').val().toLowerCase().trim();
@@ -55,7 +55,7 @@ var Index = function () {
                     success: function (res) {
                         if (res.RESULTSET == "1") {
                             $('#IdModalLoginLable').html('');
-                            $('#IdButtonClose').click();
+                            $('#IdButtonClose').trigger("click");
                             //swal("Success!", "Successfully Login", "success");
                             swal({
                                 title: "Berjaya Log Masuk!",
@@ -67,13 +67,13 @@ var Index = function () {
                             }, function () {
                                 setTimeout(function () {
                                     if (_loginpath == "apelc") {
-                                        location.href = _path01 + "/Home/Dashboard";
+                                        location.href = _path01 + "/Login/LoginPageApelC";
                                     }
                                     else {
                                         if (res.NAMA_PERANAN == "SUPERUSER" || res.NAMA_PERANAN == "PENTADBIR APEL" || res.NAMA_PERANAN == "PEMOHON" || res.NAMA_PERANAN == "PENASIHAT AKADEMIK" || res.NAMA_PERANAN == "PENGAWAS UJIAN CABARAN" || res.NAMA_PERANAN == "PANEL PENILAI" || res.NAMA_PERANAN == "MODERATOR" || res.NAMA_PERANAN == "PENGGUBAL" || res.NAMA_PERANAN == "PENILAI INSTRUMEN" || res.NAMA_PERANAN == "JK FAKULTI" || res.NAMA_PERANAN == "SENAT" || res.NAMA_PERANAN == "BENDAHARI") {
                                             document.getElementById("myform").submit();
                                         } else {
-                                            $('#IdLayout_ImageKiri').click();
+                                            $('#IdLayout_ImageKiri').trigger("click");
                                         }
                                     }
                                 }, 300);
@@ -124,15 +124,65 @@ var Index = function () {
     };
 }();
 
-jQuery(document).ready(function () {
+jQuery(function () {
     Index.init();
     if ($('#IdViewBagRes').val() == '7') {
         var _msg = $('#IdViewBagTxt').val();
         fnGenralMessage(_msg);
-    }
-});
+    } });
+//jQuery(document).ready(function () {
+//    Index.init();
+//    if ($('#IdViewBagRes').val() == '7') {
+//        var _msg = $('#IdViewBagTxt').val();
+//        fnGenralMessage(_msg);
+//    }
+//});
 
 //function fnGenralMessage(_msg)
+
+function validate(btn) {
+    form = document.frmForgot;
+    var usrname = document.getElementById("user-login-name").value;
+    var usrpwd = document.getElementById("user-password").value;
+    var usrrepwd = document.getElementById("user-repassword").value;
+    var n = usrpwd.length;
+			< !--var usrmail = document.getElementById("user-email").value; -->
+			
+			if (btn.name == 'forgot-password') {
+        if (usrname == '' || usrpwd == '' || usrrepwd == '') {
+            alert("Sila isi ID Pengguna, Kata Laluan dan Pengesahan Kata Laluan Baru!");
+            document.getElementById("user-login-name").focus();
+            return false;
+        } else if (n < 6) {
+            alert("Pastikan Kata Laluan tidak kurang dari 6 digit.");
+            document.getElementById("user-password").focus();
+            return false;
+        } else if (usrpwd != usrrepwd) {
+            alert("Kata Laluan tidak sepadan !");
+            document.getElementById("user-password").focus();
+            return false;
+        } else {
+            form.submit();
+        }
+    }
+}
+
+function validate_login() {
+    form = document.form1;
+    var selected = document.getElementById("dd_jnsApel").value;
+
+    if (selected == "") {
+        alert("Sila pilih Jenis Apel.");
+        return;
+    } else {
+        form.submit();
+    }
+}
+
+function get_jnsApel() {
+    var selected = document.getElementById("dd_jnsApel").value;
+    document.getElementById("txt_jnsApel").value = selected;
+}
 function fnPublicMessageTimeout(_msg) {
     swal({
         title: "Alert!",
@@ -143,7 +193,7 @@ function fnPublicMessageTimeout(_msg) {
         showLoaderOnConfirm: true
     }, function () {
         setTimeout(function () {
-            $('#IdLayout_ImageKiri').click();
+            $('#IdLayout_ImageKiri').trigger("click");
         }, 200);
     });
 };

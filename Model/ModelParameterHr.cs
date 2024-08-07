@@ -1,4 +1,11 @@
-﻿namespace APELC.Model
+﻿using APELC.PublicServices.Login;
+using APELC.PublicShared;
+using APELC.LocalServices;
+using APELC.LocalShared;
+using APELC.Model;
+using System.Net;
+
+namespace APELC.Model
 {
     public class ModelParameterHr
     {

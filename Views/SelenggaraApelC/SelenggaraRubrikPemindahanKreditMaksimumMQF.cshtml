@@ -1,0 +1,470 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+
+
+        <input type="hidden" id="IdPathServer" value="/esiasatan">
+
+        <style>
+            /* (A) SHARED CLASS */
+            .box {
+                padding: 20px;
+                font-size: 14px;
+                border-radius: 15px;
+            }
+
+            /* (B) BOX VARIATIONS */
+            /* (B1) INFORMATION BOX */
+            .info {
+                color: brown;
+                background: #ffffff;
+                border: 1px solid lightgray;
+                text-align: justify;
+            }
+
+            .multi-line {
+                height: 5em;
+            }
+
+            input[readonly] {
+                background-color: #F3F6F9;
+            }
+
+            .red-color {
+                color: red;
+            }
+
+            .green-color {
+                color: green;
+            }
+        </style>
+
+        <div class="container-xxl">
+            <div class="card">
+                <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#IdCardKatAduanList" style="background-color: #FFFFFF;">
+                    <h3 class="card-title">
+                        <i class="bi bi-list fa-beat-fade fs-2x text-maroon" style="--fa-beat-fade-opacity: 0.7; --fa-beat-fade-scale: 1.075;"></i>
+                        <span>&nbsp;&nbsp; Senarai Kategori Aduan</span>
+                    </h3>
+                    <div class="card-toolbar rotate-180">
+                        <i id="IdSearchItemClose" class="fas fa-angle-down text-muted fs-2x"></i>
+                    </div>
+                </div>
+                <div id="IdCardKatAduanList" class="collapse show">
+                    <div class="card-body">
+                        <p align="right">
+                            <button class="btn btn-sm btn-success font-weight-bold" onclick="fnCallModalSelenggaraKatAduan(this);" id="IdBtnTambahKatAduan" data-id="0~~SIMPAN" data-bs-toggle="tooltip" data-kt-initialized="1">
+                                Tambah
+                            </button>
+                        </p>
+                        <div id="IdTableKatAduanList_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            <div class="row"><div class="col-sm-6 d-flex align-items-center justify-conten-start"><div id="IdTableKatAduanList_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm form-control-solid" placeholder="" aria-controls="IdTableKatAduanList"></label></div></div><div class="col-sm-6 d-flex align-items-center justify-content-end"><div class="dt-buttons btn-group flex-wrap">   <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="IdTableKatAduanList" type="button"><span>Print</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="IdTableKatAduanList" type="button"><span>PDF</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="IdTableKatAduanList" type="button"><span>Excel</span></button> </div></div></div><div class="table-responsive">
+                                <table id="IdTableKatAduanList" class="table table-striped table-row-bordered gy-5 gs-7 dataTable no-footer" aria-describedby="IdTableKatAduanList_info">
+                                    <thead class="table-success">
+                                        <tr><th width="10px" class="sorting sorting_asc" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Bil: activate to sort column descending" style="width: 25.2891px;">Bil</th><th width="200px" style="text-align: center; width: 208.406px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Kategori Aduan: activate to sort column ascending">Kategori Aduan</th><th width="200px" style="text-align: center; width: 208.406px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Kategori Aduan(Bahasa Inggeris): activate to sort column ascending">Kategori Aduan(Bahasa Inggeris)</th><th width="20px" style="text-align: center; width: 89.6016px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Ditambah Oleh: activate to sort column ascending">Ditambah Oleh</th><th width="30px" style="text-align: center; width: 87.7969px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Tarikh/Masa Cipta: activate to sort column ascending">Tarikh/Masa Cipta</th><th width="20px" style="text-align: center; width: 89.6016px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Dikemaskini Oleh: activate to sort column ascending">Dikemaskini Oleh</th><th width="30px" style="text-align: center; width: 86.25px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Tarikh/Masa Kemaskini: activate to sort column ascending">Tarikh/Masa Kemaskini</th><th width="150px" style="text-align: center; width: 156.422px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Status</th><th width="120px" style="text-align: center; width: 126.258px;" class="sorting" tabindex="0" aria-controls="IdTableKatAduanList" rowspan="1" colspan="1" aria-label="Tindakan: activate to sort column ascending">Tindakan</th></tr>
+                                    </thead>
+                                    <tbody id="IdCardKatAduanList_body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <tr class="m-datatable__row odd" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">1</td>
+                                            <td style="text-align:center">
+                                                KEBAKARAN<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                FIRE <br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/10/2023<br>05:11 PM
+                                            </td>
+                                            <td style="text-align:center">
+                                                MUHAMAD SYAFIQ NASTANGIN BIN PALAL
+                                            </td>
+                                            <td style="text-align:center">
+                                                05/07/2024<br>09:08 AM
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="KtRYqZ7WLr9MC4OBKSLASHPFPw==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="KtRYqZ7WLr9MC4OBKSLASHPFPw==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row even" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">2</td>
+                                            <td style="text-align:center">
+                                                KECELAKAAN<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                ACCIDENTAL<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/10/2023<br>05:17 PM
+                                            </td>
+                                            <td style="text-align:center">
+                                                <label>-</label>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <label>-</label>
+                                                <br>
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="ESLASH5cO0VUxvM5FfntMyVmBQ==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="ESLASH5cO0VUxvM5FfntMyVmBQ==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row odd" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">3</td>
+                                            <td style="text-align:center">
+                                                KEHILANGAN HARTA BENDA<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                LOST PROPERTY&nbsp;<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:24 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                MUHAMAD SYAFIQ NASTANGIN BIN PALAL
+                                            </td>
+                                            <td style="text-align:center">
+                                                06/11/2023<br>04:20 PM
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="PYllESLASHXJjSLASHSLASHkW4s7lJ0SLASHlQ==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="PYllESLASHXJjSLASHSLASHkW4s7lJ0SLASHlQ==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row even" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">4</td>
+                                            <td style="text-align:center">
+                                                MORAL<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MORAL<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:24 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                <label>-</label>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <label>-</label>
+                                                <br>
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="ihNT3EDgKKzacI0d91mlgg==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="ihNT3EDgKKzacI0d91mlgg==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row odd" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">5</td>
+                                            <td style="text-align:center">
+                                                JENAYAH<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                CRIME<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:24 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                MUHAMAD SYAFIQ NASTANGIN BIN PALAL
+                                            </td>
+                                            <td style="text-align:center">
+                                                10/10/2023<br>10:47 AM
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="vcVabrFZtot5OgZXDBCBpw==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="vcVabrFZtot5OgZXDBCBpw==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row even" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">6</td>
+                                            <td style="text-align:center">
+                                                KEMATIAN<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                DEATH&nbsp;<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:25 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                MUHAMAD SYAFIQ NASTANGIN BIN PALAL
+                                            </td>
+                                            <td style="text-align:center">
+                                                27/05/2024<br>10:14 AM
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5063</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="Nil8elq5uq8YY1YDFOJ5BA==~~5063" name="SwitchAktif">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="Nil8elq5uq8YY1YDFOJ5BA==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row odd" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">7</td>
+                                            <td style="text-align:center">
+                                                DADAH<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                DRUGS&nbsp;<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:25 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                <label>-</label>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <label>-</label>
+                                                <br>
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="52YqwAf9FQPOlFgKJj7ffg==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="52YqwAf9FQPOlFgKJj7ffg==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row even" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">8</td>
+                                            <td style="text-align:center">
+                                                KEBAKARAN/BENCANA<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                FIRE / INJURY&nbsp;<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:25 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                MUHAMAD SYAFIQ NASTANGIN BIN PALAL
+                                            </td>
+                                            <td style="text-align:center">
+                                                08/10/2023<br>03:55 PM
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="qGpaLfugmvcoKQfp06WmOQ==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="qGpaLfugmvcoKQfp06WmOQ==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row odd" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">9</td>
+                                            <td style="text-align:center">
+                                                LAIN-LAIN<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                OTHER&nbsp;<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:25 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                MUHAMAD SYAFIQ NASTANGIN BIN PALAL
+                                            </td>
+                                            <td style="text-align:center">
+                                                11/10/2023<br>12:29 PM
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="miAc5y9JgzSCAMPUR9NLppakaGQ==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="miAc5y9JgzSCAMPUR9NLppakaGQ==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="m-datatable__row even" style="left: 0px; ">
+                                            <td style="text-align:center" class="sorting_1">10</td>
+                                            <td style="text-align:center">
+                                                KEMALANGAN<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                ACCIDENT&nbsp;<br>
+                                            </td>
+                                            <td style="text-align:center">
+                                                MOHAMAD NOOR FARHAN BIN MD NOOR ELHAM
+                                            </td>
+                                            <td style="text-align:center">
+                                                09/05/2023<br>08:25 AM
+                                            </td>
+                                            <td style="text-align:center">
+                                                MUHAMAD SYAFIQ NASTANGIN BIN PALAL
+                                            </td>
+                                            <td style="text-align:center">
+                                                11/10/2023<br>12:19 PM
+                                            </td>
+                                            <td style="text-align: left;vertical-align:top">
+                                                <span class="d-none">5062</span>
+                                                <div class="form-check form-switch form-check-custom form-check-solid justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" value="MJ16kgMh7U1PSLASHKHSLASHCtYdxg==~~5062" name="SwitchAktif" checked="'checked'">
+                                                    <label class="form-check-label" for="SwitchAktif"></label>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a onclick="fnCallModalSelenggaraKatAduan(this);" class="btn btn-sm btn-success bi bi-pencil-square" id="IdBtnKemaskini" data-id="MJ16kgMh7U1PSLASHKHSLASHCtYdxg==~~KEMASKINI" style="padding-right:15px;padding-left:15px;" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Kemaskini Fail" data-kt-initialized="1">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><div class="row"><div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"><div class="dataTables_length" id="IdTableKatAduanList_length"><label>Show <select name="IdTableKatAduanList_length" aria-controls="IdTableKatAduanList" class="form-select form-select-sm form-select-solid select2-hidden-accessible" data-select2-id="select2-data-1-ygjx" tabindex="-1" aria-hidden="true"><option value="10" data-select2-id="select2-data-3-s2i3">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select><span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-2-zlbr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-select form-select-sm form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-IdTableKatAduanList_length-pi-container" aria-controls="select2-IdTableKatAduanList_length-pi-container"><span class="select2-selection__rendered" id="select2-IdTableKatAduanList_length-pi-container" role="textbox" aria-readonly="true" title="10">10</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></label></div><div class="dataTables_info" id="IdTableKatAduanList_info" role="status" aria-live="polite">Showing 1 to 10 of 18 records</div></div><div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end"><div class="dataTables_paginate paging_simple_numbers" id="IdTableKatAduanList_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="IdTableKatAduanList_previous"><a href="#" aria-controls="IdTableKatAduanList" data-dt-idx="0" tabindex="0" class="page-link"><i class="previous"></i></a></li><li class="paginate_button page-item active"><a href="#" aria-controls="IdTableKatAduanList" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="IdTableKatAduanList" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item next" id="IdTableKatAduanList_next"><a href="#" aria-controls="IdTableKatAduanList" data-dt-idx="3" tabindex="0" class="page-link"><i class="next"></i></a></li></ul></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--begin::Modal-->
+        <div class="modal fade" id="m_modal_KatAduan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Kategori Aduan <span id="IdPaparCodeModal"></span></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <input type="hidden" id="IdModalItemHiddenKodProcessModal">
+                        <input type="hidden" id="IdKatAduanPKEncModal">
+                    </div>
+                    <div class="modal-body">
+                        <!--begin::Scroll-->
+                        <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="false" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
+                            <div class="box info" id="idKatAduan">
+                                <div class="form-group row mb-2">
+                                    <label for="Id_KatAduan" class="col-sm-2 col-form-label required">Kategori Aduan</label>
+                                    <div class="col-8 mb-2">
+                                        <input type="text" class="form-controls col-sm-2 " id="IdDdKatAduan" name="KAT_ADUAN_DESC" placeholder="Kategori Aduan" onkeyup="this.value = this.value.toUpperCase();">
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-2">
+                                    <label for="Id_KatAduanEn" class="col-sm-2 col-form-label required">Kategori Aduan(Bahasa Inggeris)</label>
+                                    <div class="col-8 mb-2">
+                                        <input type="text" class="form-controls col-sm-2" id="IdDdKatAduanEn" name="KAT_ADUAN_DESC_EN" placeholder="Kategori Aduan(Bahasa Inggeris)" onkeyup="this.value = this.value.toUpperCase();">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Scroll-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-success" id="IdBtnModalSaveData">
+                            <span id="IdButangActionModal">Simpan</span>
+                        </button>
+                        <a href="/esiasatan/SelenggaraAduan/SelenggaraKatAduanList" class="btn btn-sm m-btn--pill btn-info" style="display:none;"><span id="IdBtnKodItemRefreshScreen">Back To List</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Modal-->
+        <!--end::Modal-->
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>
+
+<script src="/apelc/js/SelenggaraAduan/SelenggaraKatAduanList.js" type="text/javascript"></script>

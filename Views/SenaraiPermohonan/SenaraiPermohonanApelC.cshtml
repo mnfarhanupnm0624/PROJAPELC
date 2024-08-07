@@ -1,4 +1,1130 @@
 ﻿@page
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IJsonHelper Json
+@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
+@* @model ModelQRCode *@
+@using APELC.Helper
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Html
+@using Microsoft.AspNetCore.Builder;
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.Extensions.Configuration;
+@* @using Microsoft.Extensions.Configuration; *@
+@using Microsoft.Extensions.DependencyInjection;
+@using System.Collections.Specialized;
+@using System;
+@using System.Data;
+@using System.Data.SqlClient;
+@using System.Configuration;
+@using System.Collections.Generic;
+@using System.Linq;
+@* @using System.Web;
+@using System.Web.UI;
+@using System.Web.UI.WebControls; *@
+@* @using System.Configuration; *@
+@* @using System.Web.Security; *@
+@* @using WebClientCore.Models.DisplayModels *@
+@using Microsoft.EntityFrameworkCore;
+@using Microsoft.Extensions.Hosting;
+@* @using SecurityMaintenance.Models; *@
+@using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+@* @using SecurityMaintenance.Models; *@
 @model APELC.Views.SenaraiPermohonan.SenaraiPermohonanApelCModel
-@{
-}
+
+<!DOCTYPE html>
+<html lang="en">
+<!--begin::Head-->
+<head>
+    <base href="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>UTM | SysMel</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
+    <meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="HrPerkhidmatan" />
+    <meta property="og:url" content="https://utm.my/" />
+    <meta property="og:site_name" content="UTM | </" />
+    <link rel="canonical" href="https://utm.my/" />
+    <link rel="shortcut icon" href="/sysmel/assets/media/logos/logoUTMbw.jpg" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="/sysmel/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/sysmel/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/sysmel/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/sysmel/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+    <!--begin::Custom Stylesheets-->
+
+    <link href="/sysmel/css/custom.css" rel="stylesheet" type="text/css" />
+    <!--end::Custom Stylesheets-->
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<input type="hidden" id="IdPathServerMain" value="/sysmel">
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed page-loading" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+    <!--begin::Main-->
+    <div class="page-loader flex-column bg-dark bg-opacity-25" id="IdLoadingPage">
+        <span class="spinner-border text-primary" role="status"></span>
+        <span class="text-gray-800 fs-6 fw-semibold mt-5">Loading...</span>
+    </div>
+
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+            <!--begin::Wrapper-->
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+
+                    <style>
+                        .btn.btn-success {
+                            color: #fff;
+                            border-color: #50cd89;
+                            background-color: #33b76f;
+                        }
+
+                        input.larger {
+                            width: 17px;
+                            height: 17px;
+                        }
+
+                        .select2-container--bootstrap5 .select2-selection--single .select2-selection__rendered {
+                            color: #181c32 !important;
+                        }
+
+                        .select2-container--bootstrap5 .select2-selection--single .select2-selection__rendered {
+                            top: 0px;
+                        }
+
+                        .select2-container--bootstrap5 .select2-selection {
+                            box-shadow: none !important;
+                            height: 43.183px;
+                            outline: 0 !important;
+                        }
+                    </style>
+
+                    <input type="hidden" id="IdPathServerMain" value="//sysmel">
+                    <input type="hidden" id="IdHiddenKampusPtj">
+                    <input type="hidden" id="IdHiddenLinkRecord" value="~~~~~~~~~~">
+
+                    <!--begin::Toolbar-->
+                    <div class="toolbar" id="kt_toolbar">
+                        <!--begin::Container-->
+                        <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack">
+                            <!--begin::Page title-->
+                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex flex-column flex-wrap me-3 mb-5 mb-lg-0">
+                                <!--begin::Title-->
+                                <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">
+                                    SYSMEL
+                                    <!--begin::Separator-->
+                                    <span class="h-20px border-1 border-gray-200 border-start ms-3 mx-2 me-1"></span>
+                                    <!--end::Separator-->
+                                    <!--begin::Description-->
+                                    <span class="text-muted fs-7 fw-bold mt-2">&nbsp; Permohonan</span>
+                                    <!--end::Description-->
+                                </h1>
+                                <!--end::Title-->
+                                <!--begin::Breadcrumb-->
+                                <nav aria-label="breadcrumbs"><ol class="breadcrumb breadcrumb-line text-muted fs-7 fw-semibold"><li class="breadcrumb-item"><a href="/sysmel/SysMel/Dashboard">Dashboard</a></li><li class="breadcrumb-item text-muted">Senarai Permohonan (Urusetia)</li></ol></nav>
+                                <!--end::Breadcrumb-->
+                            </div>
+                            <div class="d-flex align-items-center py-1">
+                                <button class="btn btn-sm btn-light-info">Today : <b>Jul 31</b></button>
+                            </div>
+                            <!--end::Page title-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Toolbar-->
+                    <!--begin::Post-->
+                    <div class="post d-flex flex-column-fluid" id="kt_post">
+                        <!--begin::Container-->
+                        <div id="kt_content_container" class="container-xxl">
+                            <!--begin::Row-->
+                            <div class="card shadow-sm mb-5">
+                                <div class="card-header collapsible cursor-pointer" data-bs-toggle="collapse" data-bs-target="#IdCard_ListCourseInfo" style="background-color: #fff;">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-search fs-2x"></i>
+                                        <span>&nbsp;&nbsp; Carian</span>
+                                    </h3>
+                                    <div class="card-toolbar rotate-180">
+                                        <i id="IdSearchItemClose" class="fas fa-angle-down text-muted fs-2x  text-dark"></i>
+                                    </div>
+                                </div>
+
+                                <div id="IdCard_ListCourseInfo" class="collapse show">
+                                    <div class="card-body">
+                                        <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                            <div class="row">
+                                                <div class="col-6 mb-2">
+                                                    <label for="form-label">Kampus</label>
+                                                    <select class="form-select kt-select2" id="IdKampusFk" name="CKAMPUS">
+                                                        <option value="">-- Sila Pilih --</option>
+                                                        <option value="JB">JB - UTM JOHOR BAHRU</option>
+                                                        <option value="KL">KL - UTM KUALA LUMPUR</option>
+                                                        <option value="PG">PG - UTM HTP PAGOH</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6 mb-2">
+                                                    <label for="form-label">Jenis Permohonan</label>
+                                                    <select class="form-select kt-select2 datatable-input" id="idJenisMohon" name="CJENIS_MOHON">
+                                                        <option value="">-- Sila Pilih --</option>
+                                                        <option value="DP">DP - DISPATCH</option>
+                                                        <option value="PH">PH - POS HARIAN</option>
+                                                        <option value="PL">PL - POSLAJU</option>
+                                                        <option value="KR">KR - KURIER</option>
+                                                        <option value="SB">SB - SURAT BERDAFTAR</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6 mb-2">
+                                                    <label for="form-label">No Pesanan</label>
+                                                    <input class="form-control datatable-input text-maroon" data-col-index="2" id="IdSysMelNo" name="SYSMEL_NO" placeholder="No Pesanan" style="" type="text" value="" />
+                                                </div>
+                                                <div class="col-6 mb-2">
+                                                    <label for="form-label">Status Permohonan</label>
+                                                    <select class="form-select kt-select2 datatable-input" id="idJenisStatus" name="CSTATUS">
+                                                        <option value="">-- Sila Pilih --</option>
+                                                        <option value="344">DRAFT</option>
+                                                        <option value="345">SUBMITTED</option>
+                                                        <option value="5277">APPROVED(PTJ)</option>
+                                                        <option value="5283">PICKED UP(PTJ)</option>
+                                                        <option value="5278">CORRECTION(PTJ)</option>
+                                                        <option value="5279">REJECTED(PTJ)</option>
+                                                        <option value="5284">DELIVERED(PTJ)</option>
+                                                        <option value="1314">RECEIVED</option>
+                                                        <option value="5280">POSTED</option>
+                                                        <option value="5287">CORRECTION(SECRETARIAT)</option>
+                                                        <option value="5288">REJECTED(SECRETARIAT)</option>
+                                                        <option value="5291">PICKED UP(SECRETARIAT)</option>
+                                                        <option value="5292">DELIVERED(SECRETARIAT)</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6 mb-2">
+                                                    <label for="form-label">Tarikh Mula hingga Tarikh Tamat</label>
+                                                    <input class="form-control date-flatpickr datatable-input" id="IdTarikhMula" name="CTKHMULATAMAT" placeholder="Tarikh Mula hingga Tarikh Tamat" type="text" value="" />
+                                                </div>
+                                                <div class="col-6 mb-2">
+                                                    <label for="form-label">Jenis Cetakan</label>
+                                                    <select class="form-select kt-select2 datatable-input" id="idJenisCetak" name="CETAK">
+                                                        <option value="">-- Sila Pilih --</option>
+                                                        <option value="5338">BUKU DISPATCH</option>
+                                                        <option value="5339">DOKET MEL FRANGKI</option>
+                                                        <option value="5341">SLIP SYSMEL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-5" style="text-align:center;">
+                                                <div class="col-lg-12 mb-10 mb-lg-0">
+                                                    <button type="button" class="btn btn-secondary" id="IdOptionReset">Set Semula</button>
+                                                    <button type="submit" class="btn btn-success mr-2"><i class="la la-search"></i>Cari</button>
+                                                    <button type="button" class="btn btn-warning mr-2" id="IdOptionCapaiGray" style="display:none;"><i class="la la-search"></i> Sila Tunggu </button>
+                                                    <input type="hidden" name="CARIAN" value="CARI" />
+
+                                                    <div class="vr mx-1"></div>
+                                                    <button type="button" class="btn btn-success mr-2" id="IdOptionExcel" onclick="janaExcel();">Jana Excel</button>
+                                                    <button type="button" class="btn btn-success mr-2" id="IdOptionBookDispatch" style="display:none;">Cetak</button>
+                                                </div>
+                                            </div>
+                                            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Row-->
+                            <!-- begin: Senarai -->
+                            <div class="card shadow-sm mb-5">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <span>Senarai Permohonan SysMel - Urusetia</span>
+                                    </div>
+                                    <div class="card-toolbar">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex h-100">
+                                        <div class="align-self-start mr-auto">
+                                            <button type="button" class="btn btn-danger" hidden>#</button>
+                                        </div>
+                                        <div class="align-self-center mx-auto">
+                                            <button type="button" class="btn btn-primary" hidden>#</button>
+                                        </div>
+                                        <div class="align-self-end ml-auto">
+                                            <div class="btn-group me-2">
+                                                <input type="button" id="printpagebutton" onclick="printpage()" class="btn btn-sm btn-secondary" value="Print" />
+                                                <button type="button" class="btn btn-sm btn-secondary">
+                                                    <select class="form-select kt-select2 datatable-input" id="idonchangedashboard" name="statuslulus" style=" color: #3f4254; background-color: #e4e6ef ">
+
+                                                        <span data-feather="calendar"></span>
+                                                        <option value="M">Minggu Ini</option>
+                                                        <option value="B">Bulan Ini</option>
+                                                        <option value="T">Tahun Ini</option>
+                                                        <option value="A">Keseluruhan</option>
+                                                    </select>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table width="100%" class="table table-striped table-row-bordered gy-5 gs-7 form-status" id="IdTable_StatistikPermohonanSysmel" style="border-collapse: collapse;max-width: 100%;">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th rowspan="2">BIL</th>
+                                                <th rowspan="2">FAKULTI (KOD PTJ)</th>
+                                                <th colspan="2" style="background-color:darkorange;">PEMOHON</th>
+                                                <th colspan="3" style="background-color:#0096FF;">PEGAWAI PTJ</th>
+                                                <th colspan="2" style="background-color:#FA8072;">DISPATCH</th>
+                                                <th colspan="3" style="background-color:#BF40BF;">UNIT&nbsp;MEL&nbsp;UNIVERSITI</th>
+                                                <th colspan="1" style="background-color:#50C878;">POS&nbsp;MALAYSIA</th>
+                                            </tr>
+                                            <tr class="text-start fs-7 text-uppercase gs-0">
+                                                <th style="vertical-align:top;">DRAFT</th>
+                                                <th style="vertical-align:top;">SUBMITTED</th>
+                                                <th style="vertical-align:top;">CORRECTION (PTJ)</th>
+                                                <th style="vertical-align:top;">APPROVED (PTJ)</th>
+                                                <th style="vertical-align:top;">REJECTED (PTJ)</th>
+                                                <th style="vertical-align:top;">PICKED UP(PTJ)</th>
+                                                <th style="vertical-align:top;">DELIVERED (PTJ)</th>
+                                                <th style="vertical-align:top;">RECEIVED (BPO)</th>
+                                                <th style="vertical-align:top;">POSTED (BPO)</th>
+                                                <th style="vertical-align:top;">RETURNED (BPO)</th>
+                                                <th style="vertical-align:top;">RECEIVED</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody id="IdTable_StatistikPermohonanSysmel_body">
+                                            <tr style="vertical-align:middle;background-color: white">
+                                                <td class="text-center">1</td>
+                                                <td width="20%">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="FAKULTI" value="JABATAN PERKHIDMATAN DIGITAL" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS" />
+                                                        <input type="hidden" name="CSTATUSDESC" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="KOD_PTJ3" value="KOD_PTJ" />
+                                                        <a style="color:blue; cursor:pointer;" onclick="document.getElementById('KodPTJId1').click()">JABATAN PERKHIDMATAN DIGITAL (J07)</a>
+                                                        <input type="submit" id="KodPTJId1" name="Fail" onchange="submit()" style="display:none" />
+                                                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="DRAFT" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="SUBMITTED" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="CORRECTION(PTJ)" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="APPROVED(PTJ)" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="REJECTED(PTJ)" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="PICKED UP(PTJ)" />
+                                                        <a onclick="document.getElementById('FailMyKad61').click()"><button class='btn btn-success'>1</button></a>
+                                                        <input type="submit" id="FailMyKad61" name="Fail" onchange="submit()" style="display:none" />
+                                                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="DELIVERED(PTJ)" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="RECEIVED(BPO)" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="POSTED(BPO)" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="PICK-UP" />
+                                                        0<input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" method="post" onsubmit="return verify()">
+                                                        <input type="hidden" name="CKAMPUS" />
+                                                        <input type="hidden" name="KOD_PTJ" value="J07" />
+                                                        <input type="hidden" name="CJENIS_MOHON" />
+                                                        <input type="hidden" name="CSTATUS2" />
+                                                        <input type="hidden" name="idtempoh" />
+                                                        <input type="hidden" name="CSTATUSDESC" value="RECEIVED" />
+                                                        <a onclick="document.getElementById('FailMyKad131').click()"><button class='btn btn-success'>1</button></a>
+                                                        <input type="submit" id="FailMyKad131" name="Fail" onchange="submit()" style="display:none" />
+                                                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br /><br />
+                                </div>
+                            </div>
+                            <!-- end: Senarai -->
+                            <!-- begin: Senarai Permohonan-->
+                            <div class="card shadow-sm mb-5">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <span>Senarai Permohonan SysMel - Urusetia</span>
+                                    </div>
+                                    <div class="card-toolbar">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div style="overflow-x: auto;">
+                                        <div id="IdTable_PermohonanSysmel_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="row mb-1"><div class="col-sm-6 d-flex align-items-center justify-content-start"><div id="IdTable_PermohonanSysmel_filter" class="dataTables_filter"><label>Carian : <input type="search" class="form-control form-control-sm form-control-solid" placeholder="" aria-controls="IdTable_PermohonanSysmel"></label></div></div><div class="col-sm-6 d-flex align-items-center justify-content-end"><div class="dt-buttons btn-group flex-wrap"> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="IdTable_PermohonanSysmel" type="button" title="PDF"><span>PDF</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="IdTable_PermohonanSysmel" type="button" title="MS Excel"><span>Excel</span></button> </div></div></div><div class="table-responsive">
+                                                <div class="dataTables_scroll">
+                                                    <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                                                        <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 895.594px; padding-right: 0px;">
+                                                            <table class="table table-sm table-striped table-row-bordered gy-5 gs-7 dataTable no-footer" style="margin-left: 0px; width: 895.594px;">
+                                                                <thead class="table-success">
+                                                                    <tr class="text-start fs-7 text-uppercase gs-0">
+                                                                        <th style="vertical-align: top; text-align: center; width: 21px;" class="dt-left sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                                                                            <label class="checkbox checkbox-single checkbox-outline">
+                                                                                <input type="checkbox" value="" id="mass_select_all" data-to-table="tasks" class="group-checkable form-check-input">
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </th>
+                                                                        <th style="vertical-align: top; width: 14.7188px;" width="5%" class="sorting sorting_asc" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Bil: activate to sort column descending">Bil</th>
+                                                                        <th style="vertical-align: top; width: 67.4062px;" width="8%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="No Pesanan: activate to sort column ascending">No Pesanan</th>
+                                                                        <th style="vertical-align: top; width: 56.1094px;" width="20%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Pemohon: activate to sort column ascending">Pemohon</th>
+                                                                        <th style="vertical-align: top; width: 53.5547px;" width="20%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Penerima: activate to sort column ascending">Penerima</th>
+                                                                        <th style="vertical-align: top; width: 41.1094px;" width="5%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Status</th>
+                                                                        <th style="vertical-align: top; width: 54.8438px;" width="5%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Tarikh Mohon: activate to sort column ascending">Tarikh Mohon</th>
+                                                                        <th style="vertical-align: top; width: 81.8672px;" width="5%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="No Tracking: activate to sort column ascending">No Tracking</th>
+                                                                        <th style="vertical-align: top; width: 52.2188px;" width="20%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Catatan: activate to sort column ascending">Catatan</th>
+                                                                        <th style="vertical-align: top; width: 40.9453px;" width="5%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="QRLaluan: activate to sort column ascending">QR<br>Laluan</th>
+                                                                        <th style="vertical-align: top; width: 43.6406px;" width="5%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Jenis Mohon: activate to sort column ascending">Jenis Mohon</th>
+                                                                        <th style="vertical-align: top; width: 55.2656px;" width="5%" class="sorting" tabindex="0" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Tindakan: activate to sort column ascending">Tindakan</th>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div><div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%;">
+                                                        <table class="table table-sm table-striped table-row-bordered gy-5 gs-7 dataTable no-footer" id="IdTable_PermohonanSysmel" aria-describedby="IdTable_PermohonanSysmel_info" style="width: 901px;">
+                                                            <thead class="table-success">
+                                                                <tr class="text-start fs-7 text-uppercase gs-0" style="height: 1.5px;">
+                                                                    <th style="vertical-align: top; text-align: center; width: 21px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" class="dt-left sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                                                                        <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                                                            <label class="checkbox checkbox-single checkbox-outline">
+                                                                                <input type="checkbox" value="" id="mass_select_all" data-to-table="tasks" class="group-checkable form-check-input">
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th style="vertical-align: top; width: 14.7188px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="5%" class="sorting sorting_asc" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Bil: activate to sort column descending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Bil</div></th>
+                                                                    <th style="vertical-align: top; width: 67.4062px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="8%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="No Pesanan: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">No Pesanan</div></th>
+                                                                    <th style="vertical-align: top; width: 56.1094px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="20%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Pemohon: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Pemohon</div></th>
+                                                                    <th style="vertical-align: top; width: 53.5547px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="20%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Penerima: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Penerima</div></th>
+                                                                    <th style="vertical-align: top; width: 41.1094px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="5%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Status</div></th>
+                                                                    <th style="vertical-align: top; width: 54.8438px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="5%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Tarikh Mohon: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Tarikh Mohon</div></th>
+                                                                    <th style="vertical-align: top; width: 81.8672px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="5%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="No Tracking: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">No Tracking</div></th>
+                                                                    <th style="vertical-align: top; width: 52.2188px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="20%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Catatan: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Catatan</div></th>
+                                                                    <th style="vertical-align: top; width: 40.9453px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="5%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="QRLaluan: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">QR<br>Laluan</div></th>
+                                                                    <th style="vertical-align: top; width: 43.6406px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="5%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Jenis Mohon: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Jenis Mohon</div></th>
+                                                                    <th style="vertical-align: top; width: 55.2656px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" width="5%" class="sorting" aria-controls="IdTable_PermohonanSysmel" rowspan="1" colspan="1" aria-label="Tindakan: activate to sort column ascending"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Tindakan</div></th>
+                                                                </tr>
+                                                            </thead>
+
+
+                                                            <tbody id="IdTable_PermohonanSysmel_body">
+
+                                                                <tr class="m-datatable__row odd" style="left: 0px; background-color: white">
+                                                                    <td style="text-align:center" class=" dt-left"><span><i class="la la-check fs-2 text-maroon"></i></span></td>
+                                                                    <td style="text-align:center" class="sorting_1">1</td>
+                                                                    <td style="text-align:center">
+                                                                        <form action="/sysmel/SysMel/PermohonanPengirim" id="IdPermohonanMel" method="post">
+                                                                            <input type="hidden" name="CSME_MOHON_PK_ENC" value="y4vASLASHbuOFycWvdIC4rMozg==">
+                                                                            <input type="hidden" name="CSME_MOHON_DETAIL_PK_ENC" value="nbeFcEkcCAMPURTWF6Z9mvh5Mhw==">
+                                                                            <input type="hidden" name="KOD_PROCESS" value="SCREENURUSETIA">
+                                                                            <a onclick="document.getElementById('Mel1').click()" style="color:blue; cursor:pointer;">JPL202400018</a>
+                                                                            <input type="submit" id="Mel1" style="display:none">
+                                                                            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi_WxAPucfM6_TIcPr82pqVjIvKH1tPTQJ7GLkBzB15e-yH2of8jyG1c4F2HNjM556-YpjRBX7uVUWrIZE9-xVfo3hrElxvPza8TPRxBwDTE8i9VkPRxwbMlYuSs31WXb8c">
+                                                                        </form>
+                                                                    </td>
+                                                                    <td>SYED MOHD ANWAR ALHABSHI B SYED HAMED</td>
+                                                                    <td>
+                                                                        ZUL
+                                                                    </td>
+                                                                    <td style="text-align:center" class="form-status">PICKED UP(PTJ)</td>
+                                                                    <td style="text-align:center">25/07/2024 02:36 PM</td>
+                                                                    <td style="text-align:center">
+                                                                        <a href="https://tracking.pos.com.my/tracking/EHE108177925MY" target="_blank">EHE108177925MY</a>
+                                                                        <a onclick="fnCallModalButiranKiriman(this);" data-id="nbeFcEkcCAMPURTWF6Z9mvh5Mhw==~~jC8Xy4ZQDcz7Stk5DtgfLw==" class="btn btn-success btn-sm font-weight-bold mt-3" data-bs-toggle="tooltip" data-bs-placement="top" title="" style="padding-right:10px;padding-left:10px;" data-bs-original-title="Papar Butiran Kiriman">
+                                                                            <i class="bi bi-pencil-square"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        Hantar utk kelulusan.
+                                                                    </td>
+                                                                    <td style="text-align:center">
+                                                                        <img src="https://dgmicro.utm.my/api/qr/api/GetQRCode?system=sysmel&amp;validation=KEYAPI-QR-21X1-4X011&amp;qrid=38d5b54c-4f6-20240725024149" width="50px" height="50px" class="pointer" onclick="window.open('/sysmel/SysMel/QR_FileView/?id=QjgRgBqGNSNxplIl7iLnIQ==~38d5b54c-4f6-20240725024149', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=50,width=600,height=600');" alt="Kod QR">
+                                                                    </td>
+                                                                    <td style="text-align:center">POSLAJU</td>
+                                                                    <td style="text-align:center">
+                                                                        <form action="/sysmel/SysMel/TrackingMel" id="IdMyTracking" method="post">
+                                                                            <input type="hidden" name="NO_PESANAN" value="JPL202400018">
+                                                                            <input type="hidden" name="SME_MOHON_DETAIL_PK_ENC" value="nbeFcEkcCAMPURTWF6Z9mvh5Mhw==">
+                                                                            <input type="hidden" name="SCREEN_FROM" value="SCREENURUSETIA">
+                                                                            <a onclick="document.getElementById('Tracking_1').click()" class="btn btn-sm btn-light-info" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Status Pengesanan" aria-label="Status Pengesanan"><i class="bi bi-geo-alt-fill" style="font-size: 15px;"></i></a>
+                                                                            <input type="submit" id="Tracking_1" style="display: none">
+                                                                            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi_WxAPucfM6_TIcPr82pqVjIvKH1tPTQJ7GLkBzB15e-yH2of8jyG1c4F2HNjM556-YpjRBX7uVUWrIZE9-xVfo3hrElxvPza8TPRxBwDTE8i9VkPRxwbMlYuSs31WXb8c">
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div><div id="IdTable_PermohonanSysmel_processing" class="dataTables_processing" style="display: none;">Processing...</div>
+                                            </div><div class="row"><div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"><div class="dataTables_length" id="IdTable_PermohonanSysmel_length"><label><select name="IdTable_PermohonanSysmel_length" aria-controls="IdTable_PermohonanSysmel" class="form-select form-select-sm form-select-solid select2-hidden-accessible" data-select2-id="select2-data-9-d53l" tabindex="-1" aria-hidden="true"><option value="10" data-select2-id="select2-data-11-4jkg">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select><span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-10-mkz4" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-select form-select-sm form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-IdTable_PermohonanSysmel_length-xv-container" aria-controls="select2-IdTable_PermohonanSysmel_length-xv-container"><span class="select2-selection__rendered" id="select2-IdTable_PermohonanSysmel_length-xv-container" role="textbox" aria-readonly="true" title="10">10</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></label></div><div class="dataTables_info" id="IdTable_PermohonanSysmel_info" role="status" aria-live="polite">Showing 1 to 1 of 1 records</div></div><div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end"><div class="dataTables_paginate paging_simple_numbers" id="IdTable_PermohonanSysmel_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="IdTable_PermohonanSysmel_previous"><a href="#" aria-controls="IdTable_PermohonanSysmel" data-dt-idx="0" tabindex="0" class="page-link"><i class="previous"></i></a></li><li class="paginate_button page-item active"><a href="#" aria-controls="IdTable_PermohonanSysmel" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="IdTable_PermohonanSysmel_next"><a href="#" aria-controls="IdTable_PermohonanSysmel" data-dt-idx="2" tabindex="0" class="page-link"><i class="next"></i></a></li></ul></div></div></div>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                </div>
+                            </div>
+                            <!-- End: Senarai Permohonan -->
+                            <!-- Begin: Ulasan -->
+                            <!-- End: Ulasan -->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Post-->
+                    <!--begin::Modal-->
+                    <div class="modal fade" id="m_modal_butirankiriman" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Butiran Kiriman</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <input type="hidden" id="IdHiddenSmeMohonPkEnc" />
+                                    <input type="hidden" id="IdHiddenSmeMohonDetailPkEnc" />
+                                    <input type="hidden" id="IdHiddenDimensiBeratPkEnc" />
+                                    <input type="hidden" id="IdHiddenInsuranPkEnc" />
+                                    <input type="hidden" id="IdHiddenSysmelNo" />
+                                    <input type="hidden" id="IdHiddenNamaPengirim" />
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card flexible">
+                                        <div class="col-12 box info mb-5">
+                                            <div class="row mt-2">
+                                                <h4 class="card-title mb-2">
+                                                    <span>Maklumat Penerima</span>
+                                                </h4>
+                                                <div class="col-lg-3">
+                                                    <label class="form-label">
+                                                        Nama
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <b><span id="idNamaPenerima"></span></b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label class="form-label">
+                                                        Emel
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <b><span id="idEmelPenerima"></span></b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label class="form-label">
+                                                        Alamat
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <b><span id="idAlamat1"></span></b>&nbsp;
+                                                    <b><span id="idAlamat2"></span></b>,&nbsp;
+                                                    <b><span id="idAlamat3"></span></b>,&nbsp;
+                                                    <b><span id="idNegeri"></span></b>,&nbsp;
+                                                    <b><span id="idNegara"></span></b>.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-header" style="min-height:50px;background-color:#dcf5e7;">
+                                            <h3 class="card-title">
+                                                <span>&nbsp;&nbsp; Maklumat No Tracking</span>
+                                            </h3>
+                                        </div>
+                                        <div style="background-color:#fff;padding:10px 10px 10px 10px;">
+                                            <div class="row mt-3 mb-5">
+                                                <label class="col-2 col-form-label">
+                                                    <label>No Tracking: </label>
+                                                </label>
+                                                <div class="col-3">
+                                                    <input type="text" class="form-control datatable-input text-maroon" id="idTrackingNo" placeholder="No Tracking" onkeyup="this.value = this.value.toUpperCase();">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-header" style="min-height:50px;background-color:#dcf5e7;">
+                                            <h3 class="card-title">
+                                                <span>&nbsp;&nbsp; Maklumat Kiriman</span>
+                                            </h3>
+                                        </div>
+                                        <div class="row mt-3 mb-5">
+                                            <label class="col-2 col-form-label">
+                                                <label>Berat (gram): </label>
+                                            </label>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control datatable-input text-maroon" id="idBerat" placeholder="gram(g)" min="0">
+                                            </div>
+                                        </div>
+                                        <div id="idBlokSaiz" class="row mb-5" hidden>
+                                            <label class="col-2 col-form-label">
+                                                <label>Saiz (cm): </label>
+                                            </label>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control datatable-input text-maroon" id="idPanjang" placeholder="Panjang(cm)" min="0">
+                                            </div>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control datatable-input text-maroon" id="idTinggi" placeholder="Tinggi(cm)" min="0">
+                                            </div>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control datatable-input text-maroon" id="idLebar" placeholder="Lebar(cm)" min="0">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-5">
+                                            <label class="col-2 col-form-label">
+                                                <label>Kadar Pos (RM): </label>
+                                            </label>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control datatable-input text-maroon" id="idKadarPos" placeholder="Ringgit(RM)" min="0">
+                                            </div>
+                                        </div>
+                                        <div id="idBlokInsuran" hidden>
+                                            <div class="card-header" style="min-height:50px;background-color:#dcf5e7;">
+                                                <h3 class="card-title">
+                                                    <span>&nbsp;&nbsp; Insuran</span>
+                                                </h3>
+                                            </div>
+                                            <div style="background-color:#fff;padding:10px 10px 10px 10px;">
+                                                <div class="row mt-3 mb-5">
+                                                    <label class="col-2 col-form-label">
+                                                        <label>Nilai Insuran (RM): </label>
+                                                    </label>
+                                                    <div class="col-3">
+                                                        <input type="number" class="form-control datatable-input text-maroon" id="idNilaiInsuran" placeholder="Ringgit(RM)" min="0">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    <button id="IdBtnSimpanKiriman" type="button" class="btn btn-success"><span id="IdButangActionModal">Kemaskini</span></button>
+                                    <button type="button" class="btn btn-sm btn-light-warning" id="IdBtnSimpanKirimanGray" style="display: none;"><i class="la la-search"></i> Sila Tunggu ...</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form action="/sysmel/SysMel/PermohonanUrusetiaExcel" id="ExportExcel" method="post">
+                        <input type="hidden" name="JENIS_MOHON" id="IdJenisMohonExcel">
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                    </form><form action="/sysmel/SysMel/SenaraiPermohonanUrusetia" id="myform" method="post">
+                        <input type="hidden" name="idtempoh" id="idtempoh" value="" />
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LKkSgZpJE9HhIleUwHPBi-k9t7A6s8Wd8NHvoisWu7umUOkCH1GoXhSkxYR-28bBupfEVCyOyVlIiE0ZblEEiTIawfXoo6w3tt6MtMLyR3NucXoEtEOmTtIWOAUNsGcgDxQ0ruxtmQALh8iQ_qC4ME" />
+                    </form>
+
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+                    <!--begin::Container-->
+
+                    <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <!--begin::Copyright-->
+                        <div class="text-dark order-2 order-md-1">
+                            <span class="text-muted fw-bold me-1">2022 -</span>
+                            <a href="http://www.utm.my" target="_blank" class="text-gray-800 text-hover-primary">Universiti Teknologi Malaysia</a>
+                        </div>
+                        <!--end::Copyright-->
+                        <!--begin::Menu-->
+                        <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+                            <li class="menu-item">
+                                <a data-bs-toggle="modal" data-bs-target="#HubungiKamiSysMel" class="nav-link px-3 pointer">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    &nbsp;Hubungi Kami
+                                </a>
+                            </li>
+                        </ul>
+                        <!--end::Menu-->
+                    </div>
+
+                    <!--begin:Modal-->
+                    <div class="modal fade" id="HubungiKami" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header" style="background-color: #FFA800;">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Contact Us</b> </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <table width="90%" class="table table-striped table-bordered table-hover" border="0">
+                                        <tr>
+                                            <td style="text-align:right;" width="4%">
+                                                <span class="svg-icon svg-icon-dark" style="padding-right:5px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z" />
+                                                        <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
+                                                    </svg>
+                                                </span>
+                                            </td>
+                                            <td width="48%" style="text-align:left">
+                                                UNIT SOKONGAN,<br />
+                                                BAHAGIAN INNOVASI DIGITAL (DDI),<br />
+                                                JABATAN PERKHIDMATAN DIGITAL,<br />
+                                                UTM JOHOR BAHRU
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right; background-color: #FFFFFF;">
+                                                <span class="svg-icon svg-icon-dark svg-icon-2x">
+                                                    <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Clock.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <path d="M12,22 C7.02943725,22 3,17.9705627 3,13 C3,8.02943725 7.02943725,4 12,4 C16.9705627,4 21,8.02943725 21,13 C21,17.9705627 16.9705627,22 12,22 Z" fill="#000000" opacity="0.3" />
+                                                            <path d="M11.9630156,7.5 L12.0475062,7.5 C12.3043819,7.5 12.5194647,7.69464724 12.5450248,7.95024814 L13,12.5 L16.2480695,14.3560397 C16.403857,14.4450611 16.5,14.6107328 16.5,14.7901613 L16.5,15 C16.5,15.2109164 16.3290185,15.3818979 16.1181021,15.3818979 C16.0841582,15.3818979 16.0503659,15.3773725 16.0176181,15.3684413 L11.3986612,14.1087258 C11.1672824,14.0456225 11.0132986,13.8271186 11.0316926,13.5879956 L11.4644883,7.96165175 C11.4845267,7.70115317 11.7017474,7.5 11.9630156,7.5 Z" fill="#000000" />
+                                                        </g>
+                                                    </svg><!--end::Svg Icon-->
+                                                </span>
+                                            </td>
+                                            <td style="text-align:left; background-color:#FFFFFF;">
+                                                Sunday - Wednesday : 8:00 AM - 5:00 PM<br />
+                                                Thursday : 08:00 AM - 03:30 PM<br /><br />
+                                                Break Hour : <br />
+                                                Sunday - Thursday : 01:00 PM - 02:00 PM <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right;">
+                                                <span class="svg-icon svg-icon-dark" style="padding-right:5px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                                    </svg>
+                                                </span>
+                                            </td>
+                                            <td style="text-align:left">
+                                                07-5530145/ 07-5530440 / 07-5530130
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right; background-color: #FFFFFF;">
+                                                <span class="svg-icon svg-icon-dark svg-icon-2x">
+                                                    <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Mail.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <path d="M5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z" fill="#000000" />
+                                                        </g>
+                                                    </svg><!--end::Svg Icon-->
+                                                </span>
+                                            </td>
+                                            <td style="text-align: left; background-color: #FFFFFF;">eContractor@utm.my</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end:Modal-->
+                    <!--begin:Modal SysMel-->
+                    <div class="modal fade" id="HubungiKamiSysMel" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header" style="background-color: #FFA800;">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Hubungi Kami</b> </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <table width="90%" class="table table-striped table-bordered table-hover" border="0">
+                                        <tr>
+                                            <td style="text-align:right;" width="4%">
+                                                <span class="svg-icon svg-icon-dark" style="padding-right:5px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z" />
+                                                        <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
+                                                    </svg>
+                                                </span>
+                                            </td>
+                                            <td width="48%" style="text-align:left">
+                                                BAHAGIAN PENGURUSAN ORGANISASI,<br />
+                                                JABATAN PENDAFTAR,<br />
+                                                UNIVERSITI TEKNOLOGI MALAYSIA,<br />
+                                                81310 SKUDAI, JOHOR BAHRU, JOHOR
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right; background-color: #FFFFFF;">
+                                                <span class="svg-icon svg-icon-dark svg-icon-2x">
+                                                    <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Clock.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <path d="M12,22 C7.02943725,22 3,17.9705627 3,13 C3,8.02943725 7.02943725,4 12,4 C16.9705627,4 21,8.02943725 21,13 C21,17.9705627 16.9705627,22 12,22 Z" fill="#000000" opacity="0.3" />
+                                                            <path d="M11.9630156,7.5 L12.0475062,7.5 C12.3043819,7.5 12.5194647,7.69464724 12.5450248,7.95024814 L13,12.5 L16.2480695,14.3560397 C16.403857,14.4450611 16.5,14.6107328 16.5,14.7901613 L16.5,15 C16.5,15.2109164 16.3290185,15.3818979 16.1181021,15.3818979 C16.0841582,15.3818979 16.0503659,15.3773725 16.0176181,15.3684413 L11.3986612,14.1087258 C11.1672824,14.0456225 11.0132986,13.8271186 11.0316926,13.5879956 L11.4644883,7.96165175 C11.4845267,7.70115317 11.7017474,7.5 11.9630156,7.5 Z" fill="#000000" />
+                                                        </g>
+                                                    </svg><!--end::Svg Icon-->
+                                                </span>
+                                            </td>
+                                            <td style="text-align:left; background-color:#FFFFFF;">
+                                                Sunday - Wednesday : 8:00 AM - 5:00 PM<br />
+                                                Thursday : 08:00 AM - 03:30 PM<br /><br />
+                                                Break Hour : <br />
+                                                Sunday - Thursday : 01:00 PM - 02:00 PM <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right;">
+                                                <span class="svg-icon svg-icon-dark" style="padding-right:5px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                                    </svg>
+                                                </span>
+                                            </td>
+                                            <td style="text-align:left">
+                                                07-5530145/ 30440 / 30130
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right; background-color: #FFFFFF;">
+                                                <span class="svg-icon svg-icon-dark svg-icon-2x">
+                                                    <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Mail.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <path d="M5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z" fill="#000000" />
+                                                        </g>
+                                                    </svg><!--end::Svg Icon-->
+                                                </span>
+                                            </td>
+                                            <td style="text-align: left; background-color: #FFFFFF;">bpo@utm.my</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end:Modal SysMel-->
+                    <!--end::Container-->
+                </div>
+                <!--end::Footer-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Root-->
+    <!--end::Main-->
+    <!--begin::Scrolltop-->
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+        <span class="svg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+    </div>
+    <!--end::Scrolltop-->
+    <!--begin::Modals-->
+    <!--end::Modals-->
+    <!--begin::Javascript-->
+    <script>var hostUrl = "~/assets/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="/sysmel/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/sysmel/assets/js/scripts.bundle.js"></script>
+    <script src="/sysmel/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dual-listbox/dist/dual-listbox.min.js"></script>
+    <!--end::Global Javascript Bundle-->
+
+    <script src="/sysmel/js/SysMel/SenaraiPermohonanUrusetia.js?v=MeQSKQZa0ttbox2617XjknVJOmTf1oHFBt8tUz0oA18" type="text/javascript"></script>
+
+    <!--end::Javascript-->
+    <script>
+        $(document).ready(function () {
+            closeLoadingPage();
+
+            $("button, a").one("submit", function () {
+                var _this = $(this);
+                _this.prop("disabled", true);
+                _this.addClass("disabled");
+
+                setTimeout(function () {
+                    _this.prop("disabled", false);
+                    _this.removeClass("disabled");
+                }, 2000);
+            });
+        });
+
+        $("a.menu-link:not([href='#'])").click(function () {
+            showLoadingPage();
+        });
+
+        function showLoadingPage() {
+            var loader = $("#IdLoadingPage");
+
+            if (!loader.parent().hasClass("page-loading")) {
+                $("body").addClass("page-loading");
+            }
+            loader.show();
+        }
+
+        function closeLoadingPage() {
+            var loader = $("#IdLoadingPage");
+            if (loader.parent().hasClass("page-loading")) {
+                loader.parent().removeClass("page-loading")
+            }
+            loader.hide();
+        }
+        function sanitize(str) {
+            return String(str).replace(/[^\w. ]/gi, function (c) {
+                return '&#' + c.charCodeAt(0) + ';';
+            });
+        }
+        function isAllowed(str) {
+
+            if (RegExp(/[^\w. ]/gi).test(str)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+            //return String(str).replace(/[^\w. ]/gi, function (c) {
+            //    return '&#' + c.charCodeAt(0) + ';';
+            //});
+        }
+    </script>
+    <script>
+        $('.aside-toggle').click(function () {
+            var isOpened = $('#sidemenu').toggleClass('opened').hasClass('opened');
+            if (isOpened) {
+                // the menu is closed
+                $("#sidemenu").addClass("d-none");
+            } else {
+                // the menu is opened
+                $("#sidemenu").removeClass("d-none");
+            }
+        });
+    </script>
+    <script>
+
+        var _path = $('#IdPathServerMain').val();
+
+        //alert(_path);
+        //check session
+        var checkSessionTime = function () {
+            var time;
+            window.onload = resetTimer();
+
+            var timeIdle;
+            window.onload = resetIdleTimer;
+            // DOM Events
+            window.onload = resetIdleTimer;
+            window.onmousemove = resetIdleTimer;
+            window.onmousedown = resetIdleTimer;  // catches touchscreen presses as well
+            window.ontouchstart = resetIdleTimer; // catches touchscreen swipes as well
+            window.onclick = resetIdleTimer;      // catches touchpad clicks as well
+            window.onkeypress = resetIdleTimer;
+            window.addEventListener('scroll', resetIdleTimer, true); // improved; see comments
+
+            //check session
+            function checkLogout() {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: _path + '/Home/checkSession',
+                    data: '{}',
+                    success: function (data) {
+                        if (data.sessionValue == true) {
+                            resetTimer();
+                        }
+                        else {
+                            //alert(1);
+                            location.href = _path + '/Login/Logout';
+                        }
+                    },
+                    error: function (xhr) {
+                        //alert(2);
+                        location.href = _path + '/Login/Logout';
+                    }
+                });
+            }
+
+            //check session
+            function resetTimer() {
+                clearTimeout(time);
+                time = setTimeout(checkLogout, 30000)
+                // 1000 milliseconds = 1 second
+            }
+
+            //check idle
+            function logout() {
+                var url_back = window.location.href;
+
+                let timerInterval
+                Swal.fire({
+                    title: 'You have been idle for too long!',
+                    html: 'You will be logout in <b></b> seconds.<br> <strong>Continue?</strong>',
+                    type: "warning",
+                    confirmButtonText: 'Yes, stay login!',
+                    timer: 10000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        //Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                            Swal.getContent().querySelector('b')
+                                .textContent = Swal.getTimerLeft() / 1000
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        Swal.fire({
+                            title: 'Logging Out',
+                            text: 'Redirecting...',
+                            type: 'info',
+                            showConfirmButton: false
+                        });
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            //url:  _path + '/Home/setSession',
+                            url: _path + '/Login/Logout',
+                            data: '{}',
+                            success: function () {
+                            },
+                            error: function () {
+                            }
+                        });
+                        //location.href = '/Login/Logout/'
+                        //alert(123);
+                        //location.href =  _path + '/Login/Logout/?service=' + url_back;
+                        location.href = _path + '/Login/Logout';
+                    }
+                })
+            }
+
+            //check idle
+            function resetIdleTimer() {
+                clearTimeout(timeIdle);
+                timeIdle = setTimeout(logout, 900000)
+            }
+        };
+
+        window.onload = function () {
+            checkSessionTime();
+        }
+
+    </script>
+</body>
+<!--end::Body-->
+</html>

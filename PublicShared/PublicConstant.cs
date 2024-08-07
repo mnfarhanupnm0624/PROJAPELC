@@ -66,9 +66,9 @@ namespace APELC.PublicShared
         public static string ConnUpnmDbAkademik()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            string _userEnc = config["MySetting:UtmdbAkaUser"];
+            string _userEnc = config["MySetting:UpnmdbAkaUser"];
             string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
-            string _pawdEnc = config["MySetting:UtmdbAkaPawd"];
+            string _pawdEnc = config["MySetting:UpnmdbAkaPawd"];
             string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
             string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMUTM)));User Id=" + _user + ";Password=" + _pawd;
             return _text;
@@ -77,9 +77,9 @@ namespace APELC.PublicShared
         public static string ConnUpnmDbSmu()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            string _userEnc = config["MySetting:UtmdbSmuUser"];
+            string _userEnc = config["MySetting:UpnmdbSmuUser"];
             string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
-            string _pawdEnc = config["MySetting:UtmdbSmuPawd"];
+            string _pawdEnc = config["MySetting:UpnmdbSmuPawd"];
             string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
             string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMU)));User Id=" + _user + ";Password=" + _pawd;
             return _text;

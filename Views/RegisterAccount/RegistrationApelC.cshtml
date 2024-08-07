@@ -1,5 +1,5 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
-@* @inject IConfiguration Configuration  *@
+@inject IConfiguration Configuration  
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @inject IJsonHelper Json
 @* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
@@ -9,29 +9,33 @@
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Builder;
 @using Microsoft.AspNetCore.Hosting;
-@* @using Microsoft.Extensions.Configuration; *@
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.Extensions.Configuration;
 @using Microsoft.Extensions.DependencyInjection;
 @using System.Collections.Specialized;
 @using System;
+@using System.Data;
+@using System.Data.SqlClient;
+@using System.Configuration;
 @using System.Collections.Generic;
 @using System.Linq;
 @* @using System.Web;
 @using System.Web.UI;
 @using System.Web.UI.WebControls; *@
-@* @using System.Configuration; *@
-@using System.Data;
-@using System.Data.SqlClient;
-@* @using System.Web.Services; *@
 @* @using System.Web.Security; *@
 @* @using WebClientCore.Models.DisplayModels *@
 @using Microsoft.EntityFrameworkCore;
 @using Microsoft.Extensions.Hosting;
 @* @using SecurityMaintenance.Models; *@
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Mvc.Razor;
+@using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+@model CarianPerananApelCMain
 
 @{
 #pragma warning disable CS8602
-    // string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
-    // string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+    
 
     // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
     // var _MohonApelCPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
@@ -39,8 +43,8 @@
     // var _statusaktifPemohonApelC = ApelCUser.GetApel(Context.Session).STATUS_AKTIF_PEMOHON;
 
     // public ConfigureServices(IServiceCollection services);
-    // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
-    // var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
 #pragma warning restore CS8602
 
     // var _disablelink = "disable-link";
@@ -201,10 +205,15 @@
                                 <div class="text-block text-center my-3">
                                     <span class="text-small font-weight-semibold">Telah berdaftar ?</span>
                                     <label class="text-small">
-                                        <a class="col-sm-6 col-form">
-                                            @* <a data-toggle="modal" href="#forgotpwdModal" class="float-right-lg"> Lupa Kata Laluan</a> *@
-                                            <button type="button" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal" class="btn btn-danger btn-block float-right-lg" type="reset">Log Masuk</button>
-                                        </a>
+                                       @*  <a class="col-sm-6 col-form"> *@
+                                        <a class="col-sm-6 col-form" id="IdClickBackToLogin" name="IdClickBackToLogin" href="javascript:myClickButton('BackToLogin')">
+                                                Log Masuk
+                                                @* <button onclick="myClickButton('RegistrationApelC')">Daftar Baru</button>
+                                                @*  <button type="button" id="IdClickRegistrationApelC" name="IdClickRegistrationApelC" class="btn btn-success submit-btn btn-block" onClick="myClickButton('RegistrationApelC')">Daftar Akaun Baru</button> *@
+                                            </a>
+                                            @* <a data-toggle="modal" href="#forgotpwdModal" class="float-right-lg"> Log Masuk</a> *@
+                                           @*  <button type="button" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal" class="btn btn-danger btn-block float-right-lg" type="reset">Log Masuk</button> *@
+                                        @* </a> *@
                                     </label>
                                 </div>
                             </form>
@@ -218,25 +227,29 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="/apelc/js/vendor.bundle.base.js"></script>
-    <script src="/apelc/js/vendor.bundle.addons.js"></script>
+    <script src="apelc/js/vendor.bundle.base.js"></script>
+    <script src="apelc/js/vendor.bundle.addons.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="/apelc/js/off-canvas.js"></script>
-    <script src="/apelc/js/misc.js"></script>
+    <script src="apelc/js/off-canvas.js"></script>
+    <script src="apelc/js/misc.js"></script>
     <!-- endinject -->
 
     <script type="text/javascript">
         function myClickButton(id) {
             if (id == "UnderConstraction") {
                 $('#IdClickUnderConstraction').click();
-            } else if (id == "RegistrationApelC") {
-                $('#IdClickRegistrationApelC').click();
-            } else if (id == "BackToLogin") {
+            }  else if (id == "BackToLogin") {
                 $('#IdClickBackToLogin').click();
             }
         }
     </script>
+    @using (Html.BeginForm("", "LoginPageApelC", FormMethod.Post))
+    {
+        <button type="submit" class="menu-link" id="IdClickBackToLogin" formaction="@_path01/Login/LoginPageApelC" style="display: none;">Skrin Login</button>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+
+    }
 
 </body>
 

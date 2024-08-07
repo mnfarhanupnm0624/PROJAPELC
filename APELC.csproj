@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Login\LoginPageApelC.cshtml" />
     <Content Remove="Views\SenaraiPermohonan\SenaraiPermohonanApelC.cshtml" />
     <Content Remove="Views\Senarai\SenaraiPermohonanApelC.cshtml" />
   </ItemGroup>
@@ -30,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConfigurationSection.Inheritance.Extension" Version="1.0.3" />
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="DevExpress.Win.WinterJoySkin" Version="1.0.2" />
     <PackageReference Include="linq2db" Version="6.0.0-preview.1" />
@@ -38,16 +38,27 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Razor" Version="6.0.32" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.6.24327.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.6.24327.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.0-preview.6.24327.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.0-preview.6.24327.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.6.24327.7" />
     <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
     <PackageReference Include="MySql.Data" Version="8.0.28" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Views\Home\Dashboard.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -63,16 +74,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Login\LoginPageApelC.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Login\LoginPageApelC.cshtml" />
     <_ContentIncludedByDefault Remove="Views\SenaraiPermohonan\SenaraiPermohonanApelC.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Login\LoginPageApelC.cshtml" />
     <None Include="Views\SenaraiPermohonan\SenaraiPermohonanApelC.cshtml" />
   </ItemGroup>
 

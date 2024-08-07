@@ -1,61 +1,57 @@
-﻿@inject IHttpContextAccessor HttpContextAccessor;
-@inject IConfiguration Configuration;  
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
-@inject IJsonHelper Json;
-@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel; *@
-@* @model ModelQRCode; *@
-@using APELC.Helper;
-@using Microsoft.AspNetCore.Http;
-@using Microsoft.AspNetCore.Html;
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration  
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IJsonHelper Json
+@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
+@* @model ModelQRCode *@
+@using APELC.Helper
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Builder;
 @using Microsoft.AspNetCore.Hosting;
 @using Microsoft.AspNetCore.Authorization;
 @using Microsoft.AspNetCore.Identity;
-@using Microsoft.Extensions.Configuration; 
+@using Microsoft.Extensions.Configuration;
 @using Microsoft.Extensions.DependencyInjection;
 @using System.Collections.Specialized;
 @using System;
+@using System.IO;
+@using System.Data;
+@using System.Data.SqlClient;
+@using System.Configuration;
 @using System.Collections.Generic;
 @using System.Linq;
 @* @using System.Web;
 @using System.Web.UI;
 @using System.Web.UI.WebControls; *@
-@using System.Configuration; 
-@using System.Data;
-@using System.Data.SqlClient;
-@* @using System.Web.Services; *@
 @* @using System.Web.Security; *@
 @* @using WebClientCore.Models.DisplayModels *@
 @using Microsoft.EntityFrameworkCore;
 @using Microsoft.Extensions.Hosting;
 @* @using SecurityMaintenance.Models; *@
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Mvc.Razor;
 @using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-@* @using DependencyInjectionSample.Interfaces;
-@using DependencyInjectionSample.Services; *@
+@model CarianPerananApelCMain
 
 @{
-    #pragma warning disable CS8602
+#pragma warning disable CS8602
     // string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
     // string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
-
     // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
     // var _MohonApelCPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
     // var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
     // var _statusaktifPemohonApelC = ApelCUser.GetApel(Context.Session).STATUS_AKTIF_PEMOHON;
-
-    //public static ConfigureServices(IServiceCollection services);
-    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"];
     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
-#pragma warning restore CS8602
-
     // var _disablelink = "disable-link";
     // var _color = "color:lightgray";
     // var _bullet = "";
     // var _disablelinkS = "disable-link";
     // var _colorS = "color:lightgray";
     // var _bulletS = "";
+#pragma warning restore CS8602
 }
-
 <style>
     .menu-item2 {
         margin: 0 0 -5px 0;
@@ -103,17 +99,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sistem Pendaftaran APEL</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="/apelc/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="/apelc/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="/apelc/css/vendor.bundle.addons.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="apelc/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="apelc/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="apelc/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="apelc/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="apelc/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="apelc/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="/apelc/css/style.css">
-    <link rel="stylesheet" href="/apelc/css/custom.css">
+    <link rel="stylesheet" href="apelc/css/style.css">
+    <link rel="stylesheet" href="apelc/css/custom.css">
+    <!-- inject:css -->
+   @*  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="/apelc/images/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png" /> *@
+    <!-- endinject -->
+    <link rel="shortcut icon" href="apelc/images/favicon.png" />
     <input type="hidden" id="IdPathServerMain" value="@_path01">
 </head>
 
@@ -132,15 +149,15 @@
                                                 <div class="col-md-12 text-center">
                                                     <img src="/apelc/images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
                                                     <h3>Sistem Pendaftaran APEL</h3>
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label">ID Pengguna</label>
+                                                        <label for="Idusername" class="col-sm-4 col-form-label">ID Pengguna</label>
                                                         <div class="col-sm-8">
-                                                            <input id="Idusername" name="username" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" />
+                                                            <input autocomplete="on" id="Idusername" name="username" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,9 +165,9 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label">Kata Laluan</label>
+                                                        <label for="Idpassword" class="col-sm-4 col-form-label">Kata Laluan</label>
                                                         <div class="col-sm-8">
-                                                            <input type="Idpassword" name="password" id="password" class="form-control" placeholder="******" />
+                                                            <input type="password" name="password" id="Idpassword" class="form-control" placeholder="******" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -158,12 +175,12 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label">Jenis APEL</label>
+                                                        <label for="dd_jnsApel" class="col-sm-4 col-form-label">Jenis APEL</label>
                                                         <div class="col-sm-8">
                                                             <select id="dd_jnsApel" name="dd_jnsApel" class="form-control" onChange="get_jnsApel()">
                                                                 @* <option value="">- SILA PILIH -</option> *@
                                                                 @* <option value="APEL.A" disabled> APELC.A</option> *@
-                                                                <option value="APEL.C" > APELC.C</option>
+                                                                <option value="APEL.C"> APEL.C</option>
                                                                 @* <option value="APEL.Q" disabled> APELC.Q</option> *@
                                                             </select>
                                                             <input id="txt_jnsApel" name="txt_jnsApel" type="hidden" value="">
@@ -174,25 +191,26 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
-                                                        @* <a class="col-sm-6 col-form" id="IdClickRegistrationApelC" href="#IdClickRegistrationApelC"> *@
-                                                        <a class="col-sm-6 col-form"> 
-                                                            @* Daftar Baru  *@
-                                                           @*  <button onclick="myClickButton('RegistrationApelC')">Daftar Baru</button> *@
-                                                            <button type="button" id="IdClickRegistrationApelC" name="btn_daftar" class="btn btn-success submit-btn btn-block" onClick="myClickButton('RegistrationApelC')">Daftar Akaun Baru</button>
+                                                        @*<a class="col-sm-6 col-form" id="IdClickRegistrationApelC">
+                                                            Daftar Baru *@
+                                                        <a class="col-sm-6 col-form" id="IdClickRegistrationApelC" name="IdClickRegistrationApelC" href="javascript:myClickButton('RegistrationApelC')">
+                                                            Daftar Baru
+                                                            @* <button onclick="myClickButton('RegistrationApelC')">Daftar Baru</button>
+                                                           @*  <button type="button" id="IdClickRegistrationApelC" name="IdClickRegistrationApelC" class="btn btn-success submit-btn btn-block" onClick="myClickButton('RegistrationApelC')">Daftar Akaun Baru</button> *@
                                                         </a>
-                                                        <a class="col-sm-6 col-form" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal">
+                                                        <a data-target="#IdforgotpwdModal" class="col-sm-6 col-form" id="IdforgotpwdModal" name="IdforgotpwdModal" data-toggle="modal" href="#IdforgotpwdModal">
                                                             Lupa Kata Laluan
                                                             @* <a data-toggle="modal" href="#forgotpwdModal" class="float-right-lg"> Lupa Kata Laluan</a> *@
                                                             @* <button type="button" id="btn_lupa" name="btn_lupa" data-toggle="modal" href="#IdforgotpwdModal" class="btn btn-danger btn-block float-right-lg" type="reset">Lupa Kata Laluan</button> *@
-                                                    </a>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <button type="button" id="IdButtonSubmit" name="btn_login" class="btn btn-primary submit-btn btn-block">Log Masuk</button>
-                                                <br />
-                                                 <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Sila Tunggu ...... </button>
-                                                 <br />
+                                                <button type="button" id="IdButtonSubmit" name="IdButtonSubmit" class="btn btn-primary submit-btn btn-block">Log Masuk</button>
+                                               @*  <br />
+                                                <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Sila Tunggu ...... </button>
+                                                <br /> *@
                                                 <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
                                             </div>
                                         </div>
@@ -212,40 +230,32 @@
     </div>
 
     <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="/apelc/js/vendor.bundle.base.js"></script>
-    <script src="/apelc/js/vendor.bundle.addons.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!--plugins: js-- >
+    <script src="apelc/js/vendor.bundle.base.js" ></script>
+    <script src="apelc/js/vendor.bundle.addons.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="/apelc/js/off-canvas.js"></script>
-    <script src="/apelc/js/misc.js"></script>
+    <script src="apelc/js/off-canvas.js"></script>
+    <script src="apelc/js/misc.js"></script>
     <!-- endinject -->
-    <!-- inject:js -->
-    <script src="/apelc/js/off-canvas.js"></script>
-    <script src="/apelc/js/misc.js"></script>
-    <!-- endinject -->
-    <!-- inject:js -->
-    <script src="/apelc/js/off-canvas.js"></script>
-    <!-- endinject -->
-    <!-- CKEditor -->
-    <script src="/apelc/js/CKEditor/ckeditor.js?dt=20240724021723&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
 
     <!-- Forgot Password Modal Start -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="IdforgotpwdModal" class="modal fade">
+    @* <div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="#IdforgotpwdModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="frmForgot" id="frmForgot" method="post" action="class/secure/forgot-password-recovery-mail.php">
+                @* <form id="frmForgot" method="post" action="class/secure/forgot-password-recovery-mail.php"> 
                     <div class="modal-header">
                         <h3 class="modal-title">Lupa Kata Laluan</h3>
-                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+                        <button aria-hidden="false" data-dismiss="modal" class="close" type="button">&times;</button>
                     </div>
                     <div class="modal-body">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-lg-4 control-label" for="inputSuccess">ID Pengguna (Alamat Emel)</label>
+                                <label for="user-login-name" class="col-lg-4 control-label">ID Pengguna (Alamat Emel)</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="icon_profile"></i></span>
-                                    <input name="user-login-name" type="text" id="user-login-name" class="form-control" placeholder="eg: user@gmail.com" autofocus>
+                                    <input autocomplete="on" type="text" id="user-login-name" class="form-control" placeholder="eg: user@gmail.com" autofocus>
                                 </div>
                                 <br />
                             </div>
@@ -255,42 +265,123 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                         <button type="submit" id="forgot-password" name="forgot-password" class="btn btn-primary" onClick="return validate(this);">Simpan</button>
                     </div>
-                </form>
+                @* </form> 
+            </div>
+        </div>
+    </div> *@
+    <!-- Forgot Password Modal End -->
+    <!-- Forgot Password Modal Start -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="IdforgotpwdModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @* <form id="frmForgot" id="frmForgot" method="post" action="class/secure/forgot-password-recovery-mail.php"> *@
+                    <div class="modal-header">
+                        <h3 class="modal-title">Lupa Kata Laluan</h3>
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="inputSuccess">ID Pengguna</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                                    <input name="user-login-name" type="text" id="user-login-name" class="form-control" placeholder="eg: user@gmail.com" autofocus>
+                                </div>
+                                <br />
+                                @* <label class="col-lg-4 control-label" for="inputSuccess">Kata Laluan Baru</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icon_key"></i></span>
+                                    <input name="user-password" type="password" id="user-password" class="form-control" placeholder="********" autofocus>
+                                </div>
+                                <br />
+                                <label class="col-lg-6 control-label" for="inputSuccess">Pengesahan Kata Laluan Baru</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                                    <input class="form-control" type="password" name="user-repassword" id="user-repassword" placeholder="********">
+                                </div> *@
+                            </div>
+                        </fieldset>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="forgot-password" name="forgot-password" class="btn btn-primary" onClick="return validate(this);">Simpan</button>
+                    </div>
+                @* </form> *@
             </div>
         </div>
     </div>
     <!-- Forgot Password Modal End -->
- <!--begin::Modal footer-->
-                <div class="modal-footer flex-right" style="background-color: antiquewhite;">
-                    <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
-                    <button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
-                    &nbsp;
-                    <button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
-                    <div>
-                        <small id="IdModalLoginLable"></small>
-                    </div>
-                </div>
- <!--end::Modal footer-->
-
+    <!--begin::Modal footer-->
+    @* <div class="modal-footer flex-right" style="background-color: antiquewhite;">
+    <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
+    <button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
+    &nbsp;
+    <button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
+    <div>
+    <small id="IdModalLoginLable"></small>
+    </div>
+    </div> *@
+    <!--end::Modal footer-->
+    <!--begin::Javascript-->
+    <script>var hostUrl = "~/assets/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="apelc/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="apelc/assets/js/scripts.bundle.js"></script>
+    <script src="apelc/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dual-listbox/dist/dual-listbox.min.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!-- CKEditor -->
+    <script src="/apelc/js/CKEditor/ckeditor.js?dt=20240724021723&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
     <script type="text/javascript">
         function myClickButton(id) {
             if (id == "UnderConstraction") {
                 $('#IdClickUnderConstraction').click();
             } else if (id == "RegistrationApelC") {
+                // var button = document.getElementById('IdClickRegistrationApelC');
+                // button.addEventListener('click', function () {
+                //     var anchor = document.getElementById('myAnchor');
+                //     anchor.href = '<./Login/RegistrationApelC>';
+                // });
                 $('#IdClickRegistrationApelC').click();
-            } else if (id == "BackToLogin") {
-                $('#IdClickBackToLogin').click();
             }
         }
-     
+        $('#dialogVault').modal({ show: true });
+
+        $(document).ready(function () { $("#IdforgotpwdModal").modal('show'); });
+
+        // var button = document.getElementById('updateLinkButton');
+        // button.addEventListener('click', function () {
+        //     var anchor = document.getElementById('myAnchor');
+        //     anchor.href = '<https://www.example.com>';
+        // });
     </script>
+      
+
+    
+    @*@using (Html.BeginForm("", "RegistrationApelC", FormMethod.Post))
+    {
+    <form action="Views/Login/RegistrationApelC" method="post">
+    <button type="submit" class="menu-link" id="IdClickRegistrationApelC" formaction="Views/Login/RegistrationApelC" style="display: none;">Skrin Daftar Akaun</button>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+    </form>
+    } *@
     @using (Html.BeginForm("", "RegistrationApelC", FormMethod.Post))
     {
-        <form action="./Login/RegistrationApelC" method="post">
-            <button type="submit" class="menu-link" id="IdClickRegistrationApelC" formaction="./Login/RegistrationApelC" style="display: none;">Skrin Daftar Akaun</button>
-            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-        </form>
+        <button type="submit" class="menu-link" id="IdClickRegistrationApelC" formaction="@_path01/Login/RegistrationApelC" style="display: none;">Skrin Daftar Akaun</button>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
+
     }
+
+
+    @* @using (Html.BeginForm("", "ApelC", FormMethod.Post))
+    {
+    <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="@_path01/ApelC/UnderConstraction" style="display: none;">Skrin Under Construction</button>
+    <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="@_path01/ApelC/BackToDashboard" style="display: none;">Skrin Dashboard APELC.C</button>
+    } *@
 </body>
 
 </html>

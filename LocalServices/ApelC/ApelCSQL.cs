@@ -185,19 +185,50 @@
 
         // Begin:
         // DDL
-        internal static string SQL_ListKatAduan()
+        internal static string SQL_STATUS_KEPUTUSAN_PORTFOLIO()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 67 AND AKTIF = 'Y'
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS STATUS_PORTFOLIO,
+            NAMA_PARAMETER_EN AS STATUS_PORTFOLIO_EN 
+            FROM  apelc.APELC_PARAMETER WHERE KUMPULAN_FK=16 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
+        internal static string SQL_STATUS_KEPUTUSAN_UJIAN_CBRN()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS STATUS_UJIAN_CABARAN,
+            NAMA_PARAMETER_EN AS STATUS_UJIAN_CABARAN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=18 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+
+
+        internal static string SQL_STATUS_PENGHANTARAN_PORTFOLIO()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS DESKRIPSI_STATUS_PENGAHANTARAN_PORTFOLIO,
+            NAMA_PARAMETER_EN AS DESKRIPSI_STATUS_PENGAHANTARAN_PORTFOLIO_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=29 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+
+        internal static string SQL_STATUS_KEHADIRAN_UJIAN_CBRN()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS DESKRIPSI_STATUS_KEHADIRAN_UJIAN_CBRN,
+            NAMA_PARAMETER_EN AS DESKRIPSI_STATUS_KEHADIRAN_UJIAN_CBRN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=9 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+
 
         internal static string SQL_ListKatPemohon()
         {

@@ -1,9 +1,64 @@
+using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-
+using System.Security.Cryptography.X509Certificates;
+//using WebApplicationI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ConfigureHttpsDefaults(httpsOptions =>
+    {
+        var certPath = Path.Combine(builder.Environment.ContentRootPath, "cert.pem");
+        var keyPath = Path.Combine(builder.Environment.ContentRootPath, "key.pem");
+
+        httpsOptions.ServerCertificate = X509Certificate2.CreateFromPemFile(certPath, 
+                                         keyPath);
+    });
+});
+
+//var builder = new ConfigurationBuilder()
+//           .SetBasePath(Directory.GetCurrentDirectory())
+//           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+//IConfigurationRoot configuration = builder.Build();
+
+//var greeting = configuration.GetValue(typeof(String), "AppSettings:Greeting").ToString();
+
+//var myConnectString = builder.Configuration.GetConnectionString("MyConnectionString");
+
+var myConnectString = builder.Configuration.GetConnectionString("DefaultConnection");
+var settingsAppName = builder.Configuration["Settings:AppName"];
+var settingsContactEmail = builder.Configuration["Settings:ContactEmail"];
+var settingsAddress = builder.Configuration["Settings:Address"];
+var theme = builder.Configuration["Theme"];
+
+Console.WriteLine("myConnectString="+ myConnectString);
+Console.WriteLine("settingsAppName=" + settingsAppName);
+Console.WriteLine("settingsContactEmail=" + settingsContactEmail);
+Console.WriteLine("settingsAddress=" + settingsAddress);
+Console.WriteLine("theme=" + theme);
+//Console.WriteLine(greeting);
+//Console.WriteLine(myConnectString);
+//Console.Read();
+
+//var builder = new ConfigurationBuilder()
+//           .SetBasePath(Directory.GetCurrentDirectory())
+//           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+//IConfigurationRoot configuration = builder.Build();
+
+//var greeting = configuration.GetValue(typeof(String), "APELC:applicationUrl").ToString();
+
+//var myConnectString = configuration.GetConnectionString("DatabaseMySQL8:ConnectionStrings:Default");
+
+//Console.WriteLine(greeting);
+//Console.WriteLine(myConnectString);
+//Console.Read();
 
 // Add services to the container.
+builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSession();
