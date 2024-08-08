@@ -71,6 +71,8 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="wwwroot\apelc\assets\dist\" />
+    <Folder Include="wwwroot\apelc\assets\js\custom\utilities\modals\" />
   </ItemGroup>
 
   <ItemGroup>
