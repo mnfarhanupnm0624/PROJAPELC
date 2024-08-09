@@ -21828,12 +21828,12 @@ ul {
 /* === Landing screens === */
 /* Auth */
 .auth.auth-bg-1 {
-    background: url("../images/auth/register.jpg");
+    background: url("../images/UPNM.jpg");
     background-size: cover;
 }
 
 .auth.register-bg-1 {
-    background: url("../images/auth/register.jpg") center center no-repeat;
+    background: url("../images/UPNM.jpg") center center no-repeat;
     background-size: cover;
 }
 

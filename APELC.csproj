@@ -71,8 +71,24 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="wwwroot\apelc\assets\dist\" />
     <Folder Include="wwwroot\apelc\assets\js\custom\utilities\modals\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder1\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder2\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder3\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder4\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder5\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder6\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder7\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder8\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder9\" />
+    <Folder Include="wwwroot\apelc\assets\media\NewFolder\" />
+    <Folder Include="wwwroot\apelc\assets\plugins\custom\datatables\" />
+    <Folder Include="wwwroot\apelc\assets\plugins\custom\fullcalendar\" />
+    <Folder Include="wwwroot\apelc\assets\plugins\global\fonts\%40fortawesome\" />
+    <Folder Include="wwwroot\apelc\assets\plugins\global\fonts\bootstrap-icons\" />
+    <Folder Include="wwwroot\apelc\assets\plugins\global\fonts\fonticon\" />
+    <Folder Include="wwwroot\apelc\assets\plugins\global\fonts\line-awesome\" />
+    <Folder Include="wwwroot\apelc\assets\plugins\global\sourcemaps\" />
   </ItemGroup>
 
   <ItemGroup>

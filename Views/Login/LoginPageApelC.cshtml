@@ -75,6 +75,8 @@
         cursor: default;
         color: #696969;
     }
+
+    
 </style>
 
 @* @if (_statusRyApelC == "APPROVED")
@@ -97,39 +99,56 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Sistem Pendaftaran APEL</title>
     <!-- plugins:css -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="apelc/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-   @*  <link href="apelc/assets/css/bootstrap.min.css" rel="stylesheet"> *@
-    <link href="apelc/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <!--end::Global Stylesheets Bundle-->
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />        
+    <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used for this page only)-->
-    <link href="apelc/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
     <link href="apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="apelc/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />  
     <!--end::Vendor Stylesheets-->
     <!-- endinject -->
     <!-- plugin css for this page -->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="apelc/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    @*  <link href="apelc/assets/css/bootstrap.min.css" rel="stylesheet"> *@
+    <link href="apelc/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
     <!-- End plugin css for this page --> 
     <!-- inject:css -->
-    @* <link rel="stylesheet" href="apelc/css/style.css">
-    <link rel="stylesheet" href="apelc/css/custom.css"> *@
+    <link rel="stylesheet" href="apelc/css/style.css">
+    <link rel="stylesheet" href="apelc/css/custom.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="apelc/images/favicon.png" />
-    <input type="hidden" id="IdPathServerMain" value="@_path01">
+    <link rel="shortcut icon" href="apelc/images/favicon.png" />   
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--begin::Google tag-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>   
     <style>
         h1 {
             color: green;
         }
 
+        .text {
+            font-size: 30px;
+            width: 60%;
+        }
         .btn {
             background-color: light-green;
             padding: 12px 16px;
             font-size: 16px;
+            width: 60%;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
         }
 
             .btn:hover {
@@ -139,6 +158,7 @@
 </head>
 
 <body>
+    <input type="hidden" id="IdPathServerMain" value="@_path01">
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
             <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
@@ -146,72 +166,84 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auto-form-wrapper" style="padding-left:0 !important; padding-right:0 !important">
                             @* <form id="form1" name="form1" action="class/login_exe.php" method="post"> *@
-                                <div class="col-12 grid-margin">
+                                <div class="col-16 grid-margin">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-group row">
                                                 <div class="col-md-12 text-center">
                                                     <img src="/apelc/images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
-                                                    <h3>Sistem Pendaftaran APEL</h3>
-
+                                                    <h3>Sistem Pendaftaran APEL</h3>            
                                                 </div>
                                             </div>
                                             <div class="row">
-                                            <div class="col-14">
+                                            <div class="col-md-12">
                                                     <div class="form-group row">
-                                                        <label for="username" class="col-sm-8 col-form-label">ID Pengguna</label>
+                                                        <label for="username" class="col-sm-8 col-form-label">
+                                                            <span class="required">ID Pengguna</span>
+                                                               <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan ID Pengguna"></i>
+                                                        </label>
                                                         <div class="d-flex">
-                                                            <input autocomplete="on" id="username" name="username" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" /><br>
-                                                            <a class="btn btn-outline-secondary ml-auto btn-icon btn-success"  data-bs-toggle="tooltip" data-bs-placement="right" title="Daftar Akaun Baru?">
-                                                            <i href="#" class="fi fi-ss-calendar-lines-pen" data-bs-toggle="modal" data-bs-placement="center"></i>
+                                                        <input autocomplete="on" id="Idusername" name="Idusername" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Akaun Baru? Sila klik pada butang kanan untuk mendaftar akaun baru" /><br>
+                                                        <a  href="#" class="btn btn-outline-secondary ml-auto btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#modaldaftarAkaun">
+                                                            <i class="fa fa-pencil"></i>
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                            <div class="col-14">
+                                            <div class="col-md-12">
                                                     <div class="form-group row">
-                                                        <label for="password" class="col-sm-8 col-form-label">Kata Laluan</label>
+                                                        <label for="password" class="col-sm-8 col-form-label">
+                                                        <span class="required">Kata Laluan</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan Kata Laluan"></i>
+                                                        </label>
                                                         <div class="d-flex">
-                                                        <input type="password" name="password" id="password" class="form-control" placeholder="******" /><br>
-                                                        <a class="btn btn-outline-secondary ml-auto btn-icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Lupa Kata Laluan?">
-                                                        <i href="#" class="bi bi-chat-square-text-fill fs-4 me-2" data-bs-toggle="modal" data-bs-placement="center"></i>
+                                                        <input type="password" name="Idpassword" id="Idpassword" class="form-control" placeholder="******" data-bs-toggle="tooltip" data-bs-placement="top" title="Lupa Kata Laluan? Sila klik pada butang kanan untuk menetapkan semula kata laluan" /><br>
+                                                        <a href="#" class="btn btn-outline-secondary ml-auto btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#forgotpwdModal">
+                                                            <i class="fa fa-question"></i>
                                                         </a>
-                                                        </div>
+                                                       </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                            <div class="col-14">
-                                                    <div class="form-group row">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
                                                         <label for="dd_jnsApel" class="col-sm-8 col-form-label">Jenis APEL</label>
                                                     <div class="d-flex">
-                                                            <select id="dd_jnsApel" name="dd_jnsApel" class="form-control" onChange="get_jnsApel()">
+                                                          <select id="dd_jnsApel" name="dd_jnsApel" class="form-control" onChange="get_jnsApel()">
                                                                 @* <option value="">- SILA PILIH -</option> *@
                                                                 @* <option value="APEL.A" disabled> APELC.A</option> *@
                                                                 <option value="APEL.C"> APEL.C</option>
                                                                 @* <option value="APEL.Q" disabled> APELC.Q</option> *@
-                                                            </select>
-                                                            <input id="txt_jnsApel" name="txt_jnsApel" type="hidden" value="">
-                                                        </div>
-                                                    </div>
+                                                          </select>
+                                                   </div>
                                                 </div>
                                             </div>
+                                         </div>
                                             <br>
-                                            <div class="row">
-                                                <button type="button" id="IdButtonSubmit" name="IdButtonSubmit" class="btn btn-primary submit-btn btn-block">Log Masuk</button>
-                                            </div>
-                                            <br>
+                                        <div class="center">
+                                            <button type="submit" id="kt_modal_log_masuk_submit" class="btn btn-primary">
+                                                <span class="indicator-label">Log Masuk</span>
+                                                <span class="indicator-progress" id="kt_modal_log_masuk_submitGray" style="display: none;">
+                                                    Sila Tunggu...
+                                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                         </div>
+                              
                                         @*  <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Sila Tunggu ...... </button>
-                                                <br /> *@          
-                                            <div class="row">
+                                                <br /> *@
+                                        <div class="center">
+                                            @* <div class="col-md-12" data-bs-placement="center"> *@
                                                 <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
+                                            @* </div> *@
                                             </div>
                                     </div>
                                     </div>
                                     <div class="text-block text-center my-3">
-                                        <small><!--<a href="https://www.upnm.edu.my/" target="_blank">Pentadbir?</a> -->&copy; 2023 v2.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
+                                        <small><!--<a href="https://www.upnm.edu.my/" target="_blank">Pentadbir?</a> -->&copy; 2023 v1.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
                                     </div>
                                 </div>
                             @* </form> *@
@@ -225,11 +257,218 @@
     </div>
 
     <!-- container-scroller -->
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <!--plugins: js-- >
-    @* <script src="apelc/js/vendor.bundle.base.js" ></script>
-    <script src="apelc/js/vendor.bundle.addons.js"></script> *@
-    <!-- endinject -->
+    <!--begin::Modal - Daftar Akaun-->
+    <div class="modal fade" id="modaldaftarAkaun" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form id="kt_modal_IddaftarAkaun_form" class="form" action="#">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">Daftar Akaun Baru</h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Heading-->
+                        <!--begin::Input group-->
+                        <div class="row g-9 mb-8">
+                            <!--begin::Col-->
+                            <div class="col-md-6 fv-row">
+                                <label class="required fs-6 fw-semibold mb-2">Kategori</label>
+                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" name="kategori">
+                                    <option value="">PELAJAR UPNM</option>
+                                </select>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">No Matrik</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan no matrik"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="No_Matrik" type="text" class="form-control form-control-solid" placeholder="No Matrik" name="No_Matrik" value="No_Matrik" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">No Kad Pengenalan</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan no kad pengenalan"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="No_kad_pengenalan" type="text" class="form-control form-control-solid" placeholder="No kad pengenalan" name="No_kad_pengenalan" value="No_kad_pengenalan" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Nama</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan nama"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="Nama" type="text" class="form-control form-control-solid" placeholder="Nama" name="Nama" value="Nama" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Alamat Emel</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan alamat emel"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="Alamat_Emel"  type="text" class="form-control form-control-solid" placeholder="Alamat Emel" name="Alamat_Emel" value="Alamat_Emel" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">No telefon</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan no telefon"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="No_telefon" type="text" class="form-control form-control-solid" placeholder="No telefon" name="No_telefon" value="No_telefon" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Kata Laluan</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan kata laluan"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="Kata_Laluan" type="password" class="form-control form-control-solid" placeholder="Kata Laluan" name="Kata_Laluan" value="Kata_Laluan" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Pengesahan Kata Laluan</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan pengesahan kata laluan"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="Pengesahan_Kata_Laluan"  type="password" class="form-control form-control-solid" placeholder="Pengesahan Kata Laluan" name="Pengesahan_Kata_Laluan" value="Pengesahan_Kata_Laluan" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Actions-->
+                        <div class="center">
+                            <button type="submit" id="kt_modal_register_submit" class="btn btn-primary">
+                                <span class="indicator-label">Daftar</span>
+                                <span class="indicator-progress" id="kt_modal_register_submitGray" style="display: none;">
+                                    Sila Tunggu...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Daftar Akaun-->
+    <!--begin::Modal - Forgot Password-->
+    <div class="modal fade" id="forgotpwdModal" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form id="kt_modal_forgotpwdModal_form" class="form" action="#">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">Tetapan semula kata laluan</h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Heading-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Alamat Emel</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan alamat emel"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" placeholder="Alamat Emel" name="Alamat_Emel" value="Alamat Emel" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Actions-->
+                        <div class="center">
+                            <button type="submit" id="kt_modal_reset_password_submit" class="btn btn-primary">
+                                <span class="indicator-label">Hantar</span>
+                                <span class="indicator-progress">
+                                    Sila Tunggu...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Forgot Password-->
+    <!--begin::Modal - View Users-->
+    <!--begin::Modal footer-->
+@*     <div class="modal-footer flex-right" style="background-color: antiquewhite;">
+    <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
+    <button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
+    &nbsp;
+    <button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
+    <div>
+    <small id="IdModalLoginLable"></small>
+    </div>
+    </div> *@
+    <!--end::Modal footer-->
+    <!--begin::Javascript-->
+    <script>var hostUrl = "apelc/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="apelc/assets/plugins/global/plugins.bundle.js"></script> 
+    <script src="apelc/assets/js/scripts.bundle.js"></script>  
+     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <!--begin::Vendors Javascript(used for this page only)-->
     <script src="apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -249,244 +488,9 @@
    @*  <script src="apelc/js/off-canvas.js"></script>
     <script src="apelc/js/misc.js"></script> *@
     <!-- endinject -->
-    <!-- Forgot Password Modal End -->
-    <!--begin::Modal - New Target-->
-    <div class="modal fade" id="forgotpwdModal" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content rounded">
-                <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <!--begin:Form-->
-                    <form id="kt_modal_new_target_form" class="form" action="#">
-                        <!--begin::Heading-->
-                        <div class="mb-13 text-center">
-                            <!--begin::Title-->
-                            <h1 class="mb-3">Set First Target</h1>
-                            <!--end::Title-->
-                            <!--begin::Description-->
-                            <div class="text-muted fw-semibold fs-5">
-                                If you need more info, please check
-                                <a href="#" class="fw-bold link-primary">Project Guidelines</a>.
-                            </div>
-                            <!--end::Description-->
-                        </div>
-                        <!--end::Heading-->
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Target Title</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Target Title" name="target_title" />
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="row g-9 mb-8">
-                            <!--begin::Col-->
-                            <div class="col-md-6 fv-row">
-                                <label class="required fs-6 fw-semibold mb-2">Assign</label>
-                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="target_assign">
-                                    <option value="">Select user...</option>
-                                    <option value="1">Karina Clark</option>
-                                    <option value="2">Robert Doe</option>
-                                    <option value="3">Niel Owen</option>
-                                    <option value="4">Olivia Wild</option>
-                                    <option value="5">Sean Bean</option>
-                                </select>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-md-6 fv-row">
-                                <label class="required fs-6 fw-semibold mb-2">Due Date</label>
-                                <!--begin::Input-->
-                                <div class="position-relative d-flex align-items-center">
-                                    <!--begin::Icon-->
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                    <span class="svg-icon svg-icon-2 position-absolute mx-4">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.3" d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z" fill="currentColor" />
-                                            <path d="M6 6C5.4 6 5 5.6 5 5V3C5 2.4 5.4 2 6 2C6.6 2 7 2.4 7 3V5C7 5.6 6.6 6 6 6ZM11 5V3C11 2.4 10.6 2 10 2C9.4 2 9 2.4 9 3V5C9 5.6 9.4 6 10 6C10.6 6 11 5.6 11 5ZM15 5V3C15 2.4 14.6 2 14 2C13.4 2 13 2.4 13 3V5C13 5.6 13.4 6 14 6C14.6 6 15 5.6 15 5ZM19 5V3C19 2.4 18.6 2 18 2C17.4 2 17 2.4 17 3V5C17 5.6 17.4 6 18 6C18.6 6 19 5.6 19 5Z" fill="currentColor" />
-                                            <path d="M8.8 13.1C9.2 13.1 9.5 13 9.7 12.8C9.9 12.6 10.1 12.3 10.1 11.9C10.1 11.6 10 11.3 9.8 11.1C9.6 10.9 9.3 10.8 9 10.8C8.8 10.8 8.59999 10.8 8.39999 10.9C8.19999 11 8.1 11.1 8 11.2C7.9 11.3 7.8 11.4 7.7 11.6C7.6 11.8 7.5 11.9 7.5 12.1C7.5 12.2 7.4 12.2 7.3 12.3C7.2 12.4 7.09999 12.4 6.89999 12.4C6.69999 12.4 6.6 12.3 6.5 12.2C6.4 12.1 6.3 11.9 6.3 11.7C6.3 11.5 6.4 11.3 6.5 11.1C6.6 10.9 6.8 10.7 7 10.5C7.2 10.3 7.49999 10.1 7.89999 10C8.29999 9.90003 8.60001 9.80003 9.10001 9.80003C9.50001 9.80003 9.80001 9.90003 10.1 10C10.4 10.1 10.7 10.3 10.9 10.4C11.1 10.5 11.3 10.8 11.4 11.1C11.5 11.4 11.6 11.6 11.6 11.9C11.6 12.3 11.5 12.6 11.3 12.9C11.1 13.2 10.9 13.5 10.6 13.7C10.9 13.9 11.2 14.1 11.4 14.3C11.6 14.5 11.8 14.7 11.9 15C12 15.3 12.1 15.5 12.1 15.8C12.1 16.2 12 16.5 11.9 16.8C11.8 17.1 11.5 17.4 11.3 17.7C11.1 18 10.7 18.2 10.3 18.3C9.9 18.4 9.5 18.5 9 18.5C8.5 18.5 8.1 18.4 7.7 18.2C7.3 18 7 17.8 6.8 17.6C6.6 17.4 6.4 17.1 6.3 16.8C6.2 16.5 6.10001 16.3 6.10001 16.1C6.10001 15.9 6.2 15.7 6.3 15.6C6.4 15.5 6.6 15.4 6.8 15.4C6.9 15.4 7.00001 15.4 7.10001 15.5C7.20001 15.6 7.3 15.6 7.3 15.7C7.5 16.2 7.7 16.6 8 16.9C8.3 17.2 8.6 17.3 9 17.3C9.2 17.3 9.5 17.2 9.7 17.1C9.9 17 10.1 16.8 10.3 16.6C10.5 16.4 10.5 16.1 10.5 15.8C10.5 15.3 10.4 15 10.1 14.7C9.80001 14.4 9.50001 14.3 9.10001 14.3C9.00001 14.3 8.9 14.3 8.7 14.3C8.5 14.3 8.39999 14.3 8.39999 14.3C8.19999 14.3 7.99999 14.2 7.89999 14.1C7.79999 14 7.7 13.8 7.7 13.7C7.7 13.5 7.79999 13.4 7.89999 13.2C7.99999 13 8.2 13 8.5 13H8.8V13.1ZM15.3 17.5V12.2C14.3 13 13.6 13.3 13.3 13.3C13.1 13.3 13 13.2 12.9 13.1C12.8 13 12.7 12.8 12.7 12.6C12.7 12.4 12.8 12.3 12.9 12.2C13 12.1 13.2 12 13.6 11.8C14.1 11.6 14.5 11.3 14.7 11.1C14.9 10.9 15.2 10.6 15.5 10.3C15.8 10 15.9 9.80003 15.9 9.70003C15.9 9.60003 16.1 9.60004 16.3 9.60004C16.5 9.60004 16.7 9.70003 16.8 9.80003C16.9 9.90003 17 10.2 17 10.5V17.2C17 18 16.7 18.4 16.2 18.4C16 18.4 15.8 18.3 15.6 18.2C15.4 18.1 15.3 17.8 15.3 17.5Z" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                    <!--end::Icon-->
-                                    <!--begin::Datepicker-->
-                                    <input class="form-control form-control-solid ps-12" placeholder="Select a date" name="due_date" />
-                                    <!--end::Datepicker-->
-                                </div>
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8">
-                            <label class="fs-6 fw-semibold mb-2">Target Details</label>
-                            <textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Type Target Details"></textarea>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Tags</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target priorty"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input class="form-control form-control-solid" value="Important, Urgent" name="tags" />
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-stack mb-8">
-                            <!--begin::Label-->
-                            <div class="me-5">
-                                <label class="fs-6 fw-semibold">Adding Users by Team Members</label>
-                                <div class="fs-7 fw-semibold text-muted">If you need more info, please check budget planning</div>
-                            </div>
-                            <!--end::Label-->
-                            <!--begin::Switch-->
-                            <label class="form-check form-switch form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1" checked="checked" />
-                                <span class="form-check-label fw-semibold text-muted">Allowed</span>
-                            </label>
-                            <!--end::Switch-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="mb-15 fv-row">
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack">
-                                <!--begin::Label-->
-                                <div class="fw-semibold me-5">
-                                    <label class="fs-6">Notifications</label>
-                                    <div class="fs-7 text-muted">Allow Notifications by Phone or Email</div>
-                                </div>
-                                <!--end::Label-->
-                                <!--begin::Checkboxes-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Checkbox-->
-                                    <label class="form-check form-check-custom form-check-solid me-10">
-                                        <input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="email" checked="checked" />
-                                        <span class="form-check-label fw-semibold">Email</span>
-                                    </label>
-                                    <!--end::Checkbox-->
-                                    <!--begin::Checkbox-->
-                                    <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="phone" />
-                                        <span class="form-check-label fw-semibold">Phone</span>
-                                    </label>
-                                    <!--end::Checkbox-->
-                                </div>
-                                <!--end::Checkboxes-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Actions-->
-                        <div class="text-center">
-                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
-                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
-                                <span class="indicator-label">Submit</span>
-                                <span class="indicator-progress">
-                                    Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end:Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Modal - New Target-->
-    <!--begin::Modal footer-->
-    @* <div class="modal-footer flex-right" style="background-color: antiquewhite;">
-    <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
-    <button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
-    &nbsp;
-    <button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
-    <div>
-    <small id="IdModalLoginLable"></small>
-    </div>
-    </div> *@
-    <!--end::Modal footer-->
-    <!--begin::Javascript-->
-    <script>var hostUrl = "apelc/";</script>
-    <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="apelc/assets/plugins/global/plugins.bundle.js"></script> 
-    <script src="apelc/assets/js/scripts.bundle.js"></script>  
     <!-- CKEditor -->
     <script src="/apelc/js/CKEditor/ckeditor.js?dt=20240724021723&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
-    <script type="text/javascript">
-        function myClickButton(id) {
-            if (id == "UnderConstraction") {
-                $('#IdClickUnderConstraction').click();
-            } else if (id == "RegistrationApelC") {
-                // var button = document.getElementById('IdClickRegistrationApelC');
-                // button.addEventListener('click', function () {
-                //     var anchor = document.getElementById('myAnchor');
-                //     anchor.href = '<./Login/RegistrationApelC>';
-                // });
-                $('#IdClickRegistrationApelC').click();
-            }
-        }
-        // $('#forgotpwdModal').modal({ show: true });
-
-        // $(document).ready(function () { $("#forgotpwdModal").modal('show'); });
-
-        // var button = document.getElementById('updateLinkButton');
-        // button.addEventListener('click', function () {
-        //     var anchor = document.getElementById('myAnchor');
-        //     anchor.href = '<https://www.example.com>';
-        // });
-    </script>
     <!--end::Javascript-->
-    @*@using (Html.BeginForm("", "RegistrationApelC", FormMethod.Post))
-    {
-    <form action="Views/Login/RegistrationApelC" method="post">
-    <button type="submit" class="menu-link" id="IdClickRegistrationApelC" formaction="Views/Login/RegistrationApelC" style="display: none;">Skrin Daftar Akaun</button>
-    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-    </form>
-    } *@
-    @using (Html.BeginForm("", "RegistrationApelC", FormMethod.Post))
-    {
-        <button type="submit" class="menu-link" id="IdClickRegistrationApelC" formaction="@_path01/Login/RegistrationApelC" style="display: none;">Skrin Daftar Akaun</button>
-        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-
-    }
-
-
-    @* @using (Html.BeginForm("", "ApelC", FormMethod.Post))
-    {
-    <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="@_path01/ApelC/UnderConstraction" style="display: none;">Skrin Under Construction</button>
-    <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="@_path01/ApelC/BackToDashboard" style="display: none;">Skrin Dashboard APELC.C</button>
-    } *@
 </body>
 
 </html>
