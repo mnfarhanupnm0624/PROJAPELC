@@ -104,8 +104,8 @@ namespace APELC.LocalServices.Login
         internal static string SQL_MtdListJenisAPEL()
         {
             return "@ SELECT PARAM_PK," +
-                " NAMA_PARAMETER as CJENIS_MODUL," +
-                "NAMA_PARAMETER_EN as CJENIS_MODUL_EN" +
+                " NAMA_PARAMETER as JENIS_MODUL," +
+                "NAMA_PARAMETER_EN as JENIS_MODUL_EN" +
                 " FROM apelc.APELC_PARAMETER " +
                 " WHERE KUMPULAN_FK = 24 AND " +
                 "NAMA_PARAMETER='APEL.C'" +

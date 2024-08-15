@@ -23,11 +23,11 @@ namespace APELC.Controllers
         public string _screenCodeFunction = "HM100";
         public IActionResult LoginPageApelC()
         {
-            var _jenisApel = _context.JenisAPEL.ToList();
-            var _katpengguna = new List<KatPengguna>();
+            //var _jenisApel = _context.JenisAPEL.ToList();
+            //var _katpengguna = new List<KatPengguna>();
 
-            _jenisApel.Add(new JenisAPEL() { Id = 0, Name = "--Sila Pilih--" });
-            _katpengguna.Add(new KatPengguna() { Id = 0, Name = "--Sila Pilih--" });
+            //_jenisApel.Add(new JenisAPEL() { Id = 0, Name = "--Sila Pilih--" });
+            //_katpengguna.Add(new KatPengguna() { Id = 0, Name = "--Sila Pilih--" });
 
 
             ViewData["JenisApelData"] = new SelectList(_jenisApel.OrderBy(s => s.Id), "Id", "Name");
