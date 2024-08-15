@@ -556,3 +556,45 @@ function fnCallModalSelenggaraKatAduan(id) {
 
 
 }
+
+jQuery(document).ready(function () {
+    Index.init();
+    if ($('#IdViewBagRes').val() == '7') {
+        var _msg = $('#IdViewBagTxt').val();
+        fnGenralMessage(_msg);
+    }
+});
+
+//function fnGenralMessage(_msg)
+function fnPublicMessageTimeout(_msg) {
+    swal({
+        title: "Alert!",
+        text: _msg,
+        type: "info",
+        showCancelButton: false,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true
+    }, function () {
+        setTimeout(function () {
+            $('#IdLayout_ImageKiri').click();
+        }, 200);
+    });
+};
+
+//function fnGenralMessageOnly
+function fnPublicMessageOnly(_title, _msg, _type) {
+    swal({
+        title: _title,
+        text: _msg,
+        type: _type,
+        showCancelButton: false,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true
+    });
+};
+
+
+function fnGetCurrentDateTime() {
+    var d = new Date();
+    return d.getFullYear + "-" + d.getMonth + "-" + d.getDay + "T" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+};

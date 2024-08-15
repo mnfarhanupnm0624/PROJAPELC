@@ -1,11 +1,8 @@
-﻿/* globals Chart:false, feather:false */
-
+﻿
 "use strict";
 var Index = function () {
     var _dataTableInit = function () {
-
-
-        $('#IdButtonTest').trigger("click",function (e) {
+          $('#kt_modal_log_masuk_submit').trigger("click",function (e) {
             swal({
                 title: "Berjaya!",
                 text: "Berjaya Log Masuk",
@@ -20,12 +17,130 @@ var Index = function () {
             });
         });
 
-        $('#kt_modal_log_masuk_submit').trigger("click",function (e) {
+        $('#kt_modal_log_masuk_submit').click(function (e) {
             var _ok = true;
             var _path01 = $('#IdPathServerMain').val();
             var _userId = $('#Idusername').val().toLowerCase().trim();
             var _password = $('#Idpassword').val();
 
+            var _loginpath = $('#id_loginPath').val();
+
+            if (_userId == null || _userId.length == 0) {
+                toastr.warning("<font color='#800000'> Please Fill-In User ID.</font>");
+                _ok = false;
+            }
+            if (_password == null || _password.length == 0) {
+                toastr.warning("<font color='#800000'> Please Fill-In Password.</font>");
+                _ok = false;
+            }
+            if (_ok) {
+                $('#kt_modal_log_masuk_submitGray').show();
+                $('#kt_modal_log_masuk_submit').hide();
+                var event = _path01 + '/Login/MtdGetVerifyUserIdPasswordAjax';
+                var _data = JSON.stringify({
+                    'USERNAME': _userId, 'KATA_LALUAN': _password
+                });
+                //if (_userId == 'zaman') {
+                //    $('#IdModalLoginLable').html(event);
+                //}
+                $.ajax({
+                    type: "POST",
+                    url: event,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: _data,
+                    success: function (res) {
+                        if (res.RESULTSET == "1") {
+                            $('#IdModalLoginLable').html('');
+                            $('#IdButtonClose').click();
+                            //swal("Success!", "Successfully Login", "success");
+                            swal({
+                                title: "Berjaya Log Masuk!",
+                                text: "Klik OK untuk teruskan.",
+                                type: "success",
+                                showCancelButton: false,
+                                closeOnConfirm: false,
+                                showLoaderOnConfirm: true
+                            }, function () {
+                                setTimeout(function () {
+                                    if (_loginpath == "apelc") {
+                                        location.href = _path01 + "/Senarai/SenaraiPermohonanApelC";
+                                    }
+                                    else {
+                                        if (res.NAMA_PERANAN == "PENTADBIR APEL") {
+                                            document.getElementById("myform").submit();
+                                        } else {
+                                            $('#IdLayout_ImageKiri').onclick();
+                                        }
+                                    }
+                                }, 300);
+                            });
+                        } else {
+                            if (res.NAMA_PERANAN == "TIADA") {
+                                swal({
+                                    title: "Tiada Kebenaran Akses Sistem. Sila Hubungi Pentadbir Sistem",
+                                    text: "Klik OK untuk teruskan.",
+                                    type: "warning",
+                                    showCancelButton: false,
+                                    closeOnConfirm: false,
+                                    showLoaderOnConfirm: true
+                                });
+                            } else {
+                                swal({
+                                    title: res.RESULTSET_TEXT,
+                                    text: "Klik OK untuk teruskan.",
+                                    type: "error",
+                                    showCancelButton: false,
+                                    closeOnConfirm: false,
+                                    showLoaderOnConfirm: true
+                                });
+                            }
+                            $('#IdButtonSubmitGray').hide();
+                            $('#IdButtonSubmit').show();
+                        }
+                    },
+                    error: function (xhr, httpStatusMessage, customErrorMessage) {
+                        if (xhr.status === 410 || xhr.status === 500) {
+                            alert('Error - ' + customErrorMessage);
+                        } else {
+                            toastr.warning("<font color='#800000'> Error other than 410-500.</font>");
+                        }
+                    }
+                });
+                $('#overlay2').hide();
+            }
+        });
+
+        $('#kt_modal_log_masuk_submit').trigger("click",function (e) {
+            var _ok = true;
+            var _path01 = $('#IdPathServerMain').val();
+            var _userId = $('#Idusername').val().toLowerCase().trim();
+            var _password = $('#Idpassword').val();
+            var _jenisApel = $('#Idjenis_APEL_param').val();
+
+            $('.form-select form-select-solid').select2();
+
+            $(document).ready(function () {
+                var a = 0;
+            });
+
+            function loadJenisAPEL(obj) {
+                var value = obj.value;
+                var url = "@baseurl";
+
+                $.post(url + "Login/LoginPageApelC", { jenis_APEL_paramId: value }, function (data) {
+                    debugger;
+                    PopulateDropDown("#Idjenis_APEL_param", data);
+                });
+            }
+
+            function PopulateDropDown(jenis_APEL_paramId, list, selectedId) {
+                $(jenis_APEL_paramId).empty();
+                $(jenis_APEL_paramId).append("<option>--Please Product--</option>")
+                $.each(list, function (index, row) {
+                    $(jenis_APEL_paramId).append("<option value='" + row.id + "'>" + row.name + "</option>")
+                });
+            }
             var _loginpath = $('#id_loginPath').val();
 
             if (_userId == null || _userId.length == 0) {
@@ -36,6 +151,10 @@ var Index = function () {
                 toastr.warning("<font color='#800000'> Sila masukkan Kata Laluan.</font>");
                 _ok = false;
             }
+            if (_jenisApel == null) {
+                toastr.warning("<font color='#800000'> Sila pilih Jenis APEL.</font>");
+                _ok = false;
+            }          
             if (_ok) {
                 $('#kt_modal_log_masuk_submitGray').show();
                 $('#kt_modal_log_masuk_submit').hide();
@@ -191,7 +310,7 @@ var KatAduan = function () {
             }
         });
 
-        $('#IdBtnKemaskiniKatAduan').click(function (e) {
+        $('#IdBtnKemaskiniKatAduan').onclick(function (e) {
             var _ok = true;
             var _status = $(this).data("id");
             var _cAduanPkEnc = $('#IdAduanPkEnc').val();
@@ -221,35 +340,35 @@ var KatAduan = function () {
 }();
 
 
-jQuery(document).ready(function () {
-    KatAduan.init();
-});
+//jQuery(document).onready(function () {
+//    KatAduan.init();
+//});
 
-function fnRedrawPaparList() {
-    var table = $("#IdTableKatAduanList").DataTable({
-        "language": {
-            "lengthMenu": "Show _MENU_",
-        },
-        "dom":
-            "<'row'" +
-            "<'col-sm-6 d-flex align-items-center justify-conten-start'f>" +
-            "<'col-sm-6 d-flex align-items-center justify-content-end'B>" +
-            ">" +
-            "<'table-responsive'tr>" +
-            "<'row'" +
-            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'li>" +
-            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-            ">",
-        "buttons": [
-            {
-                extend: 'print'
-            },
-            "pdfHtml5",
-            "excelHtml5"
-        ],
-    });
+//function fnRedrawPaparList() {
+//    var table = $("#IdTableKatAduanList").DataTable({
+//        "language": {
+//            "lengthMenu": "Show _MENU_",
+//        },
+//        "dom":
+//            "<'row'" +
+//            "<'col-sm-6 d-flex align-items-center justify-conten-start'f>" +
+//            "<'col-sm-6 d-flex align-items-center justify-content-end'B>" +
+//            ">" +
+//            "<'table-responsive'tr>" +
+//            "<'row'" +
+//            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'li>" +
+//            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+//            ">",
+//        "buttons": [
+//            {
+//                extend: 'print'
+//            },
+//            "pdfHtml5",
+//            "excelHtml5"
+//        ],
+//    });
 
-};
+//};
 
 function fnTResult(res, _status) {
     var _path = $('#IdPathServer').val();
@@ -259,11 +378,12 @@ function fnTResult(res, _status) {
             _status = "Simpan";
             $('#IdBtnTambahKatAduan').show();
             $('#IdBtnTambahKatAduanGray').hide();
-        } else {
-            _status = "Kemaskini";
-            $('#IdBtnKemaskiniKatAduan').show();
-            $('#IdBtnKemaskiniKatAduanGray').hide();
         }
+       /* else {*/
+        //    _status = "Kemaskini";
+        //    $('#IdBtnKemaskiniKatAduan').show();
+        //    $('#IdBtnKemaskiniKatAduanGray').hide();
+        //}
 
         if (res.RESULTSET == "2") {
             Swal.fire({
@@ -273,7 +393,7 @@ function fnTResult(res, _status) {
                 confirmButtonText: "OK"
             }).then(function (result) {
                 if (result.value) {
-                    window.location.href = _path + '/SelenggaraAduan/SelenggaraKatAduanList';
+                    window.location.href = _path + '/Login/LoginPageApelC';
                 }
             });
         }
@@ -285,90 +405,11 @@ function fnTResult(res, _status) {
                 confirmButtonText: "OK"
             }).then(function (result) {
                 if (result.value) {
-                    window.location.href = _path + '/SelenggaraAduan/SelenggaraKatAduanList';
+                    window.location.href = _path + '/Login/LoginPageApelC';
                 }
             });
         }
     }
-}
-function fnSwitchStatus(id, status) {
-
-    //console.log(status);
-    //return false;
-
-    var _val = $(id).val();
-    var _text = _val.split("~~");
-    var _pkencnya = _text[0];
-    //var _status = _text[1];
-
-    var _path = $('#IdPathServer').val();
-    var event = _path + '/SelenggaraAduan/MtdKemaskiniStatusAktifKatAduan';
-    var _data = JSON.stringify({
-        'KAT_ADUAN_PK_ENC': _pkencnya,
-        'STATUS_AKTIF': status
-    });
-
-    $(function () {
-        // load list Modul first
-        //var _path = $('#IdPathServer').val();
-        //var eventDDL = _path + '/Menu/MtdCapaiDDLKumpulanDataAjax';
-
-        $.ajax({
-            type: "POST",
-            url: event,
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            data: _data,
-            success: function (res) {
-                var _res = res.RESULTSET;
-                if (_res == "2") {
-                    Swal.fire(
-                        "Maklumat telah berjaya dikemaskini!",
-                        "",
-                        "success"
-                    ).then(function () {
-                        var btn_kemaskini = $(id).parent().parent().closest('td').next().find(".btn_kemaskini");
-                        var btn_hapus = $(id).parent().parent().closest('td').next().find(".btn_hapus");
-                        var _stringData = res.PT_MODUL_PK_ENC + "~~KEMASKINI";
-                        console.log(btn_kemaskini[0]);
-
-                        if ($(id).prop("checked")) {
-                            btn_kemaskini.removeClass("disabled");
-                            btn_hapus.removeClass("disabled");
-                            btn_kemaskini.attr("data-id", _stringData);
-                            btn_hapus.attr("data-id", _stringData);
-
-                        }
-                        else {
-                            btn_kemaskini.addClass("disabled");
-                            btn_hapus.addClass("disabled");
-                            btn_kemaskini.removeAttr("data-id");
-                            btn_hapus.removeAttr("data-id");
-
-                        }
-
-                    });
-
-                    //console.log($(id).parent().parent());
-
-                } else {
-                    Swal.fire(
-                        "Maklumat tidak berjaya dikemaskini!",
-                        "",
-                        "error"
-                    );
-                }
-            },
-            error: function (xhr, _httpStatusMessage, customErrorMessage) {
-                if (xhr.status === 410 || xhr.status === 500) {
-                    alert(customErrorMessage);
-                } else {
-                    toastr.warning("", "<font color='#800000'>Error Code</font>");
-                }
-            }
-        });
-    });
-
 }
 
 
@@ -444,13 +485,13 @@ $("#IdBtnModalSaveData").click(function (e) {
 
                 if (xhr.status === 410 || xhr.status === 500) {
                     Swal.fire(
-                        "Failed!",
+                        "Gagal!",
                         "Rekod tidak berjaya disimpan",
                         "error"
                     );
                 } else {
                     Swal.fire(
-                        "Failed!",
+                        "Gagal!",
                         "Rekod gagal dicapai",
                         "error"
                     );
@@ -475,10 +516,6 @@ $(document).ready(function () {
         //fnsemakfile(fileToRead);
     });
 
-    $('#m_modal_KatAduanUpdate').on('shown.bs.modal', function () {
-        var fileToRead = document.getElementById("IdFileUpdate");
-        //fnsemakfile(fileToRead);
-    });
 });
 
 
@@ -552,7 +589,7 @@ function fnCallModalDaftarAkaunBaru(id) {
                 }
                 else {
                     Swal.fire(
-                        "Failed!",
+                        "Gagal!",
                         "Rekod tidak berjaya disimpan",
                         "error"
                     );
@@ -563,13 +600,13 @@ function fnCallModalDaftarAkaunBaru(id) {
 
                 if (xhr.status === 410 || xhr.status === 500) {
                     Swal.fire(
-                        "Failed!",
+                        "Gagal!",
                         "Rekod tidak berjaya disimpan",
                         "error"
                     );
                 } else {
                     Swal.fire(
-                        "Failed!",
+                        "Gagal!",
                         "Rekod gagal dicapai",
                         "error"
                     );

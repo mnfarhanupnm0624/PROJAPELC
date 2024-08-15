@@ -9,16 +9,32 @@ using APELC.LocalShared;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace APELC.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly ILogger<LoginController> _logger;
+        private readonly LoginDB _context;
         public static string _encryptCode = SecurityConstants.EncryptCode();
         public string _screenCodeFunction = "HM100";
         public IActionResult LoginPageApelC()
         {
+            var _jenisApel = _context.JenisAPEL.ToList();
+            var _katpengguna = new List<KatPengguna>();
+
+            _jenisApel.Add(new JenisAPEL() { Id = 0, Name = "--Sila Pilih--" });
+            _katpengguna.Add(new KatPengguna() { Id = 0, Name = "--Sila Pilih--" });
+
+
+            ViewData["JenisApelData"] = new SelectList(_jenisApel.OrderBy(s => s.Id), "Id", "Name");
+            ViewData["KatPenggunaData"] = new SelectList(_katpengguna.OrderBy(s => s.Id), "Id", "Name");
+
+            string host = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/";
+            ViewData["BaseUrl"] = host;
 
             //return RedirectToAction("/Login/LoginPageApelC");
             return View("./Views/Login/LoginPageApelC.cshtml");
@@ -452,7 +468,7 @@ namespace APELC.Controllers
             {
                 HttpContext.Session.SetString("_titleTop", "Sample");
                 HttpContext.Session.SetString("_titleSmall", "Encrypt-Decrypt");
-                ModelParameterHr _cariData = new();
+                ModelParameterAPEL _cariData = new();
                 return View(_cariData);
             }
             else

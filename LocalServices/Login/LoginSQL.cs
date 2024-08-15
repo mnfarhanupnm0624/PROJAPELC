@@ -101,6 +101,19 @@ namespace APELC.LocalServices.Login
             return _SQL;
         }
 
+        internal static string SQL_MtdListJenisAPEL()
+        {
+            return "@ SELECT PARAM_PK," +
+                " NAMA_PARAMETER as CJENIS_MODUL," +
+                "NAMA_PARAMETER_EN as CJENIS_MODUL_EN" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 24 AND " +
+                "NAMA_PARAMETER='APEL.C'" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
         //    internal static string SQL_MtdPentadbirAPELCWujud()
         //    {
         //        string _SQL = SQL_MtdGetAclPeranan +

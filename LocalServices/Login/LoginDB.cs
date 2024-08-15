@@ -14,13 +14,14 @@ using APELC.LocalServices.Senarai;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace APELC.LocalServices.Login
 {
     public class LoginDB
     {
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+        static readonly string ConnMySQLUpnm = PublicConstant.ConnMySQLUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         //        myConnectionString = "server=127.0.0.1;uid=root;" +
@@ -36,37 +37,54 @@ namespace APELC.LocalServices.Login
         //    MessageBox.Show(ex.Message);
         //}
 
-        public static ModelUserDTO MtdGetPhotoStaf(ModelUserDTO photo, MySqlConnection mySqlConnection)
+        //        public static ModelUserDTO MtdGetPhotoStaf(ModelUserDTO photo, MySqlConnection mySqlConnection)
+        //        {
+        //            //var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NOPEKERJA ";
+        //            var _sql = LoginSQL.SQL_GetPhoto();
+        //            ModelUserDTO _result = new();
+        //            _result.RESULTSET = "0";
+        //            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLApelUpnm))
+        //            {
+        //#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        //                ModelUserDTO _hasil = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sql, new { HRSTAFFK = photo.HRSTAFFK });
+        //#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        //                if (_hasil != null && _hasil.RESULTSET == "2")
+        //                {
+        //                    _result = _hasil;
+        //                    _result.RESULTSET = "2";
+        //                }
+        //            }
+        //            return _result;
+        //        }
+
+        public class InMemoryDBContext : DbContext
         {
-            //var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NOPEKERJA ";
-            var _sql = LoginSQL.SQL_GetPhoto();
-            ModelUserDTO _result = new();
-            _result.RESULTSET = "0";
-            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
+            public InMemoryDBContext(DbContextOptions<InMemoryDBContext> options) : base(options)
+            { }
+
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-                ModelUserDTO _hasil = dbConn.QueryFirstOrDefault<ModelUserDTO>(_sql, new { HRSTAFFK = photo.HRSTAFFK });
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-                if (_hasil != null && _hasil.RESULTSET == "2")
-                {
-                    _result = _hasil;
-                    _result.RESULTSET = "2";
-                }
+                modelBuilder.Entity<JenisAPEL>().HasMany(c => c.Products).WithOne(a => a.JenisAPEL).HasForeignKey(a => a.Idjenis_APEL_param);
+
+                modelBuilder.Seed();
             }
-            return _result;
+
+            public DbSet<JenisAPEL> JenisAPEL { get; set; }
+
+            public DbSet<KatPengguna> Categories { get; set; }
         }
 
-        // Semakan Info Wujud Super User dari Info Staf_FK di Table Peranan ACL
-        public static ModelParameterHr DB_MtdSuperUserWujud(string? _stafFk, string? _peranan)
+        // Semakan Info Wujud Super User dari Info Staf_FK di Table Peranan UPNM
+        public static ModelParameterAPEL DB_ListJenisAPEL()
         {
-            string _sql = LoginSQL.SQL_MtdSuperUserWujud();
-            ModelParameterHr _result = new();
+            string _sql = LoginSQL.SQL_MtdListJenisAPEL();
+            ModelParameterAPEL _result = new();
             _result.RESULTSET = "0";
 
-            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
+            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLUpnm))
             {
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-                ModelParameterHr _hasil = dbConn.QueryFirstOrDefault<ModelParameterHr>(_sql, new { STAF_FK = _stafFk, PERANAN_FK = _peranan });
+                ModelParameterAPEL _hasil = dbConn.QueryFirstOrDefault<ModelParameterAPEL>(_sql, new());
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 if (_hasil != null && _hasil.Value == "1")
                 {
@@ -76,6 +94,27 @@ namespace APELC.LocalServices.Login
             }
             return _result;
         }
+
+        // Semakan Info Wujud Super User dari Info Staf_FK di Table Peranan UPNM
+        //        public static ModelParameterAPEL DB_MtdSuperUserWujud(string? _stafFk, string? _peranan)
+        //        {
+        //            string _sql = LoginSQL.SQL_MtdSuperUserWujud();
+        //            ModelParameterAPEL _result = new();
+        //            _result.RESULTSET = "0";
+
+        //            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
+        //            {
+        //#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        //                ModelParameterAPEL _hasil = dbConn.QueryFirstOrDefault<ModelParameterAPEL>(_sql, new { STAF_FK = _stafFk, PERANAN_FK = _peranan });
+        //#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        //                if (_hasil != null && _hasil.Value == "1")
+        //                {
+        //                    _result = _hasil;
+        //                    _result.RESULTSET = "2";
+        //                }
+        //            }
+        //            return _result;
+        //        }
 
         // Semakan Info Wujud Pentadbir APELC dari Info Staf_FK di Table Peranan ACL
         //        public static ModelParameterHr DB_MtdPentadbirAPELCWujud(string? _stafFk, string? _peranan)

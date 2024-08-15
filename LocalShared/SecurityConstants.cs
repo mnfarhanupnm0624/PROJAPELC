@@ -51,13 +51,13 @@ namespace APELC.LocalShared
         //}
 
 
-        public readonly List<ModelParameterHr> ItemListKelulusanKP = new List<ModelParameterHr>()
+        public readonly List<ModelParameterAPEL> ItemListKelulusanKP = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "BARU", Key = "B" },
-            new ModelParameterHr { ViewField = "SOKONG", Key = "S" },
-            new ModelParameterHr { ViewField = "DILULUSKAN", Key = "L" },
-            new ModelParameterHr { ViewField = "TIDAK DILULUSKAN", Key = "TL" },
-            new ModelParameterHr { ViewField = "DIBATALKAN", Key = "BT" }
+            new ModelParameterAPEL { ViewField = "BARU", Key = "B" },
+            new ModelParameterAPEL { ViewField = "SOKONG", Key = "S" },
+            new ModelParameterAPEL { ViewField = "DILULUSKAN", Key = "L" },
+            new ModelParameterAPEL { ViewField = "TIDAK DILULUSKAN", Key = "TL" },
+            new ModelParameterAPEL { ViewField = "DIBATALKAN", Key = "BT" }
         };
 
 
@@ -85,56 +85,56 @@ namespace APELC.LocalShared
 //            string _back = _first + dice.ToString();
 //            return _back;
 //        }
-        public static List<ModelParameterHr> MtdGetDDStatusList = new()
+        public static List<ModelParameterAPEL> MtdGetDDStatusList = new()
         {
-            new ModelParameterHr { Key = "344", ViewField = "DRAFT" },
-            new ModelParameterHr { Key = "345", ViewField = "SUBMITTED" },
-            new ModelParameterHr { Key = "355", ViewField = "DELETED" },
-            new ModelParameterHr { Key = "1076", ViewField = "VERIFIED" },
-            new ModelParameterHr { Key = "1077", ViewField = "NOT VERIFIED" },
-            new ModelParameterHr { Key = "753", ViewField = "PAY" },
-            new ModelParameterHr { Key = "349", ViewField = "APPROVED" },
-            new ModelParameterHr { Key = "350", ViewField = "DISAPPROVED" },
-            new ModelParameterHr { Key = "1022", ViewField = "CORRECTION" }
+            new ModelParameterAPEL { Key = "344", ViewField = "DRAFT" },
+            new ModelParameterAPEL { Key = "345", ViewField = "SUBMITTED" },
+            new ModelParameterAPEL { Key = "355", ViewField = "DELETED" },
+            new ModelParameterAPEL { Key = "1076", ViewField = "VERIFIED" },
+            new ModelParameterAPEL { Key = "1077", ViewField = "NOT VERIFIED" },
+            new ModelParameterAPEL { Key = "753", ViewField = "PAY" },
+            new ModelParameterAPEL { Key = "349", ViewField = "APPROVED" },
+            new ModelParameterAPEL { Key = "350", ViewField = "DISAPPROVED" },
+            new ModelParameterAPEL { Key = "1022", ViewField = "CORRECTION" }
         };
 
-        public readonly List<ModelParameterHr> ItemListYaTidak = new List<ModelParameterHr>()
+        public readonly List<ModelParameterAPEL> ItemListYaTidak = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "YA", Key = "Y" },
-            new ModelParameterHr { ViewField = "TIDAK", Key = "T" }
+            new ModelParameterAPEL { ViewField = "YA", Key = "Y" },
+            new ModelParameterAPEL { ViewField = "TIDAK", Key = "T" }
         };
 
-        public readonly List<ModelParameterHr> ItemListYaBukan = new List<ModelParameterHr>()
+        public readonly List<ModelParameterAPEL> ItemListYaBukan = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "YA", Key = "1" },
-            new ModelParameterHr { ViewField = "BUKAN", Key = "2" }
+            new ModelParameterAPEL { ViewField = "YA", Key = "1" },
+            new ModelParameterAPEL { ViewField = "BUKAN", Key = "2" }
         };
 
-        public readonly List<ModelParameterHr> ItemListYaBukanYN = new List<ModelParameterHr>()
+        public readonly List<ModelParameterAPEL> ItemListYaBukanYN = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "YA", Key = "Y" },
-            new ModelParameterHr { ViewField = "BUKAN", Key = "N" }
+            new ModelParameterAPEL { ViewField = "YA", Key = "Y" },
+            new ModelParameterAPEL { ViewField = "BUKAN", Key = "N" }
         };
 
-        public readonly List<ModelParameterHr> ItemListStatusDapatRawatanKllinik = new List<ModelParameterHr>()
+        public readonly List<ModelParameterAPEL> ItemListStatusDapatRawatanKllinik = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "DAFTAR", Key = "4940" },
-            new ModelParameterHr { ViewField = "RAWATAN", Key = "4941" },
-            new ModelParameterHr { ViewField = "CETAKAN", Key = "4942" },
-            new ModelParameterHr { ViewField = "BATAL", Key = "4943" },
-            new ModelParameterHr { ViewField = "SELESAI", Key = "4935" }
+            new ModelParameterAPEL { ViewField = "DAFTAR", Key = "4940" },
+            new ModelParameterAPEL { ViewField = "RAWATAN", Key = "4941" },
+            new ModelParameterAPEL { ViewField = "CETAKAN", Key = "4942" },
+            new ModelParameterAPEL { ViewField = "BATAL", Key = "4943" },
+            new ModelParameterAPEL { ViewField = "SELESAI", Key = "4935" }
         };
 
-        internal readonly List<ModelParameterHr> ItemListKodGred = new List<ModelParameterHr>()
+        internal readonly List<ModelParameterAPEL> ItemListKodGred = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "ALL", Key = "ALL" },
-            new ModelParameterHr { ViewField = ">= Gred 41 ", Key = "> '40'" },
-            new ModelParameterHr { ViewField = "<= Gred 40 ", Key = "< '41'" },
+            new ModelParameterAPEL { ViewField = "ALL", Key = "ALL" },
+            new ModelParameterAPEL { ViewField = ">= Gred 41 ", Key = "> '40'" },
+            new ModelParameterAPEL { ViewField = "<= Gred 40 ", Key = "< '41'" },
         };
 
-        public readonly List<ModelParameterHr> ItemList_PleaseSelect = new List<ModelParameterHr>()
+        public readonly List<ModelParameterAPEL> ItemList_PleaseSelect = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "- Please Select -", Key = "" }
+            new ModelParameterAPEL { ViewField = "- Please Select -", Key = "" }
         };
 
         //public static string MtdGetMinitToJamText(int _minit)
@@ -226,34 +226,34 @@ namespace APELC.LocalShared
                                 .IsValid(emailAddress);
         }
 
-        public List<ModelParameterHr> ItemListBulan = new List<ModelParameterHr>()
+        public List<ModelParameterAPEL> ItemListBulan = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "01 - Januari", Key = "01" },
-            new ModelParameterHr { ViewField = "02 - Februari", Key = "02" },
-            new ModelParameterHr { ViewField = "03 - Mac", Key = "03" },
-            new ModelParameterHr { ViewField = "04 - April", Key = "04" },
-            new ModelParameterHr { ViewField = "05 - Mei", Key = "05" },
-            new ModelParameterHr { ViewField = "06 - Jun", Key = "06" },
-            new ModelParameterHr { ViewField = "07 - Julai", Key = "07" },
-            new ModelParameterHr { ViewField = "08 - Ogos", Key = "08" },
-            new ModelParameterHr { ViewField = "09 - September", Key = "09" },
-            new ModelParameterHr { ViewField = "10 - Oktober", Key = "10" },
-            new ModelParameterHr { ViewField = "11 - November", Key = "11" },
-            new ModelParameterHr { ViewField = "12 - Disember", Key = "12" }
+            new ModelParameterAPEL { ViewField = "01 - Januari", Key = "01" },
+            new ModelParameterAPEL { ViewField = "02 - Februari", Key = "02" },
+            new ModelParameterAPEL { ViewField = "03 - Mac", Key = "03" },
+            new ModelParameterAPEL { ViewField = "04 - April", Key = "04" },
+            new ModelParameterAPEL { ViewField = "05 - Mei", Key = "05" },
+            new ModelParameterAPEL { ViewField = "06 - Jun", Key = "06" },
+            new ModelParameterAPEL { ViewField = "07 - Julai", Key = "07" },
+            new ModelParameterAPEL { ViewField = "08 - Ogos", Key = "08" },
+            new ModelParameterAPEL { ViewField = "09 - September", Key = "09" },
+            new ModelParameterAPEL { ViewField = "10 - Oktober", Key = "10" },
+            new ModelParameterAPEL { ViewField = "11 - November", Key = "11" },
+            new ModelParameterAPEL { ViewField = "12 - Disember", Key = "12" }
         };
 
-        internal readonly List<ModelParameterHr> ItemListKampus = new List<ModelParameterHr>()
+        internal readonly List<ModelParameterAPEL> ItemListKampus = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "JOHOR BAHRU", Key = "J" },
-            new ModelParameterHr { ViewField = "KUALA LUMPUR", Key = "K" },
-            new ModelParameterHr { ViewField = "HTP-PAGOH", Key = "P" }
+            new ModelParameterAPEL { ViewField = "JOHOR BAHRU", Key = "J" },
+            new ModelParameterAPEL { ViewField = "KUALA LUMPUR", Key = "K" },
+            new ModelParameterAPEL { ViewField = "HTP-PAGOH", Key = "P" }
         };
 
-        internal readonly List<ModelParameterHr> ItemListKampusFk = new List<ModelParameterHr>()
+        internal readonly List<ModelParameterAPEL> ItemListKampusFk = new List<ModelParameterAPEL>()
         {
-            new ModelParameterHr { ViewField = "JOHOR BAHRU", Key = "416" },
-            new ModelParameterHr { ViewField = "KUALA LUMPUR", Key = "417" },
-            new ModelParameterHr { ViewField = "PAGOH", Key = "1510" }
+            new ModelParameterAPEL { ViewField = "JOHOR BAHRU", Key = "416" },
+            new ModelParameterAPEL { ViewField = "KUALA LUMPUR", Key = "417" },
+            new ModelParameterAPEL { ViewField = "PAGOH", Key = "1510" }
         };
 
         internal static string GetFirstValueOf(string _text, int _maxLength)

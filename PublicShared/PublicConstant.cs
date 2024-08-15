@@ -39,12 +39,18 @@ namespace APELC.PublicShared
             return config["MySetting:EncryptCode"];
         }
 
-        public static string ConnOraRujuk()
+        //public static string ConnOraRujuk()
+        //{
+        //    var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        //    return config["MySetting:UpnmdbRujuk"];
+        //}
+
+        public static string ConnSybaseRujuk()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             return config["MySetting:UpnmdbRujuk"];
         }
-        public static string ConnUpnmDbDs()
+        public static string ConnMySQLUpnmDbDs()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             /*
@@ -63,27 +69,27 @@ namespace APELC.PublicShared
             return _text;
         }
 
-        public static string ConnUpnmDbAkademik()
-        {
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            string _userEnc = config["MySetting:UpnmdbAkaUser"];
-            string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
-            string _pawdEnc = config["MySetting:UpnmdbAkaPawd"];
-            string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
-            string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMUTM)));User Id=" + _user + ";Password=" + _pawd;
-            return _text;
-        }
+        //public static string ConnUpnmDbAkademik()
+        //{
+        //    var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        //    string _userEnc = config["MySetting:UpnmdbAkaUser"];
+        //    string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
+        //    string _pawdEnc = config["MySetting:UpnmdbAkaPawd"];
+        //    string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
+        //    string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMUTM)));User Id=" + _user + ";Password=" + _pawd;
+        //    return _text;
+        //}
 
-        public static string ConnUpnmDbSmu()
-        {
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            string _userEnc = config["MySetting:UpnmdbSmuUser"];
-            string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
-            string _pawdEnc = config["MySetting:UpnmdbSmuPawd"];
-            string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
-            string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMU)));User Id=" + _user + ";Password=" + _pawd;
-            return _text;
-        }
+        //public static string ConnUpnmDbSmu()
+        //{
+        //    var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        //    string _userEnc = config["MySetting:UpnmdbSmuUser"];
+        //    string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
+        //    string _pawdEnc = config["MySetting:UpnmdbSmuPawd"];
+        //    string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
+        //    string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMU)));User Id=" + _user + ";Password=" + _pawd;
+        //    return _text;
+        //}
 
         public static string MtdRIChar(string fileName)
         {
@@ -198,49 +204,49 @@ namespace APELC.PublicShared
         }
 
 
-        public static List<ParameterHrModel> ItemListHPhoneCode = new List<ParameterHrModel>()
+        public static List<ParameterAPELModel> ItemListHPhoneCode = new List<ParameterAPELModel>()
         {
-            new ParameterHrModel { ViewField = "010", Key = "+6010" },
-            new ParameterHrModel { ViewField = "011", Key = "+6011" },
-            new ParameterHrModel { ViewField = "012", Key = "+6012" },
-            new ParameterHrModel { ViewField = "013", Key = "+6013" },
-            new ParameterHrModel { ViewField = "014", Key = "+6014" },
-            new ParameterHrModel { ViewField = "015", Key = "+6015" },
-            new ParameterHrModel { ViewField = "016", Key = "+6016" },
-            new ParameterHrModel { ViewField = "017", Key = "+6017" },
-            new ParameterHrModel { ViewField = "018", Key = "+6018" },
-            new ParameterHrModel { ViewField = "019", Key = "+6019" }
+            new ParameterAPELModel { ViewField = "010", Key = "+6010" },
+            new ParameterAPELModel { ViewField = "011", Key = "+6011" },
+            new ParameterAPELModel { ViewField = "012", Key = "+6012" },
+            new ParameterAPELModel { ViewField = "013", Key = "+6013" },
+            new ParameterAPELModel { ViewField = "014", Key = "+6014" },
+            new ParameterAPELModel { ViewField = "015", Key = "+6015" },
+            new ParameterAPELModel { ViewField = "016", Key = "+6016" },
+            new ParameterAPELModel { ViewField = "017", Key = "+6017" },
+            new ParameterAPELModel { ViewField = "018", Key = "+6018" },
+            new ParameterAPELModel { ViewField = "019", Key = "+6019" }
         };
 
-        public static List<ParameterHrModel> ItemListVisitorPurpose = new List<ParameterHrModel>()
+        public static List<ParameterAPELModel> ItemListVisitorPurpose = new List<ParameterAPELModel>()
         {
-            new ParameterHrModel { ViewField = "OFFICIAL BUSINESS ONLY", Key = "4637" },
-            new ParameterHrModel { ViewField = "OTHERS", Key = "4640" }
+            new ParameterAPELModel { ViewField = "OFFICIAL BUSINESS ONLY", Key = "4637" },
+            new ParameterAPELModel { ViewField = "OTHERS", Key = "4640" }
         };
         //new ParameterHrModel { ViewField = "PERSONAL AFFAIRS", Key = "4638" },
         //new ParameterHrModel { ViewField = "PARENTS/RELATIVES VISITING STUDENTS/STAFFS ON CAMPUS", Key = "4639" },
 
-        public static List<ParameterHrModel> ItemListVisitorType = new List<ParameterHrModel>()
+        public static List<ParameterAPELModel> ItemListVisitorType = new List<ParameterAPELModel>()
         {
-            new ParameterHrModel { ViewField = "VISITOR", Key = "4641" },
-            new ParameterHrModel { ViewField = "CONTRACT WORKER", Key = "4642" }
+            new ParameterAPELModel { ViewField = "VISITOR", Key = "4641" },
+            new ParameterAPELModel { ViewField = "CONTRACT WORKER", Key = "4642" }
         };
 
-        public static List<ParameterHrModel> ItemJenisPerkhidmatan = new List<ParameterHrModel>()
+        public static List<ParameterAPELModel> ItemJenisPerkhidmatan = new List<ParameterAPELModel>()
         {
-            new ParameterHrModel { ViewField = "A - Akademik Profesional", Key = "A" },
-            new ParameterHrModel { ViewField = "B - Akademik bukan Profesional", Key = "B" },
-            new ParameterHrModel { ViewField = "C - Pengawai Am Profesional", Key = "C" },
-            new ParameterHrModel { ViewField = "D - Pengawai Am bukan Profesional", Key = "D" },
-            new ParameterHrModel { ViewField = "E - Kakitangan Sokongan", Key = "E" },
-            new ParameterHrModel { ViewField = "F - Profesional", Key = "F" }
+            new ParameterAPELModel { ViewField = "A - Akademik Profesional", Key = "A" },
+            new ParameterAPELModel { ViewField = "B - Akademik bukan Profesional", Key = "B" },
+            new ParameterAPELModel { ViewField = "C - Pengawai Am Profesional", Key = "C" },
+            new ParameterAPELModel { ViewField = "D - Pengawai Am bukan Profesional", Key = "D" },
+            new ParameterAPELModel { ViewField = "E - Kakitangan Sokongan", Key = "E" },
+            new ParameterAPELModel { ViewField = "F - Profesional", Key = "F" }
         };
 
-        public static List<ParameterHrModel> ItemListKampus = new List<ParameterHrModel>()
+        public static List<ParameterAPELModel> ItemListKampus = new List<ParameterAPELModel>()
         {
-            new ParameterHrModel { ViewField = "Johor Bahru", Key = "J" },
-            new ParameterHrModel { ViewField = "Kuala Lumpur", Key = "K" },
-            new ParameterHrModel { ViewField = "Pagoh", Key = "P" }
+            //new ParameterAPELModel { ViewField = "Johor Bahru", Key = "J" },
+            new ParameterAPELModel { ViewField = "Sungai Besi", Key = "S" },
+            //new ParameterAPELModel { ViewField = "Pagoh", Key = "P" }
         };
 
         public static string? GetLastItem(string? _text)

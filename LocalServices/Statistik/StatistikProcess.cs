@@ -238,9 +238,9 @@ namespace APELC.LocalServices.Statistik
         //}
 
 
-        private static ModelParameterHr MtdPindahParameter(ParameterHrModel row)
+        private static ModelParameterAPEL MtdPindahParameter(ParameterAPELModel row)
         {
-            return new ModelParameterHr()
+            return new ModelParameterAPEL()
             {
                 Key = row.Key,
                 ViewField = row.ViewField

@@ -32,7 +32,7 @@
 @using Microsoft.AspNetCore.Mvc;
 @using Microsoft.AspNetCore.Mvc.Razor;
 @using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-@model CarianPerananApelCMain
+@model PenggunaApelCMain
 
 @{
 #pragma warning disable CS8602
@@ -99,7 +99,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> *@
+    <link rel="shortcut icon" href="apelc/images/favicon.png" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Sistem Pendaftaran APEL</title>
     <!-- plugins:css -->
     <meta charset="utf-8">
@@ -117,32 +120,44 @@
     <link href="apelc/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     @*  <link href="apelc/assets/css/bootstrap.min.css" rel="stylesheet"> *@
     <link href="apelc/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="apelc/assets/css/select2.min.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
     <!-- End plugin css for this page --> 
     <!-- inject:css -->
-    <link rel="stylesheet" href="apelc/css/style.css">
-    <link rel="stylesheet" href="apelc/css/custom.css">
+    @* <link rel="stylesheet" href="apelc/css/style.css"> *@
+   @*  <link rel="stylesheet" href="apelc/css/custom.css"> *@
+    @* <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> *@
+    <script src="apelc/assets/js/select2.min.js"></script>
+ <!--begin::Google tag-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
     <!-- endinject -->
-    <link rel="shortcut icon" href="apelc/images/favicon.png" />   
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <!--begin::Google tag-->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>   
-    <style>
-        h1 {
-            color: green;
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>  
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-37564768-1');
+    </script>
+    <!--end::Google tag-->
+    <script>
+        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
+        if (window.top != window.self) {
+            window.top.location.replace(window.self.location.href);
         }
+    </script>
+    <style>
+      
 
-        .text {
+        /* .text {
             font-size: 30px;
             width: 60%;
-        }
-        .btn {
-            background-color: light-green;
-            padding: 12px 16px;
-            font-size: 16px;
-            width: 60%;
-        }
+        } */
+       /*  .btn {
+                     margin-right: 50px;
+        } */
 
         .center {
             display: flex;
@@ -151,112 +166,338 @@
             height: 100px;
         }
 
-            .btn:hover {
+            /* .btn:hover {
                 background-color: green;
-            }
+            } */
+
+       /*  body {
+            background-image: url("../images/UPNM.jpg");
+            background-color: #cccccc;
+        } */
     </style>
 </head>
+<!--begin::Body-->
+<body style="background-image: url(../images/UPNM.jpg)" id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+    <!--begin::Theme mode setup on page load-->
+    <script>
+        var defaultThemeMode = "light";
+        var themeMode;
 
-<body>
+        if (document.documentElement) {
+            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+            } else {
+                if (localStorage.getItem("data-bs-theme") !== null) {
+                    themeMode = localStorage.getItem("data-bs-theme");
+                } else {
+                    themeMode = defaultThemeMode;
+                }
+            }
+
+            if (themeMode === "system") {
+                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
+        }
+    </script>
+    <!--end::Theme mode setup on page load-->
+    <!--Begin::Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!--End::Google Tag Manager (noscript) -->
     <input type="hidden" id="IdPathServerMain" value="@_path01">
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
-            <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
-                <div class="row w-100">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auto-form-wrapper" style="padding-left:0 !important; padding-right:0 !important">
-                            @* <form id="form1" name="form1" action="class/login_exe.php" method="post"> *@
-                                <div class="col-16 grid-margin">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                <div class="col-md-12 text-center">
-                                                    <img src="/apelc/images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
-                                                    <h3>Sistem Pendaftaran APEL</h3>            
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                            <div class="col-md-12">
-                                                    <div class="form-group row">
-                                                        <label for="username" class="col-sm-8 col-form-label">
-                                                            <span class="required">ID Pengguna</span>
-                                                               <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan ID Pengguna"></i>
-                                                        </label>
-                                                        <div class="d-flex">
-                                                        <input autocomplete="on" id="Idusername" name="Idusername" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Akaun Baru? Sila klik pada butang kanan untuk mendaftar akaun baru" /><br>
-                                                        <a  href="#" class="btn btn-outline-secondary ml-auto btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#modaldaftarAkaun">
-                                                            <i class="fa fa-pencil"></i>
-                                                            </a>
-                                                        </div>
+	<!--begin::App-->
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root" style="padding-left:0 !important; padding-right:0 !important">
+			<!--begin::Page-->
+        <div class="app-page d-flex flex-column flex-column-fluid" id="kt_app_page" style="padding-left:0 !important; padding-right:0 !important">
+				<!--begin::Wrapper-->
+            <div class="app-wrapper d-flex flex-column flex-row-fluid" id="kt_app_wrapper" style="padding-left:0 !important; padding-right:0 !important">
+                <!--begin::Main-->
+					<div class="app-main d-flex flex-column flex-row-fluid" id="kt_app_main" style="padding-left:0 !important; padding-right:0 !important">
+						<!--begin::Content wrapper-->
+                    <div class="d-flex flex-column flex-column-fluid" style="padding-left:0 !important; padding-right:0 !important">
+							<!--begin::Content-->
+                        <div id="kt_app_content" class="d-flex app-content flex-column-fluid" style="padding-left:0 !important; padding-right:0 !important">
+								<!--begin::Content container-->
+                            <div id="kt_app_content_container" class="d-flex app-container container-fluid" style="padding-left:0 !important; padding-right:0 !important">
+									<!--begin::Row-->
+                                @* <div class="row g-6 g-xl-9 mx-auto"> *@
+                                <div class="d-flex row w-100" style="padding-left:0 !important; padding-right:0 !important">
+                                    <!--begin::Col-->
+                                    <div class="d-flex col-lg-4 mx-auto" style="padding-left:0 !important; padding-right:0 !important">
+                                    @* <div class="d-flex flex-column mb-8 fv-row mx-auto"> *@
+                                        <!--begin::Card-->
+                                        <div class="card border-hover-primary mx-auto">
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-9 mx-auto">
+                                                <!--begin::Card Title-->
+                                                @* <div class="center"> *@
+                                                <div class="card-title m-0 mx-auto">
+                                                     <div class="d-flex flex-column mb-8 fv-row mx-auto">
+                                                    <!--begin::Avatar-->
+                                                        <img src="/apelc/images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" alt="image" class="p-3 mx-auto" />
+                                                        <!--end::Avatar-->
+                                                     @* </div>
+                                                    <div class="d-flex flex-column mb-8 fv-row mx-auto"> *@
+                                                    <!--begin::Title-->
+                                                    <div class="fs-2hx fw-bold text-gray-800 text-center mb-13">
+                                                        @* <span class="me-2">     *@
+                                                        Sistem Pendaftaran APEL
+                                                        <!--begin::Description-->
+                                                        <p class="text-gray-400 fw-semibold fs-5 mt-1 mb-7">PUSAT APEL</p>
+                                                        <!--end::Description-->
+                                                    </div>
+                                                    <!--end::Title-->
                                                     </div>
                                                 </div>
+                                                @* </div> *@
+                                                <!--end::Card Title-->
                                             </div>
-                                            <div class="row">
-                                            <div class="col-md-12">
-                                                    <div class="form-group row">
-                                                        <label for="password" class="col-sm-8 col-form-label">
+                                            <!--end:: Card header-->
+                                            <!--begin:: Card body-->
+                                            <div class="card-body p-9">
+                                                <!--begin::Input group-->
+                                                <div class="d-flex flex-column mb-8 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label for="username" class="col-sm-8 col-form-label">
+                                                        <span class="required">ID Pengguna(No KP(Luar/Pelawat UPNM) atau No Matrik(Pelajar UPNM) atau No Pekerja(Staf UPNM)</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan ID Pengguna"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <div class="d-flex">
+                                                        <input autocomplete="on" id="Idusername" name="Idusername" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Akaun Baru? Sila klik pada butang kanan untuk mendaftar akaun baru" />
+                                                        <a href="#" class="btn btn-outline-secondary ml-auto btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#modaldaftarAkaun">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="d-flex flex-column mb-8 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label for="password" class="col-sm-8 col-form-label">
                                                         <span class="required">Kata Laluan</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan Kata Laluan"></i>
-                                                        </label>
-                                                        <div class="d-flex">
-                                                        <input type="password" name="Idpassword" id="Idpassword" class="form-control" placeholder="******" data-bs-toggle="tooltip" data-bs-placement="top" title="Lupa Kata Laluan? Sila klik pada butang kanan untuk menetapkan semula kata laluan" /><br>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <div class="d-flex">
+                                                        <input type="password" name="Idpassword" id="Idpassword" class="form-control" placeholder="******" data-bs-toggle="tooltip" data-bs-placement="top" title="Lupa Kata Laluan? Sila klik pada butang kanan untuk menetapkan semula kata laluan" />
                                                         <a href="#" class="btn btn-outline-secondary ml-auto btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#forgotpwdModal">
                                                             <i class="fa fa-question"></i>
                                                         </a>
-                                                       </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group row">
-                                                        <label for="dd_jnsApel" class="col-sm-8 col-form-label">Jenis APEL</label>
-                                                    <div class="d-flex">
-                                                          <select id="dd_jnsApel" name="dd_jnsApel" class="form-control" onChange="get_jnsApel()">
-                                                                @* <option value="">- SILA PILIH -</option> *@
-                                                                @* <option value="APEL.A" disabled> APELC.A</option> *@
-                                                                <option value="APEL.C"> APEL.C</option>
-                                                                @* <option value="APEL.Q" disabled> APELC.Q</option> *@
-                                                          </select>
-                                                   </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row g-9 mb-8">
+                                                    <!--begin::Col-->
+                                                    <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label for="dd_jnsApel" class="col-sm-8 col-form-label">
+                                                            <span class="required">JENIS APEL</span>
+                                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih JENIS APEL"></i>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <select class="form-select form-select-solid" for="Idjenis_APEL_param" id="Idjenis_APEL_param" data-control="select2" items="ViewBag.JenisApelData" data-hide-search="true" data-placeholder="Sila Pilih..." name="Idjenis_APEL_param" onchange="loadJenisAPEL(this)">
+                                                            @* <option value="--SILA PILIH--">--SILA PILIH--</option>
+                                                            <option value="">CJENIS_MODUL</option>
+                                                            <option value="1">CRM App</option> *@
+                                                        </select>
+                                                        @*   <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                                        <span class="selection">
+                                                        <span class="select2-selection select2-selection--single form-select form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-target_assign-x5-container" aria-controls="select2-target_assign-x5-container">
+                                                        <span class="select2-selection__rendered" id="select2-target_assign-x5-container" role="textbox" aria-readonly="true" title="Sila pilih jenis APEL">
+                                                        <span class="select2-selection__placeholder">
+                                                        Sila pilih jenis APEL
+                                                        </span>
+                                                        </span>
+                                                        <span class="select2-selection__arrow" role="presentation">
+                                                        <b role="presentation"></b>
+                                                        </span>
+                                                        </span>
+                                                        </span>
+                                                        <span class="dropdown-wrapper" aria-hidden="true">
+                                                        </span>
+                                                        </span> *@
+                                                    </div>
+                                                    <!--end::Col-->
                                                 </div>
+                                                <!--end::Input group-->
+                                                <div class="form-group row">
+                                                    <label class="col-form-label text-right col-lg-3 col-sm-12">Placeholder</label>
+                                                    <div class=" col-lg-4 col-md-9 col-sm-12">
+                                                        <select class="form-control select2" id="kt_select2_4" name="param">
+                                                            <option label="Label"></option>
+                                                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                                <option value="AK">Alaska</option>
+                                                                <option value="HI">Hawaii</option>
+                                                            </optgroup>
+                                                            <optgroup label="Pacific Time Zone">
+                                                                <option value="CA">California</option>
+                                                                <option value="NV">Nevada</option>
+                                                                <option value="OR">Oregon</option>
+                                                                <option value="WA">Washington</option>
+                                                            </optgroup>
+                                                            <optgroup label="Mountain Time Zone">
+                                                                <option value="AZ">Arizona</option>
+                                                                <option value="CO">Colorado</option>
+                                                                <option value="ID">Idaho</option>
+                                                                <option value="MT">Montana</option>
+                                                                <option value="NE">Nebraska</option>
+                                                                <option value="NM">New Mexico</option>
+                                                                <option value="ND">North Dakota</option>
+                                                                <option value="UT">Utah</option>
+                                                                <option value="WY">Wyoming</option>
+                                                            </optgroup>
+                                                            <optgroup label="Central Time Zone">
+                                                                <option value="AL">Alabama</option>
+                                                                <option value="AR">Arkansas</option>
+                                                                <option value="IL">Illinois</option>
+                                                                <option value="IA">Iowa</option>
+                                                                <option value="KS">Kansas</option>
+                                                                <option value="KY">Kentucky</option>
+                                                                <option value="LA">Louisiana</option>
+                                                                <option value="MN">Minnesota</option>
+                                                                <option value="MS">Mississippi</option>
+                                                                <option value="MO">Missouri</option>
+                                                                <option value="OK">Oklahoma</option>
+                                                                <option value="SD">South Dakota</option>
+                                                                <option value="TX">Texas</option>
+                                                                <option value="TN">Tennessee</option>
+                                                                <option value="WI">Wisconsin</option>
+                                                            </optgroup>
+                                                            <optgroup label="Eastern Time Zone">
+                                                                <option value="CT">Connecticut</option>
+                                                                <option value="DE">Delaware</option>
+                                                                <option value="FL">Florida</option>
+                                                                <option value="GA">Georgia</option>
+                                                                <option value="IN">Indiana</option>
+                                                                <option value="ME">Maine</option>
+                                                                <option value="MD">Maryland</option>
+                                                                <option value="MA">Massachusetts</option>
+                                                                <option value="MI">Michigan</option>
+                                                                <option value="NH">New Hampshire</option>
+                                                                <option value="NJ">New Jersey</option>
+                                                                <option value="NY">New York</option>
+                                                                <option value="NC">North Carolina</option>
+                                                                <option value="OH">Ohio</option>
+                                                                <option value="PA">Pennsylvania</option>
+                                                                <option value="RI">Rhode Island</option>
+                                                                <option value="SC">South Carolina</option>
+                                                                <option value="VT">Vermont</option>
+                                                                <option value="VA">Virginia</option>
+                                                                <option value="WV">West Virginia</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label text-right col-lg-3 col-sm-12">Nested Example</label>
+                                                    <div class=" col-lg-4 col-md-9 col-sm-12">
+                                                        <select class="form-control select2" id="kt_select2_2" name="param">
+                                                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                                <option value="AK">Alaska</option>
+                                                                <option value="HI">Hawaii</option>
+                                                            </optgroup>
+                                                            <optgroup label="Pacific Time Zone">
+                                                                <option value="CA">California</option>
+                                                                <option value="NV" selected>Nevada</option>
+                                                                <option value="OR">Oregon</option>
+                                                                <option value="WA">Washington</option>
+                                                            </optgroup>
+                                                            <optgroup label="Mountain Time Zone">
+                                                                <option value="AZ">Arizona</option>
+                                                                <option value="CO">Colorado</option>
+                                                                <option value="ID">Idaho</option>
+                                                                <option value="MT">Montana</option>
+                                                                <option value="NE">Nebraska</option>
+                                                                <option value="NM">New Mexico</option>
+                                                                <option value="ND">North Dakota</option>
+                                                                <option value="UT">Utah</option>
+                                                                <option value="WY">Wyoming</option>
+                                                            </optgroup>
+                                                            <optgroup label="Central Time Zone">
+                                                                <option value="AL">Alabama</option>
+                                                                <option value="AR">Arkansas</option>
+                                                                <option value="IL">Illinois</option>
+                                                                <option value="IA">Iowa</option>
+                                                                <option value="KS">Kansas</option>
+                                                                <option value="KY">Kentucky</option>
+                                                                <option value="LA">Louisiana</option>
+                                                                <option value="MN">Minnesota</option>
+                                                                <option value="MS">Mississippi</option>
+                                                                <option value="MO">Missouri</option>
+                                                                <option value="OK">Oklahoma</option>
+                                                                <option value="SD">South Dakota</option>
+                                                                <option value="TX">Texas</option>
+                                                                <option value="TN">Tennessee</option>
+                                                                <option value="WI">Wisconsin</option>
+                                                            </optgroup>
+                                                            <optgroup label="Eastern Time Zone">
+                                                                <option value="CT">Connecticut</option>
+                                                                <option value="DE">Delaware</option>
+                                                                <option value="FL">Florida</option>
+                                                                <option value="GA">Georgia</option>
+                                                                <option value="IN">Indiana</option>
+                                                                <option value="ME">Maine</option>
+                                                                <option value="MD">Maryland</option>
+                                                                <option value="MA">Massachusetts</option>
+                                                                <option value="MI">Michigan</option>
+                                                                <option value="NH">New Hampshire</option>
+                                                                <option value="NJ">New Jersey</option>
+                                                                <option value="NY">New York</option>
+                                                                <option value="NC">North Carolina</option>
+                                                                <option value="OH">Ohio</option>
+                                                                <option value="PA">Pennsylvania</option>
+                                                                <option value="RI">Rhode Island</option>
+                                                                <option value="SC">South Carolina</option>
+                                                                <option value="VT">Vermont</option>
+                                                                <option value="VA">Virginia</option>
+                                                                <option value="WV">West Virginia</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!--begin::Actions-->
+                                                <div class="center">
+                                                    <button style="margin-right: 50px;" type="submit" id="kt_modal_log_masuk_submit" class="btn btn-primary">
+                                                        <span class="indicator-label">Log Masuk</span>
+                                                        <span class="indicator-progress" id="kt_modal_log_masuk_submitGray" style="display: none;">
+                                                            Sila Tunggu...
+                                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                        </span>
+                                                    </button>
+                                                    <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Set Semula</button>
+                                                </div>
+                                                <!--end::Actions-->
+                                                <!--begin:Footer Link-->
+                                                <div class="text-block text-center my-3">
+                                                    <small><!--<a href="https://www.upnm.edu.my/" target="_blank">Pentadbir?</a> -->&copy; 2023 v1.0 Powered by BTMK,<br> Universiti Pertahanan Nasional Malaysia.</small>
+                                                </div>
+                                                <!--end:Footer Link-->
+                                                
                                             </div>
-                                         </div>
-                                            <br>
-                                        <div class="center">
-                                            <button type="submit" id="kt_modal_log_masuk_submit" class="btn btn-primary">
-                                                <span class="indicator-label">Log Masuk</span>
-                                                <span class="indicator-progress" id="kt_modal_log_masuk_submitGray" style="display: none;">
-                                                    Sila Tunggu...
-                                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                                </span>
-                                            </button>
-                                         </div>
-                              
-                                        @*  <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Sila Tunggu ...... </button>
-                                                <br /> *@
-                                        <div class="center">
-                                            @* <div class="col-md-12" data-bs-placement="center"> *@
-                                                <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
-                                            @* </div> *@
-                                            </div>
+                                            <!--end:: Card body-->
+                                        </div>
+                                        <!--end::Card-->
                                     </div>
-                                    </div>
-                                    <div class="text-block text-center my-3">
-                                        <small><!--<a href="https://www.upnm.edu.my/" target="_blank">Pentadbir?</a> -->&copy; 2023 v1.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
-                                    </div>
-                                </div>
-                            @* </form> *@
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- content-wrapper ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
+                                    <!--end::Col-->
+						        </div>
+						            <!--end::Row-->
+					            </div>
+				                <!--end::Content container-->
+				            </div>
+				            <!--end::Content-->
+			            </div>
+			            <!--end::Content wrapper-->
+		            </div>
+		            <!--end:::Main-->
+	            </div>
+	             <!--end::Wrapper-->
+	        </div>
+	        <!--end::Page-->
     </div>
-
-    <!-- container-scroller -->
+    <!--end::App-->
     <!--begin::Modal - Daftar Akaun-->
     <div class="modal fade" id="modaldaftarAkaun" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -265,11 +506,18 @@
             <div class="modal-content rounded">
                 <!--begin::Modal header-->
                 <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                    </div>
-                    <!--end::Close-->
+						<!--begin::Close-->
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+							<span class="svg-icon svg-icon-1">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+								</svg>
+							</span>
+							<!--end::Svg Icon-->
+						</div>
+						<!--end::Close-->
                 </div>
                 <!--begin::Modal header-->
                 <!--begin::Modal body-->
@@ -286,11 +534,32 @@
                         <!--begin::Input group-->
                         <div class="row g-9 mb-8">
                             <!--begin::Col-->
-                            <div class="col-md-6 fv-row">
-                                <label class="required fs-6 fw-semibold mb-2">Kategori</label>
-                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" name="kategori">
+                            <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label for="kategori" class="col-sm-8 col-form-label">
+                                    <span class="required">KATEGORI</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih kategori"></i>
+                                </label>
+                                <!--end::Label-->
+                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" name="kategori" data-placeholder="Sila Pilih kategori" data-select2-id="select2-data-13-vxuy" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+                                    <option value="" data-select2-id="select2-data-15-ldry">Sila Pilih kategori...</option>
                                     <option value="">PELAJAR UPNM</option>
                                 </select>
+                                <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                    <span class="selection">
+                                        <span class="select2-selection select2-selection--single form-select form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-target_assign-x5-container" aria-controls="select2-target_assign-x5-container">
+                                            <span class="select2-selection__rendered" id="select2-target_assign-x5-container" role="textbox" aria-readonly="true" title="Sila Pilih kategori">
+                                                <span class="select2-selection__placeholder">Sila Pilih kategori
+                                                </span>
+                                           </span>
+                                           <span class="select2-selection__arrow" role="presentation">
+                                               <b role="presentation"></b>
+                                            </span>
+                                        </span>
+                                    </span>
+                                 <span class="dropdown-wrapper" aria-hidden="true">
+                                 </span>
+                                 </span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -299,22 +568,11 @@
                         <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">No Matrik</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan no matrik"></i>
+                                <span class="required">No matrik/No pekerja/No Kad Pengenalan/ID</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan No matrik/No pekerja/No Kad Pengenalan/ID"></i>
                             </label>
                             <!--end::Label-->
-                            <input id="No_Matrik" type="text" class="form-control form-control-solid" placeholder="No Matrik" name="No_Matrik" value="No_Matrik" />
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">No Kad Pengenalan</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan no kad pengenalan"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input id="No_kad_pengenalan" type="text" class="form-control form-control-solid" placeholder="No kad pengenalan" name="No_kad_pengenalan" value="No_kad_pengenalan" />
+                            <input id="No_kad_pengenalan" type="text" class="form-control form-control-solid" placeholder="No kad pengenalan" name="No_kad_pengenalan" value="No kad pengenalan" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -336,7 +594,7 @@
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan alamat emel"></i>
                             </label>
                             <!--end::Label-->
-                            <input id="Alamat_Emel"  type="text" class="form-control form-control-solid" placeholder="Alamat Emel" name="Alamat_Emel" value="Alamat_Emel" />
+                            <input id="Alamat_Emel"  type="text" class="form-control form-control-solid" placeholder="Alamat Emel" name="Alamat_Emel" value="Alamat Emel" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -347,7 +605,7 @@
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan no telefon"></i>
                             </label>
                             <!--end::Label-->
-                            <input id="No_telefon" type="text" class="form-control form-control-solid" placeholder="No telefon" name="No_telefon" value="No_telefon" />
+                            <input id="No_telefon" type="text" class="form-control form-control-solid" placeholder="No telefon" name="No_telefon" value="No telefon" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -358,7 +616,7 @@
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan kata laluan"></i>
                             </label>
                             <!--end::Label-->
-                            <input id="Kata_Laluan" type="password" class="form-control form-control-solid" placeholder="Kata Laluan" name="Kata_Laluan" value="Kata_Laluan" />
+                            <input id="Kata_Laluan" type="password" class="form-control form-control-solid" placeholder="Kata Laluan" name="Kata_Laluan" value="Kata Laluan" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -369,18 +627,19 @@
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan pengesahan kata laluan"></i>
                             </label>
                             <!--end::Label-->
-                            <input id="Pengesahan_Kata_Laluan"  type="password" class="form-control form-control-solid" placeholder="Pengesahan Kata Laluan" name="Pengesahan_Kata_Laluan" value="Pengesahan_Kata_Laluan" />
+                            <input id="Pengesahan_Kata_Laluan"  type="password" class="form-control form-control-solid" placeholder="Pengesahan Kata Laluan" name="Pengesahan_Kata_Laluan" value="Pengesahan Kata Laluan" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="center">
-                            <button type="submit" id="kt_modal_register_submit" class="btn btn-primary">
+                            <button style="margin-right: 50px;" type="submit" id="kt_modal_register_submit" class="btn btn-primary">
                                 <span class="indicator-label">Daftar</span>
                                 <span class="indicator-progress" id="kt_modal_register_submitGray" style="display: none;">
                                     Sila Tunggu...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                             </button>
+                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Set Semula</button>
                         </div>
                         <!--end::Actions-->
                     </form>
@@ -401,11 +660,18 @@
             <div class="modal-content rounded">
                 <!--begin::Modal header-->
                 <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                    </div>
-                    <!--end::Close-->
+						<!--begin::Close-->
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+							<span class="svg-icon svg-icon-1">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+								</svg>
+							</span>
+							<!--end::Svg Icon-->
+						</div>
+						<!--end::Close-->
                 </div>
                 <!--begin::Modal header-->
                 <!--begin::Modal body-->
@@ -420,25 +686,60 @@
                         </div>
                         <!--end::Heading-->
                         <!--begin::Input group-->
+                        <div class="row g-9 mb-8">
+                            <!--begin::Col-->
+                            <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label for="kategori" class="col-sm-8 col-form-label">
+                                    <span class="required">KATEGORI</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih kategori"></i>
+                                </label>
+                                <!--end::Label-->
+                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" name="kategori" data-placeholder="Sila Pilih kategori" data-select2-id="select2-data-13-vxuy" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+                                    <option value="" data-select2-id="select2-data-15-ldry">Sila Pilih kategori...</option>
+                                    <option value="">PELAJAR UPNM</option>
+                                </select>
+                                <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                    <span class="selection">
+                                        <span class="select2-selection select2-selection--single form-select form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-target_assign-x5-container" aria-controls="select2-target_assign-x5-container">
+                                            <span class="select2-selection__rendered" id="select2-target_assign-x5-container" role="textbox" aria-readonly="true" title="Sila Pilih kategori">
+                                                <span class="select2-selection__placeholder">
+                                                    Sila Pilih kategori
+                                                </span>
+                                            </span>
+                                            <span class="select2-selection__arrow" role="presentation">
+                                                <b role="presentation"></b>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="dropdown-wrapper" aria-hidden="true">
+                                    </span>
+                                </span>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
                         <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Alamat Emel</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan alamat emel"></i>
+                                <span class="required">No matrik/No pekerja/No Kad Pengenalan/ID</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan No matrik/No pekerja/No Kad Pengenalan/ID"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Alamat Emel" name="Alamat_Emel" value="Alamat Emel" />
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="No_KP" value="No kad pengenalan/No matrik/No pekerja" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="center">
-                            <button type="submit" id="kt_modal_reset_password_submit" class="btn btn-primary">
+                            <button style="margin-right: 50px;" type="submit" id="kt_modal_reset_password_submit" class="btn btn-primary">
                                 <span class="indicator-label">Hantar</span>
                                 <span class="indicator-progress">
                                     Sila Tunggu...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                             </button>
+                            <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
                         </div>
                         <!--end::Actions-->
                     </form>
@@ -465,10 +766,17 @@
     <!--end::Modal footer-->
     <!--begin::Javascript-->
     <script>var hostUrl = "apelc/";</script>
+    @* <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function () {
+            $('.form-control select2').select2();
+        });
+    </script> *@
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="apelc/assets/plugins/global/plugins.bundle.js"></script> 
-    <script src="apelc/assets/js/scripts.bundle.js"></script>  
-     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="apelc/assets/js/scripts.bundle.js"></script>
+    <script src="apelc/js/apelc/Login.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <!--begin::Vendors Javascript(used for this page only)-->
     <script src="apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>

@@ -16,7 +16,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\SenaraiPermohonan\SenaraiPermohonanApelC.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiKawalanAkses.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiPendaftaranKursus.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiPendaftaranLokasiUjianCbrn.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiPermohonanApelC.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiProgramKelayakanMQF.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiRubrikPemarkahanKursus.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiRubrikPemetaanHPKPortfolio.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiRubrikPemetaanHPKUjianCbrn.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiRubrikPenilaianKendiri.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiRubrikPortfolioBukti.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiRubrikPortfolioPekerjaanTerdahulu.cshtml" />
+    <Content Remove="Views\SenaraiCarian\SenaraiSetUjianCbrn.cshtml" />
     <Content Remove="Views\Senarai\SenaraiPermohonanApelC.cshtml" />
   </ItemGroup>
 
@@ -36,8 +47,13 @@
     <PackageReference Include="linq2db.Sybase" Version="5.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.4" />
     <PackageReference Include="Microsoft.CodeAnalysis.Razor" Version="6.0.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.6.24327.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.6.24327.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.0-preview.6.24327.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.0-preview.6.24327.7" />
@@ -72,16 +88,7 @@
   <ItemGroup>
     <Folder Include="Properties\" />
     <Folder Include="wwwroot\apelc\assets\js\custom\utilities\modals\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder1\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder2\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder3\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder4\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder5\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder6\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder7\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder8\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder9\" />
-    <Folder Include="wwwroot\apelc\assets\media\NewFolder\" />
+    <Folder Include="wwwroot\apelc\assets\media\" />
     <Folder Include="wwwroot\apelc\assets\plugins\custom\datatables\" />
     <Folder Include="wwwroot\apelc\assets\plugins\custom\fullcalendar\" />
     <Folder Include="wwwroot\apelc\assets\plugins\global\fonts\%40fortawesome\" />
@@ -92,15 +99,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\SenaraiPermohonan\SenaraiPermohonanApelC.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\SenaraiCarian\SenaraiPermohonanApelC.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\SenaraiPermohonan\SenaraiPermohonanApelC.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiRubrikPemetaanHPKUjianCbrn.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiRubrikPemetaanHPKPortfolio.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiRubrikPenilaianKendiri.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiRubrikPortfolioBukti.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiRubrikPortfolioPekerjaanTerdahulu.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiProgramKelayakanMQF.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiRubrikPemarkahanKursus.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiPendaftaranLokasiUjianCbrn.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiPendaftaranKursus.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiSetUjianCbrn.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiKawalanAkses.cshtml" />
+    <None Include="Views\SenaraiCarian\SenaraiPermohonanApelC.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\SenaraiPermohonan\SenaraiPermohonanApelC.cshtml" />
+    <UpToDateCheckInput Remove="Views\SenaraiCarian\SenaraiPermohonanApelC.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

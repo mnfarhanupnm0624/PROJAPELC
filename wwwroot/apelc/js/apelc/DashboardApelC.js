@@ -5,6 +5,117 @@
 
     feather.replace({ 'aria-hidden': 'true' })
 
+    //alert(_path);
+    //check session
+    var checkSessionTime = function () {
+        var time;
+        window.onload = resetTimer();
+
+        var timeIdle;
+        window.onload = resetIdleTimer;
+        // DOM Events
+        window.onload = resetIdleTimer;
+        window.onmousemove = resetIdleTimer;
+        window.onmousedown = resetIdleTimer;  // catches touchscreen presses as well
+        window.ontouchstart = resetIdleTimer; // catches touchscreen swipes as well
+        window.onclick = resetIdleTimer;      // catches touchpad clicks as well
+        window.onkeypress = resetIdleTimer;
+        window.addEventListener('scroll', resetIdleTimer, true); // improved; see comments
+
+        //check session
+        function checkLogout() {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                url: _path + '/Login/checkSession',
+                data: '{}',
+                success: function (data) {
+                    if (data.sessionValue == true) {
+                        resetTimer();
+                    }
+                    else {
+                        //alert(1);
+                        location.href = _path + '/Login/Logout';
+                    }
+                },
+                error: function (xhr) {
+                    //alert(2);
+                    location.href = _path + '/Login/Logout';
+                }
+            });
+        }
+
+        //check session
+        function resetTimer() {
+            clearTimeout(time);
+            time = setTimeout(checkLogout, 900000) // 15 minit
+            // 1000 milliseconds = 1 second
+        }
+
+        //check idle
+        function logout() {
+            var url_back = window.location.href;
+
+            let timerInterval
+            Swal.fire({
+                title: 'Anda log masuk terlalu lama!',
+                html: 'Anda akan log keluar dalam <b></b> saat.<br> <strong>Teruskan?</strong>',
+                type: "warning",
+                confirmButtonText: 'Ya, kekal log masuk!',
+                timer: 10000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    //Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('b')
+                            .textContent = Swal.getTimerLeft() / 1000
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    Swal.fire({
+                        title: 'Log Keluar',
+                        text: 'Redirecting...',
+                        type: 'info',
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        //url:  _path + '/Home/setSession',
+                        url: _path + '/Login/Logout',
+                        data: '{}',
+                        success: function () {
+                        },
+                        error: function () {
+                        }
+                    });
+                    //location.href = '/Login/Logout/'
+                    //alert(123);
+                    //location.href =  _path + '/Login/Logout/?service=' + url_back;
+                    location.href = _path + '/Login/Logout';
+                }
+            })
+        }
+
+        //check idle
+        function resetIdleTimer() {
+            clearTimeout(timeIdle);
+            timeIdle = setTimeout(logout, 900000) // 15 minit
+            //timeIdle = setTimeout(logout, 30000)
+        }
+    };
+
+    window.onload = function () {
+        checkSessionTime();
+    }
+
+
     //// Graphs
     var ctx = document.getElementById('myChart')
     //// eslint-disable-next-line no-unused-vars
@@ -179,3 +290,46 @@ $('#idonchangedashboard').on('change', function (e) {
 //    });
 
 //});
+
+
+jQuery(document).ready(function () {
+    Index.init();
+    if ($('#IdViewBagRes').val() == '7') {
+        var _msg = $('#IdViewBagTxt').val();
+        fnGenralMessage(_msg);
+    }
+});
+
+//function fnGenralMessage(_msg)
+function fnPublicMessageTimeout(_msg) {
+    swal({
+        title: "Alert!",
+        text: _msg,
+        type: "info",
+        showCancelButton: false,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true
+    }, function () {
+        setTimeout(function () {
+            $('#IdLayout_ImageKiri').click();
+        }, 200);
+    });
+};
+
+//function fnGenralMessageOnly
+function fnPublicMessageOnly(_title, _msg, _type) {
+    swal({
+        title: _title,
+        text: _msg,
+        type: _type,
+        showCancelButton: false,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true
+    });
+};
+
+
+function fnGetCurrentDateTime() {
+    var d = new Date();
+    return d.getFullYear + "-" + d.getMonth + "-" + d.getDay + "T" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+};
