@@ -13,8 +13,10 @@
 @using Microsoft.AspNetCore.Identity;
 @using Microsoft.Extensions.Configuration;
 @using Microsoft.Extensions.DependencyInjection;
+@using Microsoft.Extensions.Logging;
 @using System.Collections.Specialized;
 @using System;
+@using System.Threading.Tasks;
 @using System.IO;
 @using System.Data;
 @using System.Data.SqlClient;
@@ -36,13 +38,12 @@
 
 @{
 #pragma warning disable CS8602
-    // string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
-    // string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
-    // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
-    // var _MohonApelCPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
-    // var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
-    // var _statusaktifPemohonApelC = ApelCUser.GetApel(Context.Session).STATUS_AKTIF_PEMOHON;
-    var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"];
+    
+    string _nopekerja = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+    string _nomatrik = HttpContextAccessor.HttpContext.Session.GetString("_nomatrikEnc") ?? "";
+    string _nokp = HttpContextAccessor.HttpContext.Session.GetString("_nokpEnc") ?? "";
+    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    var _getPath = Configuration.GetSection("APELC")["applicationUrl"];
     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
     // var _disablelink = "disable-link";
     // var _color = "color:lightgray";
@@ -256,6 +257,8 @@
                                             <!--end:: Card header-->
                                             <!--begin:: Card body-->
                                             <div class="card-body p-9">
+                                            <!--begin:Form-->
+                                                <form id="log_masuk_form" class="form" action="#">
                                                 <!--begin::Input group-->
                                                 <div class="d-flex flex-column mb-8 fv-row">
                                                     <!--begin::Label-->
@@ -298,7 +301,7 @@
                                                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih JENIS APEL"></i>
                                                         </label>
                                                         <!--end::Label-->
-                                                        <select class="form-select form-select-solid" for="Idjenis_APEL_param" id="Idjenis_APEL_param" data-control="select2" items="ViewBag.JenisApelData" data-hide-search="true" data-placeholder="Sila Pilih..." name="Idjenis_APEL_param" onchange="loadJenisAPEL(this)">
+                                                        <select class="form-select form-select-solid" for="Idjenis_APEL_param" id="Idjenis_APEL_param" data-control="select2" items="ViewBag.JenisApelData" data-hide-search="true" data-placeholder="--Sila Pilih--" name="Idjenis_APEL_param" onchange="loadJenisAPEL(this)">
                                                             @* <option value="--SILA PILIH--">--SILA PILIH--</option>
                                                             <option value="">CJENIS_MODUL</option>
                                                             <option value="1">CRM App</option> *@
@@ -475,7 +478,8 @@
                                                     <small><!--<a href="https://www.upnm.edu.my/" target="_blank">Pentadbir?</a> -->&copy; 2023 v1.0 Powered by BTMK,<br> Universiti Pertahanan Nasional Malaysia.</small>
                                                 </div>
                                                 <!--end:Footer Link-->
-                                                
+                                               </form>
+                                                <!--end:: Form-->
                                             </div>
                                             <!--end:: Card body-->
                                         </div>

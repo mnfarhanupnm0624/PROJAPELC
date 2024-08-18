@@ -110,7 +110,7 @@ namespace APELC.LocalServices.Login
         //        _userDTO.REALNAME = semakUsrHr.NAMA;
         //        _userDTO.COUNTRECORD = "0";
         //        _userDTO.EMAIL = semakUsrHr.EMAIL;
-        //        _userDTO.NOKP = semakUsrHr.SPR_NOKP;
+        //        _userDTO.NO_KP = semakUsrHr.SPR_NOKP;
         //        _userDTO.KOD_PTJ = "kodPtj";
         //    }
         //    return _userDTO;
@@ -290,7 +290,7 @@ namespace APELC.LocalServices.Login
         //    ModelUserDTO.ROLE = usrPsp.KOD_PERANAN;
         //    ModelUserDTO.PASSWORD = usrPsp.PASSWORD;
         //    ModelUserDTO.REALNAME = usrPsp.NAMA;
-        //    ModelUserDTO.NOKP = usrPsp.KAD_PENGENALAN;
+        //    ModelUserDTO.NO_KP = usrPsp.KAD_PENGENALAN;
         //    ModelUserDTO.EMAIL = usrPsp.EMAIL;
         //    ModelUserDTO.PWDCHANGEDATE = usrPsp.TKH_UBAH_KATALALUAN;
         //    ModelUserDTO.PWDEXPIREDATE = usrPsp.TKH_LUPUT_KATALALUAN;
@@ -424,7 +424,7 @@ namespace APELC.LocalServices.Login
         //    usr.ROLE = "";
         //    usr.PASSWORD = "";
         //    usr.REALNAME = "";
-        //    usr.NOKP = "";
+        //    usr.NO_KP = "";
         //    usr.EMAIL = "";
         //    usr.PSPSTAFFK = "";
         //    usr.PWDCHANGEDATE = null; // DateTime.Parse("");

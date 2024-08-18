@@ -635,12 +635,12 @@ namespace APELC.PublicServices.Public
                             KAD_KKINI, KAD_TKHKKINI, KAD_STATUS, KAD_PEGSOKONG, KAD_PEGLULUS, KAD_PEGPEMANTAU,
                             '1' AS RESULTSET 
                     FROM SPWK.KAD_ASAS ";
-        internal static string SQL_MtdGetStafYangDiselia(string noPekerja)
+        internal static string SQL_MtdGetStafYangDiselia(string NO_PEKERJA)
         {
             string _sQl = _spwkKadAsas +
-                "  WHERE (KAD_PEGSOKONG = '" + noPekerja + @"' 
-                      OR KAD_PEGLULUS = '" + noPekerja + @"' 
-                      OR KAD_PEGPEMANTAU = '" + noPekerja + @"' )  ";
+                "  WHERE (KAD_PEGSOKONG = '" + NO_PEKERJA + @"' 
+                      OR KAD_PEGLULUS = '" + NO_PEKERJA + @"' 
+                      OR KAD_PEGPEMANTAU = '" + NO_PEKERJA + @"' )  ";
 
             return _sQl;
         }

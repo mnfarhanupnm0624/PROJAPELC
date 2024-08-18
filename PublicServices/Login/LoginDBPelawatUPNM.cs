@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace APELC.PublicServices.Login
 {
-    public class LoginDBPelajarUPNM
+    public class LoginDBPelawatUPNM
     {
-        public static readonly string ConnSyAkademik = PublicConstant.ConnUpnmDbAkademik();
+        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
         public static readonly string _encryptCode = PublicConstant.EncryptCode();
 
-        static readonly string _VW_STUDENT_AKTIF =
-            @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
+        static readonly string _VW_PELAWAT_AKTIF =
+            @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NO_MATRIK AS NO_PEKERJA,
                       NAMA, KURSUS AS KOD_KURSUS, KOD_KOLEJ AS KOD_KOLEJ, KOD_KAMPUS, KOD_FAKULTI as KOD_PTJ, 
                       EMAIL, HANDPHONE, GAMBAR as PHOTO, NAMA_PENDEK as USERNAME,
                       KOLEJ AS NAMA_KOLEJ, '1' as RESULTSET
@@ -24,7 +24,7 @@ namespace APELC.PublicServices.Login
 
         public static string SQL_GetStudentRecord(string _nokp)
         {
-            string _sQL = _VW_STUDENT_AKTIF;
+            string _sQL = _VW_PELAWAT_AKTIF;
             _sQL += " WHERE ( IC = '" + _nokp + "') ";
             //var log = NLog.LogManager.GetCurrentClassLogger();
             //log.Info("SQL_GetStudentRecord  _sQL ~ " + _sQL);

@@ -2,20 +2,20 @@
 "use strict";
 var Index = function () {
     var _dataTableInit = function () {
-          $('#kt_modal_log_masuk_submit').trigger("click",function (e) {
-            swal({
-                title: "Berjaya!",
-                text: "Berjaya Log Masuk",
-                type: "success",
-                showCancelButton: false,
-                closeOnConfirm: false,
-                showLoaderOnConfirm: true
-            }, function () {
-                setTimeout(function () {
-                    $('#IdLayout_ImageKiri').trigger("click");
-                }, 500);
-            });
-        });
+        //  $('#kt_modal_log_masuk_submit').trigger("click",function (e) {
+        //    swal({
+        //        title: "Berjaya!",
+        //        text: "Berjaya Log Masuk",
+        //        type: "success",
+        //        showCancelButton: false,
+        //        closeOnConfirm: false,
+        //        showLoaderOnConfirm: true
+        //    }, function () {
+        //        setTimeout(function () {
+        //            $('#IdLayout_ImageKiri').trigger("click");
+        //        }, 500);
+        //    });
+        //});
 
         $('#kt_modal_log_masuk_submit').click(function (e) {
             var _ok = true;
@@ -38,7 +38,7 @@ var Index = function () {
                 $('#kt_modal_log_masuk_submit').hide();
                 var event = _path01 + '/Login/MtdGetVerifyUserIdPasswordAjax';
                 var _data = JSON.stringify({
-                    'USERNAME': _userId, 'KATA_LALUAN': _password
+                    'NO_PEKERJA': _nopekerja, 'NO_MATRIK': _nomatrik, 'NO_PEKERJA': _nopekerja, 'KATA_LALUAN_PENGGUNA': _password, 'JENIS_PERANAN_FK': _role
                 });
                 //if (_userId == 'zaman') {
                 //    $('#IdModalLoginLable').html(event);
@@ -64,21 +64,27 @@ var Index = function () {
                             }, function () {
                                 setTimeout(function () {
                                     if (_loginpath == "apelc") {
-                                        location.href = _path01 + "/Senarai/SenaraiPermohonanApelC";
+                                        location.href = _path01 + "/Home/Dashboard";
                                     }
                                     else {
-                                        if (res.NAMA_PERANAN == "PENTADBIR APEL") {
+                                        if (res.NAMA_PERANAN == "PENGGUNA SUPER"!! res.NAMA_PERANAN == "PENTADBIR/URUSETIA(APEL)" !! 
+                                        res.NAMA_PERANAN == "BENDAHARI"!! res.NAMA_PERANAN == "PEMOHON" !!
+                                        res.NAMA_PERANAN == "PENGAWAS UJIAN CABARAN"!! res.NAMA_PERANAN == "PANEL PENILAI" !!
+                                        res.NAMA_PERANAN == "MODERATOR"!! res.NAMA_PERANAN == "PENASIHAT AKADEMIK"!!
+                                        res.NAMA_PERANAN == "PENGGUBAL DOKUMEN"!! res.NAMA_PERANAN == "PENILAI INSTRUMEN"!!
+                                        res.NAMA_PERANAN == "JK FAKULTI(TIMBALAN DEKAN)"!! res.NAMA_PERANAN == "SENAT(DEKAN)"!!
+                                        res.NAMA_PERANAN == "JK FAKULTI(KERANI JABATAN)") {
                                             document.getElementById("myform").submit();
                                         } else {
                                             $('#IdLayout_ImageKiri').onclick();
                                         }
                                     }
-                                }, 300);
+                              }, res.SESSION_TIMEOUT);
                             });
                         } else {
                             if (res.NAMA_PERANAN == "TIADA") {
                                 swal({
-                                    title: "Tiada Kebenaran Akses Sistem. Sila Hubungi Pentadbir Sistem",
+                                    title: "Tiada Kebenaran Akses Sistem. Sila Hubungi Pentadbir Sistem atau daftar akaun baru",
                                     text: "Klik OK untuk teruskan.",
                                     type: "warning",
                                     showCancelButton: false,
@@ -95,8 +101,8 @@ var Index = function () {
                                     showLoaderOnConfirm: true
                                 });
                             }
-                            $('#IdButtonSubmitGray').hide();
-                            $('#IdButtonSubmit').show();
+                            $('#kt_modal_log_masuk_submitGray').hide();
+                            $('#kt_modal_log_masuk_submit').show();
                         }
                     },
                     error: function (xhr, httpStatusMessage, customErrorMessage) {
@@ -111,7 +117,7 @@ var Index = function () {
             }
         });
 
-        $('#kt_modal_log_masuk_submit').trigger("click",function (e) {
+        $('#log_masuk_form').trigger("click",function (e) {
             var _ok = true;
             var _path01 = $('#IdPathServerMain').val();
             var _userId = $('#Idusername').val().toLowerCase().trim();
@@ -136,7 +142,7 @@ var Index = function () {
 
             function PopulateDropDown(jenis_APEL_paramId, list, selectedId) {
                 $(jenis_APEL_paramId).empty();
-                $(jenis_APEL_paramId).append("<option>--Please Product--</option>")
+                $(jenis_APEL_paramId).append("<option>--Sila Pilih--</option>")
                 $.each(list, function (index, row) {
                     $(jenis_APEL_paramId).append("<option value='" + row.id + "'>" + row.name + "</option>")
                 });
@@ -535,11 +541,11 @@ function fnCallModalDaftarAkaunBaru(id) {
     var NoMatrikEnc = $('#IdNo_MatrikPKEncModal').val();
 
     // get values from input field
-    var NoMatrik = $('#IdDdNo_Matrik').val();
+    var NO_MATRIK = $('#IdDdNo_Matrik').val();
     var NoMatrikEnc = $('#IdDdNo_MatrikEn').val();
 
     // validate mandatory fields
-    if (NoMatrik == "" || NoMatrikEnc == "") {
+    if (NO_MATRIK == "" || NoMatrikEnc == "") {
         Swal.fire(
             "Sila lengkapkan ruangan yang bertanda wajib (*) terlebih dahulu.",
             "",

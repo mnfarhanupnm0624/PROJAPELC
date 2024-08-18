@@ -28,7 +28,7 @@
         public DateTime? TARIKH { set; get; }
         public string? FLAG { set; get; }
         public int? BILANGAN { set; get; }
-        public string? NOKP { set; get; }
+        public string? NO_KP { set; get; }
         public string? ROLE { set; get; }
         public string? RESULTTEXT { set; get; }
         public int? PENCIPTA_FK { set; get; }

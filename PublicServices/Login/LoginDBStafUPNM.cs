@@ -15,11 +15,11 @@ namespace APELC.PublicServices.Login
 {
     public class LoginDBStafUPNM
     {
+        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
         static readonly string _encryptCode = PublicConstant.EncryptCode();
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
 
         static readonly string _VW_STAF_AKTIF =
-           @" SELECT nopekerja AS NO_PEKERJA,
+           @" SELECT NO_PEKERJA AS NO_PEKERJA,
               gelar_nama AS NAMA,
               kdjwthakiki AS KOD_JAWATAN_HAKIKI,
               jawatanhakiki AS JAWATAN_HAKIKI,
@@ -51,7 +51,7 @@ namespace APELC.PublicServices.Login
                 //                        _return = _returnNew;
                 //                    }
                 //                }
-                using (IDbConnection dbConn = new OdbcConnection(ConnMySQLHrUpnm))
+                using (IDbConnection dbConn = new OdbcConnection(ConnSybaseUpnm))
                 {
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                     UserIdModel _returnNew = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { ID_PENGGUNA = id });
@@ -70,7 +70,7 @@ namespace APELC.PublicServices.Login
             return _return;
         }
         //static readonly string _VW_STAF_AKTIF =
-        //    @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NOMATRIK AS NOPEKERJA,
+        //    @" SELECT NO_BARCODE AS NOBARCODE, IC AS SPR_NOKP, NO_MATRIK AS NO_PEKERJA,
         //              NAMA, KURSUS AS KOD_KURSUS, KOD_KOLEJ AS KOD_KOLEJ, KOD_KAMPUS, KOD_FAKULTI as KOD_PTJ, 
         //              EMAIL, HANDPHONE, GAMBAR as PHOTO, NAMA_PENDEK as USERNAME,
         //              KOLEJ AS NAMA_KOLEJ, '1' as RESULTSET

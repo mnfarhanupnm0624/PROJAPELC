@@ -1,63 +1,561 @@
 ﻿@using APELC.Model
 @inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
-@model CarianPerananApelCMain
+@model ModelStatistikPermohonanApelC
+
 @{
     ViewData["Title"] = "APEL C";
-    Layout = "/Views/Shared/Command/_LayoutDemo8AfterLogin.cshtml";
-#pragma warning disable CS8602
-    string _stafFkEnc = HttpContextAccessor.HttpContext.Session.GetString("_hrStafFkEnc") ?? "0";
-    string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
+    Layout = "/Views/Shared/Command/_menuLeftSideApelC.cshtml";
+#pragma warning disable CS8602  
+    string _nopekerja = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+    string _nomatrik = HttpContextAccessor.HttpContext.Session.GetString("_nomatrikEnc") ?? "";
+    string _nokp = HttpContextAccessor.HttpContext.Session.GetString("_nokpEnc") ?? "";
+    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    var _getPath = Configuration.GetSection("APELC")["applicationUrl"];
+    var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+    // var _disablelink = "disable-link";
+    // var _color = "color:lightgray";
+    // var _bullet = "";
+    // var _disablelinkS = "disable-link";
+    // var _colorS = "color:lightgray";
+    // var _bulletS = "";
 #pragma warning restore CS8602
-    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
-    var _path = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
-    //var _bgColorTable = "#FAEBD7";
 }
-<input type="hidden" id="IdPathServer" value="@_path">
 <style>
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-        printpagebutton: none;
+    .menu-item2 {
+        margin: 0 0 -5px 0;
     }
 
-    {
-        font-size: 16px; /* Adjust the size as needed */
+    .menu-item3 {
+        margin: 0 0 -15px 0;
     }
+
+    .menu-item4 {
+        margin: -10px 0 -13px 0;
+    }
+
+    .disable-link {
+        pointer-events: none;
+        cursor: default;
+        color: lightgray;
+    }
+
+    .default {
+        cursor: default;
+        color: #696969;
+    }
+
+    
 </style>
 
-<script language="Javascript" type="text/javascript">
-    function exit() {
-        history.back();
-    }
+@* @if (_statusRyApelC == "APPROVED")
+{
+    _disablelink = "";
+    _color = "";
+    _bullet = "bullet bullet-dot";
+}
+@if (_statusMhApelC == "N")
+{
+    _disablelinkS = "";
+    _colorS = "";
+    _bulletS = "bullet bullet-dot";
+} *@
 
-    function printpage() {
-        //Get the print button and put it into a variable
+<input type="hidden" id="IdPathServer" value="/apel">
 
-        var printButton = document.getElementById("printpagebutton");
-        //Set the print button visibility to 'hidden'
-        printButton.style.visibility = 'hidden';
+<div class="container-xxl custom-bg-image">
+    <div class="card card-xl-stretch">
 
-        //Print the page content
-        window.print();
+        <!--begin::Entry-->
+        <div class="d-flex flex-column-fluid">
+            <div class="container">
 
-        //Set the print button to 'visible' again
-        //[Delete this line if you want it to stay hidden after printing]
-        printButton.style.visibility = 'visible';
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="text-center mt-5 mb-5">
+                        <h1>Dashboard Statistik bagi 2024</h1>
+                    </div>
+                </section>
 
+                <!-- Main content -->
+                <!-- <section class="content"> -->
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <!--begin::Mixed Widget 1-->
+                        <div class="card card-custom bg-gray-100 card-stretch gutter-b">
+                            <!--begin::Body-->
+                            <div class="card-body p-0 position-relative overflow-hidden">
+                                <!--begin::Stats-->
+                                <div class="card-spacer mt-n3">
+                                    <!--begin::Row-->
+                                    <div class="row m-0">
+                                        <div class="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
+                                            <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                            <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2 ">
+                                                <!--begin::Svg Icon | path:/metronic/themes/metronic/theme/html/demo1/dist/assets/media/svg/icons/Media/Equalizer.svg-->
+                                                <!--end::Svg Icon-->
+                                                <i class="fas fa-4x fa-users icon-center" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="hidden" id="idJumlahKesDashboard" value="33">
+                                            <a href="#" class="text-warning d-flex text-center flex-column text-black text-bigger">Jumlah Kes</a>
+                                            <h3 class="display-3 text-center">
+                                                33
+                                            </h3>
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-0">
+
+                                        <div class="col bg-light-danger px-6 py-8 rounded-xl mr-7 mb-7">
+                                            <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                            <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
+                                                <i class="fas fa-4x fa-user-tie icon-center" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="hidden" id="idStafDashboard" value="32">
+                                            <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2 d-flex text-center text-bigger">Staf</a>
+                                            <h3 class="display-3 text-center">
+                                                32
+                                            </h3>
+                                        </div>
+
+                                        <div class="col bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                                            <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                            <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
+                                                <i class="fas fa-4x fa-graduation-cap icon-center" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="hidden" id="idPelajarDashboard" value="1">
+                                            <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2 d-flex text-center text-bigger">Pelajar</a>
+                                            <h3 class="display-3 text-center">
+                                                1
+                                            </h3>
+                                        </div>
+
+                                        <div class="col bg-light-success px-6 py-8 rounded-xl mr-7 mb-7">
+                                            <div class="font-weight-boldest font-size-h3 pt-2"></div>
+                                            <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
+                                                <!--begin::Svg Icon | path:/metronic/themes/metronic/theme/html/demo1/dist/assets/media/svg/icons/Communication/Urgent-mail.svg-->
+                                                <!--end::Svg Icon-->
+                                                <i class="fas fa-4x fa-user icon-center" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="hidden" id="idPelawatDashboard" value="0">
+                                            <a href="#" class="text-success font-weight-bold font-size-h6 mt-2 d-flex text-center text-bigger">Pelawat</a>
+                                            <h3 class="display-3 text-center">
+                                                0
+                                            </h3>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!--end::Row-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <!--end::Mixed Widget 1-->
+
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h3">Graf Permohonan</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="btn-group me-2">
+                                    <input type="button" id="printpagebutton" onclick="printpage()" class="btn btn-sm btn-secondary" value="Print" />
+
+
+                                    <button type="button" class="btn btn-sm btn-secondary">
+                                        <select class="form-select kt-select2 datatable-input" id="idonchangedashboard" name="statuslulus" style=" color: #3f4254; background-color: #e4e6ef ">
+
+                                            <span data-feather="calendar"></span>
+                                            <option value="T">Tahun Ini</option>
+                                            <option value="B">Bulan Ini</option>
+                                            <option value="M">Minggu Ini</option>
+                                            <option value="H">Hari Ini</option>
+                                            <option value="S">Keseluruhan</option>
+                                        </select>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Entry-->
+
+    </div>
+</div>
+
+
+
+
+<!--end::Container-->
+                    </div>
+<!--end::Post-->
+                </div>
+<!--end::Content-->
+<!--begin::Footer-->
+<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+    <!--begin::Container-->
+    <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <!--begin::Copyright-->
+        <div class="text-dark order-2 order-md-1">
+            <span class="text-muted fw-semibold me-1">2022&copy;</span>
+            <a href="https://www.utm.my" target="_blank" class="text-gray-800 text-hover-primary">Universiti Pertahanan Nasional Malaysia</a>
+        </div>
+        <!--end::Copyright-->
+        <!--begin::Menu-->
+        <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+            <li class="menu-item">
+                <a href="apel/Home/SessionVariable" target="_blank" class="menu-link px-2">Session</a>
+            </li>
+        </ul>
+        <!--end::Menu-->
+    </div>
+    <!--end::Container-->
+</div>
+<!--end::Footer-->
+            </div>
+<!--end::Wrapper-->
+        </div>
+<!--end::Page-->
+    </div>
+<!--end::Root-->
+<!--end::Main-->
+<!--begin::Scrolltop-->
+<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+    <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+    <span class="svg-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+            <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+        </svg>
+    </span>
+    <!--end::Svg Icon-->
+</div>
+<!--end::Scrolltop-->
+<!--begin::Modals-->
+<!--begin::Modal - Invite Friends-->
+<div class="modal fade" id="IdModalLoginCenter" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog mw-650px-->
+    <div class="modal-dialog">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body">
+                <!--begin::Heading-->
+                <div class="text-center mb-13">
+                    <!--begin::Title-->
+                    <h1 class="mb-3">Login <i>(HR System)</i></h1>
+                    <input type="hidden" id="IdPathServerMain" value="/apel">
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+                <!--begin::Notice-->
+                <div class="row">
+                    <div class="col-sm-12" style="padding-right:10px;">
+                        <!--begin::Label-->
+                        <label class="form-label required text-maroon">User ID</label>
+                        <!--end::Label-->
+                        <!--begin::Input form-control-solid-->
+                        <input class="form-control" id="IdUserIDText" name="USERNAME" placeholder="User ID" onkeyup="this.value = this.value.toLowerCase();" style="padding-right:10px;" />
+                        <!--end::Input-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!--begin::Label-->
+                        <label class="form-label required text-maroon">Password</label>
+                        <!--end::Label-->
+                        <!--begin::Input-->
+                        <input class="form-control" id="IdPaswordText" name="PASSWORD" placeholder="password" type="password" />
+                        <!--end::Input-->
+                    </div>
+                </div>
+                <!--end::Notice-->
+            </div>
+            <!--end::Modal body-->
+            <!--begin::Modal footer-->
+            <div class="modal-footer flex-right" style="background-color: antiquewhite;">
+                <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
+                <button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
+                &nbsp;
+                <button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
+                <div>
+                    <small id="IdModalLoginLable"></small>
+                </div>
+            </div>
+            <!--end::Modal footer-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+<!--end::Modal - Invite Friend-->
+<!--end::Modals-->
+<!--begin::Javascript-->
+<script>var hostUrl = "assets/";</script>
+<!--begin::Global Javascript Bundle(used by all pages)-->
+<script src="/apelc/assets/plugins/global/plugins.bundle.js"></script>
+<script src="/apelc/assets/js/scripts.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used by this page)-->
+<script src="/apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+<script src="/apelc/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<!--end::Vendors Javascript-->
+<!--begin::Custom Javascript(used by this page)-->
+<script src="/apelc/js/sweetalert.js"></script>
+<script src="/apelc/js/Home/Index.js"></script>
+<!-- script src="assets/js/widgets.bundle.js"></script>
+<script src="assets/js/custom/widgets.js"></script>
+<script src="assets/js/custom/apps/chat/chat.js"></script>
+<script src="assets/js/custom/utilities/modals/users-search.js"></script -->
+
+<script src="/apelc/js/Home/Dashboard.js?v=7Rm5ciT71oeTItdjeUuJ4gwUrKumu-CpHgaRMYrDPuA" type="text/javascript"></script>
+<!--begin::Custom Javascript-->
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"
+        integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script src="/apelc/js/dashboard.js?v=yPJo47PKv7cQr_A7o4rggkgyXlwYP9fPm88NBtCOJPY" type="text/javascript"></script>
+<!--end::Custom Javascript-->
+
+<script>
+
+    'use strict'
+
+    feather.replace({ 'aria-hidden': 'true' })
+    var table
+
+    //// Graphs
+    var ctx = document.getElementById('myChart');
+
+    //var xValues = ["Staf", "Pelajar ", "Pelawat "];
+
+    var yValuesDraf = ["0", "0", "0"];
+    var yValuesHantar = ["26", "0", "0"];
+    var yValuesSelesai = ["5", "1", "0"];
+    var yValuesBatal = ["1", "0", "0"];
+    var labelcomplainer = ["STAF UTM", "PELAJAR UTM", "PELAWAT UTM"];
+
+
+    var barColors = ["yellow", "red", "purple", "green"];
+
+
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: labelcomplainer,
+            datasets: [{
+                label: 'Draf',
+                backgroundColor: 'rgba(255,0,0,0.3)',
+                borderColor: 'rgba(255,0,0,0.3)',
+                data: yValuesDraf,
+                borderWidth: 1,
+                datalabels: {
+                    color: 'blue',
+                    anchor: 'end',
+                    align: 'top',
+                    offset: 3
+                }
+            }, {
+                label: 'Hantar',
+                backgroundColor: 'rgba(0,255,0,0.3)',
+                borderColor: 'rgba(0,255,0,0.3)',
+                data: yValuesHantar,
+                borderWidth: 1,
+                datalabels: {
+                    color: 'blue',
+                    anchor: 'end',
+                    align: 'top',
+                    offset: 3
+                }
+            }, {
+                label: 'Selesai',
+                backgroundColor: 'rgba(0,0,255,0.3)',
+                borderColor: 'rgba(0,0,255,0.3)',
+                data: yValuesSelesai,
+                borderWidth: 1,
+                datalabels: {
+                    color: 'blue',
+                    anchor: 'end',
+                    align: 'top',
+                    offset: 3
+                }
+            }, {
+                label: 'Batal',
+                backgroundColor: 'rgba(255,0,255,0.3)',
+                borderColor: 'rgba(255,0,255,0.3)',
+                data: yValuesBatal,
+                borderWidth: 1,
+                datalabels: {
+                    color: 'blue',
+                    anchor: 'end',
+                    align: 'top',
+                    offset: 3
+                }
+            }]
+
+        },
+        plugins: [ChartDataLabels],
+        options: {
+            legend: { display: false },
+            //    title: {
+            //        display: true,
+            //        text: "Statistik Sysmel " + dateYear
+            //    }
+        },
+    });
+
+</script>
+
+<!--end::Custom Javascript-->
+<!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>
+
+<form action="/apelc/Views/SenaraiPermohonan/SenaraiPermohonanApelC" method="post" id="myform"></form>
+
+<script>
+
+    var _path = $('#IdPathServerMain').val();
+
+    //alert(_path);
+    //check session
+    var checkSessionTime = function () {
+        var time;
+        window.onload = resetTimer();
+
+        var timeIdle;
+        window.onload = resetIdleTimer;
+        // DOM Events
+        window.onload = resetIdleTimer;
+        window.onmousemove = resetIdleTimer;
+        window.onmousedown = resetIdleTimer;  // catches touchscreen presses as well
+        window.ontouchstart = resetIdleTimer; // catches touchscreen swipes as well
+        window.onclick = resetIdleTimer;      // catches touchpad clicks as well
+        window.onkeypress = resetIdleTimer;
+        window.addEventListener('scroll', resetIdleTimer, true); // improved; see comments
+
+        //check session
+        function checkLogout() {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                url: _path + '/Home/checkSession',
+                data: '{}',
+                success: function (data) {
+                    if (data.sessionValue == true) {
+                        resetTimer();
+                    }
+                    else {
+                        //alert(1);
+                        location.href = _path + '/Login/Logout';
+                    }
+                },
+                error: function (xhr) {
+                    //alert(2);
+                    location.href = _path + '/Login/Logout';
+                }
+            });
+        }
+
+        //check session
+        function resetTimer() {
+            clearTimeout(time);
+            time = setTimeout(checkLogout, 900000) // 15 minit
+            // 1000 milliseconds = 1 second
+        }
+
+        //check idle
+        function logout() {
+            var url_back = window.location.href;
+
+            let timerInterval
+            Swal.fire({
+                title: 'You have been idle for too long!',
+                html: 'You will be logout in <b></b> seconds.<br> <strong>Continue?</strong>',
+                type: "warning",
+                confirmButtonText: 'Yes, stay login!',
+                timer: 10000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    //Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('b')
+                            .textContent = Swal.getTimerLeft() / 1000
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    Swal.fire({
+                        title: 'Logging Out',
+                        text: 'Redirecting...',
+                        type: 'info',
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        //url:  _path + '/Home/setSession',
+                        url: _path + '/Login/Logout',
+                        data: '{}',
+                        success: function () {
+                        },
+                        error: function () {
+                        }
+                    });
+                    //location.href = '/Login/Logout/'
+                    //alert(123);
+                    //location.href =  _path + '/Login/Logout/?service=' + url_back;
+                    location.href = _path + '/Login/Logout';
+                }
+            })
+        }
+
+        //check idle
+        function resetIdleTimer() {
+            clearTimeout(timeIdle);
+            timeIdle = setTimeout(logout, 900000) // 15 minit
+            //timeIdle = setTimeout(logout, 30000)
+        }
+    };
+
+    window.onload = function () {
+        checkSessionTime();
     }
 
 </script>
-<!-- Custom styles for this template -->
-<link href="/apelc/css/dashboard.css" rel="stylesheet">
+<!-- CKEditor -->
+<script src="/apelc/js/CKEditor/ckeditor.js?dt=20240706090205&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
 
-<input type="hidden" id="IdPathServerMain" value="//sysmel">
-<input type="hidden" id="IdDateYear" value="2024">
-
-<div class="text-center">
-    <h1 class="display-4">Dashboard</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>

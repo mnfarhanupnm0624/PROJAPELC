@@ -22,8 +22,7 @@ namespace APELC.PublicServices.Login
         //while (reader.Read())
         //Console.WriteLine(reader.GetString(0));
 
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
-        static readonly string ConOraAkademik = PublicConstant.ConnUpnmDbAkademik();
+        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
 
         public static UserIdModel MtdGetApelCPengguna(string id)
         {
@@ -123,7 +122,7 @@ namespace APELC.PublicServices.Login
             var _sql = @"SELECT ACADEMIC.DECRYPT(HEXTORAW(:KOD)) AS USER_GROUP FROM DUAL";
             UserIdModel _result = new UserIdModel();
             _result.RESULTSET = "0";
-            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConOraAkademik))
+            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
             {
                 UserIdModel _hasil = dbConn.QueryFirstOrDefault<UserIdModel>(_sql, new { KOD = _key });
                 if (_hasil != null)

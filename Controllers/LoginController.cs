@@ -23,15 +23,17 @@ namespace APELC.Controllers
         public string _screenCodeFunction = "HM100";
         public IActionResult LoginPageApelC()
         {
-            //var _jenisApel = _context.JenisAPEL.ToList();
-            //var _katpengguna = new List<KatPengguna>();
+            PenggunaApelCMain _data = new();
+            PenggunaApelCMain _context = _data;
+            var _jenisApel = _context.JENIS_MODUL.ToList();
+            var _katpengguna = _context.KAT_PENGGUNA_UPNM.ToList();
 
             //_jenisApel.Add(new JenisAPEL() { Id = 0, Name = "--Sila Pilih--" });
             //_katpengguna.Add(new KatPengguna() { Id = 0, Name = "--Sila Pilih--" });
 
 
-            ViewData["JenisApelData"] = new SelectList(_jenisApel.OrderBy(s => s.Id), "Id", "Name");
-            ViewData["KatPenggunaData"] = new SelectList(_katpengguna.OrderBy(s => s.Id), "Id", "Name");
+            //ViewData["JenisApelData"] = new SelectList(_jenisApel.OrderBy(s => s.Id), "Id", "Name");
+            //ViewData["KatPenggunaData"] = new SelectList(_katpengguna.OrderBy(s => s.Id), "Id", "Name");
 
             string host = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/";
             ViewData["BaseUrl"] = host;
@@ -90,7 +92,10 @@ namespace APELC.Controllers
                 }
                 else
                 {
-                    if (_result.ROLE == "PENTADBIR" || _result.ROLE == "PEMOHON" || _result.ROLE == "PENASIHATAKAD" || _result.ROLE == "PANELPENILAI" || _result.ROLE == "MODERATOR" || _result.ROLE == "BENDAHARI" || _result.ROLE == "JKFAKULTI" || _result.ROLE == "SENAT")
+                    if (_result.ROLE == "PENGGUNA SUPER" || _result.ROLE == "PENTADBIR/URUSETIA(APEL)" || _result.ROLE == "BENDAHARI" || _result.ROLE == "PEMOHON" || 
+                        _result.ROLE == "PENGAWAS UJIAN CABARAN" || _result.ROLE == "PANEL PENILAI" || _result.ROLE == "MODERATOR" || _result.ROLE == "PENASIHAT AKADEMIK" || 
+                        _result.ROLE == "PENGGUBAL DOKUMEN" || _result.ROLE == "PENILAI INSTRUMEN" || _result.ROLE == "JK FAKULTI(TIMBALAN DEKAN)" || _result.ROLE == "SENAT(DEKAN)" ||
+                        _result.ROLE == "JK FAKULTI(KERANI JABATAN)")
                     {
                         CookieOptions option = new CookieOptions();
                         option.Expires = DateTime.Now.AddMinutes(30);
@@ -250,7 +255,7 @@ namespace APELC.Controllers
             HttpContext.Session.SetString("_countRecord", _result.COUNTRECORD);
             HttpContext.Session.SetString("_email", _result.EMAIL);
             HttpContext.Session.SetString("_kodPtj", _result.KOD_PTJ);
-            //HttpContext.Session.SetString("_nokpEnc", EncryptHr.NewEncrypt(_result.NOKP, _encryptCode));
+            //HttpContext.Session.SetString("_nokpEnc", EncryptHr.NewEncrypt(_result.NO_KP, _encryptCode));
             //HttpContext.Session.SetString("_gdOk#yb", _result.KOD_USER);
             //HttpContext.Session.SetString("_pelajarId", _result.SPR_NOKP);
             //HttpContext.Session.SetString("_pelajarIdEnc", "");
@@ -435,7 +440,7 @@ namespace APELC.Controllers
         //        string _nokp = EncryptHr.NewDecrypt(id, _encryptCode);
         //        log.Info("CapaiGambar _noPekerja ~ " + _noPekerja);
         //        ModelUserDTO _photo = new();
-        //        _photo.NOKP = _nokp;
+        //        _photo.NO_KP = _nokp;
         //        _photo = LoginDBPelajarUPNM.MtdGetPhotoStudent(_nokp);
 
         //        if (_photo.PHOTO != null && _photo.PHOTO.Length > 0)

@@ -8,7 +8,8 @@ namespace APELC.LocalServices.Senarai
 {
     public class SenaraiDB
     {
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
+        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         // Get Senarai Aduan Kes Siasatan Pemohon

@@ -65,7 +65,26 @@ namespace APELC.PublicShared
             string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + _ipAdd + @")(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=" + _service + @")));User Id=" + _user + ";Password=" + _pawd;
             */
 
-            string _text = config["MySetting:UpnmdbDSDev"];
+            string _text = config["MySetting:MySQLUpnmdbDSDev"];
+            return _text;
+        }
+
+        public static string ConnSybaseUpnmDbDs()
+        {
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            /*
+            string _userEnc = config["MySetting:UpnmdbDSUser"];
+            string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
+            string _pawdEnc = config["MySetting:UpnmdbDSPawd"];
+            string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
+            string _ipAddEnc = config["MySetting:UtmdbIPAdd"];
+            string _ipAdd = EncryptHr.DecryptString4url(_ipAddEnc, "admSmis");
+            string _serviceEnc = config["MySetting:UtmdbService"];
+            string _service = EncryptHr.DecryptString4url(_serviceEnc, "admSmis");
+            string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + _ipAdd + @")(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=" + _service + @")));User Id=" + _user + ";Password=" + _pawd;
+            */
+
+            string _text = config["MySetting:SybaseUpnmdbDSDev"];
             return _text;
         }
 

@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Asn1.X509;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Org.BouncyCastle.Asn1.X509;
 using static LinqToDB.Reflection.Methods.LinqToDB;
 using static LinqToDB.Sql;
 
@@ -53,7 +54,7 @@ namespace APELC.LocalServices.Login
         }
 
 
-        internal static string SQL_GetKatPerananACL()
+        internal static string SQL_GetKatPenggunaACL()
         {
             return @"
                 SELECT NAMA_PARAMETER as KATEGORI_PERANAN
@@ -69,32 +70,42 @@ namespace APELC.LocalServices.Login
                 WHERE KUMPULAN_FK = 10 AND STATUS_AKTIF = 'Y' AND TKH_HAPUS IS NULL";
         }
 
-        internal static string SQL_GetPerananACL()
-        {
-            return @"
-                SELECT PARAM_PK,NAMA_PARAMETER as PERANAN_ACL,
-                NAMA_PARAMETER as PERANAN_ACL_EN
-                FROM apelc.APELC_PARAMETER 
-                WHERE KUMPULAN_FK = 2 AND NAMA_PARAMETER='PENGGUNA SUPER' 
-                AND STATUS_AKTIF = 'Y' AND TKH_HAPUS IS NULL 
-                ORDER BY PARAM_PK;";
-        }
+        //internal static string SQL_GetJenisPerananACL()
+        //{
+        //    return @"
+        //        SELECT PARAM_PK,NAMA_PARAMETER as PERANAN_ACL,
+        //        NAMA_PARAMETER as PERANAN_ACL_EN
+        //        FROM apelc.APELC_PARAMETER 
+        //        WHERE KUMPULAN_FK = 2 AND NAMA_PARAMETER='PENGGUNA SUPER' 
+        //        AND STATUS_AKTIF = 'Y' AND TKH_HAPUS IS NULL 
+        //        ORDER BY PARAM_PK;";
+        //}
         //    // Get Info Staf UPNM
-        internal static string SQL_MtdGetAclPeranan =
-            @"SELECT 
-                STAF_FK AS STAF_FK,
-                AKSES_KWLN_STAF_FK AS AKSES_KWLN_STAF_FK,
-                KATEGORI_PERANAN_STAF_FK AS KATEGORI_PERANAN_STAF_FK,
-                ID_PENGGUNA AS ID_PENGGUNA,
-                KATA_LALUAN AS KATA_LALUAN 
-                FROM apelc.APELC_PERANAN_STAF_UPNM
-                  WHERE 
-                 ";
-
-        internal static string SQL_MtdSuperUserWujud()
+        internal static string SQL_MtdGetAclPengguna()
         {
-            string _SQL = SQL_MtdGetAclPeranan +
-                @" AKSES_KWLN_STAF_FK=4 AND STATUS_AKTIF_STAF_FK=90 AND TKH_HAPUS IS NULL";
+            return @"SELECT 
+                KAT_PENGGUNA_UPNM_FK AS KAT_PENGGUNA_UPNM_FK,
+                NO_PEKERJA AS NO_PEKERJA,
+                STATUS_PILIH_NO_STAF AS STATUS_PILIH_NO_STAF_FK,
+                NO_MATRIK AS NO_MATRIK,
+                STATUS_PILIH_NO_MATRIK AS STATUS_PILIH_NO_MATRIK_FK,
+                NO_KP AS NO_KP,
+                STATUS_PILIH_NO_KP AS STATUS_PILIH_NO_KP_FK,
+                KATA_LALUAN_PENGGUNA AS KATA_LALUAN_PENGGUNA,
+                JENIS_MODUL_PENGGUNA_UPNM AS JENIS_MODUL,
+                SESSION_TIMEOUT AS SESSION_TIMEOUT,
+                STATUS_AKTIF_PENGGUNA_UPNM AS STATUS_AKTIF_PENGGUNA_UPNM_FK
+                FROM apelc.APELC_PERANAN_UPNM
+                WHERE 
+                STATUS_AKTIF_PENGGUNA_UPNM_FK=90 AND 
+                STATUS_AKTIF_STAF_FK=90 AND TKH_HAPUS IS NULL
+                ORDER BY PARAM_PK; 
+                 ";
+        }
+        internal static string SQL_MtdStatusAktifPengguna()
+        {
+            string _SQL = SQL_MtdGetAclPengguna +
+                @" STATUS_AKTIF_PENGGUNA_UPNM_FK=90 AND STATUS_AKTIF_STAF_FK=90 AND TKH_HAPUS IS NULL";
 
             //_SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
 

@@ -2,7 +2,7 @@
 //using Oracle.ManagedDataAccess.Client;
 using APELC.Model;
 using APELC.PublicShared;
-using APELC.LocalServices.Senarai;
+using APELC.LocalServices;
 using APELC.LocalShared;
 using System.IdentityModel.Tokens.Jwt;
 
@@ -12,7 +12,7 @@ namespace APELC.LocalServices.Selenggara
 {
     public class SelenggaraDB
     {
-        public static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+        public static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
         public readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         //internal static ModelHrStaffMaklumatPeribadi DB_MtdGetMaklumatAsas(int _stafPk)

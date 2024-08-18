@@ -22,8 +22,10 @@ namespace APELC.LocalServices.Login
     public class LoginDB
     {
         static readonly string ConnMySQLUpnm = PublicConstant.ConnMySQLUpnmDbDs();
+        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
+        
         //        myConnectionString = "server=127.0.0.1;uid=root;" +
         //    "pwd=12345;database=test";
 
@@ -39,7 +41,7 @@ namespace APELC.LocalServices.Login
 
         //        public static ModelUserDTO MtdGetPhotoStaf(ModelUserDTO photo, MySqlConnection mySqlConnection)
         //        {
-        //            //var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NOPEKERJA ";
+        //            //var _sql = "SELECT GAMBAR as PHOTO, '2' as RESULTSET FROM HR_GAMBAR WHERE NO_PEKERJA2 = :NO_PEKERJA ";
         //            var _sql = LoginSQL.SQL_GetPhoto();
         //            ModelUserDTO _result = new();
         //            _result.RESULTSET = "0";
@@ -62,16 +64,16 @@ namespace APELC.LocalServices.Login
             public InMemoryDBContext(DbContextOptions<InMemoryDBContext> options) : base(options)
             { }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-                modelBuilder.Entity<JenisAPEL>().HasMany(c => c.Products).WithOne(a => a.JenisAPEL).HasForeignKey(a => a.Idjenis_APEL_param);
+            //protected override void OnModelCreating(ModelBuilder modelBuilder)
+            //{
+            //    modelBuilder.Entity<JenisAPEL>().HasMany(c => c.Products).WithOne(a => a.JenisAPEL).HasForeignKey(a => a.Idjenis_APEL_param);
 
-                modelBuilder.Seed();
-            }
+            //    modelBuilder.Seed();
+            //}
 
-            public DbSet<JenisAPEL> JenisAPEL { get; set; }
+            //public DbSet<JenisAPEL> JenisAPEL { get; set; }
 
-            public DbSet<KatPengguna> Categories { get; set; }
+            //public DbSet<KatPengguna> Categories { get; set; }
         }
 
         // Semakan Info Wujud Super User dari Info Staf_FK di Table Peranan UPNM

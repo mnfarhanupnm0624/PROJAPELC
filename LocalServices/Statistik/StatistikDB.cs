@@ -9,7 +9,8 @@ namespace APELC.LocalServices.Statistik
 {
     public class StatistikDB
     {
-        //static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
+        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         //internal static ModelHrStaffMaklumatPeribadi DB_MtdGetMaklumatAsas(int _stafPk)

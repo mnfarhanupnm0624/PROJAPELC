@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 //    public class PublicOracleServices
 //    {
 //        public static object PublicConstant;
-//        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnUpnmDbDs();
+//        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
 //        static readonly string ConnOraRujuk = PublicConstant.ConnOraRujuk();
 //        static readonly string ConnOraSmu = PublicConstant.ConnUpnmDbSmu();
 //        static string _encryptCode = PublicConstant.New2022EncryptCode();
@@ -248,15 +248,15 @@ using System.Threading.Tasks;
 //            }
 //        }
 
-//        public static HrStaffMaklumatPeribadiModel MtdGetHrStafMaklumatByNoKP(string nokp)
+//        public static HrStaffMaklumatPeribadiModel MtdGetHrStafMaklumatByNoKP(string NO_KP)
 //        {
 //            HrStaffMaklumatPeribadiModel _returnRecord = new HrStaffMaklumatPeribadiModel()
 //            {
-//                NO_KP_BARU = nokp
+//                NO_KP_BARU = NO_KP
 //            };
 //            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
-//                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetHrStafMaklumatByNoKP(), new { NO_KP_BARU = nokp });
+//                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetHrStafMaklumatByNoKP(), new { NO_KP_BARU = NO_KP });
 //                if (_returnData != null)
 //                {
 //                    _returnRecord = MtdGetAddRequireFIeld(_returnData);
@@ -287,7 +287,7 @@ using System.Threading.Tasks;
 //            return _returnRecord;
 //        }
 
-//        public static IEnumerable<SmisKadAsasModel> MtdGetStafYangDiselia(string noPekerja)
+//        public static IEnumerable<SmisKadAsasModel> MtdGetStafYangDiselia(string NO_PEKERJA)
 //        {
 //            var log = NLog.LogManager.GetCurrentClassLogger();
 //            IEnumerable<SmisKadAsasModel> _data = new List<SmisKadAsasModel>();
@@ -295,7 +295,7 @@ using System.Threading.Tasks;
 //            {
 //                using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnOraSmu))
 //                {
-//                    IEnumerable<SmisKadAsasModel> _data2 = dbConn.Query<SmisKadAsasModel>(PublicSql.SQL_MtdGetStafYangDiselia(noPekerja));
+//                    IEnumerable<SmisKadAsasModel> _data2 = dbConn.Query<SmisKadAsasModel>(PublicSql.SQL_MtdGetStafYangDiselia(NO_PEKERJA));
 //                    if (_data2 != null)
 //                    {
 //                        _data = _data2;
@@ -304,7 +304,7 @@ using System.Threading.Tasks;
 //            }
 //            catch (Exception e)
 //            {
-//                log.Info(noPekerja + " MtdGetStafYangDiselia e ~ " + e);
+//                log.Info(NO_PEKERJA + " MtdGetStafYangDiselia e ~ " + e);
 //            }
 //            return _data;
 //        }
@@ -471,16 +471,16 @@ using System.Threading.Tasks;
 //            return _returnRecord;
 //        }
 
-//        public static HrStaffMaklumatPeribadiModel MtdGetBasicHrStafMaklumatByNoKP(string nokp)
+//        public static HrStaffMaklumatPeribadiModel MtdGetBasicHrStafMaklumatByNoKP(string NO_KP)
 //        {
 //            HrStaffMaklumatPeribadiModel _returnRecord = new HrStaffMaklumatPeribadiModel()
 //            {
-//                NO_KP_BARU = nokp,
-//                NO_KP_BARU_ENC = EncryptHr.NewEncrypt(nokp, _encryptCode)
+//                NO_KP_BARU = NO_KP,
+//                NO_KP_BARU_ENC = EncryptHr.NewEncrypt(NO_KP, _encryptCode)
 //            };
 //            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
-//                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetBasicHrStafMaklumatByNoKP(), new { NO_KP_BARU = nokp });
+//                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.MtdGetBasicHrStafMaklumatByNoKP(), new { NO_KP_BARU = NO_KP });
 //                if (_returnData != null)
 //                {
 //                    _returnRecord = MtdGetAddRequireFIeld(_returnData);
@@ -489,17 +489,17 @@ using System.Threading.Tasks;
 //            return _returnRecord;
 //        }
 
-//        public static HrStaffMaklumatPeribadiModel MtdGetMaklumatPeribadiByNokp(string nokp)
+//        public static HrStaffMaklumatPeribadiModel MtdGetMaklumatPeribadiByNokp(string NO_KP)
 //        {
 //            HrStaffMaklumatPeribadiModel _returnRecord = new HrStaffMaklumatPeribadiModel()
 //            {
 //                RESULTSET = "0",
-//                NO_KP_BARU = nokp,
-//                NO_KP_BARU_ENC = EncryptHr.NewEncrypt(nokp, _encryptCode)
+//                NO_KP_BARU = NO_KP,
+//                NO_KP_BARU_ENC = EncryptHr.NewEncrypt(NO_KP, _encryptCode)
 //            };
 //            using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
 //            {
-//                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.SqlGetMaklumatPeribadiByNokp(), new { NO_KP_BARU = nokp });
+//                HrStaffMaklumatPeribadiModel _returnData = dbConn.QueryFirstOrDefault<HrStaffMaklumatPeribadiModel>(PublicSql.SqlGetMaklumatPeribadiByNokp(), new { NO_KP_BARU = NO_KP });
 //                if (_returnData != null)
 //                {
 //#pragma warning disable CS8604 // Possible null reference argument.

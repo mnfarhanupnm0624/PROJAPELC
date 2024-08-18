@@ -1,8 +1,17 @@
 using System;
 using System.IO;
+using static LinqToDB.Common.Configuration;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
+using System.Net.NetworkInformation;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 //using WebApplicationI.Services;
 
 var builder = WebApplication.CreateBuilder(args);

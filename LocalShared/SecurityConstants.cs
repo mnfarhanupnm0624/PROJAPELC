@@ -42,12 +42,12 @@ namespace APELC.LocalShared
 
         //public static string ConnOraRujuk()
         //{
-        //    return ConnUpnmDbDs();
+        //    return ConnMySQLUpnmDbDs();
         //}
 
-        //public static string ConnUpnmDbDs()
+        //public static string ConnMySQLUpnmDbDs()
         //{
-        //    //return PublicConstant.ConnUpnmDbDs();
+        //    //return PublicConstant.ConnMySQLUpnmDbDs();
         //}
 
 
