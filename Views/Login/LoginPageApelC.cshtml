@@ -43,8 +43,8 @@
     // string _nomatrik = HttpContextAccessor.HttpContext.Session.GetString("_nomatrikEnc") ?? "";
     // string _nokp = HttpContextAccessor.HttpContext.Session.GetString("_nokpEnc") ?? "";
     // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
-    // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
-    var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"];
+    // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];  // localhost test appsettings.json
+    var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"]; //Localhost test launchsettings.json
     // var _getPath = Configuration.GetSection("APELC")["applicationUrl"];
     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
     // var _disablelink = "disable-link";
