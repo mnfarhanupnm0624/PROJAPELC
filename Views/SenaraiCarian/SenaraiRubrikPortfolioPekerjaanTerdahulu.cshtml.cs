@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace APELC.Views.SenaraiRubrikPortfolioPekerjaanTerdahulu
+namespace APELC.Views.SenaraiCarian
 {
     public class SenaraiRubrikPortfolioPekerjaanTerdahuluModel : PageModel
     {

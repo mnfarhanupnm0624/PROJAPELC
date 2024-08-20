@@ -2,39 +2,11 @@
 @inject IConfiguration Configuration
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @inject IJsonHelper Json
-@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
-@* @model ModelQRCode *@
-@using APELC.Helper
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Html
-@using Microsoft.AspNetCore.Builder;
-@using Microsoft.AspNetCore.Hosting;
-@using Microsoft.AspNetCore.Authorization;
-@using Microsoft.AspNetCore.Identity;
-@using Microsoft.Extensions.Configuration;
-@using Microsoft.Extensions.DependencyInjection;
-@using System.Collections.Specialized;
-@using System;
-@using System.IO;
-@using System.Data;
-@using System.Data.SqlClient;
-@using System.Configuration;
-@using System.Collections.Generic;
-@using System.Linq;
-@* @using System.Web;
-@using System.Web.UI;
-@using System.Web.UI.WebControls; *@
-@* @using System.Web.Security; *@
-@* @using WebClientCore.Models.DisplayModels *@
-@using Microsoft.EntityFrameworkCore;
-@using Microsoft.Extensions.Hosting;
-@* @using SecurityMaintenance.Models; *@
-@using Microsoft.AspNetCore.Mvc;
-@using Microsoft.AspNetCore.Mvc.Razor;
-@using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 @model APELC.Views.SenaraiPermohonan.SenaraiPermohonanApelCModel
 
 @{
+   ViewData["Title"] = "APEL C";
+    Layout = "/Views/Shared/Command/_menuLeftSideApelC.cshtml";
 #pragma warning disable CS8602
     // string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
     // string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";

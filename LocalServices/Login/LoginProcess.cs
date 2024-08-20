@@ -198,7 +198,7 @@ namespace APELC.LocalServices.Login
             return LoginDBLibrary.MtdGetFunctions(_userName, _kod);
         }
 
-        // GET : Semakan Login dari Apps
+        //GET : Semakan Login dari Apps
 //        internal static ModelUserDTO MtdSemakPenggunaDariApps(string _username)
 //        {
 //            ModelUserDTO _userDTO = new();
@@ -279,10 +279,10 @@ namespace APELC.LocalServices.Login
 //            return _userDTO;
 //        }
 
-//        internal static IEnumerable<string> MtdGetFunctions(string _userName)
-//        {
-//            return (IEnumerable<string>)LoginDBStafUPNM.MtdGetApelCPengguna(_userName);
-//        }
+        internal static IEnumerable<string> MtdGetFunctions(string _userName)
+        {
+            return (IEnumerable<string>)LoginDBStafUPNM.MtdGetApelCPengguna(_userName);
+        }
 
         //private static ModelUserDTO MtdPindahPengguna2UserDTO(UserIdModel usrPsp, ModelUserDTO ModelUserDTO)
         //{
@@ -305,114 +305,114 @@ namespace APELC.LocalServices.Login
         //    ModelUserDTO.KOD_PTJ = usrPsp.KOD_PTJ;
         //    ModelUserDTO.RESULTTEXT = "";
 
-            // - Roles: Super User
-            //ModelParameterAPEL _isSuperUser = LoginDB.DB_MtdSuperUserWujud(usrPsp.STAF_FK.ToString(), "4");
-            //if (_isSuperUser.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isSuperUser.ViewField;
-            //    ModelUserDTO.ROLE = "SUPERUSER";
-            //    ModelUserDTO.RESULTSET = _isSuperUser.RESULTSET;
-            //}
+        //    -Roles: Super User
+        //    ModelParameterAPEL _isSuperUser = LoginDB.DB_MtdSuperUserWujud(usrPsp.STAF_FK.ToString(), "4");
+        //    if (_isSuperUser.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isSuperUser.ViewField;
+        //        ModelUserDTO.ROLE = "SUPERUSER";
+        //        ModelUserDTO.RESULTSET = _isSuperUser.RESULTSET;
+        //    }
 
-            // - Roles: Pentadbir APELC
-            //ModelParameterHr _isPentadbirAPELC = LoginDB.DB_MtdPentadbirAPELCWujud(usrPsp.STAF_FK.ToString(), "5");
-            //if (_isPentadbirAPELC.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isPentadbirAPELC.ViewField;
-            //    ModelUserDTO.ROLE = "PENTADBIR_APELC";
-            //    ModelUserDTO.RESULTSET = _isPentadbirAPELC.RESULTSET;
-            //}
+        //    -Roles: Pentadbir APELC
+        //    ModelParameterHr _isPentadbirAPELC = LoginDB.DB_MtdPentadbirAPELCWujud(usrPsp.STAF_FK.ToString(), "5");
+        //    if (_isPentadbirAPELC.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isPentadbirAPELC.ViewField;
+        //        ModelUserDTO.ROLE = "PENTADBIR_APELC";
+        //        ModelUserDTO.RESULTSET = _isPentadbirAPELC.RESULTSET;
+        //    }
 
-            // - Roles: Bendahari
-            //ModelParameterHr _isBendahari = LoginDB.DB_MtdBendahariWujud(usrPsp.STAF_FK.ToString(), "6");
-            //if (_isBendahari.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isBendahari.ViewField;
-            //    ModelUserDTO.ROLE = "BENDAHARI";
-            //    ModelUserDTO.RESULTSET = _isBendahari.RESULTSET;
-            //} 
+        //    -Roles: Bendahari
+        //   ModelParameterHr _isBendahari = LoginDB.DB_MtdBendahariWujud(usrPsp.STAF_FK.ToString(), "6");
+        //    if (_isBendahari.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isBendahari.ViewField;
+        //        ModelUserDTO.ROLE = "BENDAHARI";
+        //        ModelUserDTO.RESULTSET = _isBendahari.RESULTSET;
+        //    }
 
-            // - Roles: Pemohon
-            //ModelParameterHr _isPemohon = LoginDB.DB_MtdPemohonWujud(usrPsp.STAF_FK.ToString(), "7");
-            //if (_isPemohon.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isPemohon.ViewField;
-            //    ModelUserDTO.ROLE = "PEMOHON";
-            //    ModelUserDTO.RESULTSET = _isPemohon.RESULTSET;
-            //}
+        //    -Roles: Pemohon
+        //   ModelParameterHr _isPemohon = LoginDB.DB_MtdPemohonWujud(usrPsp.STAF_FK.ToString(), "7");
+        //    if (_isPemohon.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isPemohon.ViewField;
+        //        ModelUserDTO.ROLE = "PEMOHON";
+        //        ModelUserDTO.RESULTSET = _isPemohon.RESULTSET;
+        //    }
 
-            // - Roles: Pengawas Ujian Cbrn
-            //ModelParameterHr _isPengawasUjianCbrn = LoginDB.DB_MtdPengawasUjianCbrnWujud(usrPsp.STAF_FK.ToString(), "8");
-            //if (_isPengawasUjianCbrn.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isPengawasUjianCbrn.ViewField;
-            //    ModelUserDTO.ROLE = "PENGAWAS UJIAN CABARAN";
-            //    ModelUserDTO.RESULTSET = _isPengawasUjianCbrn.RESULTSET;
-            //}
+        //    -Roles: Pengawas Ujian Cbrn
+        //   ModelParameterHr _isPengawasUjianCbrn = LoginDB.DB_MtdPengawasUjianCbrnWujud(usrPsp.STAF_FK.ToString(), "8");
+        //    if (_isPengawasUjianCbrn.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isPengawasUjianCbrn.ViewField;
+        //        ModelUserDTO.ROLE = "PENGAWAS UJIAN CABARAN";
+        //        ModelUserDTO.RESULTSET = _isPengawasUjianCbrn.RESULTSET;
+        //    }
 
-            // - Roles: Panel Penilai
-            //ModelParameterHr _isPanelPenilai = LoginDB.DB_MtdPanelPenilaiWujud(usrPsp.STAF_FK.ToString(), "9");
-            //if (_isPanelPenilai.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isPanelPenilai.ViewField;
-            //    ModelUserDTO.ROLE = "PANEL PENILAI";
-            //    ModelUserDTO.RESULTSET = _isPanelPenilai.RESULTSET;
-            //}
+        //    -Roles: Panel Penilai
+        //    ModelParameterHr _isPanelPenilai = LoginDB.DB_MtdPanelPenilaiWujud(usrPsp.STAF_FK.ToString(), "9");
+        //    if (_isPanelPenilai.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isPanelPenilai.ViewField;
+        //        ModelUserDTO.ROLE = "PANEL PENILAI";
+        //        ModelUserDTO.RESULTSET = _isPanelPenilai.RESULTSET;
+        //    }
 
-            // - Roles: Panel Moderator
-            //ModelParameterHr _isModerator = LoginDB.DB_MtdModeratorWujud(usrPsp.STAF_FK.ToString(), "10");
-            //if (_isModerator.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isModerator.ViewField;
-            //    ModelUserDTO.ROLE = "MODERATOR";
-            //    ModelUserDTO.RESULTSET = _isModerator.RESULTSET;
-            //}
+        //    -Roles: Panel Moderator
+        //    ModelParameterHr _isModerator = LoginDB.DB_MtdModeratorWujud(usrPsp.STAF_FK.ToString(), "10");
+        //    if (_isModerator.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isModerator.ViewField;
+        //        ModelUserDTO.ROLE = "MODERATOR";
+        //        ModelUserDTO.RESULTSET = _isModerator.RESULTSET;
+        //    }
 
-            // - Roles: Penasihat Akademik
-            //ModelParameterHr _isPenasihatAkademik = LoginDB.DB_MtdPenasihatAkademikWujud(usrPsp.STAF_FK.ToString(), "11");
-            //if (_isPenasihatAkademik.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isPenasihatAkademik.ViewField;
-            //    ModelUserDTO.ROLE = "PENASIHAT AKADEMIK";
-            //    ModelUserDTO.RESULTSET = _isPenasihatAkademik.RESULTSET;
-            //}
+        //    -Roles: Penasihat Akademik
+        //    ModelParameterHr _isPenasihatAkademik = LoginDB.DB_MtdPenasihatAkademikWujud(usrPsp.STAF_FK.ToString(), "11");
+        //    if (_isPenasihatAkademik.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isPenasihatAkademik.ViewField;
+        //        ModelUserDTO.ROLE = "PENASIHAT AKADEMIK";
+        //        ModelUserDTO.RESULTSET = _isPenasihatAkademik.RESULTSET;
+        //    }
 
-            // - Roles: Penggubal
-            //ModelParameterHr _isPenggubal = LoginDB.DB_MtdPenggubalWujud(usrPsp.STAF_FK.ToString(), "12");
-            //if (_isPenggubal.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isPenggubal.ViewField;
-            //    ModelUserDTO.ROLE = "PENGGUBAL";
-            //    ModelUserDTO.RESULTSET = _isPenggubal.RESULTSET;
-            //}
+        //    -Roles: Penggubal
+        //   ModelParameterHr _isPenggubal = LoginDB.DB_MtdPenggubalWujud(usrPsp.STAF_FK.ToString(), "12");
+        //    if (_isPenggubal.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isPenggubal.ViewField;
+        //        ModelUserDTO.ROLE = "PENGGUBAL";
+        //        ModelUserDTO.RESULTSET = _isPenggubal.RESULTSET;
+        //    }
 
-            // - Roles: Penilai Instrumen
-            //ModelParameterHr _isPenilaiInstrumen = LoginDB.DB_MtdPenilaiInstrumenWujud(usrPsp.STAF_FK.ToString(), "13");
-            //if (_isPenilaiInstrumen.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isPenilaiInstrumen.ViewField;
-            //    ModelUserDTO.ROLE = "PENILAI INSTRUMEN";
-            //    ModelUserDTO.RESULTSET = _isPenilaiInstrumen.RESULTSET;
-            //}
+        //    -Roles: Penilai Instrumen
+        //    ModelParameterHr _isPenilaiInstrumen = LoginDB.DB_MtdPenilaiInstrumenWujud(usrPsp.STAF_FK.ToString(), "13");
+        //    if (_isPenilaiInstrumen.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isPenilaiInstrumen.ViewField;
+        //        ModelUserDTO.ROLE = "PENILAI INSTRUMEN";
+        //        ModelUserDTO.RESULTSET = _isPenilaiInstrumen.RESULTSET;
+        //    }
 
-            // - Roles: JK Fakulti
-            //ModelParameterHr _isJKFakulti = LoginDB.DB_MtdJKFakultiWujud(usrPsp.STAF_FK.ToString(), "14");
-            //if (_isJKFakulti.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isJKFakulti.ViewField;
-            //    ModelUserDTO.ROLE = "JK FAKULTI";
-            //    ModelUserDTO.RESULTSET = _isJKFakulti.RESULTSET;
-            //}
+        //    -Roles: JK Fakulti
+        //    ModelParameterHr _isJKFakulti = LoginDB.DB_MtdJKFakultiWujud(usrPsp.STAF_FK.ToString(), "14");
+        //    if (_isJKFakulti.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isJKFakulti.ViewField;
+        //        ModelUserDTO.ROLE = "JK FAKULTI";
+        //        ModelUserDTO.RESULTSET = _isJKFakulti.RESULTSET;
+        //    }
 
 
-            // - Roles: Senat
-            //ModelParameterHr _isSenat = LoginDB.DB_MtdSenatWujud(usrPsp.STAF_FK.ToString(), "15");
-            //if (_isSenat.RESULTSET == "2")
-            //{
-            //    ModelUserDTO.NAMA_PERANAN = _isSenat.ViewField;
-            //    ModelUserDTO.ROLE = "SENAT";
-            //    ModelUserDTO.RESULTSET = _isSenat.RESULTSET;
-            //}
+        //    -Roles: Senat
+        //   ModelParameterHr _isSenat = LoginDB.DB_MtdSenatWujud(usrPsp.STAF_FK.ToString(), "15");
+        //    if (_isSenat.RESULTSET == "2")
+        //    {
+        //        ModelUserDTO.NAMA_PERANAN = _isSenat.ViewField;
+        //        ModelUserDTO.ROLE = "SENAT";
+        //        ModelUserDTO.RESULTSET = _isSenat.RESULTSET;
+        //    }
 
 
         //    return ModelUserDTO;
@@ -440,88 +440,88 @@ namespace APELC.LocalServices.Login
         //    return usr;
         //}
 
-        //        internal static ModelUserDTO MtdProsesSimpanNewPassword(ModelUserDTO user)
-        //        {
-        //            string _data = "0";
-        //#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-        //            string _user = user.USERNAME;
-        //#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-        //            user.RESULTSET = _data;
-        //#pragma warning disable CS8604 // Possible null reference argument.
-        //            UserIdModel semakUsr = LoginDBLibrary.MtdGetPengguna(user.USERNAME);
-        //#pragma warning restore CS8604 // Possible null reference argument.
-        //            if (semakUsr != null)
-        //            {
-        //                string _oldPassEnc = EncryptHr.mtdEncryptPassword(PublicConstant.MtdRemoveSpecialCharacter(user.KATALALUAN));
-        //#pragma warning disable CS8604 // Possible null reference argument.
-        //                string _newPasswd01 = PublicConstant.MtdRemoveSpecialCharacter(user.NEWPASSWORD01);
-        //                string _newPasswd02 = PublicConstant.MtdRemoveSpecialCharacter(user.NEWPASSWORD02);
-        //#pragma warning restore CS8604 // Possible null reference argument.
-        //                if (_newPasswd01 != _newPasswd02)
-        //                {
-        //                    user.RESULTTEXT = "NEW PASSWORD DAN CONFIRMATION NEW PASSWORD TIDAK SAMA";
-        //                }
-        //                else if (semakUsr.PASSWORD != _oldPassEnc)
-        //                {
-        //                    user.RESULTTEXT = semakUsr.PASSWORD + " ~ CURRENT PASSWORD TIDAK SAMA ~ " + _oldPassEnc;
-        //                }
-        //                else
-        //                {
-        //                    string _newPasswd = EncryptHr.mtdEncryptPassword(user.NEWPASSWORD01);
-        //                    if (_user != "")
-        //                    {
-        //                        UserIdModel pengguna = new()
-        //                        {
-        //                            ID_PENGGUNA = _user,
-        //                            KATALALUAN = _newPasswd
-        //                        };
-        //                        int _hasil = LoginDBLibrary.MtdGetPenggunaSimpan(pengguna);
-        //                        if (_hasil > 0)
-        //                        {
-        //                            user.RESULTTEXT = "REKOD BERJAYA DISIMPAN";
-        //                            _data = "1";
-        //                        }
-        //                        else
-        //                        {
-        //                            user.RESULTTEXT = "REKOD TIDAK BERJAYA DISIMPAN";
-        //                            _data = "2";
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //            user.RESULTSET = _data;
-        //            return user;
-        //        }
-
-        //        internal static ModelUserDTO MtdGetPhotoStudent(ModelUserDTO photo)
-        //        {
-        //#pragma warning disable CS8604 // Possible null reference argument.
-        //            ModelUserDTO _return = LoginDBPelajarUPNM.MtdGetPhotoStudent(photo.SPR_NOKP);
-        //#pragma warning restore CS8604 // Possible null reference argument.
-        //            ModelUserDTO _dataReturn = new()
-        //            {
-        //                PHOTO = _return.PHOTO,
-        //                RESULTSET = _return.RESULTSET
-        //            };
-        //            return _dataReturn;
-        //        }
-
-//        internal static bool MtdGetReLoginFromLocal()
+//        internal static ModelUserDTO MtdProsesSimpanNewPassword(ModelUserDTO user)
 //        {
-//            bool _return = false;
-//#pragma warning disable SYSLIB0014 // Type or member is obsolete
-//            WebClient webClient1 = new();
-//#pragma warning restore SYSLIB0014 // Type or member is obsolete
-//            using (var webClient = webClient1)
+//            string _data = "0";
+//#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+//            string _user = user.USERNAME;
+//#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+//            user.RESULTSET = _data;
+//#pragma warning disable CS8604 // Possible null reference argument.
+//            UserIdModel semakUsr = LoginDBLibrary.MtdGetPengguna(user.USERNAME);
+//#pragma warning restore CS8604 // Possible null reference argument.
+//            if (semakUsr != null)
 //            {
-//                var _json = webClient.DownloadString(@"C:/Log/TestingPhase.txt");
-//                if (_json.ToString() == "true")
+//                string _oldPassEnc = EncryptHr.mtdEncryptPassword(PublicConstant.MtdRemoveSpecialCharacter(user.KATALALUAN));
+//#pragma warning disable CS8604 // Possible null reference argument.
+//                string _newPasswd01 = PublicConstant.MtdRemoveSpecialCharacter(user.NEWPASSWORD01);
+//                string _newPasswd02 = PublicConstant.MtdRemoveSpecialCharacter(user.NEWPASSWORD02);
+//#pragma warning restore CS8604 // Possible null reference argument.
+//                if (_newPasswd01 != _newPasswd02)
 //                {
-//                    _return = true;
+//                    user.RESULTTEXT = "NEW PASSWORD DAN CONFIRMATION NEW PASSWORD TIDAK SAMA";
+//                }
+//                else if (semakUsr.PASSWORD != _oldPassEnc)
+//                {
+//                    user.RESULTTEXT = semakUsr.PASSWORD + " ~ CURRENT PASSWORD TIDAK SAMA ~ " + _oldPassEnc;
+//                }
+//                else
+//                {
+//                    string _newPasswd = EncryptHr.mtdEncryptPassword(user.NEWPASSWORD01);
+//                    if (_user != "")
+//                    {
+//                        UserIdModel pengguna = new()
+//                        {
+//                            ID_PENGGUNA = _user,
+//                            KATALALUAN = _newPasswd
+//                        };
+//                        int _hasil = LoginDBLibrary.MtdGetPenggunaSimpan(pengguna);
+//                        if (_hasil > 0)
+//                        {
+//                            user.RESULTTEXT = "REKOD BERJAYA DISIMPAN";
+//                            _data = "1";
+//                        }
+//                        else
+//                        {
+//                            user.RESULTTEXT = "REKOD TIDAK BERJAYA DISIMPAN";
+//                            _data = "2";
+//                        }
+//                    }
 //                }
 //            }
-//            return _return;
+//            user.RESULTSET = _data;
+//            return user;
 //        }
+
+//        internal static ModelUserDTO MtdGetPhotoStudent(ModelUserDTO photo)
+//        {
+//#pragma warning disable CS8604 // Possible null reference argument.
+//            ModelUserDTO _return = LoginDBPelajarUPNM.MtdGetPhotoStudent(photo.SPR_NOKP);
+//#pragma warning restore CS8604 // Possible null reference argument.
+//            ModelUserDTO _dataReturn = new()
+//            {
+//                PHOTO = _return.PHOTO,
+//                RESULTSET = _return.RESULTSET
+//            };
+//            return _dataReturn;
+//        }
+
+        internal static bool MtdGetReLoginFromLocal()
+        {
+            bool _return = false;
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
+            WebClient webClient1 = new();
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
+            using (var webClient = webClient1)
+            {
+                var _json = webClient.DownloadString(@"C:/Log/TestingPhase.txt");
+                if (_json.ToString() == "true")
+                {
+                    _return = true;
+                }
+            }
+            return _return;
+        }
 
         //internal static ModelUserDTO MtdGetPhotoStaf(ModelUserDTO photo)
         //{
@@ -538,7 +538,7 @@ namespace APELC.LocalServices.Login
         //    return _dataReturn;
         //}
 
-        // Begin:
+        //Begin:
         // DDL - Jenis APEL
 
         internal class ListJenisAPEL

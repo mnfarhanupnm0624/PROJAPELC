@@ -17,16 +17,16 @@ namespace APELC.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
-        private readonly LoginDB _context;
+        //private readonly ILogger<LoginController> _logger;
+        //private readonly LoginDB _context;
         public static string _encryptCode = SecurityConstants.EncryptCode();
         public string _screenCodeFunction = "HM100";
         public IActionResult LoginPageApelC()
         {
             PenggunaApelCMain _data = new();
             PenggunaApelCMain _context = _data;
-            var _jenisApel = _context.JENIS_MODUL.ToList();
-            var _katpengguna = _context.KAT_PENGGUNA_UPNM.ToList();
+            //var _jenisApel = _context.JENIS_MODUL.ToList();
+            //var _katpengguna = _context.KAT_PENGGUNA_UPNM.ToList();
 
             //_jenisApel.Add(new JenisAPEL() { Id = 0, Name = "--Sila Pilih--" });
             //_katpengguna.Add(new KatPengguna() { Id = 0, Name = "--Sila Pilih--" });
@@ -171,32 +171,32 @@ namespace APELC.Controllers
         //        if (Request.Cookies["SSOJWT"] != null)      //check cookie exist
         //        {
         //            var _token = Request.Cookies["SSOJWT"]; //.Value;   //get token from cookie   _token2;// 
-        //                                                    //var handler = new JwtSecurityTokenHandler();
-        //                                                    //var tokenS = handler.ReadToken(_token) as JwtSecurityToken;
+        //            var handler = new JwtSecurityTokenHandler();
+        //            var tokenS = handler.ReadToken(_token) as JwtSecurityToken;
 
-        //            //var _userid = tokenS.Claims.First(claim => claim.Type == "sub").Value;
-        //            //var _noPekerja = tokenS.Claims.First(claim => claim.Type == "employeeNumber").Value;
-        //            //ModelUserDTO _userSemak = LoginProcess.MtdSemakUserFromLoginFromJWT(_userid, _noPekerja);
-        //            //if (_userSemak.RESULTSET == "0")
-        //            //{
-        //            //    _msg = _userSemak.RESULTTEXT;
-        //            //    ViewBag.Msg = _msg;
-        //            //    if (_msg != "")
-        //            //    {
-        //            //        return RedirectToAction("Logout");
-        //            //    }
-        //            //}
-        //            //else
-        //            //{
-        //            //    if (_result.ROLE == "PENTADBIR" || _result.ROLE == "PEMOHON" || _result.ROLE == "PENASIHATAKAD" || _result.ROLE == "PANELPENILAI" || _result.ROLE == "MODERATOR" || _result.ROLE == "BENDAHARI" || _result.ROLE == "JKFAKULTI" || _result.ROLE == "SENAT")
-        //            //    {
-        //            //        MtdGetsaveJWTOnSession(_userSemak, _token, new JWTModel(_token));
-        //            //    }
-        //            //    else
-        //            //    {
-        //            //        return RedirectToAction("Logout");
-        //            //    }
-        //            //}
+        //            var _userid = tokenS.Claims.First(claim => claim.Type == "sub").Value;
+        //            var _noPekerja = tokenS.Claims.First(claim => claim.Type == "employeeNumber").Value;
+        //            ModelUserDTO _userSemak = LoginProcess.MtdSemakUserFromLoginFromJWT(_userid, _noPekerja);
+        //            if (_userSemak.RESULTSET == "0")
+        //            {
+        //                _msg = _userSemak.RESULTTEXT;
+        //                ViewBag.Msg = _msg;
+        //                if (_msg != "")
+        //                {
+        //                    return RedirectToAction("Logout");
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (_result.ROLE == "PENTADBIR" || _result.ROLE == "PEMOHON" || _result.ROLE == "PENASIHATAKAD" || _result.ROLE == "PANELPENILAI" || _result.ROLE == "MODERATOR" || _result.ROLE == "BENDAHARI" || _result.ROLE == "JKFAKULTI" || _result.ROLE == "SENAT")
+        //                {
+        //                    MtdGetsaveJWTOnSession(_userSemak, _token, new JWTModel(_token));
+        //                }
+        //                else
+        //                {
+        //                    return RedirectToAction("Logout");
+        //                }
+        //            }
 
         //            if (HttpContext.Session.GetString("_token") != null)               //if token exist but user goes login page
         //            {
@@ -308,88 +308,88 @@ namespace APELC.Controllers
             }
         }
 
-        //private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
-        //{
-        //    IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
-        //    IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
-        //    List<string> _newList = _function.ToList();
-        //    foreach (var _item in _function2)
-        //    {
-        //        _newList.Add(_item);
-        //    }
-        //    _function = _newList;
-        //    return _function;
-        //}
-        //private string MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
-        //{
-        //    List<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction).ToList();
-        //    IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HM98");
-        //    IEnumerable<string> _function3 = LoginProcess.MtdGetFunctions(_username, "HM06");
-        //    IEnumerable<string> _function4 = LoginProcess.MtdGetFunctions(_username, "HM43");
-        //    IEnumerable<string> _function5 = LoginProcess.MtdGetFunctions(_username, "HM22");
-        //    List<string> _newList = _function.ToList();
-        //    if (_function2.Count() > 0)
-        //    {
-        //        foreach (var _item in _function2)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
-        //    if (_function3.Count() > 0)
-        //    {
-        //        foreach (var _item in _function3)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
-        //    if (_function4.Count() > 0)
-        //    {
-        //        foreach (var _item in _function4)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
-        //    if (_function5.Count() > 0)
-        //    {
-        //        foreach (var _item in _function5)
-        //        {
-        //            _newList.Add(_item);
-        //        }
-        //    }
+        private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        {
+            IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
+            IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
+            List<string> _newList = _function.ToList();
+            foreach (var _item in _function2)
+            {
+                _newList.Add(_item);
+            }
+            _function = _newList;
+            return _function;
+        }
+        private string MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        {
+            List<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction).ToList();
+            IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HM98");
+            IEnumerable<string> _function3 = LoginProcess.MtdGetFunctions(_username, "HM06");
+            IEnumerable<string> _function4 = LoginProcess.MtdGetFunctions(_username, "HM43");
+            IEnumerable<string> _function5 = LoginProcess.MtdGetFunctions(_username, "HM22");
+            List<string> _newList = _function.ToList();
+            if (_function2.Count() > 0)
+            {
+                foreach (var _item in _function2)
+                {
+                    _newList.Add(_item);
+                }
+            }
+            if (_function3.Count() > 0)
+            {
+                foreach (var _item in _function3)
+                {
+                    _newList.Add(_item);
+                }
+            }
+            if (_function4.Count() > 0)
+            {
+                foreach (var _item in _function4)
+                {
+                    _newList.Add(_item);
+                }
+            }
+            if (_function5.Count() > 0)
+            {
+                foreach (var _item in _function5)
+                {
+                    _newList.Add(_item);
+                }
+            }
 
-        //    //bool _tpFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06001");
-        //    //if (_tpFakulti)
-        //    //{
-        //    //    _newList.Add("TP06001");
-        //    //}
-        //    //bool _ppFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06002");
-        //    //if (_ppFakulti)
-        //    //{
-        //    //    _newList.Add("PP06002");
-        //    //}
-        //    //bool _psmFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06004");
-        //    //if (_ppFakulti)
-        //    //{
-        //    //    _newList.Add("HM06S11B01");
-        //    //}
-        //    //bool _pghFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "03001");
-        //    //if (_pghFakulti)
-        //    //{
-        //    //    _newList.Add("HM22S29B01");
-        //    //}
-        //    //bool _kjbFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "04001");
-        //    //if (_kjbFakulti)
-        //    //{
-        //    //    _newList.Add("HM22S29B02");
-        //    //}
+            //bool _tpFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06001");
+            //if (_tpFakulti)
+            //{
+            //    _newList.Add("TP06001");
+            //}
+            //bool _ppFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06002");
+            //if (_ppFakulti)
+            //{
+            //    _newList.Add("PP06002");
+            //}
+            //bool _psmFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "06004");
+            //if (_ppFakulti)
+            //{
+            //    _newList.Add("HM06S11B01");
+            //}
+            //bool _pghFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "03001");
+            //if (_pghFakulti)
+            //{
+            //    _newList.Add("HM22S29B01");
+            //}
+            //bool _kjbFakulti = LoginProcess.MtdGetCheckApprovalStructure(_stafFk, "04001");
+            //if (_kjbFakulti)
+            //{
+            //    _newList.Add("HM22S29B02");
+            //}
 
-        //    string _balik = "";
-        //    foreach (var _item in _newList)
-        //    {
-        //        _balik += (_item + ":");
-        //    }
-        //    return _balik;
-        //}
+            string _balik = "";
+            foreach (var _item in _newList)
+            {
+                _balik += (_item + ":");
+            }
+            return _balik;
+        }
 
         //public IActionResult CapaiGambar(string id)
         //{
@@ -457,14 +457,14 @@ namespace APELC.Controllers
         //    else
         //    {
         //        string _pic = @"/images/no_image.jpg";
-        //        //string wwwPath = this.Environment.WebRootPath;
-        //        //string contentPath = this.Environment.ContentRootPath;
+        //        string wwwPath = this.Environment.WebRootPath;
+        //        string contentPath = this.Environment.ContentRootPath;
         //        var _path = Path.Combine(_host.ToString(), _pic); //validate the path for security or use other means to generate the path.
         //        return File(_path, "image/jpeg");
         //    }
         //}
 
-        // GET: ScreenEncryptDecrypt
+        //GET: ScreenEncryptDecrypt
         public IActionResult ScreenEncryptDecrypt()
         {
             string _ePUserId = HttpContext.Session.GetString("_userId") ?? "";

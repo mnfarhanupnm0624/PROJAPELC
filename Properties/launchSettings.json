@@ -17,16 +17,16 @@
     //  },
     //  "launchBrowser": true
     //},
-    //"DatabaseMySQL8": {
-    //  "commandName": "Executable",
-    //  "ConnectionStrings": {
-    //    "Default": "server=172.16.2.247;uid=apelUPNM;pwd=AP3L@MySQL;database=apelc"
-    //  },
-    //  "environmentVariables": {
-    //    "ASPNETCORE_ENVIRONMENT": "Development"
-    //  },
-    //  "launchBrowser": true
-    //},
+    "DatabaseMySQL8": {
+      "commandName": "Executable",
+      "ConnectionStrings": {
+        "Default": "server=172.16.2.247;uid=apelUPNM;pwd=AP3L@MySQL;database=apelc"
+      },
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchBrowser": true
+    },
 
 
     //"DatabaseSybase": {

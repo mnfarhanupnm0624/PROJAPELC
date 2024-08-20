@@ -20,6 +20,7 @@ namespace APELC.PublicServices.Login
 
         static readonly string _VW_STAF_AKTIF =
            @" SELECT NO_PEKERJA AS NO_PEKERJA,
+              nokp AS NO_KP,
               gelar_nama AS NAMA,
               kdjwthakiki AS KOD_JAWATAN_HAKIKI,
               jawatanhakiki AS JAWATAN_HAKIKI,
