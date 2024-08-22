@@ -14,7 +14,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 //using WebApplicationI.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+//var builder = new ConfigurationBuilder()   
+//           .SetBasePath(Directory.GetCurrentDirectory())
+//           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);  // untuk appsettings.json localhost publish to IIS
+
+var builder = WebApplication.CreateBuilder(args); // untuk launchsettings.json localhost tanpa publish
 //builder.WebHost.ConfigureKestrel(options =>
 //{
 //    options.ConfigureHttpsDefaults(httpsOptions =>
@@ -27,9 +31,7 @@ var builder = WebApplication.CreateBuilder(args);
 //    });
 //});
 
-//var builder = new ConfigurationBuilder()
-//           .SetBasePath(Directory.GetCurrentDirectory())
-//           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
 
 //IConfigurationRoot configuration = builder.Build();
 
@@ -37,8 +39,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //var myConnectString = builder.Configuration.GetConnectionString("MyConnectionString");
 
-var myConnectString = builder.Configuration.GetConnectionString("DatabaseMySQL8:ConnectionStrings:Default");
-//var myConnectString = builder.Configuration.GetConnectionString("DefaultConnection");
+//var myConnectString = builder.Configuration.GetConnectionString("DatabaseMySQL8:ConnectionStrings:Default");
+var myConnectString = builder.Configuration.GetConnectionString("DefaultConnection");
 var settingsAppName = builder.Configuration["Settings:AppName"];
 var settingsContactEmail = builder.Configuration["Settings:ContactEmail"];
 var settingsAddress = builder.Configuration["Settings:Address"];

@@ -4,13 +4,19 @@ using APELC.LocalServices;
 using APELC.LocalShared;
 using APELC.Model;
 using System.Net;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Data.SqlClient;
+using System.Collections.Specialized;
+using System;
+using System.Threading.Tasks;
+using System.IO;
 using System.Data;
+using System.Data.SqlClient;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
+using System.Data.Odbc;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace APELC.LocalServices.Login
 {

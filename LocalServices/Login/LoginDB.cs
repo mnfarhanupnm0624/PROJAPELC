@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.SqlClient;
+using System.Data.Odbc;
 using APELC.PublicShared;
 using APELC.LocalServices.Senarai;
 using MySql.Data;
