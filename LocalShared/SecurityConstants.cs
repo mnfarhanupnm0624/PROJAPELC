@@ -37,7 +37,7 @@ namespace APELC.LocalShared
         public static string EncryptCode()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            return config["MySetting:EncryptCode"];
+            return config["APELC:EncryptCode"];
         }
 
         //public static string ConnOraRujuk()

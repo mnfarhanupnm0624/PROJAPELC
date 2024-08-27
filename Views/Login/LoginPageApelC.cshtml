@@ -4,7 +4,8 @@
 @inject IJsonHelper Json
 @* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
 @* @model ModelQRCode *@
-@using APELC.Helper
+@* @using Net6HrPublicLibrary; *@
+@using APELC.Helper;
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Builder;
@@ -56,8 +57,8 @@
     // string _nokp = HttpContextAccessor.HttpContext.Session.GetString("_nokpEnc") ?? "";
     // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
     // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];  // localhost test appsettings.json
-    var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"]; //Localhost test launchsettings.json
-    // var _getPath = Configuration.GetSection("APELC")["applicationUrl"];
+   /*  var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"]; */ //Localhost test launchsettings.json
+    var _getPath = Configuration.GetSection("APELC")["applicationUrl"];
     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
     // var _disablelink = "disable-link";
     // var _color = "color:lightgray";

@@ -65,7 +65,9 @@
     <PackageReference Include="MySql.Data" Version="9.0.0" />
     <PackageReference Include="MySqlConnector" Version="2.3.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" />
+    <PackageReference Include="NLog" Version="5.3.3" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.12" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.12" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.2" />
     <PackageReference Include="SqlSugar.Odbc" Version="5.1.4.151" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
