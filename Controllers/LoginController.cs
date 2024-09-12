@@ -1,6 +1,7 @@
-﻿//using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using APELC.LocalServices.Login;
+//using Net6HrPublicLibrary.LocalServices.Login;
 using APELC.PublicServices.Login;
 using APELC.PublicShared;
 using APELC.Model;
@@ -11,20 +12,31 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 
 namespace APELC.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _environment;
         //private readonly ILogger<LoginController> _logger;
         //private readonly LoginDB _context;
         public static string _encryptCode = SecurityConstants.EncryptCode();
         public string _screenCodeFunction = "HM100";
+
+        public LoginController(IConfiguration configuration, IWebHostEnvironment environment)
+        {
+            _configuration = configuration;
+            _environment = environment;
+        }
+
+        [HttpGet]
         public IActionResult LoginPageApelC()
         {
-            PenggunaApelCMain _data = new();
-            PenggunaApelCMain _context = _data;
+            //PenggunaApelCMain _data = new();
+            //PenggunaApelCMain _context = _data;
             //var _jenisApel = _context.JENIS_MODUL.ToList();
             //var _katpengguna = _context.KAT_PENGGUNA_UPNM.ToList();
 
@@ -40,14 +52,11 @@ namespace APELC.Controllers
 
             //return RedirectToAction("/Login/LoginPageApelC");
             return View("./Views/Login/LoginPageApelC.cshtml");
-            //return View();
-        }
-
-        public IActionResult RegistrationApelC()
-        {
-
-            //return RedirectToAction("/Login/LoginPageApelC");
-            return View("./Views/Login/RegistrationApelC.cshtml");
+            //return Ok(new
+            //{
+            //    Environment = _environment.EnvironmentName,
+            //    "./Views/Login/LoginPageApelC.cshtml"
+            //});
             //return View();
         }
 

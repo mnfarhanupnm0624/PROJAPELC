@@ -12,21 +12,31 @@
 @using Microsoft.AspNetCore.Hosting;
 @using Microsoft.AspNetCore.Authorization;
 @using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Grpc;
 @using Microsoft.Extensions.Configuration;
 @using Microsoft.Extensions.DependencyInjection;
 @using Microsoft.Extensions.Logging;
+@using static Microsoft.Extensions.Configuration.IConfigurationBuilder;
+@using Microsoft.Extensions.Hosting;
+@using Microsoft.EntityFrameworkCore;
+@using Microsoft.Extensions.Configuration.Json;
+@using System.Security.Cryptography.X509Certificates;
+@using System.Net.NetworkInformation;
 @using System.Collections.Specialized;
 @using System;
+@using System.Collections.Generic;  
+@using System.ComponentModel.DataAnnotations; 
 @using System.Threading.Tasks;
 @using System.IO;
 @using System.Data;
 @using System.Data.SqlClient;
 @using System.Data.Odbc;
+@* @using System.Data.Entity.DbContext; *@
 @using System.Configuration;
-@using System.Collections.Generic;
 @using System.Text;
 @using System.Linq;
 @using System.Windows;
+@using System.Web;
 @using MySql.Data;
 @using MySql.Data.MySqlClient;
 @* @using System.Data.Odbc.OdbcCommand;
@@ -41,12 +51,11 @@
 @using System.Web.UI.WebControls; *@
 @* @using System.Web.Security; *@
 @* @using WebClientCore.Models.DisplayModels *@
-@using Microsoft.EntityFrameworkCore;
-@using Microsoft.Extensions.Hosting;
 @* @using SecurityMaintenance.Models; *@
 @using Microsoft.AspNetCore.Mvc;
 @using Microsoft.AspNetCore.Mvc.Razor;
 @using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+@using Pomelo.EntityFrameworkCore.MySql;
 @model PenggunaApelCMain
 
 @{
@@ -103,7 +112,6 @@
 }
 @if (_statusMhApelC == "N")
 {
-    _disablelinkS = "";
     _colorS = "";
     _bulletS = "bullet bullet-dot";
 } *@
@@ -114,7 +122,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> *@
     <link rel="shortcut icon" href="apelc/images/favicon.png" />
     <link rel="stylesheet"
@@ -186,14 +194,14 @@
                 background-color: green;
             } */
 
-       /*  body {
-            background-image: url("../images/UPNM.jpg");
-            background-color: #cccccc;
-        } */
+        body {
+             background-image: url("../images/UPNM.jpg");
+             background-color: #cccccc;
+         }
     </style>
 </head>
 <!--begin::Body-->
-<body style="background-image: url(../images/UPNM.jpg)" id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
     <!--begin::Theme mode setup on page load-->
     <script>
         var defaultThemeMode = "light";

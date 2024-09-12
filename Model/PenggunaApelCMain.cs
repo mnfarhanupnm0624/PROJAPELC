@@ -9,14 +9,12 @@ namespace APELC.Model
         public string? RESULTSET { set; get; }
         public string? RESULTSET_TEXT { set; get; }
         public string? PENGGUNA_UPNM_PK_ENC { set; get; }
-        public string? KAT_PENGGUNA_UPNM { set; get; }
+        public string? ID_PENGGUNA { set; get; }
         public string? KATA_LALUAN_PENGGUNA { set; get; }
-        public string? JENIS_MODUL{ set; get; }
-        public string? JENIS_MODUL_EN { set; get; }
-
+        public string? JENIS_MODUL_PENGGUNA_UPNM_FK { set; get; }
         public string? SESSION_TIMEOUT { set; get; }
 
-        public string? STATUS_AKTIF_PENGGUNA_UPNM { set; get; }
+        public string? STATUS_AKTIF_PENGGUNA_UPNM_FK { set; get; }
 
         //RUJUK KEPADA MAKLUMAT_PERIBADI_LUAR_PELAWAT
         public string? NO_KP { set; get; }
@@ -40,13 +38,13 @@ namespace APELC.Model
         public string? PENCIPTA_PENGGUNA_UPNM { set; get; }
 
 
-        public List<ModelPemohonApelC> ListCarianPemohon = new();
+        public List<SessionModel> Pengguna = new();
         //public List<ModelHrStafPenyiasat> ListCarianStaf = new();
-        public List<ModelParameterAPEL> JenisAPEL = new LoginProcess.ListJenisAPEL().ToList();
         //public ModelHrStaffMaklumatPeribadi stafPeribadi = new();
         //public ModelMaklumatPeribadiPelajar pelajarInfo = new();
 
         // DDL List
+        public List<ModelParameterAPEL> JenisAPEL = new LoginProcess.ListJenisAPEL().ToList();
         //public List<ModelParameterAPEL> ListJenisAPEL = PublicServices.ListBahagianAll("").ToList();
         //public List<ModelParameterHr> ListKampus = new SecurityConstants().ItemListKampus;
         //public List<ModelParameterHr> ListKatAduan = StatistikProcess.ListKatAduan().ToList();
