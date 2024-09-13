@@ -125,6 +125,17 @@ namespace APELC.LocalServices.Login
                 " ORDER BY PARAM_PK";
         }
 
+        internal static string SQL_MtdGetPerananPenggunaApelC()
+        {
+            return @"SELECT distinct(B.KOD_FUNGSI) 
+                                   FROM APELC_PERANAN_UPNM A, APELC_PERANAN_SJRH_UPNM B,APELC_PENGGUNA_UPNM C 
+                                  WHERE A.ID_PENGGUNA = :ID_PENGGUNA
+                                    AND A.KOD_PERANAN = B.KOD_PERANAN 
+                                    AND (B.KOD_FUNGSI like 'HM95%' OR B.KOD_FUNGSI = 'DEVELOPER') 
+                                    AND (sysdate between A.TKH_MULA and A.TKH_TAMAT)
+                                    AND A.TKH_HAPUS is null
+                                     ORDER BY PENGGUNA_UPNM_PK ";
+        }
         //    internal static string SQL_MtdPentadbirAPELCWujud()
         //    {
         //        string _SQL = SQL_MtdGetAclPeranan +

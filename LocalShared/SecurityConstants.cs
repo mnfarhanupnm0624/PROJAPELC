@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using APELC.PublicShared;
 using APELC.Model;
 using System.Net;
 using System.IdentityModel.Tokens.Jwt;
@@ -20,7 +19,7 @@ namespace APELC.LocalShared
         public static int CAPAIAN_KAMPUS = 6;
         public static int CAPAIAN_MULTI_PTJ = 8;
         public static int CAPAIAN_CROSS_KAMPUS = 9;
-
+        
         public static string CAPAIAN2016_SEMUA = "A";
         public static string CAPAIAN2016_UNIVERSITI = "B";
         public static string CAPAIAN2016_MULTI_UNIVERSITI = "C";

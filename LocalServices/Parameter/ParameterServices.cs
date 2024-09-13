@@ -1,18 +1,18 @@
 ﻿using Dapper;
 //using Oracle.ManagedDataAccess.Client;
 using APELC.LocalServices;
-using APELC.PublicShared;
 using APELC.LocalShared;
 using APELC.Model;
 using System.IdentityModel.Tokens.Jwt;
+using Net6HrPublicLibrary.PublicShared;
 
 
 namespace APELC.LocalServices.Public
 {
-    public class PublicServices
+    public class ParameterServices
     {
         static string _encryptCode = SecurityConstants.EncryptCode();
-        static readonly string ConnMySQLUpnm = PublicConstant.ConnMySQLUpnmDbDs();
+        static readonly string ConnMySQLUpnm = LocalConstant.ConnMySQLUpnmDbDs();
         internal static bool MtdTestConnection()
         {
             bool _return = true;
@@ -49,22 +49,7 @@ namespace APELC.LocalServices.Public
         //    return _list;
         //}
 
-        private static ModelParameterAPEL MtdPindahParameter(ParameterAPELModel row)
-        {
-            return new ModelParameterAPEL()
-            {
-                Key = row.Key,
-                ViewField = row.ViewField
-            };
-        }
-        private static ModelParameterAPEL MtdPindahParameterWithKey(ParameterAPELModel row)
-        {
-            return new ModelParameterAPEL()
-            {
-                Key = row.Key,
-                ViewField = row.Key + " - " + row.ViewField
-            };
-        }
+      
 
 
         //internal static IEnumerable<ModelParameterAPEL> ListSmuParameterKeyKodByKumpulan(int _kumpulan)

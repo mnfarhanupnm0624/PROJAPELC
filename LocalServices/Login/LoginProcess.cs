@@ -1,6 +1,4 @@
-﻿using APELC.PublicServices.Login;
-using APELC.PublicShared;
-using APELC.LocalServices;
+﻿using Dapper;
 using APELC.LocalShared;
 using APELC.Model;
 using System.Net;
@@ -17,6 +15,10 @@ using System.Windows;
 using System.Data.Odbc;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using Microsoft.CodeAnalysis.Editing;
+using Net6HrPublicLibrary.PublicServices.Login;
+using Net6HrPublicLibrary.PublicShared;
+using Net6HrPublicLibrary.Model;
 
 namespace APELC.LocalServices.Login
 {
@@ -24,59 +26,84 @@ namespace APELC.LocalServices.Login
     {
 
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        static readonly string ConnMySQLUpnm = LocalConstant.ConnMySQLUpnmDbDs();
+        internal static bool MtdTestConnection()
+        {
+            bool _return = true;
+            try
+            {
+                //using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnmDs))
+                //{
+                //    int _xx = dbConn.QueryFirstOrDefault<int>("SELECT 7 FROM DUAL ");
+                //    if (_xx > 0)
+                //    {
+                //        _return = true;
+                //    }
+                //    else { _return = false; }
+                //}
+            }
+            catch (Exception e)
+            {
+                _return = false;
+                var log = NLog.LogManager.GetCurrentClassLogger();
+                log.Info("MtdTestConnection e ~ " + e);
+            }
+            return _return;
 
-//        internal static ModelUserDTO MtdSemakPengguna(string _usernameIn, string _passwordIn)
-//        {
-//            string _username = _usernameIn.ToString();
-//            string _password = _passwordIn.ToString();
+        }
 
-//            ModelUserDTO _userDTO = new();
-//            _userDTO = mtdClearField(_userDTO);
-//            string _msg = "";
-//            if (_username == null) _msg = "Masukkan ID Pengguna";
-//            if (_msg == "")
-//            {
-//#pragma warning disable CS8604 // Possible null reference argument.
-//                UserIdModel semakUsrHr = LoginDBStafUPNM.MtdGetApelCPengguna(_username);
-//#pragma warning restore CS8604 // Possible null reference argument.
-//                if (semakUsrHr != null && semakUsrHr.RESULTSET == "2")
-//                {
-//                    _userDTO = MtdPindahPengguna2UserDTO(semakUsrHr, _userDTO);
-//                }
-//                else
-//                {
-//                    _msg = "ID Pengguna tiada dalam semakan akaun APEL.C";
-//                }
+        //        internal static ModelUserDTO MtdSemakPengguna(string _usernameIn, string _passwordIn)
+        //        {
+        //            string _username = _usernameIn.ToString();
+        //            string _password = _passwordIn.ToString();
 
-//                if (_userDTO.RESULTSET == "2")
-//                {
-//#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-//                    string _compPasswd = _userDTO.PASSWORD;
-//#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-//                    string passwdEnc = EncryptHr.mtdEncryptPassword(PublicConstant.MtdRemoveSpecialCharacter(_password));
+        //            ModelUserDTO _userDTO = new();
+        //            _userDTO = mtdClearField(_userDTO);
+        //            string _msg = "";
+        //            if (_username == null) _msg = "Masukkan ID Pengguna";
+        //            if (_msg == "")
+        //            {
+        //#pragma warning disable CS8604 // Possible null reference argument.
+        //                UserIdModel semakUsrHr = LoginDBStafUPNM.MtdGetApelCPengguna(_username);
+        //#pragma warning restore CS8604 // Possible null reference argument.
+        //                if (semakUsrHr != null && semakUsrHr.RESULTSET == "2")
+        //                {
+        //                    _userDTO = MtdPindahPengguna2UserDTO(semakUsrHr, _userDTO);
+        //                }
+        //                else
+        //                {
+        //                    _msg = "ID Pengguna tiada dalam semakan akaun APEL.C";
+        //                }
 
-//                    if (passwdEnc == "6D953275BB91AD17AB216BB92BA05E481D8E7C80") { }
-//                    else if (_compPasswd != passwdEnc)
-//                    {
-//                        _userDTO.RESULTTEXT = "Katalaluan Tidak Sama. ";
-//                        _userDTO.RESULTSET = "0";
-//                    }
-//                    ////// SEMAK UNTUK TARIKH-TARIKH YANG BERKAITAN LUPUT ID / LUPUT KATA LALUAN
+        //                if (_userDTO.RESULTSET == "2")
+        //                {
+        //#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        //                    string _compPasswd = _userDTO.PASSWORD;
+        //#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        //                    string passwdEnc = EncryptHr.mtdEncryptPassword(PublicConstant.MtdRemoveSpecialCharacter(_password));
 
-//                }
-//                else
-//                {
-//                    _userDTO.RESULTTEXT = _msg;
-//                    _userDTO.RESULTSET = "0";
-//                }
-//            }
-//            else
-//            {
-//                _userDTO.RESULTTEXT = _msg;
-//                _userDTO.RESULTSET = "0";
-//            }
-//            return _userDTO;
-//        }
+        //                    if (passwdEnc == "6D953275BB91AD17AB216BB92BA05E481D8E7C80") { }
+        //                    else if (_compPasswd != passwdEnc)
+        //                    {
+        //                        _userDTO.RESULTTEXT = "Katalaluan Tidak Sama. ";
+        //                        _userDTO.RESULTSET = "0";
+        //                    }
+        //                    ////// SEMAK UNTUK TARIKH-TARIKH YANG BERKAITAN LUPUT ID / LUPUT KATA LALUAN
+
+        //                }
+        //                else
+        //                {
+        //                    _userDTO.RESULTTEXT = _msg;
+        //                    _userDTO.RESULTSET = "0";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                _userDTO.RESULTTEXT = _msg;
+        //                _userDTO.RESULTSET = "0";
+        //            }
+        //            return _userDTO;
+        //        }
 
         //internal static ModelUserDTO MtdSemakUserFromLoginFromJWT(string _userId, string _noPekerja)
         //{
@@ -122,6 +149,8 @@ namespace APELC.LocalServices.Login
         //    return _userDTO;
         //}
 
+     
+
         private static ModelUserDTO MtdGetPindahPelajar(ModelUserDTO semakUsrHr)
         {
             ModelUserDTO _userDTO = new()
@@ -142,6 +171,20 @@ namespace APELC.LocalServices.Login
                 RESULTSET = semakUsrHr.RESULTSET,
             };
             return _userDTO;
+        }
+
+        private static SessionModel MtdGetMaklumatPenggunaSession(SessionModel semakPengguna)
+        {
+            SessionModel _pengguna = new()
+            {
+                PENGGUNA_UPNM_PK_ENC = semakPengguna.PENGGUNA_UPNM_PK_ENC,
+                ID_PENGGUNA = semakPengguna.ID_PENGGUNA,
+                KATA_LALUAN_PENGGUNA = semakPengguna.KATA_LALUAN_PENGGUNA,
+                JENIS_MODUL_PENGGUNA_UPNM_FK = semakPengguna.JENIS_MODUL_PENGGUNA_UPNM_FK,
+                SESSION_TIMEOUT = semakPengguna.SESSION_TIMEOUT,
+                RESULTSET = semakPengguna.RESULTSET,
+            };
+            return _pengguna;
         }
 
         //internal static ModelUserDTO MtdSemakUserFromUPNMDecrypt(string _key)
@@ -199,9 +242,9 @@ namespace APELC.LocalServices.Login
         //    return _userDTO;
         //}
 
-        internal static IEnumerable<string> MtdGetFunctions(string _userName, string _kod)
+        internal IEnumerable<string> MtdGetFunctions(string _id_pengguna, string _kata_laluan)
         {
-            return LoginDBLibrary.MtdGetFunctions(_userName, _kod);
+            return LoginDB.DB_PerananPenggunaApelC(_id_pengguna, _kata_laluan);
         }
 
         //GET : Semakan Login dari Apps
@@ -611,8 +654,19 @@ namespace APELC.LocalServices.Login
                 ViewField = row.ViewField
             };
         }
+        private static ModelParameterAPEL MtdPindahParameterWithKey(ParameterAPELModel row)
+        {
+            return new ModelParameterAPEL()
+            {
+                Key = row.Key,
+                ViewField = row.Key + " - " + row.ViewField
+            };
+        }
 
-
+        internal static PenggunaApelCMain MtdGetMaklumatPenggunaSession(string PENGGUNA_UPNM_PK_ENC)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

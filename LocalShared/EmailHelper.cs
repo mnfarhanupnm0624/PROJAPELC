@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APELC.PublicShared
+namespace APELC.LocalShared
 {
     public class EmailHelper
     {
@@ -17,15 +17,15 @@ namespace APELC.PublicShared
             string _return = "";
             try
             {
-                var senderEmail = new MailAddress(emailFrom, "UTM-HR Admin");
+                var senderEmail = new MailAddress(emailFrom, "UPNM-HR Admin");
                 var receiverEmail = new MailAddress(emailTo, "Receiver");
-                var password = "<YourGmailPassword>";
+                var password = "<YourOutlookPassword>";
                 var sub = emailSubject;
                 var body = emailMessage;
                 var smtp = new System.Net.Mail.SmtpClient
                 {
-                    //Host = "smtp.gmail.com",
-                    Host = "smtp-relay.gmail.com",
+                    //Host = "smtp.outlook.com",
+                    Host = "smtp-relay.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -49,29 +49,29 @@ namespace APELC.PublicShared
             return _return;
         }
 
-        public static string GmailSendEmail(string emailFrom, string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword)
+        public static string OutlookSendEmail(string emailFrom, string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword)
         {
             //var log = NLog.LogManager.GetCurrentClassLogger();
-            //log.Info("GmailSendEmail emailFrom ~ " + emailFrom);
-            //log.Info("GmailSendEmail emailTo ~ " + emailTo);
-            //log.Info("GmailSendEmail emailSubject ~ " + emailSubject);
-            //log.Info("GmailSendEmail emailMessage ~ " + emailMessage);
-            //log.Info("GmailSendEmail gmailAuthenticateEmail ~ " + gmailAuthenticateEmail);
-            //log.Info("GmailSendEmail gmailAuthenticatePassword ~ " + gmailAuthenticatePassword);
+            //log.Info("OutlookSendEmail emailFrom ~ " + emailFrom);
+            //log.Info("OutlookSendEmail emailTo ~ " + emailTo);
+            //log.Info("OutlookSendEmail emailSubject ~ " + emailSubject);
+            //log.Info("OutlookSendEmail emailMessage ~ " + emailMessage);
+            //log.Info("OutlookSendEmail gmailAuthenticateEmail ~ " + gmailAuthenticateEmail);
+            //log.Info("OutlookSendEmail gmailAuthenticatePassword ~ " + gmailAuthenticatePassword);
 
             string _authenticateEmail = EncryptHr.DecryptString4url(gmailAuthenticateEmail, "admSmis");
             string _authenticatePaswd = EncryptHr.DecryptString4url(gmailAuthenticatePassword, "admSmis");
 
-            //log.Info("GmailSendEmail emailTo ~ " + emailTo);
-            //log.Info("GmailSendEmail _authenticateEmail ~ " + _authenticateEmail);
-            //log.Info("GmailSendEmail _authenticatePaswd ~ " + _authenticatePaswd);
+            //log.Info("OutlookSendEmail emailTo ~ " + emailTo);
+            //log.Info("OutlookSendEmail _authenticateEmail ~ " + _authenticateEmail);
+            //log.Info("OutlookSendEmail _authenticatePaswd ~ " + _authenticatePaswd);
             //emailTo = "zaman@utm.my";
 
             string _return = "";
             try
             {
                 var authenticateSenderEmail = new MailAddress(_authenticateEmail, "Sender");
-                var senderEmail = new MailAddress(_authenticateEmail, "UTMi-Visa Admin");
+                var senderEmail = new MailAddress(_authenticateEmail, "UPNM-Visa Admin");
                 var receiverEmail = new MailAddress(emailTo, "Receiver");
                 var password = _authenticatePaswd;
                 var sub = emailSubject;
@@ -79,7 +79,7 @@ namespace APELC.PublicShared
 
                 var smtp = new SmtpClient
                 {
-                    Host = "smtp-relay.gmail.com",
+                    Host = "smtp-relay.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -99,7 +99,7 @@ namespace APELC.PublicShared
             }
             catch (Exception ex)
             {
-                _return = "Error GmailSendEmail TryCatch : " + ex;
+                _return = "Error OutlookSendEmail TryCatch : " + ex;
             }
             return _return;
         }
@@ -113,7 +113,7 @@ namespace APELC.PublicShared
             try
             {
                 var authenticateSenderEmail = new MailAddress(_authenticateEmail, "Sender");
-                var senderEmail = new MailAddress(_authenticateEmail, "UTMi-Visa Admin");
+                var senderEmail = new MailAddress(_authenticateEmail, "UPNM-Visa Admin");
                 var receiverEmail = new MailAddress(emailTo, "Receiver");
                 var password = _authenticatePaswd;
                 var sub = emailSubject;
@@ -121,7 +121,7 @@ namespace APELC.PublicShared
 
                 var smtp = new SmtpClient
                 {
-                    Host = "smtp.gmail.com",
+                    Host = "smtp.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -141,7 +141,7 @@ namespace APELC.PublicShared
             }
             catch (Exception ex)
             {
-                _return = "Error GmailSendEmail TryCatch : " + ex;
+                _return = "Error OutlookSendEmail TryCatch : " + ex;
             }
             return _return;
         }
@@ -151,15 +151,15 @@ namespace APELC.PublicShared
             string _authenticateEmail = EncryptHr.DecryptString4url(gmailAuthenticateEmail, "admSmis");
             string _authenticatePaswd = EncryptHr.DecryptString4url(gmailAuthenticatePassword, "admSmis");
 
-            //log.Info("GmailSendEmail emailTo ~ " + emailTo);
-            //log.Info("GmailSendEmail _authenticateEmail ~ " + _authenticateEmail);
-            //log.Info("GmailSendEmail _authenticatePaswd ~ " + _authenticatePaswd);
+            //log.Info("OutlookSendEmail emailTo ~ " + emailTo);
+            //log.Info("OutlookSendEmail _authenticateEmail ~ " + _authenticateEmail);
+            //log.Info("OutlookSendEmail _authenticatePaswd ~ " + _authenticatePaswd);
 
             string _return = "";
             try
             {
                 var authenticateSenderEmail = new MailAddress(_authenticateEmail, "Sender");
-                var senderEmail = new MailAddress(_authenticateEmail, (emailFromTitle != null ? emailFromTitle : "UTM-HR Admin"));
+                var senderEmail = new MailAddress(_authenticateEmail, (emailFromTitle != null ? emailFromTitle : "UPNM-HR Admin"));
                 var receiverEmail = new MailAddress(emailTo, "Receiver");
                 var password = _authenticatePaswd;
                 var sub = emailSubject;
@@ -167,8 +167,8 @@ namespace APELC.PublicShared
 
                 var smtp = new SmtpClient
                 {
-                    //Host = "smtp.gmail.com",
-                    Host = "smtp-relay.gmail.com",
+                    //Host = "smtp.outlook.com",
+                    Host = "smtp-relay.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -188,7 +188,7 @@ namespace APELC.PublicShared
             }
             catch (Exception ex)
             {
-                _return = "Error GmailSendEmail TryCatch : " + ex;
+                _return = "Error OutlookSendEmail TryCatch : " + ex;
             }
             return _return;
         }
@@ -223,7 +223,7 @@ namespace APELC.PublicShared
             }
             catch (Exception ex)
             {
-                _return = "Error GmailSendEmail TryCatch : " + ex;
+                _return = "Error OutlookSendEmail TryCatch : " + ex;
             }
             return _return;
         }
@@ -232,8 +232,8 @@ namespace APELC.PublicShared
         {
             return new SmtpClient
             {
-                //Host = "smtp.gmail.com",
-                Host = "smtp-relay.gmail.com",
+                //Host = "smtp.outlook.com",
+                Host = "smtp-relay.outlook.com",
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,

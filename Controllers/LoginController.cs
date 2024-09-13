@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using APELC.LocalServices.Login;
-//using Net6HrPublicLibrary.LocalServices.Login;
-using APELC.PublicServices.Login;
-using APELC.PublicShared;
+using APELC.LocalShared;
 using APELC.Model;
 using System.Diagnostics;
-using APELC.LocalShared;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 
 namespace APELC.Controllers
@@ -21,8 +19,8 @@ namespace APELC.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _environment;
-        //private readonly ILogger<LoginController> _logger;
-        //private readonly LoginDB _context;
+        private readonly ILogger<LoginController> _logger;
+        private readonly LoginDB _context;
         public static string _encryptCode = SecurityConstants.EncryptCode();
         public string _screenCodeFunction = "HM100";
 
@@ -75,36 +73,33 @@ namespace APELC.Controllers
         // GET: MtdGetVerifyUserByCookies
         public IActionResult MtdGetVerifyUserByCookies()
         {
-            ModelUserDTO _data = new();
+            PenggunaApelCMain _data = new();
             string _getCookieUser = HttpContext.Request.Cookies["sresu"] ?? "";
             string _getCookiePwsd = HttpContext.Request.Cookies["dswap"] ?? "";
             if (_getCookieUser != null && _getCookiePwsd != null)
             {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 string _user = _getCookieUser;
-                _data.USERNAME = _getCookieUser;
+                _data.ID_PENGGUNA = _getCookieUser;
                 string _passwd = _getCookiePwsd;
-                _data.KATALALUAN = _getCookiePwsd;
+                _data.KATA_LALUAN_PENGGUNA = _getCookiePwsd;
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                ModelUserDTO _result = _data;
+                PenggunaApelCMain _result = _data;
                 _result.RESULTSET = "1";
                 _result.RESULTSET_TEXT = "BEGIN VERIFY USER ID AND PASSWORD. ";
 
                 //_result = LoginProcess.MtdSemakPengguna(_user, _passwd);
-                _result.KOD_USER = "FFATS";
-                _result.SPR_NOKP = "";
-
                 if (_result.RESULTSET == "0")
                 {
                     _data.RESULTSET = "0";
-                    _data.RESULTSET_TEXT = _result.RESULTTEXT;
+                    _data.RESULTSET_TEXT = _result.RESULTSET_TEXT;
                 }
                 else
                 {
-                    if (_result.ROLE == "PENGGUNA SUPER" || _result.ROLE == "PENTADBIR/URUSETIA(APEL)" || _result.ROLE == "BENDAHARI" || _result.ROLE == "PEMOHON" || 
-                        _result.ROLE == "PENGAWAS UJIAN CABARAN" || _result.ROLE == "PANEL PENILAI" || _result.ROLE == "MODERATOR" || _result.ROLE == "PENASIHAT AKADEMIK" || 
-                        _result.ROLE == "PENGGUBAL DOKUMEN" || _result.ROLE == "PENILAI INSTRUMEN" || _result.ROLE == "JK FAKULTI(TIMBALAN DEKAN)" || _result.ROLE == "SENAT(DEKAN)" ||
-                        _result.ROLE == "JK FAKULTI(KERANI JABATAN)")
+                    if (_result.JENIS_PERANAN_FK == "PENGGUNA SUPER" || _result.JENIS_PERANAN_FK == "PENTADBIR/URUSETIA(APEL)" || _result.JENIS_PERANAN_FK == "BENDAHARI" || _result.JENIS_PERANAN_FK == "PEMOHON" || 
+                        _result.JENIS_PERANAN_FK == "PENGAWAS UJIAN CABARAN" || _result.JENIS_PERANAN_FK == "PANEL PENILAI" || _result.JENIS_PERANAN_FK == "MODERATOR" || _result.JENIS_PERANAN_FK == "PENASIHAT AKADEMIK" || 
+                        _result.JENIS_PERANAN_FK == "PENGGUBAL DOKUMEN" || _result.JENIS_PERANAN_FK == "PENILAI INSTRUMEN" || _result.JENIS_PERANAN_FK == "JK FAKULTI(TIMBALAN DEKAN)" || _result.JENIS_PERANAN_FK == "SENAT(DEKAN)" ||
+                        _result.JENIS_PERANAN_FK == "JK FAKULTI(KERANI JABATAN)")
                     {
                         CookieOptions option = new CookieOptions();
                         option.Expires = DateTime.Now.AddMinutes(30);
@@ -130,17 +125,24 @@ namespace APELC.Controllers
             return RedirectToAction("Dashboard", "Home");
         }
 
+        //private void MtdGetPenggunaSession(string id, string id2)
+        //{
+        //    HttpContext.Session.SetString("_titleTop", "APEL UPNM");
+        //    HttpContext.Session.SetString("_titleSmall", id);
+        //    HttpContext.Session.SetString("_titleSmallSub", id2);
+        //}
+
         // GET AJAX : MtdGetVerifyUserIdPasswordAjax
         [HttpPost]
-        public JsonResult MtdGetVerifyUserIdPasswordAjax([FromBody] ModelUserDTO _data)
+        public JsonResult MtdGetVerifyUserIdPasswordAjax([FromBody] PenggunaApelCMain _data)
         {
             var log = NLog.LogManager.GetCurrentClassLogger();
-            string _user = _data.USERNAME.ToString();
+            string _user = _data.ID_PENGGUNA.ToString();
             log.Info("MtdGetVerifyUserIdPasswordAjax _user ~ " + _user);
 #pragma warning disable CS8602 // Dereference of a possibly null reference.          
-            string _passwd = _data.KATALALUAN.ToString();
+            string _passwd = _data.KATA_LALUAN_PENGGUNA.ToString();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-            ModelUserDTO _result = _data;
+            PenggunaApelCMain _result = _data;
             _result.RESULTSET = "1";
             _result.RESULTSET_TEXT = "BEGIN VERIFY USER ID AND PASSWORD. ";
 
@@ -151,7 +153,7 @@ namespace APELC.Controllers
             if (_result.RESULTSET == "0")
             {
                 _data.RESULTSET = "0";
-                _data.RESULTSET_TEXT = _result.RESULTTEXT;
+                _data.RESULTSET_TEXT = _result.RESULTSET_TEXT;
             }
             else
             {
@@ -231,8 +233,14 @@ namespace APELC.Controllers
         //            return RedirectToAction("Dashboard", "Home");
         //        }
         //}
+        //private bool savePenggunaOnSession(PenggunaApelCMain ApelCModel)
+        //{
+        //    var ApelCHelper = new ApelCHelper();
+        //    HttpContext.Session.SetString("ApelCUser", JsonConvert.SerializeObject(ApelCHelper.GetApelCInfo(ApelCModel)));
+        //    return true;
+        //}
 
-        private bool MtdGetsaveJWTOnSession(ModelUserDTO _userSemak, string _token, JWTModel jwtmodel)
+        private bool MtdGetsaveJWTOnSession(PenggunaApelCMain _userSemak, string _token, JWTModel jwtmodel)
         {
             MtdGetCreateOldStyleSession(_userSemak);
             // string _link2 = @"LocalApps?key=" + Encrypt.EncryptString4url((_userSemak.USERNAME + "~~" + _userSemak.NO_PEKERJA), _encryptCode);
@@ -243,7 +251,7 @@ namespace APELC.Controllers
             return true;
         }
 
-        private void MtdGetCreateOldStyleSession(ModelUserDTO _result)
+        private void MtdGetCreateOldStyleSession(PenggunaApelCMain _result)
         {
             //var log = NLog.LogManager.GetCurrentClassLogger(); 
             //log.Info("MtdGetCreateOldStyleSession _result.USERNAME ~ " + _result.USERNAME);
@@ -274,7 +282,7 @@ namespace APELC.Controllers
             //    HttpContext.Session.SetString("_nopekerjaEnc", EncryptHr.NewEncrypt(_result.SPR_NOKP, _encryptCode));
             //}
 #pragma warning restore CS8604 // Possible null reference argument.
-            HttpContext.Session.SetString("_userId", _result.USERNAME);
+            HttpContext.Session.SetString("_userId", _result.ID_PENGGUNA);
             //HttpContext.Session.SetString("_userIdEnc", EncryptHr.NewEncrypt(_result.USERNAME, _encryptCode));
             HttpContext.Session.SetString("_hrStafFk", _result.HRSTAFFK);
             //HttpContext.Session.SetString("_hrStafFkEnc", EncryptHr.NewEncrypt(_result.HRSTAFFK, _encryptCode));
@@ -285,14 +293,14 @@ namespace APELC.Controllers
             //    HttpContext.Session.SetString("_hg%6ds", "ik&&h65NN");
             //}
 
-            if (_result.ROLE != null)
+            if (_result.JENIS_PERANAN_FK != null)
             {
-                HttpContext.Session.SetString("_hrApelCRole", _result.ROLE);
+                HttpContext.Session.SetString("_hrApelCRole", _result.JENIS_PERANAN_FK);
             }
-            if (_result.NAMA_PERANAN != null)
-            {
-                HttpContext.Session.SetString("_namaperanan", _result.NAMA_PERANAN);
-            }
+            //if (_result.NAMA_PERANAN != null)
+            //{
+            //    HttpContext.Session.SetString("_namaperanan", _result.NAMA_PERANAN);
+            //}
             HttpContext.Session.SetString("_olTju7YY8", "");
 
         }
@@ -317,19 +325,19 @@ namespace APELC.Controllers
             }
         }
 
-        private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
-        {
-            IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
-            IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
-            List<string> _newList = _function.ToList();
-            foreach (var _item in _function2)
-            {
-                _newList.Add(_item);
-            }
-            _function = _newList;
-            return _function;
-        }
-        private string MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        //private IEnumerable<string> MtdGetFunctionList(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
+        //{
+        //    IEnumerable<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction);
+        //    IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HKP");
+        //    List<string> _newList = _function.ToList();
+        //    foreach (var _item in _function2)
+        //    {
+        //        _newList.Add(_item);
+        //    }
+        //    _function = _newList;
+        //    return _function;
+        //}
+        private IEnumerable<string> MtdGetFunctionListString(string _username, string _screenCodeFunction, string _stafFk, string _noPekerja)
         {
             List<string> _function = LoginProcess.MtdGetFunctions(_username, _screenCodeFunction).ToList();
             IEnumerable<string> _function2 = LoginProcess.MtdGetFunctions(_username, "HM98");

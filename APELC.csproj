@@ -69,6 +69,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.0-rc.1.24452.1" />
     <PackageReference Include="Microsoft.Extensions.OptionsModel" Version="1.0.0-rc1-final" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.0.2" />
     <PackageReference Include="Microsoft.Owin.Security.Jwt" Version="4.2.2" />
     <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
@@ -86,7 +87,7 @@
     <PackageReference Include="SqlSugar.Odbc" Version="5.1.4.151" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
     <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -135,6 +136,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Views\SenaraiCarian\SenaraiPermohonanApelC.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net6HrPublicLibrary\Net6HrPublicLibrary\Net6HrPublicLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

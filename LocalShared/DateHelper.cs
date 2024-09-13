@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APELC.PublicShared
+namespace APELC.LocalShared
 {
     public class DateHelper
     {
@@ -410,7 +410,7 @@ namespace APELC.PublicShared
 
         public static string MtdGetFormatTime(string _time)
         {
-            string[] _text = PublicConstant.SplitAyat(_time, ":");
+            string[] _text = LocalConstant.SplitAyat(_time, ":");
             string _hh = MtdGetFormat2dijit(_text[0]);
             string _mm = MtdGetFormat2dijit(_text[1]);
             return (_hh + ":" + _mm);

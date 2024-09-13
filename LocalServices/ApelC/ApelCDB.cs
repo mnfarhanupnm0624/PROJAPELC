@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using APELC.PublicShared;
-using APELC.LocalServices.Senarai;
 using APELC.LocalShared;
+using APELC.LocalServices.Login;
+using APELC.LocalServices.Senarai;
 using APELC.Model;
 ////using Oracle.ManagedDataAccess.Client;
 
@@ -9,8 +9,7 @@ namespace APELC.LocalServices.ApelCDB
 {
     public class ApelCDB
     {
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
-        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
+        static readonly string ConnMySQLHrUpnm = LocalConstant.ConnMySQLUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         //internal static ModelHrStaffMaklumatPeribadi DB_MtdGetMaklumatAsas(int _stafPk)
@@ -55,11 +54,11 @@ namespace APELC.LocalServices.ApelCDB
         //    return _data;
         //}
 
-        public static IEnumerable<ModelHrStafPenyiasat> DB_MtdGetStafPenyiasatList(int ApelCPk)
-        {
-            List<ModelHrStafPenyiasat> list = null;
-            try
-            {
+        //public static IEnumerable<ModelHrStafPenyiasat> DB_MtdGetStafPenyiasatList(int ApelCPk)
+        //{
+        //    List<ModelHrStafPenyiasat> list = null;
+        //    try
+        //    {
                 //using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
                 //{
                 //    IEnumerable<ModelHrStafPenyiasat> _getList = dbConn.Query<ModelHrStafPenyiasat>(SelenggaraSQL.SQL_MtdGetStafPenyiasatList(), new { Aduan_PK = ApelCPk });
@@ -68,15 +67,15 @@ namespace APELC.LocalServices.ApelCDB
                 //        list = _getList.ToList();
                 //    }
                 //}
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
                 //var log = NLog.LogManager.GetCurrentClassLogger();
                 //log.Info("SenaraiDB DB_MtdGetStafPenyiasatList try catch ex.Message ~ " + ex.Message);
-            }
+        //    }
 
-            return list;
-        }
+        //    return list;
+        //}
 
         //public static ModelMaklumatPeribadiPelajar MtdGetDataPelajarByNokp(string _nokp)
         //{

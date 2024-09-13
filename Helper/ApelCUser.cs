@@ -1,5 +1,5 @@
 ﻿using APELC.Model;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace APELC.Helper
 {
@@ -13,19 +13,19 @@ namespace APELC.Helper
 
         public static HttpContext Current => httpContextAccessor.HttpContext;
 
-        public static SessionModel GetApel(this ISession session)
+        public static SessionModel GetApelC(this ISession session)
         {
             var user = new SessionModel();
             var value = session.GetString("ApelCUser");
 
-            //if (value != null)
-            //{
-            //    user = JsonConvert.DeserializeObject<SessionModel>(value);
-            //}
-            //else
-            //{
-            //    user.PAPARAN_ONLY = true;
-            //}
+            if (value != null)
+            {
+                user = JsonConvert.DeserializeObject<SessionModel>(value);
+            }
+            else
+            {
+                user.PAPARAN_ONLY = true;
+            }
 
 
             return user;

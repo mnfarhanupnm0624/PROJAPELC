@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APELC.PublicShared
+namespace APELC.LocalShared
 {
     public class EncryptHr
     {

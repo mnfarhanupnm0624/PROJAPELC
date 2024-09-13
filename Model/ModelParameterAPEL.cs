@@ -1,7 +1,6 @@
-﻿using APELC.PublicServices.Login;
-using APELC.PublicShared;
-using APELC.LocalServices;
+﻿using APELC.LocalServices.Login;
 using APELC.LocalShared;
+using APELC.LocalServices;
 using APELC.Model;
 using System.Net;
 

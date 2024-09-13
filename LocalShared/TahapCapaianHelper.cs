@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APELC.PublicShared
+namespace APELC.LocalShared
 {
     public class TahapCapaianHelper
     {
@@ -136,35 +136,35 @@ namespace APELC.PublicShared
         internal static string GetTahapCapaianAppendMultiPtj(string fieldPtj, string fieldStafFk, int stafFk, TahapCapaianPage capaianPage)
         {
             String sbText = "";
-            if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_SEMUA)
+            if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_SEMUA)
             {
                 // Search All Faculty
             }
-            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_KAMPUS)
+            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_KAMPUS)
             {
                 sbText = " AND (UPPER(SUBSTR(" + fieldPtj + ",1,1))) LIKE '" + capaianPage.KOD_PTJ.Substring(0, 1) + "%'";
             }
-            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_MULTI_KAMPUS)
+            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_MULTI_KAMPUS)
             {
                 sbText = (" AND (UPPER(SUBSTR(" + fieldPtj + ",1,3))) IN ('J" + capaianPage.KOD_PTJ.Substring(1, 2) + "', 'K" + capaianPage.KOD_PTJ.Substring(1, 2) + "') ");
             }
-            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_PTJ)
+            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_PTJ)
             {
                 sbText = (" AND (UPPER(SUBSTR(" + fieldPtj + ",1,3))) = '" + capaianPage.KOD_PTJ.Substring(0, 3) + "%'");
             }
-            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_MULTI_PTJ)
+            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_MULTI_PTJ)
             {
                 sbText = (" AND (UPPER(SUBSTR(" + fieldPtj + ",1,3))) IN (" + capaianPage.CAPAIAN_MULTI_PTJ + ") ");
             }
-            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_JAB)
+            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_JAB)
             {
                 sbText = (" AND (UPPER(SUBSTR(" + fieldPtj + ",1,5))) = '" + capaianPage.KOD_PTJ.Substring(0, 5) + "%'");
             }
-            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_MULTI_JAB)
+            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_MULTI_JAB)
             {
                 sbText = (" AND (UPPER(SUBSTR(" + fieldPtj + ",1,5))) IN (" + capaianPage.KOD_PTJ.Substring(0, 5) + ") ");
             }
-            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == PublicConstant.CAPAIAN2016_UNIT)
+            else if (capaianPage.PERINGKAT_CAPAIAN_TXT != null && capaianPage.PERINGKAT_CAPAIAN_TXT == LocalConstant.CAPAIAN2016_UNIT)
             {
                 sbText = (" AND (UPPER(SUBSTR(" + fieldPtj + ",1,7))) = " + capaianPage.KOD_PTJ.Substring(0, 7) + " ");
             }

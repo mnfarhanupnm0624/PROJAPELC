@@ -10,6 +10,7 @@
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Builder;
 @using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Routing;
 @using Microsoft.AspNetCore.Authorization;
 @using Microsoft.AspNetCore.Identity;
 @using Microsoft.AspNetCore.Grpc;
@@ -31,6 +32,7 @@
 @using System.Data;
 @using System.Data.SqlClient;
 @using System.Data.Odbc;
+@using System.Net.Http.Json;
 @* @using System.Data.Entity.DbContext; *@
 @using System.Configuration;
 @using System.Text;
@@ -39,13 +41,6 @@
 @using System.Web;
 @using MySql.Data;
 @using MySql.Data.MySqlClient;
-@* @using System.Data.Odbc.OdbcCommand;
-@using System.Data.Odbc.OdbcConnection;
-@using System.Data.Odbc.OdbcDataReader;
-@using System.Data.Odbc.OdbcDataAdapter;
-@using System.Data.Odbc.OdbcParameter;
-@using System.Data.Odbc.OdbcParameterCollection;
-@using System.Data.Odbc.OdbcTransaction; *@
 @* @using System.Web;
 @using System.Web.UI;
 @using System.Web.UI.WebControls; *@
@@ -61,10 +56,11 @@
 @{
 #pragma warning disable CS8602
     
-    // string _nopekerja = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
-    // string _nomatrik = HttpContextAccessor.HttpContext.Session.GetString("_nomatrikEnc") ?? "";
-    // string _nokp = HttpContextAccessor.HttpContext.Session.GetString("_nokpEnc") ?? "";
-    // string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+    string _idpengguna = HttpContextAccessor.HttpContext.Session.GetString("_idpenggunaEnc") ?? "";
+    string _nopekerja = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
+    string _nomatrik = HttpContextAccessor.HttpContext.Session.GetString("_nomatrikEnc") ?? "";
+    string _nokp = HttpContextAccessor.HttpContext.Session.GetString("_nokpEnc") ?? "";
+    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
     // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];  // localhost test appsettings.json
    /*  var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"]; */ //Localhost test launchsettings.json
     var _getPath = Configuration.GetSection("APELC")["applicationUrl"];

@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using APELC.Model;
-using APELC.PublicShared;
 using APELC.LocalShared;
 ////using Oracle.ManagedDataAccess.Client;
 
@@ -8,8 +7,7 @@ namespace APELC.LocalServices.Senarai
 {
     public class SenaraiDB
     {
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
-        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
+        static readonly string ConnMySQLHrUpnm = LocalConstant.ConnMySQLUpnmDbDs();
         readonly static string _encryptCode = SecurityConstants.EncryptCode();
 
         // Get Senarai Aduan Kes Siasatan Pemohon

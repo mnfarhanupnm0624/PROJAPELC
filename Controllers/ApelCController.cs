@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using APELC.Helper;
 using APELC.LocalServices.Senarai;
-//using APELC.LocalServices.Aduan;
+//using APELC.LocalServices.ApelC;
 using APELC.Model;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 //using APELC.LocalServices.Public;
-//using APELC.PublicShared;
+//using APELC.LocalServices.Public;
+using Net6HrPublicLibrary.Model;
 using System.Xml.Linq;
 
 
@@ -45,6 +46,7 @@ namespace APELC.Controllers
         //    HttpContext.Session.SetString("ApelCUser", JsonConvert.SerializeObject(aduanHelper.GetApelInfo(aduanModel)));
         //    return true;
         //}
+
 
 
 
