@@ -14,8 +14,8 @@ namespace APELC.Model
         public string? CMASA_TAMAT { get; set; }
         public string? CSEMAKMASA { get; set; }
 
-        public List<ModelParameterAPEL> ListEventMajlis =  new SecurityConstants().ItemListKampus;
-        public List<ModelParameterAPEL> ListYaTidak = new SecurityConstants().ItemListYaTidak;
+        //public List<ModelParameterAPELC> ListEventMajlis =  new SecurityConstantsLocal().ItemListKampus;
+        //public List<ModelParameterAPELC> ListYaTidak = new SecurityConstantsLocal().ItemListYaTidak;
 
     }
 }

@@ -11280,7 +11280,7 @@ readers do not read off random characters that represent icons */
   content: "\f5fa";
 }
 
-.la-key:before {
+.la-KOD:before {
   content: "\f084";
 }
 
@@ -20285,11 +20285,11 @@ readers do not read off random characters that represent icons */
   content: "\f44d";
 }
 
-.bi-key-fill::before {
+.bi-KOD-fill::before {
   content: "\f44e";
 }
 
-.bi-key::before {
+.bi-KOD::before {
   content: "\f44f";
 }
 
@@ -23353,7 +23353,7 @@ readers do not read off random characters that represent icons */
   content: "\f74d";
 }
 
-.bi-filetype-key::before {
+.bi-filetype-KOD::before {
   content: "\f74e";
 }
 
@@ -26612,7 +26612,7 @@ readers do not read off random characters that represent icons */
   content: "\f591";
 }
 
-.fa-key:before {
+.fa-KOD:before {
   content: "\f084";
 }
 

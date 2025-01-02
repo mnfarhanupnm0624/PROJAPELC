@@ -217,8 +217,8 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet", "../utils/c
                 else {
                     this.results.delete(element);
                     var isValid_1 = true;
-                    this.containers.forEach(function (value, key) {
-                        if (value === groupEle && _this.results.get(key) === false) {
+                    this.containers.forEach(function (value, KOD) {
+                        if (value === groupEle && _this.results.get(KOD) === false) {
                             isValid_1 = false;
                         }
                     });

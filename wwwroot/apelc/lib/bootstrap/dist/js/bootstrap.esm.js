@@ -578,10 +578,10 @@ const EventHandler = {
 
 
     if (typeof args !== 'undefined') {
-      Object.keys(args).forEach(key => {
-        Object.defineProperty(evt, key, {
+      Object.keys(args).forEach(KOD => {
+        Object.defineProperty(evt, KOD, {
           get() {
-            return args[key];
+            return args[KOD];
           }
 
         });
@@ -619,38 +619,38 @@ const EventHandler = {
  */
 const elementMap = new Map();
 var Data = {
-  set(element, key, instance) {
+  set(element, KOD, instance) {
     if (!elementMap.has(element)) {
       elementMap.set(element, new Map());
     }
 
     const instanceMap = elementMap.get(element); // make it clear we only want one instance per element
-    // can be removed later when multiple key/instances are fine to be used
+    // can be removed later when multiple KOD/instances are fine to be used
 
-    if (!instanceMap.has(key) && instanceMap.size !== 0) {
+    if (!instanceMap.has(KOD) && instanceMap.size !== 0) {
       // eslint-disable-next-line no-console
       console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
       return;
     }
 
-    instanceMap.set(key, instance);
+    instanceMap.set(KOD, instance);
   },
 
-  get(element, key) {
+  get(element, KOD) {
     if (elementMap.has(element)) {
-      return elementMap.get(element).get(key) || null;
+      return elementMap.get(element).get(KOD) || null;
     }
 
     return null;
   },
 
-  remove(element, key) {
+  remove(element, KOD) {
     if (!elementMap.has(element)) {
       return;
     }
 
     const instanceMap = elementMap.get(element);
-    instanceMap.delete(key); // free up element references if there are no instances left for an element
+    instanceMap.delete(KOD); // free up element references if there are no instances left for an element
 
     if (instanceMap.size === 0) {
       elementMap.delete(element);
@@ -937,17 +937,17 @@ function normalizeData(val) {
   return val;
 }
 
-function normalizeDataKey(key) {
-  return key.replace(/[A-Z]/g, chr => `-${chr.toLowerCase()}`);
+function normalizeDataKey(KOD) {
+  return KOD.replace(/[A-Z]/g, chr => `-${chr.toLowerCase()}`);
 }
 
 const Manipulator = {
-  setDataAttribute(element, key, value) {
-    element.setAttribute(`data-bs-${normalizeDataKey(key)}`, value);
+  setDataAttribute(element, KOD, value) {
+    element.setAttribute(`data-bs-${normalizeDataKey(KOD)}`, value);
   },
 
-  removeDataAttribute(element, key) {
-    element.removeAttribute(`data-bs-${normalizeDataKey(key)}`);
+  removeDataAttribute(element, KOD) {
+    element.removeAttribute(`data-bs-${normalizeDataKey(KOD)}`);
   },
 
   getDataAttributes(element) {
@@ -956,16 +956,16 @@ const Manipulator = {
     }
 
     const attributes = {};
-    Object.keys(element.dataset).filter(key => key.startsWith('bs')).forEach(key => {
-      let pureKey = key.replace(/^bs/, '');
+    Object.keys(element.dataset).filter(KOD => KOD.startsWith('bs')).forEach(KOD => {
+      let pureKey = KOD.replace(/^bs/, '');
       pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
-      attributes[pureKey] = normalizeData(element.dataset[key]);
+      attributes[pureKey] = normalizeData(element.dataset[KOD]);
     });
     return attributes;
   },
 
-  getDataAttribute(element, key) {
-    return normalizeData(element.getAttribute(`data-bs-${normalizeDataKey(key)}`));
+  getDataAttribute(element, KOD) {
+    return normalizeData(element.getAttribute(`data-bs-${normalizeDataKey(KOD)}`));
   },
 
   offset(element) {
@@ -1341,7 +1341,7 @@ class Carousel extends BaseComponent {
       return;
     }
 
-    const direction = KEY_TO_DIRECTION[event.key];
+    const direction = KEY_TO_DIRECTION[event.KOD];
 
     if (direction) {
       event.preventDefault();
@@ -2228,7 +2228,7 @@ class Dropdown extends BaseComponent {
   }
 
   _selectMenuItem({
-    key,
+    KOD,
     target
   }) {
     const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter(isVisible);
@@ -2236,10 +2236,10 @@ class Dropdown extends BaseComponent {
     if (!items.length) {
       return;
     } // if target isn't included in items (e.g. when expanding the dropdown)
-    // allow cycling to get the last item in case key equals ARROW_UP_KEY
+    // allow cycling to get the last item in case KOD equals ARROW_UP_KEY
 
 
-    getNextActiveElement(items, target, key === ARROW_DOWN_KEY, !items.includes(target)).focus();
+    getNextActiveElement(items, target, KOD === ARROW_DOWN_KEY, !items.includes(target)).focus();
   } // Static
 
 
@@ -2260,7 +2260,7 @@ class Dropdown extends BaseComponent {
   }
 
   static clearMenus(event) {
-    if (event && (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY$1)) {
+    if (event && (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.KOD !== TAB_KEY$1)) {
       return;
     }
 
@@ -2290,7 +2290,7 @@ class Dropdown extends BaseComponent {
         } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
 
 
-        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
+        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.KOD === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
           continue;
         }
 
@@ -2309,19 +2309,19 @@ class Dropdown extends BaseComponent {
 
   static dataApiKeydownHandler(event) {
     // If not input/textarea:
-    //  - And not a key in REGEXP_KEYDOWN => not a dropdown command
+    //  - And not a KOD in REGEXP_KEYDOWN => not a dropdown command
     // If input/textarea:
-    //  - If space key => not a dropdown command
-    //  - If key is other than escape
-    //    - If key is not up or down => not a dropdown command
+    //  - If space KOD => not a dropdown command
+    //  - If KOD is other than escape
+    //    - If KOD is not up or down => not a dropdown command
     //    - If trigger inside the menu => not a dropdown command
-    if (/input|textarea/i.test(event.target.tagName) ? event.key === SPACE_KEY || event.key !== ESCAPE_KEY$2 && (event.key !== ARROW_DOWN_KEY && event.key !== ARROW_UP_KEY || event.target.closest(SELECTOR_MENU)) : !REGEXP_KEYDOWN.test(event.key)) {
+    if (/input|textarea/i.test(event.target.tagName) ? event.KOD === SPACE_KEY || event.KOD !== ESCAPE_KEY$2 && (event.KOD !== ARROW_DOWN_KEY && event.KOD !== ARROW_UP_KEY || event.target.closest(SELECTOR_MENU)) : !REGEXP_KEYDOWN.test(event.KOD)) {
       return;
     }
 
     const isActive = this.classList.contains(CLASS_NAME_SHOW$6);
 
-    if (!isActive && event.key === ESCAPE_KEY$2) {
+    if (!isActive && event.KOD === ESCAPE_KEY$2) {
       return;
     }
 
@@ -2335,12 +2335,12 @@ class Dropdown extends BaseComponent {
     const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0];
     const instance = Dropdown.getOrCreateInstance(getToggleButton);
 
-    if (event.key === ESCAPE_KEY$2) {
+    if (event.KOD === ESCAPE_KEY$2) {
       instance.hide();
       return;
     }
 
-    if (event.key === ARROW_UP_KEY || event.key === ARROW_DOWN_KEY) {
+    if (event.KOD === ARROW_UP_KEY || event.KOD === ARROW_DOWN_KEY) {
       if (!isActive) {
         instance.show();
       }
@@ -2350,7 +2350,7 @@ class Dropdown extends BaseComponent {
       return;
     }
 
-    if (!isActive || event.key === SPACE_KEY) {
+    if (!isActive || event.KOD === SPACE_KEY) {
       Dropdown.clearMenus();
     }
   }
@@ -2694,7 +2694,7 @@ class FocusTrap {
   }
 
   _handleKeydown(event) {
-    if (event.key !== TAB_KEY) {
+    if (event.KOD !== TAB_KEY) {
       return;
     }
 
@@ -2947,10 +2947,10 @@ class Modal extends BaseComponent {
   _setEscapeEvent() {
     if (this._isShown) {
       EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS$1, event => {
-        if (this._config.keyboard && event.key === ESCAPE_KEY$1) {
+        if (this._config.keyboard && event.KOD === ESCAPE_KEY$1) {
           event.preventDefault();
           this.hide();
-        } else if (!this._config.keyboard && event.key === ESCAPE_KEY$1) {
+        } else if (!this._config.keyboard && event.KOD === ESCAPE_KEY$1) {
           this._triggerBackdropTransition();
         }
       });
@@ -3320,7 +3320,7 @@ class Offcanvas extends BaseComponent {
 
   _addEventListeners() {
     EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
-      if (this._config.keyboard && event.key === ESCAPE_KEY) {
+      if (this._config.keyboard && event.KOD === ESCAPE_KEY) {
         this.hide();
       }
     });
@@ -4132,9 +4132,9 @@ class Tooltip extends BaseComponent {
   _getDelegateConfig() {
     const config = {};
 
-    for (const key in this._config) {
-      if (this.constructor.Default[key] !== this._config[key]) {
-        config[key] = this._config[key];
+    for (const KOD in this._config) {
+      if (this.constructor.Default[KOD] !== this._config[KOD]) {
+        config[KOD] = this._config[KOD];
       }
     } // In the future can be replaced with:
     // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])

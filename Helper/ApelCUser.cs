@@ -1,5 +1,9 @@
 ﻿using APELC.Model;
 using Newtonsoft.Json;
+using APELC.LocalServices.Login;
+using System.Xml.Linq;
+using NuGet.Protocol.Plugins;
+
 
 namespace APELC.Helper
 {
@@ -13,10 +17,10 @@ namespace APELC.Helper
 
         public static HttpContext Current => httpContextAccessor.HttpContext;
 
-        public static SessionModel GetApelC(this ISession session)
+        public static SessionModel GetApelCPengguna(this ISession session)
         {
             var user = new SessionModel();
-            var value = session.GetString("ApelCUser");
+            var value = session.GetString("_idpenggunaEnc");
 
             if (value != null)
             {

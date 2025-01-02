@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace APELC.LocalShared
 {
-    public class TahapCapaianHelper
+    public class TahapCapaianHelperLocal
     {
         static string ConnMySQLHrUpnm = System.Configuration.ConfigurationManager.ConnectionStrings["UpnmdbDS"].ConnectionString;
         static string _encryptCode = System.Configuration.ConfigurationManager.AppSettings["encryptCode"];

@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -141,7 +141,7 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         if (this.opts.suggestion) {
           this.core.on("plugins.message.displayed", this.messageDisplayedHandler);
@@ -169,7 +169,7 @@
         });
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         if (this.opts.suggestion) {
           this.core.off("plugins.message.displayed", this.messageDisplayedHandler);
@@ -178,7 +178,7 @@
         this.core.removeField(this.opts.field);
       }
     }, {
-      key: "onMessageDisplayed",
+      KOD: "onMessageDisplayed",
       value: function onMessageDisplayed(s) {
         if (s.field === this.opts.field && "mailgun" === s.validator && s.meta && s.meta["did_you_mean"]) {
           s.messageElement.innerHTML = "Did you mean ".concat(s.meta["did_you_mean"], "?");

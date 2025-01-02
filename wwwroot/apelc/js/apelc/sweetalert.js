@@ -839,9 +839,9 @@
              * Allow user to pass their own params
              */
             var extend = function extend(a, b) {
-                for (var key in b) {
-                    if (b.hasOwnProperty(key)) {
-                        a[key] = b[key];
+                for (var KOD in b) {
+                    if (b.hasOwnProperty(KOD)) {
+                        a[KOD] = b[KOD];
                     }
                 }
                 return a;
@@ -908,7 +908,7 @@
 
             var _handleClick = require('./modules/handle-click');
 
-            var _handleKey = require('./modules/handle-key');
+            var _handleKey = require('./modules/handle-KOD');
 
             var _handleKey2 = _interopRequireDefault(_handleKey);
 
@@ -946,9 +946,9 @@
                  * Supports the case where a default value is boolean true and should be
                  * overridden by a corresponding explicit argument which is boolean false.
                  */
-                function argumentOrDefault(key) {
+                function argumentOrDefault(KOD) {
                     var args = customizations;
-                    return args[key] === undefined ? _defaultParams2.default[key] : args[key];
+                    return args[KOD] === undefined ? _defaultParams2.default[KOD] : args[KOD];
                 }
 
                 if (customizations === undefined) {
@@ -1180,7 +1180,7 @@
                 (0, _utils.logStr)('SweetAlert is a frontend module!');
             }
 
-        }, { "./modules/default-params": 1, "./modules/handle-click": 2, "./modules/handle-dom": 3, "./modules/handle-key": 4, "./modules/handle-swal-dom": 5, "./modules/set-params": 7, "./modules/utils": 8 }]
+        }, { "./modules/default-params": 1, "./modules/handle-click": 2, "./modules/handle-dom": 3, "./modules/handle-KOD": 4, "./modules/handle-swal-dom": 5, "./modules/set-params": 7, "./modules/utils": 8 }]
     }, {}, [9]);
 
     /*

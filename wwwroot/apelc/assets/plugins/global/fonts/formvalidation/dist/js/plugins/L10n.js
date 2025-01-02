@@ -32,7 +32,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -146,17 +146,17 @@
     }
 
     _createClass(e, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.registerFilter("validator-message", this.messageFilter);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.deregisterFilter("validator-message", this.messageFilter);
       }
     }, {
-      key: "getMessage",
+      KOD: "getMessage",
       value: function getMessage(t, _e, s) {
         if (this.opts[_e] && this.opts[_e][s]) {
           var i = this.opts[_e][s];

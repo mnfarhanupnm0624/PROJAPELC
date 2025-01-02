@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APELC.LocalShared
 {
-    public class DateHelper
+    public class DateHelperLocal
     {
         public static bool IsDate(String date)
         {

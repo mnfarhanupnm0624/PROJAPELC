@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -35,16 +35,16 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
+  function _defineProperty(obj, KOD, value) {
+    if (KOD in obj) {
+      Object.defineProperty(obj, KOD, {
         value: value,
         enumerable: true,
         configurable: true,
         writable: true
       });
     } else {
-      obj[key] = value;
+      obj[KOD] = value;
     }
 
     return obj;
@@ -238,18 +238,18 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.element.validating", this.elementValidatingHandler).on("core.element.validated", this.elementValidatedHandler).on("core.element.notvalidated", this.elementNotValidatedHandler).on("plugins.icon.placed", this.iconPlacedHandler).on("plugins.icon.set", this.iconSetHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.icons.clear();
         this.core.off("core.element.validating", this.elementValidatingHandler).off("core.element.validated", this.elementValidatedHandler).off("core.element.notvalidated", this.elementNotValidatedHandler).off("plugins.icon.placed", this.iconPlacedHandler).off("plugins.icon.set", this.iconSetHandler);
       }
     }, {
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(e) {
         var _this2 = this;
 
@@ -314,22 +314,22 @@
         });
       }
     }, {
-      key: "onElementValidating",
+      KOD: "onElementValidating",
       value: function onElementValidating(e) {
         this.updateIconClasses(e.element, "Validating");
       }
     }, {
-      key: "onElementValidated",
+      KOD: "onElementValidated",
       value: function onElementValidated(e) {
         this.updateIconClasses(e.element, e.valid ? "Valid" : "Invalid");
       }
     }, {
-      key: "onElementNotValidated",
+      KOD: "onElementNotValidated",
       value: function onElementNotValidated(e) {
         this.updateIconClasses(e.element, "NotValidated");
       }
     }, {
-      key: "updateIconClasses",
+      KOD: "updateIconClasses",
       value: function updateIconClasses(e, _i5) {
         var s = this.icons.get(e);
 
@@ -340,7 +340,7 @@
         }
       }
     }, {
-      key: "onIconSet",
+      KOD: "onIconSet",
       value: function onIconSet(e) {
         var _i6 = this.icons.get(e.element);
 

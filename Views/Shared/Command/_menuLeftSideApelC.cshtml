@@ -2,34 +2,13 @@
 @inject IConfiguration Configuration
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @inject IJsonHelper Json
+@* @using APELC.Helper *@
 
 @{
     // ViewData["Title"] = "APEL C";
     Layout = "/Views/Shared/Command/_menuLeftSideApelC.cshtml";
 #pragma warning disable CS8602
-//     string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
-//     string _primaryIdEnc = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
-
-//     string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
-//     var _mohonPkEnc = ApelCUser.GetApel(Context.Session).MOHON_PK_ENC;
-//     var _rayuanPkEnc = ApelCUser.GetApel(Context.Session).RAYUAN_PK_ENC;
-//     var _statusMhApelC = ApelCUser.GetApel(Context.Session).STATUS_MOHON;
-
-//     var _statusRyApelC = ApelCUser.GetApel(Context.Session).STATUS_RAYUAN;
-//     var _statusUjianCbrnApelC = ApelCUser.GetApel(Context.Session).STATUS_UJIAN_CBRN;
-
-//     string _butiranpermohonanapelc = HttpContextAccessor.HttpContext.Session.GetString("_butiranpermohonanapelc") ?? "";
-//     //string _laporanpolis = HttpContextAccessor.HttpContext.Session.GetString("_laporanpolis") ?? "";
-//     string _ringkasankjdn = HttpContextAccessor.HttpContext.Session.GetString("_ringkasankjdn") ?? "";
-//     string _diaripnyst = HttpContextAccessor.HttpContext.Session.GetString("_diaripnyst") ?? "";
-//     string _frmPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_frmPemohonsaksi") ?? "";
-//     string _attchPemohonsaksi = HttpContextAccessor.HttpContext.Session.GetString("_attchPemohonsaksi") ?? "";
-//     string _attchokt = HttpContextAccessor.HttpContext.Session.GetString("_attchokt") ?? "";
-//     string _frmokt = HttpContextAccessor.HttpContext.Session.GetString("_frmokt") ?? "";
-//     string _attchdoclain = HttpContextAccessor.HttpContext.Session.GetString("_attchdoclain") ?? "";
-//     string _attchbrgbukti = HttpContextAccessor.HttpContext.Session.GetString("_attchbrgbukti") ?? "";
-//     string _minitsstn = HttpContextAccessor.HttpContext.Session.GetString("_minitsstn") ?? "";
-
+    // string _idpengguna = ApelCUser.GetApelCPengguna(Context.Session).GetString("_idpenggunaEnc") ?? "";
 //     var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
 //     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
 // #pragma warning restore CS8602

@@ -6,11 +6,7 @@
 @{
     ViewData["Title"] = "APEL C";
     Layout = "/Views/Shared/Command/_menuLeftSideApelC.cshtml";
-#pragma warning disable CS8602  
-    string _nopekerja = HttpContextAccessor.HttpContext.Session.GetString("_nopekerjaEnc") ?? "";
-    string _nomatrik = HttpContextAccessor.HttpContext.Session.GetString("_nomatrikEnc") ?? "";
-    string _nokp = HttpContextAccessor.HttpContext.Session.GetString("_nokpEnc") ?? "";
-    string _role = HttpContextAccessor.HttpContext.Session.GetString("_hrApelCRole") ?? "";
+#pragma warning disable CS8602
     var _getPath = Configuration.GetSection("APELC")["applicationUrl"];
     var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
     // var _disablelink = "disable-link";

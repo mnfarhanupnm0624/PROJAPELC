@@ -471,7 +471,7 @@ jQuery.extend( {
 				}
 			}
 
-		// Go through every key on the object,
+		// Go through every KOD on the object,
 		} else {
 			for ( i in elems ) {
 				value = callback( elems[ i ], i, arg );
@@ -899,7 +899,7 @@ function Sizzle( selector, context, results, seed ) {
 }
 
 /**
- * Create key-value caches of limited size
+ * Create KOD-value caches of limited size
  * @returns {function(string, object)} Returns the Object data after storing it on itself with
  *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
@@ -907,15 +907,15 @@ function Sizzle( selector, context, results, seed ) {
 function createCache() {
 	var keys = [];
 
-	function cache( key, value ) {
+	function cache( KOD, value ) {
 
-		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
-		if ( keys.push( key + " " ) > Expr.cacheLength ) {
+		// Use (KOD + " ") to avoid collision with native prototype properties (see Issue #157)
+		if ( keys.push( KOD + " " ) > Expr.cacheLength ) {
 
 			// Only keep the most recent entries
 			delete cache[ keys.shift() ];
 		}
-		return ( cache[ key + " " ] = value );
+		return ( cache[ KOD + " " ] = value );
 	}
 	return cache;
 }
@@ -2397,8 +2397,8 @@ function toSelector( tokens ) {
 function addCombinator( matcher, combinator, base ) {
 	var dir = combinator.dir,
 		skip = combinator.next,
-		key = skip || dir,
-		checkNonElements = base && key === "parentNode",
+		KOD = skip || dir,
+		checkNonElements = base && KOD === "parentNode",
 		doneName = done++;
 
 	return combinator.first ?
@@ -2439,7 +2439,7 @@ function addCombinator( matcher, combinator, base ) {
 
 						if ( skip && skip === elem.nodeName.toLowerCase() ) {
 							elem = elem[ dir ] || elem;
-						} else if ( ( oldCache = uniqueCache[ key ] ) &&
+						} else if ( ( oldCache = uniqueCache[ KOD ] ) &&
 							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
 
 							// Assign to newCache so results back-propagate to previous elements
@@ -2447,7 +2447,7 @@ function addCombinator( matcher, combinator, base ) {
 						} else {
 
 							// Reuse newcache so results back-propagate to previous elements
-							uniqueCache[ key ] = newCache;
+							uniqueCache[ KOD ] = newCache;
 
 							// A match means we're done; a fail means we have to keep checking
 							if ( ( newCache[ 2 ] = matcher( elem, context, xml ) ) ) {
@@ -4144,16 +4144,16 @@ if ( document.readyState === "complete" ||
 
 // Multifunctional method to get and set values of a collection
 // The value/s can optionally be executed if it's a function
-var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
+var access = function( elems, fn, KOD, value, chainable, emptyGet, raw ) {
 	var i = 0,
 		len = elems.length,
-		bulk = key == null;
+		bulk = KOD == null;
 
 	// Sets many values
-	if ( toType( key ) === "object" ) {
+	if ( toType( KOD ) === "object" ) {
 		chainable = true;
-		for ( i in key ) {
-			access( elems, fn, i, key[ i ], true, emptyGet, raw );
+		for ( i in KOD ) {
+			access( elems, fn, i, KOD[ i ], true, emptyGet, raw );
 		}
 
 	// Sets one value
@@ -4183,9 +4183,9 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		if ( fn ) {
 			for ( ; i < len; i++ ) {
 				fn(
-					elems[ i ], key, raw ?
+					elems[ i ], KOD, raw ?
 						value :
-						value.call( elems[ i ], i, fn( elems[ i ], key ) )
+						value.call( elems[ i ], i, fn( elems[ i ], KOD ) )
 				);
 			}
 		}
@@ -4200,7 +4200,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		return fn.call( elems );
 	}
 
-	return len ? fn( elems[ 0 ], key ) : emptyGet;
+	return len ? fn( elems[ 0 ], KOD ) : emptyGet;
 };
 
 
@@ -4278,8 +4278,8 @@ Data.prototype = {
 		var prop,
 			cache = this.cache( owner );
 
-		// Handle: [ owner, key, value ] args
-		// Always use camelCase key (gh-2257)
+		// Handle: [ owner, KOD, value ] args
+		// Always use camelCase KOD (gh-2257)
 		if ( typeof data === "string" ) {
 			cache[ camelCase( data ) ] = value;
 
@@ -4293,45 +4293,45 @@ Data.prototype = {
 		}
 		return cache;
 	},
-	get: function( owner, key ) {
-		return key === undefined ?
+	get: function( owner, KOD ) {
+		return KOD === undefined ?
 			this.cache( owner ) :
 
-			// Always use camelCase key (gh-2257)
-			owner[ this.expando ] && owner[ this.expando ][ camelCase( key ) ];
+			// Always use camelCase KOD (gh-2257)
+			owner[ this.expando ] && owner[ this.expando ][ camelCase( KOD ) ];
 	},
-	access: function( owner, key, value ) {
+	access: function( owner, KOD, value ) {
 
 		// In cases where either:
 		//
-		//   1. No key was specified
-		//   2. A string key was specified, but no value provided
+		//   1. No KOD was specified
+		//   2. A string KOD was specified, but no value provided
 		//
 		// Take the "read" path and allow the get method to determine
 		// which value to return, respectively either:
 		//
 		//   1. The entire cache object
-		//   2. The data stored at the key
+		//   2. The data stored at the KOD
 		//
-		if ( key === undefined ||
-				( ( key && typeof key === "string" ) && value === undefined ) ) {
+		if ( KOD === undefined ||
+				( ( KOD && typeof KOD === "string" ) && value === undefined ) ) {
 
-			return this.get( owner, key );
+			return this.get( owner, KOD );
 		}
 
-		// When the key is not a string, or both a key and value
+		// When the KOD is not a string, or both a KOD and value
 		// are specified, set or extend (existing objects) with either:
 		//
 		//   1. An object of properties
-		//   2. A key and value
+		//   2. A KOD and value
 		//
-		this.set( owner, key, value );
+		this.set( owner, KOD, value );
 
 		// Since the "set" path can have two possible entry points
 		// return the expected data based on which path was taken[*]
-		return value !== undefined ? value : key;
+		return value !== undefined ? value : KOD;
 	},
-	remove: function( owner, key ) {
+	remove: function( owner, KOD ) {
 		var i,
 			cache = owner[ this.expando ];
 
@@ -4339,33 +4339,33 @@ Data.prototype = {
 			return;
 		}
 
-		if ( key !== undefined ) {
+		if ( KOD !== undefined ) {
 
 			// Support array or space separated string of keys
-			if ( Array.isArray( key ) ) {
+			if ( Array.isArray( KOD ) ) {
 
-				// If key is an array of keys...
+				// If KOD is an array of keys...
 				// We always set camelCase keys, so remove that.
-				key = key.map( camelCase );
+				KOD = KOD.map( camelCase );
 			} else {
-				key = camelCase( key );
+				KOD = camelCase( KOD );
 
-				// If a key with the spaces exists, use it.
+				// If a KOD with the spaces exists, use it.
 				// Otherwise, create an array by matching non-whitespace
-				key = key in cache ?
-					[ key ] :
-					( key.match( rnothtmlwhite ) || [] );
+				KOD = KOD in cache ?
+					[ KOD ] :
+					( KOD.match( rnothtmlwhite ) || [] );
 			}
 
-			i = key.length;
+			i = KOD.length;
 
 			while ( i-- ) {
-				delete cache[ key[ i ] ];
+				delete cache[ KOD[ i ] ];
 			}
 		}
 
 		// Remove the expando if there's no more data
-		if ( key === undefined || jQuery.isEmptyObject( cache ) ) {
+		if ( KOD === undefined || jQuery.isEmptyObject( cache ) ) {
 
 			// Support: Chrome <=35 - 45
 			// Webkit & Blink performance suffers when deleting properties
@@ -4427,13 +4427,13 @@ function getData( data ) {
 	return data;
 }
 
-function dataAttr( elem, key, data ) {
+function dataAttr( elem, KOD, data ) {
 	var name;
 
 	// If nothing was found internally, try to fetch any
 	// data from the HTML5 data-* attribute
 	if ( data === undefined && elem.nodeType === 1 ) {
-		name = "data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
+		name = "data-" + KOD.replace( rmultiDash, "-$&" ).toLowerCase();
 		data = elem.getAttribute( name );
 
 		if ( typeof data === "string" ) {
@@ -4442,7 +4442,7 @@ function dataAttr( elem, key, data ) {
 			} catch ( e ) {}
 
 			// Make sure we set the data so it isn't changed later
-			dataUser.set( elem, key, data );
+			dataUser.set( elem, KOD, data );
 		} else {
 			data = undefined;
 		}
@@ -4475,13 +4475,13 @@ jQuery.extend( {
 } );
 
 jQuery.fn.extend( {
-	data: function( key, value ) {
+	data: function( KOD, value ) {
 		var i, name, data,
 			elem = this[ 0 ],
 			attrs = elem && elem.attributes;
 
 		// Gets all values
-		if ( key === undefined ) {
+		if ( KOD === undefined ) {
 			if ( this.length ) {
 				data = dataUser.get( elem );
 
@@ -4507,9 +4507,9 @@ jQuery.fn.extend( {
 		}
 
 		// Sets multiple values
-		if ( typeof key === "object" ) {
+		if ( typeof KOD === "object" ) {
 			return this.each( function() {
-				dataUser.set( this, key );
+				dataUser.set( this, KOD );
 			} );
 		}
 
@@ -4524,15 +4524,15 @@ jQuery.fn.extend( {
 			if ( elem && value === undefined ) {
 
 				// Attempt to get data from the cache
-				// The key will always be camelCased in Data
-				data = dataUser.get( elem, key );
+				// The KOD will always be camelCased in Data
+				data = dataUser.get( elem, KOD );
 				if ( data !== undefined ) {
 					return data;
 				}
 
 				// Attempt to "discover" the data in
 				// HTML5 custom data-* attrs
-				data = dataAttr( elem, key );
+				data = dataAttr( elem, KOD );
 				if ( data !== undefined ) {
 					return data;
 				}
@@ -4544,15 +4544,15 @@ jQuery.fn.extend( {
 			// Set the data...
 			this.each( function() {
 
-				// We always store the camelCased key
-				dataUser.set( this, key, value );
+				// We always store the camelCased KOD
+				dataUser.set( this, KOD, value );
 			} );
 		}, null, value, arguments.length > 1, null, true );
 	},
 
-	removeData: function( key ) {
+	removeData: function( KOD ) {
 		return this.each( function() {
-			dataUser.remove( this, key );
+			dataUser.remove( this, KOD );
 		} );
 	}
 } );
@@ -4615,10 +4615,10 @@ jQuery.extend( {
 
 	// Not public - generate a queueHooks object, or return the current one
 	_queueHooks: function( elem, type ) {
-		var key = type + "queueHooks";
-		return dataPriv.get( elem, key ) || dataPriv.access( elem, key, {
+		var KOD = type + "queueHooks";
+		return dataPriv.get( elem, KOD ) || dataPriv.access( elem, KOD, {
 			empty: jQuery.Callbacks( "once memory" ).add( function() {
-				dataPriv.remove( elem, [ type + "queue", key ] );
+				dataPriv.remove( elem, [ type + "queue", KOD ] );
 			} )
 		} );
 	}
@@ -5464,7 +5464,7 @@ jQuery.event = {
 			// Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
 			// https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
 			// Support: IE 11 only
-			// ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+			// ...but not arrow KOD "clicks" of radio inputs, which can have `button` -1 (gh-2343)
 			!( event.type === "click" && event.button >= 1 ) ) {
 
 			for ( ; cur !== this; cur = cur.parentNode || this ) {
@@ -5813,7 +5813,7 @@ jQuery.each( {
 	"char": true,
 	code: true,
 	charCode: true,
-	key: true,
+	KOD: true,
 	keyCode: true,
 	button: true,
 	buttons: true,
@@ -8930,18 +8930,18 @@ function buildParams( prefix, obj, traditional, add ) {
 }
 
 // Serialize an array of form elements or a set of
-// key/values into a query string
+// KOD/values into a query string
 jQuery.param = function( a, traditional ) {
 	var prefix,
 		s = [],
-		add = function( key, valueOrFunction ) {
+		add = function( KOD, valueOrFunction ) {
 
 			// If value is a function, invoke it and use its return value
 			var value = isFunction( valueOrFunction ) ?
 				valueOrFunction() :
 				valueOrFunction;
 
-			s[ s.length ] = encodeURIComponent( key ) + "=" +
+			s[ s.length ] = encodeURIComponent( KOD ) + "=" +
 				encodeURIComponent( value == null ? "" : value );
 		};
 
@@ -9022,14 +9022,14 @@ var
 	 * 2) These are called:
 	 *    - BEFORE asking for a transport
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
-	 * 3) key is the dataType
+	 * 3) KOD is the dataType
 	 * 4) the catchall symbol "*" can be used
 	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
 	 */
 	prefilters = {},
 
 	/* Transports bindings
-	 * 1) key is the dataType
+	 * 1) KOD is the dataType
 	 * 2) the catchall symbol "*" can be used
 	 * 3) selection will start with transport dataType and THEN go to "*" if needed
 	 */
@@ -9108,12 +9108,12 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 // that takes "flat" options (not to be deep extended)
 // Fixes #9887
 function ajaxExtend( target, src ) {
-	var key, deep,
+	var KOD, deep,
 		flatOptions = jQuery.ajaxSettings.flatOptions || {};
 
-	for ( key in src ) {
-		if ( src[ key ] !== undefined ) {
-			( flatOptions[ key ] ? target : ( deep || ( deep = {} ) ) )[ key ] = src[ key ];
+	for ( KOD in src ) {
+		if ( src[ KOD ] !== undefined ) {
+			( flatOptions[ KOD ] ? target : ( deep || ( deep = {} ) ) )[ KOD ] = src[ KOD ];
 		}
 	}
 	if ( deep ) {
@@ -9444,7 +9444,7 @@ jQuery.extend( {
 				readyState: 0,
 
 				// Builds headers hashtable if needed
-				getResponseHeader: function( key ) {
+				getResponseHeader: function( KOD ) {
 					var match;
 					if ( completed ) {
 						if ( !responseHeaders ) {
@@ -9455,7 +9455,7 @@ jQuery.extend( {
 										.concat( match[ 2 ] );
 							}
 						}
-						match = responseHeaders[ key.toLowerCase() + " " ];
+						match = responseHeaders[ KOD.toLowerCase() + " " ];
 					}
 					return match == null ? null : match.join( ", " );
 				},

@@ -357,9 +357,9 @@ function getParameters() {
     }
 
     var args = [];
-    possibleArgs.forEach(function (key) {
-        if (process.env['npm_config_' + key]) {
-            args.push(key);
+    possibleArgs.forEach(function (KOD) {
+        if (process.env['npm_config_' + KOD]) {
+            args.push(KOD);
         }
     });
 

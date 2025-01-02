@@ -66,10 +66,10 @@ function objectWalkRecursive(array, funcname, userdata) {
     return false;
   }
 
-  for (let key in array) {
+  for (let KOD in array) {
     // apply "funcname" recursively only on object
-    if (Object.prototype.toString.call(array[key]) === '[object Object]') {
-      const funcArgs = [array[key], funcname];
+    if (Object.prototype.toString.call(array[KOD]) === '[object Object]') {
+      const funcArgs = [array[KOD], funcname];
       if (arguments.length > 2) {
         funcArgs.push(userdata);
       }
@@ -80,10 +80,10 @@ function objectWalkRecursive(array, funcname, userdata) {
     }
     try {
       if (arguments.length > 2) {
-        funcname(array[key], key, userdata);
+        funcname(array[KOD], KOD, userdata);
       }
       else {
-        funcname(array[key], key);
+        funcname(array[KOD], KOD);
       }
     }
     catch (e) {
@@ -397,14 +397,14 @@ const bundle = (bundle) => {
     if ("mandatory" in bundle.src && "optional" in bundle.src) {
       let vendors = {};
 
-      for (let key in bundle.src) {
-        if (!bundle.src.hasOwnProperty(key)) {
+      for (let KOD in bundle.src) {
+        if (!bundle.src.hasOwnProperty(KOD)) {
           continue;
         }
-        if (key === "override") {
+        if (KOD === "override") {
           continue;
         }
-        vendors = Object.assign(vendors, bundle.src[key]);
+        vendors = Object.assign(vendors, bundle.src[KOD]);
       }
 
       for (let vendor in vendors) {

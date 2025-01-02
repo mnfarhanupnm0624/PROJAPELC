@@ -88,11 +88,11 @@ define(["require", "exports"], function (require, exports) {
                     };
                 }
                 var campus = "".concat(input.value.substr(0, 2));
-                for (var key in CAMPUS) {
-                    if (CAMPUS[key].indexOf(campus) !== -1) {
+                for (var KOD in CAMPUS) {
+                    if (CAMPUS[KOD].indexOf(campus) !== -1) {
                         return {
                             meta: {
-                                campus: key,
+                                campus: KOD,
                             },
                             valid: true,
                         };

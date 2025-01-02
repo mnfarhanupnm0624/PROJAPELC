@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -35,16 +35,16 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
+  function _defineProperty(obj, KOD, value) {
+    if (KOD in obj) {
+      Object.defineProperty(obj, KOD, {
         value: value,
         enumerable: true,
         configurable: true,
         writable: true
       });
     } else {
-      obj[key] = value;
+      obj[KOD] = value;
     }
 
     return obj;
@@ -156,7 +156,7 @@
     }
 
     _createClass(a, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.registerValidator(a.PASSWORD_STRENGTH_VALIDATOR, this.validatePassword);
         this.core.on("core.validator.validated", this.validatorValidatedHandler);
@@ -168,13 +168,13 @@
         });
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.off("core.validator.validated", this.validatorValidatedHandler);
         this.core.disableValidator(this.opts.field, a.PASSWORD_STRENGTH_VALIDATOR);
       }
     }, {
-      key: "checkPasswordStrength",
+      KOD: "checkPasswordStrength",
       value: function checkPasswordStrength() {
         var _this2 = this;
 
@@ -214,7 +214,7 @@
         };
       }
     }, {
-      key: "onValidatorValidated",
+      KOD: "onValidatorValidated",
       value: function onValidatorValidated(t) {
         if (t.field === this.opts.field && t.validator === a.PASSWORD_STRENGTH_VALIDATOR && t.result.meta) {
           var _a3 = t.result.meta["message"];

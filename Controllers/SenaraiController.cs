@@ -1,6 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Net6HrPublicLibrary.PublicShared;
+using Net6HrPublicLibrary.Model;
 using APELC.LocalServices.Senarai;
 using APELC.Model;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authentication;
+using System.Linq;
+using System.Linq.Expressions;
+using static System.Linq.IQueryable;
+using System.Diagnostics;
+using System.Text;
+using Microsoft.Net.Http.Headers;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Security.Claims;
+
 
 namespace APELC.Controllers
 {
@@ -20,7 +35,7 @@ namespace APELC.Controllers
 
         private void MtdGetDashboardSession(string id, string id2)
         {
-            HttpContext.Session.SetString("_titleTop", "KESELAMATAN UTM");
+            HttpContext.Session.SetString("_titleTop", "APEL.C UPNM");
             HttpContext.Session.SetString("_titleSmall", id);
             HttpContext.Session.SetString("_titleSmallSub", id2);
         }
@@ -33,7 +48,7 @@ namespace APELC.Controllers
         }
 
         // GET : SiasatanSkrinList
-        public IActionResult SelenggaraAksesKawalanAPELC()
+        public IActionResult SenaraiAksesKawalanAPELC()
         {
             MtdGetDashboardSession("Senarai Permohonan ", "");
 
@@ -52,9 +67,9 @@ namespace APELC.Controllers
                     _userPnyst = _stafFkEnc;
                 }
                 CarianPerananApelCMain _data = new();
-                List<ModelPemohonApelC> _newList = new();
+                List<ModelParameterAPELC> _newList = new();
                 //_newList = SenaraiProcess.MtdGetPemohonList("", "", "", "", "", "", "", _userAll, _userPnyst);
-                //_data.ListCarianPemohon = _newList.ToList();
+                //_data.ListCarianPeranan = _newList.ToList();
 
                 // Clear Session
                 HttpContext.Session.Remove("ApelCUser");
@@ -80,7 +95,7 @@ namespace APELC.Controllers
         }
 
         [HttpPost]
-        public JsonResult MtdGetSenaraiSiasatanCapai([FromBody] ModelPemohonApelC _carian)
+        public JsonResult MtdGetSenaraiSiasatanCapai([FromBody] ModelParameterAPELC _carian)
         {
             string _ePUserId = HttpContext.Session.GetString("_userId") ?? "";
             string _stafFkEnc = HttpContext.Session.GetString("_hrStafFkEnc") ?? "";
@@ -88,7 +103,7 @@ namespace APELC.Controllers
             string _userAll = "";
             string _userPnyst = "";
 
-            List<ModelPemohonApelC> _newList = null;
+            List<ModelParameterAPELC> _newList = null;
             if (_ePUserId != "")
             {
                 if (_role == "PNYST_KANAN")

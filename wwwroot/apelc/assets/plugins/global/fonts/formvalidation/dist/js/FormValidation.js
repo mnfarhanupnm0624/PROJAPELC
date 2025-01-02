@@ -80,7 +80,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -93,16 +93,16 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
+  function _defineProperty(obj, KOD, value) {
+    if (KOD in obj) {
+      Object.defineProperty(obj, KOD, {
         value: value,
         enumerable: true,
         configurable: true,
         writable: true
       });
     } else {
-      obj[key] = value;
+      obj[KOD] = value;
     }
 
     return obj;
@@ -1590,19 +1590,19 @@
     }
 
     _createClass(l, [{
-      key: "on",
+      KOD: "on",
       value: function on(e, t) {
         this.ee.on(e, t);
         return this;
       }
     }, {
-      key: "off",
+      KOD: "off",
       value: function off(e, t) {
         this.ee.off(e, t);
         return this;
       }
     }, {
-      key: "emit",
+      KOD: "emit",
       value: function emit(e) {
         var _this$ee;
 
@@ -1615,7 +1615,7 @@
         return this;
       }
     }, {
-      key: "registerPlugin",
+      KOD: "registerPlugin",
       value: function registerPlugin(e, t) {
         if (this.plugins[e]) {
           throw new Error("The plguin ".concat(e, " is registered"));
@@ -1627,7 +1627,7 @@
         return this;
       }
     }, {
-      key: "deregisterPlugin",
+      KOD: "deregisterPlugin",
       value: function deregisterPlugin(e) {
         var t = this.plugins[e];
 
@@ -1639,7 +1639,7 @@
         return this;
       }
     }, {
-      key: "registerValidator",
+      KOD: "registerValidator",
       value: function registerValidator(e, t) {
         if (this.validators[e]) {
           throw new Error("The validator ".concat(e, " is registered"));
@@ -1649,24 +1649,24 @@
         return this;
       }
     }, {
-      key: "registerFilter",
+      KOD: "registerFilter",
       value: function registerFilter(e, t) {
         this.filter.add(e, t);
         return this;
       }
     }, {
-      key: "deregisterFilter",
+      KOD: "deregisterFilter",
       value: function deregisterFilter(e, t) {
         this.filter.remove(e, t);
         return this;
       }
     }, {
-      key: "executeFilter",
+      KOD: "executeFilter",
       value: function executeFilter(e, t, i) {
         return this.filter.execute(e, t, i);
       }
     }, {
-      key: "addField",
+      KOD: "addField",
       value: function addField(e, t) {
         var i = Object.assign({}, {
           selector: "",
@@ -1685,7 +1685,7 @@
         return this;
       }
     }, {
-      key: "removeField",
+      KOD: "removeField",
       value: function removeField(e) {
         if (!this.fields[e]) {
           throw new Error("The field ".concat(e, " validators are not defined. Please ensure the field is added first"));
@@ -1703,7 +1703,7 @@
         return this;
       }
     }, {
-      key: "validate",
+      KOD: "validate",
       value: function validate() {
         var _this = this;
 
@@ -1740,7 +1740,7 @@
         });
       }
     }, {
-      key: "validateField",
+      KOD: "validateField",
       value: function validateField(e) {
         var _this2 = this;
 
@@ -1792,7 +1792,7 @@
         }
       }
     }, {
-      key: "validateElement",
+      KOD: "validateElement",
       value: function validateElement(e, t) {
         var _this3 = this;
 
@@ -1848,7 +1848,7 @@
         });
       }
     }, {
-      key: "executeValidator",
+      KOD: "executeValidator",
       value: function executeValidator(e, t, i, s) {
         var _this4 = this;
 
@@ -1927,39 +1927,39 @@
         }
       }
     }, {
-      key: "getElementValue",
+      KOD: "getElementValue",
       value: function getElementValue(e, t, s) {
         var _l4 = e$a(this.form, e, t, this.elements[e]);
 
         return this.filter.execute("field-value", _l4, [_l4, e, t, s]);
       }
     }, {
-      key: "getElements",
+      KOD: "getElements",
       value: function getElements(e) {
         return this.elements[e];
       }
     }, {
-      key: "getFields",
+      KOD: "getFields",
       value: function getFields() {
         return this.fields;
       }
     }, {
-      key: "getFormElement",
+      KOD: "getFormElement",
       value: function getFormElement() {
         return this.form;
       }
     }, {
-      key: "getLocale",
+      KOD: "getLocale",
       value: function getLocale() {
         return this.locale;
       }
     }, {
-      key: "getPlugin",
+      KOD: "getPlugin",
       value: function getPlugin(e) {
         return this.plugins[e];
       }
     }, {
-      key: "updateFieldStatus",
+      KOD: "updateFieldStatus",
       value: function updateFieldStatus(e, t, i) {
         var _this5 = this;
 
@@ -2002,7 +2002,7 @@
         return this;
       }
     }, {
-      key: "updateElementStatus",
+      KOD: "updateElementStatus",
       value: function updateElementStatus(e, t, i, s) {
         var _this6 = this;
 
@@ -2089,7 +2089,7 @@
         return this;
       }
     }, {
-      key: "resetForm",
+      KOD: "resetForm",
       value: function resetForm(e) {
         var _this7 = this;
 
@@ -2103,7 +2103,7 @@
         return this;
       }
     }, {
-      key: "resetField",
+      KOD: "resetField",
       value: function resetField(e, t) {
         if (t) {
           var _t = this.elements[e];
@@ -2133,7 +2133,7 @@
         return this;
       }
     }, {
-      key: "revalidateField",
+      KOD: "revalidateField",
       value: function revalidateField(e) {
         if (!this.fields[e]) {
           return Promise.resolve("Ignored");
@@ -2143,7 +2143,7 @@
         return this.validateField(e);
       }
     }, {
-      key: "disableValidator",
+      KOD: "disableValidator",
       value: function disableValidator(e, t) {
         if (!this.fields[e]) {
           return this;
@@ -2160,7 +2160,7 @@
         return this;
       }
     }, {
-      key: "enableValidator",
+      KOD: "enableValidator",
       value: function enableValidator(e, t) {
         if (!this.fields[e]) {
           return this;
@@ -2177,7 +2177,7 @@
         return this;
       }
     }, {
-      key: "updateValidatorOption",
+      KOD: "updateValidatorOption",
       value: function updateValidatorOption(e, t, i, s) {
         if (this.fields[e] && this.fields[e].validators && this.fields[e].validators[t]) {
           this.fields[e].validators[t][i] = s;
@@ -2186,13 +2186,13 @@
         return this;
       }
     }, {
-      key: "setFieldOptions",
+      KOD: "setFieldOptions",
       value: function setFieldOptions(e, t) {
         this.fields[e] = t;
         return this;
       }
     }, {
-      key: "destroy",
+      KOD: "destroy",
       value: function destroy() {
         var _this8 = this;
 
@@ -2206,14 +2206,14 @@
         return this;
       }
     }, {
-      key: "setLocale",
+      KOD: "setLocale",
       value: function setLocale(e, t) {
         this.locale = e;
         this.localization = t;
         return this;
       }
     }, {
-      key: "waterfall",
+      KOD: "waterfall",
       value: function waterfall(e) {
         return e.reduce(function (e, t) {
           return e.then(function (e) {
@@ -2225,13 +2225,13 @@
         }, Promise.resolve([]));
       }
     }, {
-      key: "queryElements",
+      KOD: "queryElements",
       value: function queryElements(e) {
         var t = this.fields[e].selector ? "#" === this.fields[e].selector.charAt(0) ? "[id=\"".concat(this.fields[e].selector.substring(1), "\"]") : this.fields[e].selector : "[name=\"".concat(e, "\"]");
         return [].slice.call(this.form.querySelectorAll(t));
       }
     }, {
-      key: "normalizeResult",
+      KOD: "normalizeResult",
       value: function normalizeResult(e, t, i) {
         var s = this.fields[e].validators[t];
         return Object.assign({}, i, {
@@ -2239,7 +2239,7 @@
         });
       }
     }, {
-      key: "toggleValidator",
+      KOD: "toggleValidator",
       value: function toggleValidator(e, t, i) {
         var _this9 = this;
 
@@ -2290,16 +2290,16 @@
     }
 
     _createClass(t, [{
-      key: "setCore",
+      KOD: "setCore",
       value: function setCore(_t2) {
         this.core = _t2;
         return this;
       }
     }, {
-      key: "install",
+      KOD: "install",
       value: function install() {}
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {}
     }]);
 
@@ -2327,17 +2327,17 @@
     }
 
     _createClass(e, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.registerFilter("validator-name", this.validatorNameFilter);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.deregisterFilter("validator-name", this.validatorNameFilter);
       }
     }, {
-      key: "getValidatorName",
+      KOD: "getValidatorName",
       value: function getValidatorName(t, _e) {
         return this.opts[t] || t;
       }
@@ -2365,17 +2365,17 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.field.valid", this.fieldValidHandler).on("core.field.invalid", this.fieldInvalidHandler).on("core.element.validated", this.elementValidatedHandler).on("plugins.message.displayed", this.messageDisplayedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.off("core.field.valid", this.fieldValidHandler).off("core.field.invalid", this.fieldInvalidHandler).off("core.element.validated", this.elementValidatedHandler).off("plugins.message.displayed", this.messageDisplayedHandler);
       }
     }, {
-      key: "onElementValidated",
+      KOD: "onElementValidated",
       value: function onElementValidated(e) {
         if (e.valid) {
           e.element.setAttribute("aria-invalid", "false");
@@ -2383,7 +2383,7 @@
         }
       }
     }, {
-      key: "onFieldValid",
+      KOD: "onFieldValid",
       value: function onFieldValid(e) {
         var _i = this.core.getElements(e);
 
@@ -2395,7 +2395,7 @@
         }
       }
     }, {
-      key: "onFieldInvalid",
+      KOD: "onFieldInvalid",
       value: function onFieldInvalid(e) {
         var _i2 = this.core.getElements(e);
 
@@ -2406,7 +2406,7 @@
         }
       }
     }, {
-      key: "onMessageDisplayed",
+      KOD: "onMessageDisplayed",
       value: function onMessageDisplayed(e) {
         e.messageElement.setAttribute("role", "alert");
         e.messageElement.setAttribute("aria-hidden", "false");
@@ -2454,7 +2454,7 @@
     }
 
     _createClass(t, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _this2 = this;
 
@@ -2470,13 +2470,13 @@
         this.core.on("core.field.added", this.fieldAddedHandler).on("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.addedFields.clear();
         this.core.off("core.field.added", this.fieldAddedHandler).off("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         var _this3 = this;
 
@@ -2502,14 +2502,14 @@
         });
       }
     }, {
-      key: "onFieldRemoved",
+      KOD: "onFieldRemoved",
       value: function onFieldRemoved(e) {
         if (e.field && this.addedFields.has(e.field)) {
           this.addedFields["delete"](e.field);
         }
       }
     }, {
-      key: "parseOptions",
+      KOD: "parseOptions",
       value: function parseOptions() {
         var _this4 = this;
 
@@ -2539,7 +2539,7 @@
         return Object.assign({}, s, _t5);
       }
     }, {
-      key: "createPluginInstance",
+      KOD: "createPluginInstance",
       value: function createPluginInstance(e, _t6) {
         var s = e.split(".");
         var a = window || this;
@@ -2555,7 +2555,7 @@
         return new a(_t6);
       }
     }, {
-      key: "parsePlugins",
+      KOD: "parsePlugins",
       value: function parsePlugins() {
         var _this5 = this;
 
@@ -2597,13 +2597,13 @@
         });
       }
     }, {
-      key: "isEmptyOption",
+      KOD: "isEmptyOption",
       value: function isEmptyOption(e) {
         var _t10 = e.validators;
         return Object.keys(_t10).length === 0 && _t10.constructor === Object;
       }
     }, {
-      key: "parseElement",
+      KOD: "parseElement",
       value: function parseElement(e) {
         var _t11 = new RegExp("^".concat(this.opts.prefix, "([a-z0-9-]+)(___)*([a-z0-9-]+)*$"));
 
@@ -2703,17 +2703,17 @@
         };
       }
     }, {
-      key: "normalizeValue",
+      KOD: "normalizeValue",
       value: function normalizeValue(e) {
         return e === "true" ? true : e === "false" ? false : e;
       }
     }, {
-      key: "toUpperCase",
+      KOD: "toUpperCase",
       value: function toUpperCase(e) {
         return e.charAt(1).toUpperCase();
       }
     }, {
-      key: "toCamelCase",
+      KOD: "toCamelCase",
       value: function toCamelCase(e) {
         return e.replace(/-./g, this.toUpperCase);
       }
@@ -2738,7 +2738,7 @@
     }
 
     _createClass(o, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var t = this.core.getFormElement();
 
@@ -2749,12 +2749,12 @@
         this.core.on("core.form.valid", this.onValidHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.off("core.form.valid", this.onValidHandler);
       }
     }, {
-      key: "onFormValid",
+      KOD: "onFormValid",
       value: function onFormValid() {
         var t = this.core.getFormElement();
 
@@ -2784,17 +2784,17 @@
     }
 
     _createClass(e, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("plugins.trigger.executed", this.triggerExecutedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.off("plugins.trigger.executed", this.triggerExecutedHandler);
       }
     }, {
-      key: "onTriggerExecuted",
+      KOD: "onTriggerExecuted",
       value: function onTriggerExecuted(t) {
         if (this.opts[t.field]) {
           var _e3 = this.opts[t.field].split(" ");
@@ -2843,22 +2843,22 @@
     }
 
     _createClass(e, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.registerFilter("element-ignored", this.ignoreValidationFilter);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.deregisterFilter("element-ignored", this.ignoreValidationFilter);
       }
     }, {
-      key: "ignoreValidation",
+      KOD: "ignoreValidation",
       value: function ignoreValidation(t, _e2, i) {
         return this.opts.excluded.apply(this, [t, _e2, i]);
       }
     }], [{
-      key: "defaultIgnore",
+      KOD: "defaultIgnore",
       value: function defaultIgnore(t, _e, i) {
         var r = !!(_e.offsetWidth || _e.offsetHeight || _e.getClientRects().length);
 
@@ -2896,35 +2896,35 @@
     }
 
     _createClass(t, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.element.validating", this.elementValidatingHandler).on("core.element.validated", this.elementValidatedHandler).on("core.element.notvalidated", this.elementNotValidatedHandler).on("core.element.ignored", this.elementIgnoredHandler).on("core.field.added", this.fieldAddedHandler).on("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.statuses.clear();
         this.core.off("core.element.validating", this.elementValidatingHandler).off("core.element.validated", this.elementValidatedHandler).off("core.element.notvalidated", this.elementNotValidatedHandler).off("core.element.ignored", this.elementIgnoredHandler).off("core.field.added", this.fieldAddedHandler).off("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "areFieldsValid",
+      KOD: "areFieldsValid",
       value: function areFieldsValid() {
         return Array.from(this.statuses.values()).every(function (e) {
           return e === "Valid" || e === "NotValidated" || e === "Ignored";
         });
       }
     }, {
-      key: "getStatuses",
+      KOD: "getStatuses",
       value: function getStatuses() {
         return this.statuses;
       }
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         this.statuses.set(e.field, "NotValidated");
       }
     }, {
-      key: "onFieldRemoved",
+      KOD: "onFieldRemoved",
       value: function onFieldRemoved(e) {
         if (this.statuses.has(e.field)) {
           this.statuses["delete"](e.field);
@@ -2933,13 +2933,13 @@
         this.opts.onStatusChanged(this.areFieldsValid());
       }
     }, {
-      key: "onElementValidating",
+      KOD: "onElementValidating",
       value: function onElementValidating(e) {
         this.statuses.set(e.field, "Validating");
         this.opts.onStatusChanged(false);
       }
     }, {
-      key: "onElementValidated",
+      KOD: "onElementValidated",
       value: function onElementValidated(e) {
         this.statuses.set(e.field, e.valid ? "Valid" : "Invalid");
 
@@ -2950,13 +2950,13 @@
         }
       }
     }, {
-      key: "onElementNotValidated",
+      KOD: "onElementNotValidated",
       value: function onElementNotValidated(e) {
         this.statuses.set(e.field, "NotValidated");
         this.opts.onStatusChanged(false);
       }
     }, {
-      key: "onElementIgnored",
+      KOD: "onElementIgnored",
       value: function onElementIgnored(e) {
         this.statuses.set(e.field, "Ignored");
         this.opts.onStatusChanged(this.areFieldsValid());
@@ -3052,7 +3052,7 @@
     }
 
     _createClass(s, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         if (this.useDefaultContainer) {
           this.core.getFormElement().appendChild(this.defaultContainer);
@@ -3061,7 +3061,7 @@
         this.core.on("core.element.ignored", this.elementIgnoredHandler).on("core.field.added", this.fieldAddedHandler).on("core.field.removed", this.fieldRemovedHandler).on("core.validator.validated", this.validatorValidatedHandler).on("core.validator.notvalidated", this.validatorNotValidatedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         if (this.useDefaultContainer) {
           this.core.getFormElement().removeChild(this.defaultContainer);
@@ -3074,7 +3074,7 @@
         this.core.off("core.element.ignored", this.elementIgnoredHandler).off("core.field.added", this.fieldAddedHandler).off("core.field.removed", this.fieldRemovedHandler).off("core.validator.validated", this.validatorValidatedHandler).off("core.validator.notvalidated", this.validatorNotValidatedHandler);
       }
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         var _this2 = this;
 
@@ -3094,7 +3094,7 @@
         }
       }
     }, {
-      key: "onFieldRemoved",
+      KOD: "onFieldRemoved",
       value: function onFieldRemoved(e) {
         var _this3 = this;
 
@@ -3117,7 +3117,7 @@
         });
       }
     }, {
-      key: "prepareFieldContainer",
+      KOD: "prepareFieldContainer",
       value: function prepareFieldContainer(e, t) {
         var _this4 = this;
 
@@ -3134,7 +3134,7 @@
         }
       }
     }, {
-      key: "prepareElementContainer",
+      KOD: "prepareElementContainer",
       value: function prepareElementContainer(e, _s5, i) {
         var a;
 
@@ -3160,12 +3160,12 @@
         this.messages.set(_s5, l);
       }
     }, {
-      key: "getMessage",
+      KOD: "getMessage",
       value: function getMessage(e) {
         return typeof e.message === "string" ? e.message : e.message[this.core.getLocale()];
       }
     }, {
-      key: "onValidatorValidated",
+      KOD: "onValidatorValidated",
       value: function onValidatorValidated(e) {
         var _s6 = e.elements;
         var i = e.element.getAttribute("type");
@@ -3215,7 +3215,7 @@
         }
       }
     }, {
-      key: "onValidatorNotValidated",
+      KOD: "onValidatorNotValidated",
       value: function onValidatorNotValidated(e) {
         var t = e.elements;
 
@@ -3234,7 +3234,7 @@
         }
       }
     }, {
-      key: "onElementIgnored",
+      KOD: "onElementIgnored",
       value: function onElementIgnored(e) {
         var t = e.elements;
 
@@ -3253,7 +3253,7 @@
         }
       }
     }], [{
-      key: "getClosestContainer",
+      KOD: "getClosestContainer",
       value: function getClosestContainer(e, t, _s) {
         var i = e;
 
@@ -3309,7 +3309,7 @@
     }
 
     _createClass(l, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _t,
             _this2 = this;
@@ -3331,7 +3331,7 @@
         }
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         var _t2;
 
@@ -3346,13 +3346,13 @@
         }
       }
     }, {
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(e) {}
     }, {
-      key: "onMessagePlaced",
+      KOD: "onMessagePlaced",
       value: function onMessagePlaced(e) {}
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         var _this3 = this;
 
@@ -3374,7 +3374,7 @@
         }
       }
     }, {
-      key: "onFieldRemoved",
+      KOD: "onFieldRemoved",
       value: function onFieldRemoved(e) {
         var _this4 = this;
 
@@ -3389,7 +3389,7 @@
         });
       }
     }, {
-      key: "prepareFieldContainer",
+      KOD: "prepareFieldContainer",
       value: function prepareFieldContainer(e, t) {
         var _this5 = this;
 
@@ -3406,7 +3406,7 @@
         }
       }
     }, {
-      key: "prepareElementContainer",
+      KOD: "prepareElementContainer",
       value: function prepareElementContainer(e, i) {
         var _l2 = "string" === typeof this.opts.rowSelector ? this.opts.rowSelector : this.opts.rowSelector(e, i);
 
@@ -3420,7 +3420,7 @@
         }
       }
     }, {
-      key: "onElementValidating",
+      KOD: "onElementValidating",
       value: function onElementValidating(e) {
         var s = e.elements;
         var i = e.element.getAttribute("type");
@@ -3436,17 +3436,17 @@
         }
       }
     }, {
-      key: "onElementNotValidated",
+      KOD: "onElementNotValidated",
       value: function onElementNotValidated(e) {
         this.removeClasses(e.element, e.elements);
       }
     }, {
-      key: "onElementIgnored",
+      KOD: "onElementIgnored",
       value: function onElementIgnored(e) {
         this.removeClasses(e.element, e.elements);
       }
     }, {
-      key: "removeClasses",
+      KOD: "removeClasses",
       value: function removeClasses(e, s) {
         var _this6 = this;
 
@@ -3468,7 +3468,7 @@
         }
       }
     }, {
-      key: "onElementValidated",
+      KOD: "onElementValidated",
       value: function onElementValidated(e) {
         var _this7 = this;
 
@@ -3540,12 +3540,12 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.element.validating", this.elementValidatingHandler).on("core.element.validated", this.elementValidatedHandler).on("core.element.notvalidated", this.elementNotValidatedHandler).on("core.element.ignored", this.elementIgnoredHandler).on("core.field.added", this.fieldAddedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.icons.forEach(function (e) {
           return e.parentNode.removeChild(e);
@@ -3554,7 +3554,7 @@
         this.core.off("core.element.validating", this.elementValidatingHandler).off("core.element.validated", this.elementValidatedHandler).off("core.element.notvalidated", this.elementNotValidatedHandler).off("core.element.ignored", this.elementIgnoredHandler).off("core.field.added", this.fieldAddedHandler);
       }
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         var _this2 = this;
 
@@ -3574,7 +3574,7 @@
         }
       }
     }, {
-      key: "prepareFieldIcon",
+      KOD: "prepareFieldIcon",
       value: function prepareFieldIcon(e, t) {
         var _this3 = this;
 
@@ -3591,7 +3591,7 @@
         }
       }
     }, {
-      key: "prepareElementIcon",
+      KOD: "prepareElementIcon",
       value: function prepareElementIcon(e, _i2) {
         var n = document.createElement("i");
         n.setAttribute("data-field", e);
@@ -3616,7 +3616,7 @@
         this.icons.set(_i2, n);
       }
     }, {
-      key: "onElementValidating",
+      KOD: "onElementValidating",
       value: function onElementValidating(e) {
         var _this$setClasses;
 
@@ -3631,7 +3631,7 @@
         this.opts.onSet(_i3);
       }
     }, {
-      key: "onElementValidated",
+      KOD: "onElementValidated",
       value: function onElementValidated(e) {
         var _this$setClasses2;
 
@@ -3646,7 +3646,7 @@
         this.opts.onSet(_i4);
       }
     }, {
-      key: "onElementNotValidated",
+      KOD: "onElementNotValidated",
       value: function onElementNotValidated(e) {
         var _this$setClasses3;
 
@@ -3661,7 +3661,7 @@
         this.opts.onSet(_i5);
       }
     }, {
-      key: "onElementIgnored",
+      KOD: "onElementIgnored",
       value: function onElementIgnored(e) {
         var _this$setClasses4;
 
@@ -3676,7 +3676,7 @@
         this.opts.onSet(_i6);
       }
     }, {
-      key: "setClasses",
+      KOD: "setClasses",
       value: function setClasses(e, _i7, n, l) {
         var s = _i7.getAttribute("type");
 
@@ -3720,24 +3720,24 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.validator.validated", this.validatorHandler).on("core.field.added", this.fieldAddedHandler).on("core.element.notvalidated", this.elementNotValidatedHandler).on("core.element.validating", this.elementValidatingHandler).registerFilter("field-should-validate", this.shouldValidateFilter);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.invalidFields.clear();
         this.core.off("core.validator.validated", this.validatorHandler).off("core.field.added", this.fieldAddedHandler).off("core.element.notvalidated", this.elementNotValidatedHandler).off("core.element.validating", this.elementValidatingHandler).deregisterFilter("field-should-validate", this.shouldValidateFilter);
       }
     }, {
-      key: "shouldValidate",
+      KOD: "shouldValidate",
       value: function shouldValidate(e, _i, t, l) {
         var d = (this.opts.enabled === true || this.opts.enabled[e] === true) && this.invalidFields.has(_i) && !!this.invalidFields.get(_i).length && this.invalidFields.get(_i).indexOf(l) === -1;
         return !d;
       }
     }, {
-      key: "onValidatorValidated",
+      KOD: "onValidatorValidated",
       value: function onValidatorValidated(e) {
         var _i2 = this.invalidFields.has(e.element) ? this.invalidFields.get(e.element) : [];
 
@@ -3752,24 +3752,24 @@
         this.invalidFields.set(e.element, _i2);
       }
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         if (e.elements) {
           this.clearInvalidFields(e.elements);
         }
       }
     }, {
-      key: "onElementNotValidated",
+      KOD: "onElementNotValidated",
       value: function onElementNotValidated(e) {
         this.clearInvalidFields(e.elements);
       }
     }, {
-      key: "onElementValidating",
+      KOD: "onElementValidating",
       value: function onElementValidating(e) {
         this.clearInvalidFields(e.elements);
       }
     }, {
-      key: "clearInvalidFields",
+      KOD: "clearInvalidFields",
       value: function clearInvalidFields(e) {
         var _this2 = this;
 
@@ -3806,7 +3806,7 @@
     }
 
     _createClass(e, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _this2 = this;
 
@@ -3826,7 +3826,7 @@
         });
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         var _this3 = this;
 
@@ -3842,12 +3842,12 @@
         this.hiddenClickedEle.parentElement.removeChild(this.hiddenClickedEle);
       }
     }, {
-      key: "handleSubmitEvent",
+      KOD: "handleSubmitEvent",
       value: function handleSubmitEvent(t) {
         this.validateForm(t);
       }
     }, {
-      key: "handleClickEvent",
+      KOD: "handleClickEvent",
       value: function handleClickEvent(t) {
         var _e = t.currentTarget;
 
@@ -3871,7 +3871,7 @@
         }
       }
     }, {
-      key: "validateForm",
+      KOD: "validateForm",
       value: function validateForm(t) {
         var _this4 = this;
 
@@ -3915,7 +3915,7 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.tip = document.createElement("div");
         c(this.tip, _defineProperty({
@@ -3929,7 +3929,7 @@
         }
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.messages.clear();
         document.body.removeChild(this.tip);
@@ -3940,7 +3940,7 @@
         }
       }
     }, {
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(t) {
         var _this2 = this;
 
@@ -3967,7 +3967,7 @@
         }
       }
     }, {
-      key: "onValidatorValidated",
+      KOD: "onValidatorValidated",
       value: function onValidatorValidated(t) {
         if (!t.result.valid) {
           var _e2 = t.elements;
@@ -3980,7 +3980,7 @@
         }
       }
     }, {
-      key: "onElementValidated",
+      KOD: "onElementValidated",
       value: function onElementValidated(t) {
         if (t.valid) {
           var _e3 = t.elements;
@@ -3992,12 +3992,12 @@
         }
       }
     }, {
-      key: "onDocumentClicked",
+      KOD: "onDocumentClicked",
       value: function onDocumentClicked(t) {
         this.hide();
       }
     }, {
-      key: "show",
+      KOD: "show",
       value: function show(t, _i3) {
         _i3.preventDefault();
 
@@ -4071,7 +4071,7 @@
         this.tip.setAttribute("style", "top: ".concat(a, "px; left: ").concat(d, "px"));
       }
     }, {
-      key: "hide",
+      KOD: "hide",
       value: function hide() {
         c(this.tip, {
           "fv-plugins-tooltip--hide": true
@@ -4110,12 +4110,12 @@
     }
 
     _createClass(t, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.field.added", this.fieldAddedHandler).on("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.handlers.forEach(function (e) {
           return e.element.removeEventListener(e.event, e.handler);
@@ -4128,7 +4128,7 @@
         this.core.off("core.field.added", this.fieldAddedHandler).off("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "prepareHandler",
+      KOD: "prepareHandler",
       value: function prepareHandler(e, _t2) {
         var _this2 = this;
 
@@ -4167,7 +4167,7 @@
         });
       }
     }, {
-      key: "handleEvent",
+      KOD: "handleEvent",
       value: function handleEvent(e, _t4, i) {
         var _this3 = this;
 
@@ -4198,7 +4198,7 @@
         }
       }
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         this.handlers.filter(function (_t5) {
           return _t5.field === e.field;
@@ -4208,7 +4208,7 @@
         this.prepareHandler(e.field, e.elements);
       }
     }, {
-      key: "onFieldRemoved",
+      KOD: "onFieldRemoved",
       value: function onFieldRemoved(e) {
         this.handlers.filter(function (_t6) {
           return _t6.field === e.field && e.elements.indexOf(_t6.element) >= 0;
@@ -4217,7 +4217,7 @@
         });
       }
     }, {
-      key: "exceedThreshold",
+      KOD: "exceedThreshold",
       value: function exceedThreshold(e, _t7) {
         var i = this.opts.threshold[e] === 0 || this.opts.threshold === 0 ? false : this.opts.threshold[e] || this.opts.threshold;
 

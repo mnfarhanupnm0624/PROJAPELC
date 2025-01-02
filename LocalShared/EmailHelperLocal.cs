@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace APELC.LocalShared
 {
-    public class EmailHelper
+    public class EmailHelperLocal
     {
         static string _encryptCode = System.Configuration.ConfigurationManager.AppSettings["encryptCode"];
 
@@ -17,15 +17,14 @@ namespace APELC.LocalShared
             string _return = "";
             try
             {
-                var senderEmail = new MailAddress(emailFrom, "UPNM-HR Admin");
+                var senderEmail = new MailAddress(emailFrom, "UPNM Admin");
                 var receiverEmail = new MailAddress(emailTo, "Receiver");
                 var password = "<YourOutlookPassword>";
                 var sub = emailSubject;
                 var body = emailMessage;
                 var smtp = new System.Net.Mail.SmtpClient
                 {
-                    //Host = "smtp.outlook.com",
-                    Host = "smtp-relay.outlook.com",
+                    Host = "smtp-mail.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -59,8 +58,8 @@ namespace APELC.LocalShared
             //log.Info("OutlookSendEmail gmailAuthenticateEmail ~ " + gmailAuthenticateEmail);
             //log.Info("OutlookSendEmail gmailAuthenticatePassword ~ " + gmailAuthenticatePassword);
 
-            string _authenticateEmail = EncryptHr.DecryptString4url(gmailAuthenticateEmail, "admSmis");
-            string _authenticatePaswd = EncryptHr.DecryptString4url(gmailAuthenticatePassword, "admSmis");
+            string _authenticateEmail = EncryptLocal.DecryptString4url(gmailAuthenticateEmail, "admSmis");
+            string _authenticatePaswd = EncryptLocal.DecryptString4url(gmailAuthenticatePassword, "admSmis");
 
             //log.Info("OutlookSendEmail emailTo ~ " + emailTo);
             //log.Info("OutlookSendEmail _authenticateEmail ~ " + _authenticateEmail);
@@ -79,7 +78,7 @@ namespace APELC.LocalShared
 
                 var smtp = new SmtpClient
                 {
-                    Host = "smtp-relay.outlook.com",
+                    Host = "smtp-mail.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -104,10 +103,10 @@ namespace APELC.LocalShared
             return _return;
         }
 
-        public static string GmailSendEmailFromLocal(string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword)
+        public static string OutlookSendEmailFromLocal(string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword)
         {
-            string _authenticateEmail = EncryptHr.DecryptString4url(gmailAuthenticateEmail, "admSmis");
-            string _authenticatePaswd = EncryptHr.DecryptString4url(gmailAuthenticatePassword, "admSmis");
+            string _authenticateEmail = EncryptLocal.DecryptString4url(gmailAuthenticateEmail, "admSmis");
+            string _authenticatePaswd = EncryptLocal.DecryptString4url(gmailAuthenticatePassword, "admSmis");
 
             string _return = "";
             try
@@ -121,7 +120,7 @@ namespace APELC.LocalShared
 
                 var smtp = new SmtpClient
                 {
-                    Host = "smtp.outlook.com",
+                    Host = "smtp-mail.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -146,10 +145,10 @@ namespace APELC.LocalShared
             return _return;
         }
 
-        public static string GmailSendEmailWithTitle(string emailFrom, string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword, string emailFromTitle)
+        public static string OutlookSendEmailWithTitle(string emailFrom, string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword, string emailFromTitle)
         {
-            string _authenticateEmail = EncryptHr.DecryptString4url(gmailAuthenticateEmail, "admSmis");
-            string _authenticatePaswd = EncryptHr.DecryptString4url(gmailAuthenticatePassword, "admSmis");
+            string _authenticateEmail = EncryptLocal.DecryptString4url(gmailAuthenticateEmail, "admSmis");
+            string _authenticatePaswd = EncryptLocal.DecryptString4url(gmailAuthenticatePassword, "admSmis");
 
             //log.Info("OutlookSendEmail emailTo ~ " + emailTo);
             //log.Info("OutlookSendEmail _authenticateEmail ~ " + _authenticateEmail);
@@ -168,7 +167,7 @@ namespace APELC.LocalShared
                 var smtp = new SmtpClient
                 {
                     //Host = "smtp.outlook.com",
-                    Host = "smtp-relay.outlook.com",
+                    Host = "smtp-mail.outlook.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -193,10 +192,10 @@ namespace APELC.LocalShared
             return _return;
         }
 
-        public static string GmailSendEmailByodWithTitle(string emailFrom, string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword, string emailFromTitle)
+        public static string OutlookSendEmailByodWithTitle(string emailFrom, string emailTo, string emailSubject, string emailMessage, string gmailAuthenticateEmail, string gmailAuthenticatePassword, string emailFromTitle)
         {
-            string _authenticateEmail = EncryptHr.DecryptString4url(gmailAuthenticateEmail, "admSmis");
-            string _authenticatePaswd = EncryptHr.DecryptString4url(gmailAuthenticatePassword, "admSmis");
+            string _authenticateEmail = EncryptLocal.DecryptString4url(gmailAuthenticateEmail, "admSmis");
+            string _authenticatePaswd = EncryptLocal.DecryptString4url(gmailAuthenticatePassword, "admSmis");
 
             string _return = "";
             try
@@ -208,7 +207,7 @@ namespace APELC.LocalShared
                 var sub = emailSubject;
                 var body = emailMessage;
 
-                SmtpClient smtp = (SmtpClient)MtdGeSmtpRelayGmailCom(authenticateSenderEmail, password);
+                SmtpClient smtp = (SmtpClient)MtdGeSmtpRelayOutlookCom(authenticateSenderEmail, password);
 
                 var htmlBody = AlternateView.CreateAlternateViewFromString(emailMessage, Encoding.UTF8, "text/html");
                 using (var mess = new MailMessage(senderEmail, receiverEmail)
@@ -228,12 +227,12 @@ namespace APELC.LocalShared
             return _return;
         }
 
-        private static object MtdGeSmtpRelayGmailCom(MailAddress authenticateSenderEmail, string password)
+        private static object MtdGeSmtpRelayOutlookCom(MailAddress authenticateSenderEmail, string password)
         {
             return new SmtpClient
             {
                 //Host = "smtp.outlook.com",
-                Host = "smtp-relay.outlook.com",
+                Host = "smtp-mail.outlook.com",
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,

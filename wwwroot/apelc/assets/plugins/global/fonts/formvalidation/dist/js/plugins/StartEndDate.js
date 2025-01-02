@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -137,7 +137,7 @@
     }
 
     _createClass(e, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _this2 = this;
 
@@ -174,7 +174,7 @@
         });
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.removeField(this.opts.startDate.field);
 
@@ -191,7 +191,7 @@
         this.core.off("core.field.valid", this.fieldValidHandler).off("core.field.invalid", this.fieldInvalidHandler);
       }
     }, {
-      key: "onFieldInvalid",
+      KOD: "onFieldInvalid",
       value: function onFieldInvalid(t) {
         switch (t) {
           case this.opts.startDate.field:
@@ -204,7 +204,7 @@
         }
       }
     }, {
-      key: "onFieldValid",
+      KOD: "onFieldValid",
       value: function onFieldValid(t) {
         switch (t) {
           case this.opts.startDate.field:

@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -138,7 +138,7 @@
     }
 
     _createClass(t, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.fields = Object.keys(this.core.getFields());
 
@@ -147,12 +147,12 @@
         }
       }
     }, {
-      key: "play",
+      KOD: "play",
       value: function play() {
         return this.animate(0);
       }
     }, {
-      key: "animate",
+      KOD: "animate",
       value: function animate(e) {
         var _this2 = this;
 

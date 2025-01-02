@@ -9,7 +9,7 @@ namespace APELC.Model
         public int PENCIPTA_FK { set; get; }
 
         //RUJUK KEPADA HR_INV_DAFTAR_PNYST
-        public string? MOHON_NO { set; get; }
+        ////public string? MOHON_NO { set; get; }
         public string? KOD_PRNN_PNYST { set; get; }
         public string? ID_PENGGUNA { set; get; }
 

@@ -1,17 +1,26 @@
 ﻿using Dapper;
 using APELC.Model;
-using APELC.PublicShared;
-using APELC.LocalServices.Senarai;
 using APELC.LocalShared;
+using Net6HrPublicLibrary.PublicShared;
 ////using Oracle.ManagedDataAccess.Client;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Data.SqlClient;
+using System.Data.Odbc;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
+using ServiceStack.Model;
 
-namespace APELC.LocalServices.Statistik
+namespace APELC.LocalServices.DashboardStatistik
 {
-    public class StatistikDB
+    public class DashboardStatistikDB
     {
-        static readonly string ConnMySQLHrUpnm = PublicConstant.ConnMySQLUpnmDbDs();
-        static readonly string ConnSybaseUpnm = PublicConstant.ConnSybaseUpnmDbDs();
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        static readonly string ConnMySQLHrUpnm = LocalConstant.ConnMySQLUpnmDbDs();
+        readonly static string _encryptCode = SecurityConstantsLocal.EncryptCode();
 
         //internal static ModelHrStaffMaklumatPeribadi DB_MtdGetMaklumatAsas(int _stafPk)
         //{
@@ -55,9 +64,9 @@ namespace APELC.LocalServices.Statistik
         //    return _data;
         //}
 
-        public static IEnumerable<ModelHrStafPenyiasat> DB_MtdGetStafPenyiasatList(int AduanPk)
-        {
-            List<ModelHrStafPenyiasat> list = null;
+        //public static IEnumerable<ModelHrStafPenyiasat> DB_MtdGetStafPenyiasatList(int AduanPk)
+        //{
+        //    List<ModelHrStafPenyiasat> list = null;
             //try
             //{
             //    using (var dbConn = new MySql.Data.MySqlClient.MySqlConnection(ConnMySQLHrUpnm))
@@ -75,8 +84,8 @@ namespace APELC.LocalServices.Statistik
             //    log.Info("SenaraiDB DB_MtdGetStafPenyiasatList try catch ex.Message ~ " + ex.Message);
             //}
 
-            return list;
-        }
+        //    return list;
+        //}
 
         //public static ModelMaklumatPeribadiPelajar MtdGetDataPelajarByNokp(string _nokp)
         //{

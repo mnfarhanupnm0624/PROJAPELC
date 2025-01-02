@@ -10,7 +10,7 @@ namespace APELC.Controllers
 {
 	public class GenerateQRCodeController : Controller
 	{
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        readonly static string _encryptCode = SecurityConstantsLocal.EncryptCode();
 
         public IActionResult Index()
         {

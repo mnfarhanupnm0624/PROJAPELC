@@ -73,10 +73,10 @@
 
 @function get-warning($warn, $get, $key) {
     @if $get == null {
-        @warn "Map has no value for key search `#{$warn}`";
+        @warn "Map has no value for KOD search `#{$warn}`";
     }
     @else if type-of($get) != 'map' {
-        @warn "Non-map value found for key search `#{$warn}`, cannot search for key `#{$key}`";
+        @warn "Non-map value found for KOD search `#{$warn}`, cannot search for KOD `#{$key}`";
     }
     @return null;
 }

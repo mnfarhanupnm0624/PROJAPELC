@@ -1,10 +1,14 @@
 ﻿using APELC.LocalShared;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Org.BouncyCastle.Asn1.X509;
+using static LinqToDB.Reflection.Methods.LinqToDB;
+using static LinqToDB.Sql;
 
 namespace APELC.LocalServices.Senarai
 {
     public class SenaraiSql
     {
-        readonly static string _studsmu = SecurityConstants.StudSchema();
+        readonly static string _studsmu = SecurityConstantsLocal.StudSchema();
 
         internal static string SqlGetApelPemohonInfo =
             @"SELECT

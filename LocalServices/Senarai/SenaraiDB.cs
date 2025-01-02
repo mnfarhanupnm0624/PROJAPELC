@@ -8,9 +8,9 @@ namespace APELC.LocalServices.Senarai
     public class SenaraiDB
     {
         static readonly string ConnMySQLHrUpnm = LocalConstant.ConnMySQLUpnmDbDs();
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        readonly static string _encryptCode = SecurityConstantsLocal.EncryptCode();
 
-        // Get Senarai Aduan Kes Siasatan Pemohon
+        // Get Senarai Aduan Kes Siasatan Peranan
         //public static IEnumerable<ModelHrPemohon> DB_MtdGetPemohonList(string? _noaduan, string? _katPemohon, string? _cKampus, string? _cStsAduan, string? _cKatAduan, string? _cTkhMula, string? _cTkhTamat, string userAll, int stafPk)
         //{
         //    List<ModelHrPemohon> list = null;

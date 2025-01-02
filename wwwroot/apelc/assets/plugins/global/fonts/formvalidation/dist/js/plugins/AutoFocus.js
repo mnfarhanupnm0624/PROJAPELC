@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -145,35 +145,35 @@
     }
 
     _createClass(t, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.element.validating", this.elementValidatingHandler).on("core.element.validated", this.elementValidatedHandler).on("core.element.notvalidated", this.elementNotValidatedHandler).on("core.element.ignored", this.elementIgnoredHandler).on("core.field.added", this.fieldAddedHandler).on("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.statuses.clear();
         this.core.off("core.element.validating", this.elementValidatingHandler).off("core.element.validated", this.elementValidatedHandler).off("core.element.notvalidated", this.elementNotValidatedHandler).off("core.element.ignored", this.elementIgnoredHandler).off("core.field.added", this.fieldAddedHandler).off("core.field.removed", this.fieldRemovedHandler);
       }
     }, {
-      key: "areFieldsValid",
+      KOD: "areFieldsValid",
       value: function areFieldsValid() {
         return Array.from(this.statuses.values()).every(function (e) {
           return e === "Valid" || e === "NotValidated" || e === "Ignored";
         });
       }
     }, {
-      key: "getStatuses",
+      KOD: "getStatuses",
       value: function getStatuses() {
         return this.statuses;
       }
     }, {
-      key: "onFieldAdded",
+      KOD: "onFieldAdded",
       value: function onFieldAdded(e) {
         this.statuses.set(e.field, "NotValidated");
       }
     }, {
-      key: "onFieldRemoved",
+      KOD: "onFieldRemoved",
       value: function onFieldRemoved(e) {
         if (this.statuses.has(e.field)) {
           this.statuses["delete"](e.field);
@@ -182,13 +182,13 @@
         this.opts.onStatusChanged(this.areFieldsValid());
       }
     }, {
-      key: "onElementValidating",
+      KOD: "onElementValidating",
       value: function onElementValidating(e) {
         this.statuses.set(e.field, "Validating");
         this.opts.onStatusChanged(false);
       }
     }, {
-      key: "onElementValidated",
+      KOD: "onElementValidated",
       value: function onElementValidated(e) {
         this.statuses.set(e.field, e.valid ? "Valid" : "Invalid");
 
@@ -199,13 +199,13 @@
         }
       }
     }, {
-      key: "onElementNotValidated",
+      KOD: "onElementNotValidated",
       value: function onElementNotValidated(e) {
         this.statuses.set(e.field, "NotValidated");
         this.opts.onStatusChanged(false);
       }
     }, {
-      key: "onElementIgnored",
+      KOD: "onElementIgnored",
       value: function onElementIgnored(e) {
         this.statuses.set(e.field, "Ignored");
         this.opts.onStatusChanged(this.areFieldsValid());
@@ -235,17 +235,17 @@
     }
 
     _createClass(s, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.form.invalid", this.invalidFormHandler).registerPlugin(this.fieldStatusPluginName, new t());
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.off("core.form.invalid", this.invalidFormHandler).deregisterPlugin(this.fieldStatusPluginName);
       }
     }, {
-      key: "onFormInvalid",
+      KOD: "onFormInvalid",
       value: function onFormInvalid() {
         var t = this.core.getPlugin(this.fieldStatusPluginName);
         var i = t.getStatuses();

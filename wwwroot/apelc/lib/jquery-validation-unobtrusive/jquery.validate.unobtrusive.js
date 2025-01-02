@@ -101,16 +101,16 @@
 
     function onReset(event) {  // 'this' is the form element
         var $form = $(this),
-            key = '__jquery_unobtrusive_validation_form_reset';
-        if ($form.data(key)) {
+            KOD = '__jquery_unobtrusive_validation_form_reset';
+        if ($form.data(KOD)) {
             return;
         }
         // Set a flag that indicates we're currently resetting the form.
-        $form.data(key, true);
+        $form.data(KOD, true);
         try {
             $form.data("validator").resetForm();
         } finally {
-            $form.removeData(key);
+            $form.removeData(KOD);
         }
 
         $form.find(".validation-summary-errors")

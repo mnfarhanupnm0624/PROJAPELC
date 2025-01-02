@@ -1,13 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using APELC.Helper;
 using APELC.LocalServices.Senarai;
-//using APELC.LocalServices.ApelC;
+using APELC.LocalServices.ApelC;
 using APELC.Model;
 using Newtonsoft.Json;
-//using APELC.LocalServices.Public;
-//using APELC.LocalServices.Public;
+using Net6HrPublicLibrary.PublicShared;
 using Net6HrPublicLibrary.Model;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authentication;
+using System.Text;
+using Microsoft.Net.Http.Headers;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Security.Claims;
+
 
 
 namespace APELC.Controllers
@@ -15,20 +23,14 @@ namespace APELC.Controllers
     public class ApelCController : Controller
     {
 
-        public IActionResult Index()
-        {
-            MtdGetDashboardSession("APELC - Index", "");
-            ModelUserDTO _data = new();
-            return View(_data);
-        }
         public IActionResult BackToDashboard()
         {
-            return Redirect("/Home/Dashboard");
+            return Redirect("./Views/Home/DashboardStatistik.cshtml");
         }
 
         private void MtdGetDashboardSession(string id, string id2)
         {
-            HttpContext.Session.SetString("_titleTop", "APEL UPNM");
+            HttpContext.Session.SetString("_titleTop", "APEL.C UPNM");
             HttpContext.Session.SetString("_titleSmall", id);
             HttpContext.Session.SetString("_titleSmallSub", id2);
         }

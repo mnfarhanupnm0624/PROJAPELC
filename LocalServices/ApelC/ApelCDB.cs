@@ -1,16 +1,27 @@
 ﻿using Dapper;
+using APELC.Model;
 using APELC.LocalShared;
 using APELC.LocalServices.Login;
 using APELC.LocalServices.Senarai;
-using APELC.Model;
 ////using Oracle.ManagedDataAccess.Client;
+///using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Data.SqlClient;
+using System.Data.Odbc;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
+using ServiceStack.Model;
 
 namespace APELC.LocalServices.ApelCDB
 {
     public class ApelCDB
     {
         static readonly string ConnMySQLHrUpnm = LocalConstant.ConnMySQLUpnmDbDs();
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        readonly static string _encryptCode = SecurityConstantsLocal.EncryptCode();
 
         //internal static ModelHrStaffMaklumatPeribadi DB_MtdGetMaklumatAsas(int _stafPk)
         //{

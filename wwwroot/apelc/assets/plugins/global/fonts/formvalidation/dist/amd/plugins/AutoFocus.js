@@ -38,7 +38,7 @@ define(["require", "exports", "../core/Plugin", "./FieldStatus"], function (requ
         AutoFocus.prototype.onFormInvalid = function () {
             var plugin = this.core.getPlugin(this.fieldStatusPluginName);
             var statuses = plugin.getStatuses();
-            var invalidFields = Object.keys(this.core.getFields()).filter(function (key) { return statuses.get(key) === 'Invalid'; });
+            var invalidFields = Object.keys(this.core.getFields()).filter(function (KOD) { return statuses.get(KOD) === 'Invalid'; });
             if (invalidFields.length > 0) {
                 var firstInvalidField = invalidFields[0];
                 var elements = this.core.getElements(firstInvalidField);

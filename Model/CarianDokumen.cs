@@ -3,7 +3,7 @@ using APELC.LocalShared;
 
 namespace APELC.Model
 {
-    public class CarianLaporan
+    public class CarianDokumen
     {
         public string? RESULTSET { set; get; }
         public string? RESULTSET_TEXT { set; get; }
@@ -22,7 +22,7 @@ namespace APELC.Model
 
         // List
         public List<ModelHrLaporan> ListLaporanSstn = new();
-        public List<ModelHrStafPenyiasat> ListCarianStaf = new();
+        //public List<ModelHrStafPenyiasat> ListCarianStaf = new();
         public List<ModelHrLaporan> ListRumusan = new();
     }
 }

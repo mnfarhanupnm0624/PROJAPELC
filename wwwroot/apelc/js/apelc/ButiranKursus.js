@@ -145,7 +145,7 @@ $('#idonchangedashboard').on('change', function (e) {
 //        //        $('#IdDdCKodBlokAfm').html(_html);
 //        //        $('#IdDdCKodBlokAfm').append('<option value="">-- Sila Pilih --</option>');
 //        //        $.each(res, function (u) {
-//        //            _html = '<option value="' + res[u].Key + '">' + res[u].ViewField + '</option>';
+//        //            _html = '<option value="' + res[u].KOD + '">' + res[u].NAMA_PARAMETER + '</option>';
 //        //            $('#IdDdCKodBlokAfm').append(_html);
 //        //        });
 

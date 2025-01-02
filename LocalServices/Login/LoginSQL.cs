@@ -1,56 +1,238 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using APELC.LocalShared;
+using APELC.LocalServices;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Asn1.X509;
+using System.Text;
+using System.Net;
+using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using Net6HrPublicLibrary.Model;
 using static LinqToDB.Reflection.Methods.LinqToDB;
 using static LinqToDB.Sql;
+using APELC.Model;
+
+
 
 namespace APELC.LocalServices.Login
 {
     public class LoginSQL
     {
-        internal static string SQL_GetPhoto()
+        //internal static string SQL_GetPhoto()
+        //{
+        //    return @"
+        //    SELECT 
+        //        GAMBAR as PHOTO, '2' as RESULTSET 
+        //    FROM 
+        //       HR_GAMBAR HG
+        //       INNER JOIN HR_STAF ST ON ST.MAKLUMAT_PERIBADI_FK = HG.MAKLUMAT_PERIBADI_FK AND ST.TKH_HAPUS IS NULL
+        //    WHERE 
+        //        ST.STAF_PK = :HRSTAFFK ";
+        //}
+
+        internal static string SQL_MtdTambahPenggunaAkaun()
         {
-            return @"
-            SELECT 
-                GAMBAR as PHOTO, '2' as RESULTSET 
-            FROM 
-               HR_GAMBAR HG
-               INNER JOIN HR_STAF ST ON ST.MAKLUMAT_PERIBADI_FK = HG.MAKLUMAT_PERIBADI_FK AND ST.TKH_HAPUS IS NULL
-            WHERE 
-                ST.STAF_PK = :HRSTAFFK ";
+            return "@INSERT INTO apelc.APELC_PENGGUNA_UPNM(ID_PENGGUNA," +
+                "KATA_LALUAN_PENGGUNA," +
+                "JENIS_MODUL_PENGGUNA_UPNM_FK," +
+                "SESSION_TIMEOUT," +
+                "BIL_GAGAL_LOGIN," +
+                "LINK_DIGITAL_SIGNATURE," +
+                "LINK_PHOTO," +
+                "STATUS_AKTIF_PENGGUNA_UPNM_FK," +
+                "PENCIPTA_PENGGUNA_UPNM_FK)" +
+                "VALUES(:ID_PENGGUNA," +
+                ":KATA_LALUAN_PENGGUNA," +
+                ":JENIS_MODUL_PENGGUNA_UPNM_FK," +
+                ":SESSION_TIMEOUT," +
+                ":BIL_GAGAL_LOGIN," +
+                ":LINK_DIGITAL_SIGNATURE," +
+                ":STATUS_AKTIF_PENGGUNA_UPNM_FK," +
+                ":PENCIPTA_PENGGUNA_UPNM_FK)";
         }
 
-        public static string SQL_LIST_KUMPULAN_MODUL()
+        internal static string SQL_MtdTambahKatPenggunaAkaun()
         {
-            return @"
-            SELECT PARAM_PK AS PARAM_PK,
-            NAMA_PARAMETER AS DESKRIPSI_MODUL,
-            NAMA_PARAMETER AS DESKRIPSI_MODUL_EN 
-            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=24 AND STATUS_AKTIF='Y'
-            AND TKH_HAPUS IS NULL
-            ORDER BY PARAM_PK ";
+            return "@INSERT INTO apelc.APELC_PENGGUNA_KAT_UPNM(PENGGUNA_KAT_UPNM_FK," +
+                "KAT_PENGGUNA_UPNM_FK," +
+                "NO_UNIQUE_ID," +
+                "LINK_PHOTO," +
+                "STATUS_AKTIF_PENGGUNA_KAT_UPNM_FK," +
+                "PENCIPTA_PENGGUNA_KAT_UPNM_FK)" +
+                "VALUES(:PENGGUNA_KAT_UPNM_FK," +
+                ":KAT_PENGGUNA_UPNM_FK," +
+                ":NO_UNIQUE_ID," +
+                ":LINK_PHOTO," +
+                ":TKH_MULA," +
+                ":TKH_TAMAT," +
+                ":STATUS_AKTIF_PENGGUNA_KAT_UPNM_FK," +
+                ":PENCIPTA_PENGGUNA_KAT_UPNM_FK)";
         }
 
-        public static string SQL_LIST_STATUS_HPK_CLO()
+        internal static string SQL_MtdTambahBtrnPenggunaAkaun()
         {
-            return @"
-            SELECT PARAM_PK AS PARAM_PK,
-            NAMA_PARAMETER AS DESKRIPSI_STATUS_HPK,
-            NAMA_PARAMETER_EN AS DESKRIPSI_STATUS_HPK_EN 
-            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=7 AND STATUS_AKTIF='Y'
-            AND TKH_HAPUS IS NULL
-            ORDER BY PARAM_PK ";
-
+            return "@INSERT INTO apelc.APELC_PENGGUNA_BTRN_UPNM(PENGGUNA_KAT_BTRN_UPNM_FK," +
+                "NAMA," +
+                "ALAMAT_EMEL," +
+                "NO_TELEFON," +
+                ":PENCIPTA_PENGGUNA_BTRN_UPNM_FK)";
         }
 
-        public static string SQL_LIST_KATEGORI_LOKASI_UJIAN_CBRN()
+        internal static string SQL_MtdTambahPerananAkaun()
+        {
+            return "@INSERT INTO apelc.APELC_PERANAN_UPNM(PENGGUNA_KAT_PERANAN_UPNM_FK," +
+                "JENIS_PERANAN_FK," +
+                "PERANAN_UPNM_KURSUS_FK," +
+                "TKH_MULA," +
+                "TKH_AKHIR," +
+                "CAJ_PERANAN_UPNM_FK," +
+                "PUSAT_KOS_PERANAN_UPNM_FK," +
+                "BAKI_AMAUN," +
+                "KOD_MATAWANG_PERANAN_UPNM_FK," +
+                "STATUS_AKTIF_PERANAN_UPNM_FK," +
+                "PENCIPTA_PERANAN_UPNM_FK)" +
+                "VALUES(:PENGGUNA_KAT_PERANAN_UPNM_FK," +
+                ":JENIS_PERANAN_FK," +
+                ":PERANAN_UPNM_KURSUS_FK," +
+                ":TKH_MULA," +
+                ":TKH_AKHIR," +
+                ":CAJ_PERANAN_UPNM_FK," +
+                ":PUSAT_KOS_PERANAN_UPNM_FK," +
+                ":BAKI_AMAUN," +
+                ":KOD_MATAWANG_PERANAN_UPNM_FK," +
+                ":STATUS_AKTIF_PERANAN_UPNM_FK," +
+                ":PENCIPTA_PERANAN_UPNM_FK)";
+        }
+
+        internal static string SQL_MtdListKatPerananSuperuserDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 158 " +
+                "AND PARAM_PK IN(608,612,613,614,615,616)" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListKatPerananPelajarDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 158 " +
+                "AND PARAM_PK IN(611,612,613,614,616)" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListKatPerananLuarUPNMDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 158 " +
+                "AND PARAM_PK IN(612,613,614,616)" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListKatPerananUrusetiaAPELDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 158 " +
+                "AND PARAM_PK IN(609,612,613,614,616)" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListKatPerananUrusetiaFakultiDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 158 " +
+                "AND PARAM_PK IN(612,613,614,616,755)" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListKatPerananBendahariDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 158 " +
+                "AND PARAM_PK IN(610,612,613,614,616)" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListKatPerananPenasihatAkadDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 158 " +
+                "AND PARAM_PK IN(612,613,614,615,616)" +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListKatPenggunaDaftarAkaun()
+        {
+            return "@SELECT PARAM_PK as Key," +
+                " NAMA_PARAMETER as NAMA_PARAMETER," +
+                "NAMA_PARAMETER_EN as NAMA_PARAMETER_EN" +
+                "STATUS_AKTIF as STATUS_AKTIF" +
+                " FROM apelc.APELC_PARAMETER " +
+                " WHERE KUMPULAN_FK = 157 " +
+                " AND STATUS_AKTIF = 'Y' " +
+                "AND TKH_HAPUS IS NULL" +
+                " ORDER BY PARAM_PK";
+        }
+
+        internal static string SQL_MtdListJenisAPEL()
         {
             return @"
-            SELECT PARAM_PK AS PARAM_PK,
-            NAMA_PARAMETER AS DESKRIPSI_KATEGORI_LOKASI_UJIAN_CBRN,
-            NAMA_PARAMETER_EN AS DESKRIPSI_KATEGORI_LOKASI_UJIAN_CBRN_EN 
-            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=28 AND STATUS_AKTIF='Y'
-            AND TKH_HAPUS IS NULL
-            ORDER BY PARAM_PK ";
+                SELECT PARAM_PK as Key,
+                NAMA_PARAMETER as SelectListjenisApel,
+                NAMA_PARAMETER_EN as SelectListjenisApel_EN
+                STATUS_AKTIF as STATUS_AKTIF
+                FROM apelc.APELC_PARAMETER
+                WHERE KUMPULAN_FK = 180 
+                AND STATUS_AKTIF = 'Y' 
+                AND NAMA_PARAMETER = 'APEL.C'
+                AND TKH_HAPUS IS NULL
+                ORDER BY PARAM_PK";
         }
 
 
@@ -62,13 +244,13 @@ namespace APELC.LocalServices.Login
                 WHERE KUMPULAN_FK = 1 AND STATUS_AKTIF = 'Y' AND TKH_HAPUS IS NULL";
         }
 
-        internal static string SQL_GetStatusAktifStaf()
-        {
-            return @"
-                SELECT NAMA_PARAMETER as STATUS_AKTIF_STAF
-                FROM apelc.APELC_PARAMETER 
-                WHERE KUMPULAN_FK = 10 AND STATUS_AKTIF = 'Y' AND TKH_HAPUS IS NULL";
-        }
+        //internal static string SQL_GetStatusAktifStaf()
+        //{
+        //    return @"
+        //        SELECT NAMA_PARAMETER as STATUS_AKTIF_STAF
+        //        FROM apelc.APELC_PARAMETER 
+        //        WHERE KUMPULAN_FK = 10 AND STATUS_AKTIF = 'Y' AND TKH_HAPUS IS NULL";
+        //}
 
         //internal static string SQL_GetJenisPerananACL()
         //{
@@ -81,61 +263,44 @@ namespace APELC.LocalServices.Login
         //        ORDER BY PARAM_PK;";
         //}
         //    // Get Info Staf UPNM
-        internal static string SQL_MtdGetAclPengguna()
-        {
-            return @"SELECT 
-                KAT_PENGGUNA_UPNM_FK AS KAT_PENGGUNA_UPNM_FK,
-                NO_PEKERJA AS NO_PEKERJA,
-                STATUS_PILIH_NO_STAF AS STATUS_PILIH_NO_STAF_FK,
-                NO_MATRIK AS NO_MATRIK,
-                STATUS_PILIH_NO_MATRIK AS STATUS_PILIH_NO_MATRIK_FK,
-                NO_KP AS NO_KP,
-                STATUS_PILIH_NO_KP AS STATUS_PILIH_NO_KP_FK,
-                KATA_LALUAN_PENGGUNA AS KATA_LALUAN_PENGGUNA,
-                JENIS_MODUL_PENGGUNA_UPNM AS JENIS_MODUL,
-                SESSION_TIMEOUT AS SESSION_TIMEOUT,
-                STATUS_AKTIF_PENGGUNA_UPNM AS STATUS_AKTIF_PENGGUNA_UPNM_FK
-                FROM apelc.APELC_PERANAN_UPNM
-                WHERE 
-                STATUS_AKTIF_PENGGUNA_UPNM_FK=90 AND 
-                STATUS_AKTIF_STAF_FK=90 AND TKH_HAPUS IS NULL
-                ORDER BY PARAM_PK; 
-                 ";
-        }
-        internal static string SQL_MtdStatusAktifPengguna()
-        {
-            string _SQL = SQL_MtdGetAclPengguna +
-                @" STATUS_AKTIF_PENGGUNA_UPNM_FK=90 AND STATUS_AKTIF_STAF_FK=90 AND TKH_HAPUS IS NULL";
+        //internal static string SQL_MtdGetPenggunaApelCUPNM()
+        //{
+        //    return @"SELECT 
+        //        KAT_PENGGUNA_UPNM_FK AS KAT_PENGGUNA_UPNM_FK,
+        //        NO_PEKERJA AS NO_PEKERJA,
+        //        STATUS_PILIH_NO_STAF AS STATUS_PILIH_NO_STAF_FK,
+        //        NO_MATRIK AS NO_MATRIK,
+        //        STATUS_PILIH_NO_MATRIK AS STATUS_PILIH_NO_MATRIK_FK,
+        //        NO_KP AS NO_KP,
+        //        STATUS_PILIH_NO_KP AS STATUS_PILIH_NO_KP_FK,
+        //        KATA_LALUAN_PENGGUNA AS KATA_LALUAN_PENGGUNA,
+        //        JENIS_MODUL_PENGGUNA_UPNM AS JENIS_MODUL,
+        //        SESSION_TIMEOUT AS SESSION_TIMEOUT,
+        //        STATUS_AKTIF_PENGGUNA_UPNM AS STATUS_AKTIF_PENGGUNA_UPNM_FK
+        //        FROM apelc.APELC_PERANAN_UPNM
+        //        WHERE";
+        //}
+        //internal static string SQL_MtdStatusAktifPengguna()
+        //{
+        //    string _SQL = SQL_MtdGetPenggunaApelCUPNM +
+        //        @"STATUS_AKTIF_PENGGUNA_UPNM_FK=90 AND STATUS_AKTIF_STAF_FK=90 AND TKH_HAPUS IS NULL ORDER BY PARAM_PK";
 
-            //_SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
+        //    //_SQL += " AND C.STAF_FK = :STAF_FK AND C.PERANAN_FK = :PERANAN_FK ";
 
-            return _SQL;
-        }
+        //    return _SQL;
+        //}       
 
-        internal static string SQL_MtdListJenisAPEL()
-        {
-            return "@ SELECT PARAM_PK," +
-                " NAMA_PARAMETER as JENIS_MODUL," +
-                "NAMA_PARAMETER_EN as JENIS_MODUL_EN" +
-                " FROM apelc.APELC_PARAMETER " +
-                " WHERE KUMPULAN_FK = 24 AND " +
-                "NAMA_PARAMETER='APEL.C'" +
-                " AND STATUS_AKTIF = 'Y' " +
-                "AND TKH_HAPUS IS NULL" +
-                " ORDER BY PARAM_PK";
-        }
-
-        internal static string SQL_MtdGetPerananPenggunaApelC()
-        {
-            return @"SELECT distinct(B.KOD_FUNGSI) 
-                                   FROM APELC_PERANAN_UPNM A, APELC_PERANAN_SJRH_UPNM B,APELC_PENGGUNA_UPNM C 
-                                  WHERE A.ID_PENGGUNA = :ID_PENGGUNA
-                                    AND A.KOD_PERANAN = B.KOD_PERANAN 
-                                    AND (B.KOD_FUNGSI like 'HM95%' OR B.KOD_FUNGSI = 'DEVELOPER') 
-                                    AND (sysdate between A.TKH_MULA and A.TKH_TAMAT)
-                                    AND A.TKH_HAPUS is null
-                                     ORDER BY PENGGUNA_UPNM_PK ";
-        }
+        //internal static string SQL_MtdGetPerananPenggunaApelC()
+        //{
+        //    return @"SELECT distinct(B.KOD_FUNGSI) 
+        //                           FROM APELC_PERANAN_UPNM A, APELC_PERANAN_SJRH_UPNM B,APELC_PENGGUNA_UPNM C 
+        //                          WHERE A.ID_PENGGUNA = :ID_PENGGUNA
+        //                            AND A.KOD_PERANAN = B.KOD_PERANAN 
+        //                            AND (B.KOD_FUNGSI like 'HM95%' OR B.KOD_FUNGSI = 'DEVELOPER') 
+        //                            AND (sysdate between A.TKH_MULA and A.TKH_TAMAT)
+        //                            AND A.TKH_HAPUS is null
+        //                             ORDER BY PENGGUNA_UPNM_PK ";
+        //}
         //    internal static string SQL_MtdPentadbirAPELCWujud()
         //    {
         //        string _SQL = SQL_MtdGetAclPeranan +

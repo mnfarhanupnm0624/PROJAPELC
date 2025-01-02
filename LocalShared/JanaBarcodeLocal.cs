@@ -7,7 +7,7 @@ using APELC.LocalShared;
 
 namespace APELC.LocalShared
 {
-    public class JanaBarcode
+    public class JanaBarcodeCLocal
     {
         public static string MtdJanaBarcode(string fn_textin)
         {
@@ -31,7 +31,7 @@ namespace APELC.LocalShared
                 //log.Info("MtdJanaBarcode na ~  " + na + " ls_str ~ " + ls_str + "   ls_text - " + ls_text);
                 if (ls_str != " ")
                 {
-                    if (NumberHelper.IsNumeric(ls_str) || MtdCheckSmallabc(ls_str) || MtdCheckUpperabc(ls_str))
+                    if (NumberHelperLocal.IsNumeric(ls_str) || MtdCheckSmallabc(ls_str) || MtdCheckUpperabc(ls_str))
                     {
                         ls_text = ls_text + ls_str;
                     }
@@ -49,7 +49,7 @@ namespace APELC.LocalShared
             li_1 = ls_t1.Length;
             ls_bar = "";
             //log.Info("MtdJanaBarcode ls_t1 ~  " + ls_t1 + " li_1 ~ " + li_1 );
-            if (NumberHelper.IsNumeric(ls_t1))
+            if (NumberHelperLocal.IsNumeric(ls_t1))
             {
                 //log.Info("MtdJanaBarcode NumberHelper.IsNumeric(ls_t1) ~  " + ls_t1 );
             }
@@ -68,7 +68,7 @@ namespace APELC.LocalShared
                     do
                     {
                         ls_str = ls_t1.Substring(na, 1);    // Mid(ls_t1, na, 1)
-                        int _x = NumberHelper.ToIntiger(ascii_value(ls_str));
+                        int _x = NumberHelperLocal.ToIntiger(ascii_value(ls_str));
                         //log.Info("MtdJanaBarcode do do_while - " + do_while + "   ls_str -" + ls_str + "  _x - " + _x);
                         if (_x > 64)
                         {
@@ -168,7 +168,7 @@ namespace APELC.LocalShared
                     formula_1 = 1;
                 }
 
-                formula_2 = NumberHelper.ToIntiger(ls_str) * formula_1;
+                formula_2 = NumberHelperLocal.ToIntiger(ls_str) * formula_1;
                 if (formula_2 > 9)
                 {
                     if (formula_2 == 10) { formula_2 = 1; }

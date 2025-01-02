@@ -313,8 +313,8 @@ var KTUtil = function() {
         },
 
         /**
-         * Checks whether object has property matchs given key path.
-         * @param {object} obj Object contains values paired with given key path
+         * Checks whether object has property matchs given KOD path.
+         * @param {object} obj Object contains values paired with given KOD path
          * @param {string} keys Keys path seperated with dots
          * @returns {object}
          */
@@ -438,18 +438,18 @@ var KTUtil = function() {
                 var obj = arguments[i];
                 if (!obj) continue;
 
-                for (var key in obj) {
-                    if (!obj.hasOwnProperty(key)) {
+                for (var KOD in obj) {
+                    if (!obj.hasOwnProperty(KOD)) {
                         continue;
                     }
 
                     // based on https://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
-                    if ( Object.prototype.toString.call(obj[key]) === '[object Object]' ) {
-                        out[key] = KTUtil.deepExtend(out[key], obj[key]);
+                    if ( Object.prototype.toString.call(obj[KOD]) === '[object Object]' ) {
+                        out[KOD] = KTUtil.deepExtend(out[KOD], obj[KOD]);
                         continue;
                     }
 
-                    out[key] = obj[key];
+                    out[KOD] = obj[KOD];
                 }
             }
 
@@ -464,9 +464,9 @@ var KTUtil = function() {
                 if (!arguments[i])
                     continue;
 
-                for (var key in arguments[i]) {
-                    if (arguments[i].hasOwnProperty(key))
-                        out[key] = arguments[i][key];
+                for (var KOD in arguments[i]) {
+                    if (arguments[i].hasOwnProperty(KOD))
+                        out[KOD] = arguments[i][KOD];
                 }
             }
 
@@ -1473,15 +1473,15 @@ var KTUtil = function() {
                 var resultBreakpoint = -1;
                 var breakpoint;
 
-                for (var key in value) {
-                    if (key === 'default') {
+                for (var KOD in value) {
+                    if (KOD === 'default') {
                         breakpoint = 0;
                     } else {
-                        breakpoint = this.getBreakpoint(key) ? this.getBreakpoint(key) : parseInt(key);
+                        breakpoint = this.getBreakpoint(KOD) ? this.getBreakpoint(KOD) : parseInt(KOD);
                     }
 
                     if (breakpoint <= width && breakpoint > resultBreakpoint) {
-                        resultKey = key;
+                        resultKey = KOD;
                         resultBreakpoint = breakpoint;
                     }
                 }

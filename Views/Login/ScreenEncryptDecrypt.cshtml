@@ -1,7 +1,7 @@
 ﻿@using APELC.Model
 @inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
-@model ModelParameterAPEL
+@model ModelParameterAPELC
 @{
     ViewData["Title"] = "ScreenEncryptDecrypt";
 #pragma warning disable CS8602
@@ -27,11 +27,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-floating mb-7">
-                        <input type="text" class="form-control text-maroon" id="IdCKey" name="Key" placeholder="Text Code" value="@Model.Key" />
+                        <input type="text" class="form-control text-maroon" id="IdCKey" name="KOD" placeholder="Text Code" value="@Model.KOD" />
                         <label for="floatingInput">Text</label>
                     </div>
                     <div class="form-floating mb-7">
-                        <input type="text" class="form-control text-maroon" id="IdCViewField" name="ViewField" placeholder="Encrypt Text" value="@Model.ViewField" />
+                        <input type="text" class="form-control text-maroon" id="IdCViewField" name="NAMA_PARAMETER" placeholder="Encrypt Text" value="@Model.NAMA_PARAMETER" />
                         <label for="floatingInput">Encrypt Text</label>
                     </div>
                     <div class="form-group">

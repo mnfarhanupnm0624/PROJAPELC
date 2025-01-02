@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -35,16 +35,16 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
+  function _defineProperty(obj, KOD, value) {
+    if (KOD in obj) {
+      Object.defineProperty(obj, KOD, {
         value: value,
         enumerable: true,
         configurable: true,
         writable: true
       });
     } else {
-      obj[key] = value;
+      obj[KOD] = value;
     }
 
     return obj;
@@ -159,7 +159,7 @@
     }
 
     _createClass(e, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _this2 = this;
 
@@ -187,7 +187,7 @@
         });
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         var _this3 = this;
 
@@ -208,12 +208,12 @@
         });
       }
     }, {
-      key: "getIntTelInstance",
+      KOD: "getIntTelInstance",
       value: function getIntTelInstance(t) {
         return this.intlTelInstances.get(t);
       }
     }, {
-      key: "checkPhoneNumber",
+      KOD: "checkPhoneNumber",
       value: function checkPhoneNumber() {
         var _this4 = this;
 

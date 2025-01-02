@@ -48,18 +48,18 @@
     <PackageReference Include="linq2db" Version="6.0.0-preview.1" />
     <PackageReference Include="linq2db.Sybase" Version="5.4.1" />
     <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Datasync.Abstractions" Version="6.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" Version="0.8.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.WebHooks.Receivers" Version="1.0.0-preview2-final" />
     <PackageReference Include="Microsoft.CodeAnalysis.Razor" Version="6.0.32" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -69,7 +69,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.0-rc.1.24452.1" />
     <PackageReference Include="Microsoft.Extensions.OptionsModel" Version="1.0.0-rc1-final" />
-    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.0.2" />
     <PackageReference Include="Microsoft.Owin.Security.Jwt" Version="4.2.2" />
     <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
@@ -82,12 +81,14 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.12" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.12" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.2" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
     <PackageReference Include="ServiceStack.Api.Swagger" Version="5.14.0" />
     <PackageReference Include="SqlSugar.Odbc" Version="5.1.4.151" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
     <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -97,6 +98,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Views\SelenggaraApelC\SelenggaraRajahMQF.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Command\_menuLeftSideSenaraiPermohonanApelC.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APELC.LocalShared
 {
-    public class EncryptHr
+    public class EncryptLocal
     {
         public static string mtdEncryptPassword(string _text)
         {

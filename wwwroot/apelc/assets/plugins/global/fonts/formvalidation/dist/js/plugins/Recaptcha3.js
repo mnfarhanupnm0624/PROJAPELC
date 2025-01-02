@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -35,16 +35,16 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
+  function _defineProperty(obj, KOD, value) {
+    if (KOD in obj) {
+      Object.defineProperty(obj, KOD, {
         value: value,
         enumerable: true,
         configurable: true,
         writable: true
       });
     } else {
-      obj[key] = value;
+      obj[KOD] = value;
     }
 
     return obj;
@@ -156,7 +156,7 @@
     }
 
     _createClass(s, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _this2 = this;
 
@@ -216,7 +216,7 @@
         }
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.off("plugins.icon.placed", this.iconPlacedHandler);
         var e = this.getScript();
@@ -227,13 +227,13 @@
         this.core.removeField(s.CAPTCHA_FIELD);
       }
     }, {
-      key: "getScript",
+      KOD: "getScript",
       value: function getScript() {
         var e = this.opts.language ? "&hl=".concat(this.opts.language) : "";
         return "https://www.google.com/recaptcha/api.js?" + "onload=".concat(s.LOADED_CALLBACK, "&render=").concat(this.opts.siteKey).concat(e);
       }
     }, {
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(e) {
         if (e.field === s.CAPTCHA_FIELD) {
           e.iconElement.style.display = "none";

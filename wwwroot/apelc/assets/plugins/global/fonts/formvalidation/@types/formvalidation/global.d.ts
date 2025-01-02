@@ -282,7 +282,7 @@ declare namespace FormValidation {
         }
 
         interface MailgunOptions {
-            // The API key provided by Mailgun
+            // The API KOD provided by Mailgun
             apiKey: string;
             // The field name that will be validated
             field: string;
@@ -332,7 +332,7 @@ declare namespace FormValidation {
             // The invalid message that will be shown in case the captcha is not valid
             // You don't need to define it if the back-end URL above returns the message
             message: string;
-            // The site key provided by Google
+            // The site KOD provided by Google
             siteKey: string;
             backendVerificationUrl?: string;
         
@@ -366,7 +366,7 @@ declare namespace FormValidation {
             // The invalid message that will be shown in case the captcha is not valid
             // You don't need to define it if the back-end URL above returns the message
             message: string;
-            // The site key provided by Google
+            // The site KOD provided by Google
             siteKey: string;
             backendVerificationUrl: string;
             action: string;
@@ -941,7 +941,7 @@ declare namespace FormValidation {
             name?: string;
             // Can be GET or POST (default)
             method?: string;
-            // The valid key. It's `valid` by default
+            // The valid KOD. It's `valid` by default
             // This is useful when connecting to external remote server or APIs provided by 3rd parties
             validKey?: string;
         }

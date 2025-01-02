@@ -1,4 +1,11 @@
-﻿namespace APELC.LocalServices.Aduan
+﻿using APELC.LocalShared;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Org.BouncyCastle.Asn1.X509;
+using static LinqToDB.Reflection.Methods.LinqToDB;
+using static LinqToDB.Sql;
+
+
+namespace APELC.LocalServices.ApelC
 {
     public class ApelCSQL
     {
@@ -234,8 +241,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -248,8 +255,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -262,8 +269,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -276,8 +283,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -290,8 +297,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -304,8 +311,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -318,8 +325,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -332,8 +339,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -344,10 +351,10 @@
 
         public static string SqlJawatanList(string _kodjwtn)
         {
-            return @"SELECT A.KOD_JAWATAN as Key, A.KOD_JAWATAN || ' - ' || B.DESKRIPSI as ViewField 
+            return @"SELECT A.KOD_JAWATAN as KOD, A.KOD_JAWATAN || ' - ' || B.DESKRIPSI as NAMA_PARAMETER 
                     FROM HR_KOD_JAWATAN A, HR_KOD_JENIS_JAWATAN B 
                     WHERE A.KOD_JENIS_JAWATAN = B.KOD_JENIS_JAWATAN AND A.KOD_KLASIFIKASI = B.KOD_KLASIFIKASI 
-                    AND A.KOD_JAWATAN LIKE '" + _kodjwtn + "%' AND A.TKH_HAPUS is null ORDER BY Key ";
+                    AND A.KOD_JAWATAN LIKE '" + _kodjwtn + "%' AND A.TKH_HAPUS is null ORDER BY KOD ";
         }
 
         // End: 

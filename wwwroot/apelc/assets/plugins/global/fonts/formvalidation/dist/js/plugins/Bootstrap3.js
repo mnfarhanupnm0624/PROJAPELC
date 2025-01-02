@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -144,7 +144,7 @@
     }
 
     _createClass(n, [{
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(s) {
         e(s.iconElement, {
           "form-control-feedback": true

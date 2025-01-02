@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -143,7 +143,7 @@
     }
 
     _createClass(s, [{
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(t) {
         var n = t.element.getAttribute("type");
 
@@ -157,7 +157,7 @@
         }
       }
     }, {
-      key: "onMessagePlaced",
+      KOD: "onMessagePlaced",
       value: function onMessagePlaced(e) {
         var n = e.element.getAttribute("type");
         var _s = e.elements.length;

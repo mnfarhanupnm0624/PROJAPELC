@@ -20,8 +20,10 @@
     },
     "DatabaseMySQL8": {
       "commandName": "Executable",
-      "ConnectionStrings": {
-        "UPNMDBMYSQL": "server=172.16.2.247;uid=apelUPNM;pwd=AP3L@MySQL;database=apelc"
+      "connectionString": {
+        "UPNMDBMYSQL": "server=172.16.2.247;port=3306;user=apelUPNM;password=AP3L@MySQL;database=APEL",
+        //"UPNMDBMYSQL": "DATA SOURCE=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.16.2.247)(PORT=3306))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=apelc)));PASSWORD=AP3L@MySQL;USER ID=apelUPNM"
+        //"UPNMDBHR": "server=172.16.2.14;uid=apel;pwd=AP3L@Sybase;database=stafdb"
       },
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

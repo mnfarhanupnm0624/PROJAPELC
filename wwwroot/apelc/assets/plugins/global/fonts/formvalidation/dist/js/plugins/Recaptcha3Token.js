@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -140,7 +140,7 @@
     }
 
     _createClass(t, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         this.core.on("core.form.valid", this.onValidHandler);
         this.hiddenTokenEle = document.createElement("input");
@@ -165,7 +165,7 @@
         }
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.off("core.form.valid", this.onValidHandler);
         var e = this.getScript();
@@ -179,7 +179,7 @@
         this.core.getFormElement().removeChild(this.hiddenTokenEle);
       }
     }, {
-      key: "onFormValid",
+      KOD: "onFormValid",
       value: function onFormValid() {
         var _this2 = this;
 
@@ -198,7 +198,7 @@
         });
       }
     }, {
-      key: "getScript",
+      KOD: "getScript",
       value: function getScript() {
         var e = this.opts.language ? "&hl=".concat(this.opts.language) : "";
         return "https://www.google.com/recaptcha/api.js?" + "onload=".concat(t.LOADED_CALLBACK, "&render=").concat(this.opts.siteKey).concat(e);

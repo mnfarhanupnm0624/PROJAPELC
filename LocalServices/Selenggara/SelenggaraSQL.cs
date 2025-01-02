@@ -1,9 +1,10 @@
-﻿using APELC.LocalServices.ApelCDB;
+﻿using APELC.LocalShared;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Org.BouncyCastle.Asn1.X509;
 using static LinqToDB.Reflection.Methods.LinqToDB;
 using static LinqToDB.Sql;
 
-namespace APELC.LocalServices.Aduan
+namespace APELC.LocalServices.Selenggara
 {
     public class SelenggaraSQL
     {

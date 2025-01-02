@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -178,21 +178,21 @@
     }
 
     _createClass(l, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         _get(_getPrototypeOf(l.prototype), "install", this).call(this);
 
         this.core.on("core.element.validated", this.eleValidatedHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         _get(_getPrototypeOf(l.prototype), "install", this).call(this);
 
         this.core.off("core.element.validated", this.eleValidatedHandler);
       }
     }, {
-      key: "handleElementValidated",
+      KOD: "handleElementValidated",
       value: function handleElementValidated(n) {
         var _l = n.element.getAttribute("type");
 
@@ -208,7 +208,7 @@
         }
       }
     }, {
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(n) {
         e(n.element, {
           "fv-plugins-icon-input": true
@@ -246,7 +246,7 @@
         }
       }
     }, {
-      key: "onMessagePlaced",
+      KOD: "onMessagePlaced",
       value: function onMessagePlaced(n) {
         n.messageElement.classList.add("invalid-feedback");
         var _l4 = n.element.parentElement;

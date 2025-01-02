@@ -34,17 +34,16 @@ namespace APELC.Model
         //RUJUK KEPADA APELC_RAYUAN
         public string? CSIASATAN_PK_ENC { set; get; }
 
-        public List<ModelPemohonApelC> ListCarianPemohon = new();
-        public List<ModelHrStafPenyiasat> ListCarianStaf = new();
-        public ModelPemohonApelC Pemohon = new();
-        public ModelHrStaffPeribadi stafPeribadi = new();
-        public ModelHrStaffPeribadi stafPeribadi2 = new();
+        public List<ModelParameterAPELC> ListCarianPeranan = new();
+        public ModelParameterAPELC Peranan = new();
+        //public ModelHrStaffPeribadi stafPeribadi = new();
+        //public ModelHrStaffPeribadi stafPeribadi2 = new();
         public ModelPelajarPeribadi pelajarInfo = new();
         public ModelHrVisitorPeribadi visitorinfo = new();
 
         // Chat
-        public string? CPEGCHAT { set; get; }
-        public ModelHrStafPenyiasat pegChat = new();
+        //public string? CPEGCHAT { set; get; }
+        //public ModelHrStafPenyiasat pegChat = new();
 
         // DDL List
         //public List<ModelParameterHr> ListJabatan = PublicServices.ListBahagianAll("").ToList();

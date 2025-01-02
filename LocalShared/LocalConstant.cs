@@ -1,11 +1,46 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using APELC.Model;
+﻿using APELC.Model;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq;
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System;
+using System.IO;
+using System.Data.Odbc;
+//using MySqlConnector;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.Claims;
+using System.Web;
+using System.Diagnostics.Metrics;
+using System.Xml.Linq;
+using System.Net;
+using JetBrains.Annotations;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Pomelo.EntityFrameworkCore.MySql;
+using APELC.Data;
+using MySql.Data.MySqlClient;
+
 
 
 namespace APELC.LocalShared
@@ -38,7 +73,9 @@ namespace APELC.LocalShared
         public static string EncryptCode()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+#pragma warning disable CS8603 // Possible null reference return.
             return config["MySetting:EncryptCode"];
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         //public static string ConnOraRujuk()
@@ -47,11 +84,6 @@ namespace APELC.LocalShared
         //    return config["MySetting:UpnmdbRujuk"];
         //}
 
-        public static string ConnSybaseRujuk()
-        {
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            return config["MySetting:UpnmdbRujuk"];
-        }
         public static string ConnMySQLUpnmDbDs()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -66,51 +98,16 @@ namespace APELC.LocalShared
             //string _service = EncryptHr.DecryptString4url(_serviceEnc, "admSmis");
             //string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + _ipAdd + @")(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=" + _service + @")));User Id=" + _user + ";Password=" + _pawd;
 
-
-            string _text = config["ConnectionStrings:UPNMDBMYSQL"];
+            //MySqlConnection conn = new MySqlConnection();
+            //conn.ConnectionString = ("server=172.16.2.247;uid=apelUPNM;pwd=AP3L@MySQL;database=apelc");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            string _text = config[key: "connectionString:UPNMDBMYSQL"];
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8603 // Possible null reference return.
             return _text;
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
-        public static string ConnSybaseUpnmDbDs()
-        {
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            /*
-            string _userEnc = config["MySetting:UpnmdbDSUser"];
-            string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
-            string _pawdEnc = config["MySetting:UpnmdbDSPawd"];
-            string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
-            string _ipAddEnc = config["MySetting:UtmdbIPAdd"];
-            string _ipAdd = EncryptHr.DecryptString4url(_ipAddEnc, "admSmis");
-            string _serviceEnc = config["MySetting:UtmdbService"];
-            string _service = EncryptHr.DecryptString4url(_serviceEnc, "admSmis");
-            string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + _ipAdd + @")(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=" + _service + @")));User Id=" + _user + ";Password=" + _pawd;
-            */
-
-            string _text = config["MySetting:SybaseUpnmdbDSDev"];
-            return _text;
-        }
-
-        //public static string ConnUpnmDbAkademik()
-        //{
-        //    var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-        //    string _userEnc = config["MySetting:UpnmdbAkaUser"];
-        //    string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
-        //    string _pawdEnc = config["MySetting:UpnmdbAkaPawd"];
-        //    string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
-        //    string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMUTM)));User Id=" + _user + ";Password=" + _pawd;
-        //    return _text;
-        //}
-
-        //public static string ConnUpnmDbSmu()
-        //{
-        //    var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-        //    string _userEnc = config["MySetting:UpnmdbSmuUser"];
-        //    string _user = EncryptHr.DecryptString4url(_userEnc, "admSmis");
-        //    string _pawdEnc = config["MySetting:UpnmdbSmuPawd"];
-        //    string _pawd = EncryptHr.DecryptString4url(_pawdEnc, "admSmis");
-        //    string _text = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=161.139.21.35)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SMU)));User Id=" + _user + ";Password=" + _pawd;
-        //    return _text;
-        //}
 
         public static string MtdRIChar(string fileName)
         {
@@ -180,33 +177,6 @@ namespace APELC.LocalShared
             return _data;
         }
 
-        //public static string MtdRemoveSpecialCharacter5space(string fileName)
-        //{
-        //    string _data = fileName.Replace("/", "");
-        //    _data = _data.Replace("&", "");
-        //    _data = _data.Replace("+", "");
-        //    _data = _data.Replace("%", "");
-        //    _data = _data.Replace("#", "");
-        //    _data = _data.Replace("$", "");
-        //    _data = _data.Replace("!", "");
-        //    _data = _data.Replace("'", "");
-        //    _data = _data.Replace("\"", "");
-        //    _data = _data.Replace("\\", "");
-        //    _data = _data.Replace("<", "");
-        //    _data = _data.Replace(">", "");
-        //    _data = _data.Replace("{", "");
-        //    _data = _data.Replace("}", "");
-        //    _data = _data.Replace("[", "");
-        //    _data = _data.Replace("]", "");
-        //    _data = _data.Replace("(", "");
-        //    _data = _data.Replace(")", "");
-        //    _data = _data.Replace("|", "");
-        //    _data = _data.Replace("?", "");
-        //    _data = _data.Replace(":", "");
-        //    _data = _data.Replace(";", "");
-        //    _data = _data.Replace(",", "");
-        //    return _data;
-        //}
 
         public static string[] SplitAyat(string text01, string _splitBy)
         {
@@ -227,47 +197,47 @@ namespace APELC.LocalShared
 
         //public static List<ParameterHrModel> ItemListHPhoneCode = new List<ParameterHrModel>()
         //{
-        //    new ParameterHrModel { ViewField = "010", Key = "+6010" },
-        //    new ParameterHrModel { ViewField = "011", Key = "+6011" },
-        //    new ParameterHrModel { ViewField = "012", Key = "+6012" },
-        //    new ParameterHrModel { ViewField = "013", Key = "+6013" },
-        //    new ParameterHrModel { ViewField = "014", Key = "+6014" },
-        //    new ParameterHrModel { ViewField = "015", Key = "+6015" },
-        //    new ParameterHrModel { ViewField = "016", Key = "+6016" },
-        //    new ParameterHrModel { ViewField = "017", Key = "+6017" },
-        //    new ParameterHrModel { ViewField = "018", Key = "+6018" },
-        //    new ParameterHrModel { ViewField = "019", Key = "+6019" }
+        //    new ParameterHrModel { NAMA_PARAMETER = "010", KOD = "+6010" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "011", KOD = "+6011" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "012", KOD = "+6012" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "013", KOD = "+6013" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "014", KOD = "+6014" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "015", KOD = "+6015" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "016", KOD = "+6016" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "017", KOD = "+6017" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "018", KOD = "+6018" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "019", KOD = "+6019" }
         //};
 
         //public static List<ParameterHrModel> ItemListVisitorPurpose = new List<ParameterHrModel>()
         //{
-        //    new ParameterHrModel { ViewField = "OFFICIAL BUSINESS ONLY", Key = "4637" },
-        //    new ParameterHrModel { ViewField = "OTHERS", Key = "4640" }
+        //    new ParameterHrModel { NAMA_PARAMETER = "OFFICIAL BUSINESS ONLY", KOD = "4637" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "OTHERS", KOD = "4640" }
         //};
-        ////new ParameterHrModel { ViewField = "PERSONAL AFFAIRS", Key = "4638" },
-        ////new ParameterHrModel { ViewField = "PARENTS/RELATIVES VISITING STUDENTS/STAFFS ON CAMPUS", Key = "4639" },
+        ////new ParameterHrModel { NAMA_PARAMETER = "PERSONAL AFFAIRS", KOD = "4638" },
+        ////new ParameterHrModel { NAMA_PARAMETER = "PARENTS/RELATIVES VISITING STUDENTS/STAFFS ON CAMPUS", KOD = "4639" },
 
         //public static List<ParameterHrModel> ItemListVisitorType = new List<ParameterHrModel>()
         //{
-        //    new ParameterHrModel { ViewField = "VISITOR", Key = "4641" },
-        //    new ParameterHrModel { ViewField = "CONTRACT WORKER", Key = "4642" }
+        //    new ParameterHrModel { NAMA_PARAMETER = "VISITOR", KOD = "4641" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "CONTRACT WORKER", KOD = "4642" }
         //};
 
         //public static List<ParameterHrModel> ItemJenisPerkhidmatan = new List<ParameterHrModel>()
         //{
-        //    new ParameterHrModel { ViewField = "A - Akademik Profesional", Key = "A" },
-        //    new ParameterHrModel { ViewField = "B - Akademik bukan Profesional", Key = "B" },
-        //    new ParameterHrModel { ViewField = "C - Pengawai Am Profesional", Key = "C" },
-        //    new ParameterHrModel { ViewField = "D - Pengawai Am bukan Profesional", Key = "D" },
-        //    new ParameterHrModel { ViewField = "E - Kakitangan Sokongan", Key = "E" },
-        //    new ParameterHrModel { ViewField = "F - Profesional", Key = "F" }
+        //    new ParameterHrModel { NAMA_PARAMETER = "A - Akademik Profesional", KOD = "A" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "B - Akademik bukan Profesional", KOD = "B" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "C - Pengawai Am Profesional", KOD = "C" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "D - Pengawai Am bukan Profesional", KOD = "D" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "E - Kakitangan Sokongan", KOD = "E" },
+        //    new ParameterHrModel { NAMA_PARAMETER = "F - Profesional", KOD = "F" }
         //};
 
-        //public static List<ParameterHrModel> ItemListKampus = new List<ParameterHrModel>()
+        //public static List<ModelParameterAPELC> ItemListKampus = new List<ModelParameterAPELC>()
         //{
-        //    //new ParameterHrModel { ViewField = "Johor Bahru", Key = "J" },
-        //    new ParameterHrModel { ViewField = "Sungai Besi", Key = "S" },
-        //    //new ParameterHrModel { ViewField = "Pagoh", Key = "P" }
+            //new ParameterHrModel { NAMA_PARAMETER = "Johor Bahru", KOD = "J" },
+            //new ModelParameterAPELC { NAMA_PARAMETER = "Sungai Besi", KOD = "S" },
+            //new ParameterHrModel { NAMA_PARAMETER = "Pagoh", KOD = "P" }
         //};
 
         public static string? GetLastItem(string? _text)

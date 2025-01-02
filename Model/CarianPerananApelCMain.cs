@@ -48,9 +48,9 @@ namespace APELC.Model
 
         public string? STATUS_UJIAN_CABARAN { set; get; }
 
-        public List<ModelPemohonApelC> ListCarianPemohon = new();
+        public List<ModelParameterAPELC> ListCarianPeranan = new();
         //public List<ModelHrStafPenyiasat> ListCarianStaf = new();
-        public List<ModelPemohonApelC> Pemohon = new();
+        public List<ModelParameterAPELC> Peranan = new();
         //public ModelHrStaffMaklumatPeribadi stafPeribadi = new();
         //public ModelMaklumatPeribadiPelajar pelajarInfo = new();
 

@@ -816,7 +816,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
             }
         }
     })(); CKEDITOR.keystrokeHandler = function (a) { if (a.keystrokeHandler) return a.keystrokeHandler; this.keystrokes = {}; this.blockedKeystrokes = {}; this._ = { editor: a }; return this };
-    (function () { var a, d = function (b) { b = b.data; var d = b.getKeystroke(), g = this.keystrokes[d], k = this._.editor; a = !1 === k.fire("key", { keyCode: d, domEvent: b }); a || (g && (a = !1 !== k.execCommand(g, { from: "keystrokeHandler" })), a || (a = !!this.blockedKeystrokes[d])); a && b.preventDefault(!0); return !a }, b = function (b) { a && (a = !1, b.data.preventDefault(!0)) }; CKEDITOR.keystrokeHandler.prototype = { attach: function (a) { a.on("keydown", d, this); if (CKEDITOR.env.gecko && CKEDITOR.env.mac) a.on("keypress", b, this) } } })();
+    (function () { var a, d = function (b) { b = b.data; var d = b.getKeystroke(), g = this.keystrokes[d], k = this._.editor; a = !1 === k.fire("KOD", { keyCode: d, domEvent: b }); a || (g && (a = !1 !== k.execCommand(g, { from: "keystrokeHandler" })), a || (a = !!this.blockedKeystrokes[d])); a && b.preventDefault(!0); return !a }, b = function (b) { a && (a = !1, b.data.preventDefault(!0)) }; CKEDITOR.keystrokeHandler.prototype = { attach: function (a) { a.on("keydown", d, this); if (CKEDITOR.env.gecko && CKEDITOR.env.mac) a.on("keypress", b, this) } } })();
     (function () {
         CKEDITOR.lang = {
             languages: { af: 1, ar: 1, az: 1, bg: 1, bn: 1, bs: 1, ca: 1, cs: 1, cy: 1, da: 1, de: 1, "de-ch": 1, el: 1, "en-au": 1, "en-ca": 1, "en-gb": 1, en: 1, eo: 1, es: 1, "es-mx": 1, et: 1, eu: 1, fa: 1, fi: 1, fo: 1, "fr-ca": 1, fr: 1, gl: 1, gu: 1, he: 1, hi: 1, hr: 1, hu: 1, id: 1, is: 1, it: 1, ja: 1, ka: 1, km: 1, ko: 1, ku: 1, lt: 1, lv: 1, mk: 1, mn: 1, ms: 1, nb: 1, nl: 1, no: 1, oc: 1, pl: 1, "pt-br": 1, pt: 1, ro: 1, ru: 1, si: 1, sk: 1, sl: 1, sq: 1, "sr-latn": 1, sr: 1, sv: 1, th: 1, tr: 1, tt: 1, ug: 1, uk: 1, vi: 1, "zh-cn": 1, zh: 1 }, rtl: { ar: 1, fa: 1, he: 1, ku: 1, ug: 1 }, load: function (a, d, b) {
@@ -1260,7 +1260,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
                                     this.getDocument(); a.window = this.getWindow(); var f = a.document; this.changeAttr("spellcheck", !a.config.disableNativeSpellChecker); var h = a.config.contentsLangDirection; this.getDirection(1) != h && this.changeAttr("dir", h); var k = CKEDITOR.getCss(); if (k) {
                                         var h = f.getHead(), m = h.getCustomData("stylesheet"); m ? k != m.getText() && (CKEDITOR.env.ie && 9 > CKEDITOR.env.version ? m.$.styleSheet.cssText = k : m.setText(k)) : (k = f.appendStyleText(k), k = new CKEDITOR.dom.element(k.ownerNode || k.owningElement), h.setCustomData("stylesheet",
                                             k), k.data("cke-temp", 1))
-                                    } h = f.getCustomData("stylesheet_ref") || 0; f.setCustomData("stylesheet_ref", h + 1); this.setCustomData("cke_includeReadonly", !a.config.disableReadonlyStyling); this.attachListener(this, "click", function (a) { a = a.data; var b = (new CKEDITOR.dom.elementPath(a.getTarget(), this)).contains("a"); b && 2 != a.$.button && b.isReadOnly() && a.preventDefault() }); var t = { 8: 1, 46: 1 }; this.attachListener(a, "key", function (b) {
+                                    } h = f.getCustomData("stylesheet_ref") || 0; f.setCustomData("stylesheet_ref", h + 1); this.setCustomData("cke_includeReadonly", !a.config.disableReadonlyStyling); this.attachListener(this, "click", function (a) { a = a.data; var b = (new CKEDITOR.dom.elementPath(a.getTarget(), this)).contains("a"); b && 2 != a.$.button && b.isReadOnly() && a.preventDefault() }); var t = { 8: 1, 46: 1 }; this.attachListener(a, "KOD", function (b) {
                                         if (a.readOnly) return !0; var c = b.data.domEvent.getKey(), d; b = a.getSelection(); if (0 !== b.getRanges().length) {
                                             if (c in
                                                 t) {
@@ -1273,7 +1273,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
                                         function (b) { var c = b.data.getTarget(); c.is("img", "hr", "input", "textarea", "select") && !c.isReadOnly() && (a.getSelection().selectElement(c), c.is("input", "textarea", "select") && b.data.preventDefault()) }); CKEDITOR.env.edge && this.attachListener(this, "mouseup", function (b) { (b = b.data.getTarget()) && b.is("img") && !b.isReadOnly() && a.getSelection().selectElement(b) }); CKEDITOR.env.gecko && this.attachListener(this, "mouseup", function (b) {
                                             if (2 == b.data.$.button && (b = b.data.getTarget(), !b.getAscendant("table") && !b.getOuterHtml().replace(F,
                                                 ""))) { var c = a.createRange(); c.moveToElementEditStart(b); c.select(!0) }
-                                        }); CKEDITOR.env.webkit && (this.attachListener(this, "click", function (a) { a.data.getTarget().is("input", "select") && a.data.preventDefault() }), this.attachListener(this, "mouseup", function (a) { a.data.getTarget().is("input", "textarea") && a.data.preventDefault() })); CKEDITOR.env.webkit && this.attachListener(a, "key", function (b) {
+                                        }); CKEDITOR.env.webkit && (this.attachListener(this, "click", function (a) { a.data.getTarget().is("input", "select") && a.data.preventDefault() }), this.attachListener(this, "mouseup", function (a) { a.data.getTarget().is("input", "textarea") && a.data.preventDefault() })); CKEDITOR.env.webkit && this.attachListener(a, "KOD", function (b) {
                                             if (a.readOnly) return !0; var c = b.data.domEvent.getKey(); if (c in t && (b = a.getSelection(), 0 !== b.getRanges().length)) {
                                                 var c =
                                                     8 == c, d = b.getRanges()[0]; b = d.startPath(); if (d.collapsed) a: {
@@ -1519,7 +1519,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
                             })
                         } else h.attachListener(CKEDITOR.env.ie ? h : e.getDocumentElement(), "mouseup", k, c); CKEDITOR.env.webkit && h.attachListener(e, "keydown", function (a) { switch (a.data.getKey()) { case 13: case 33: case 34: case 35: case 36: case 37: case 39: case 8: case 45: case 46: h.hasFocus && y(h) } }, null, null, -1); h.attachListener(h, "keydown", F(c), null, null, -1)
             }); c.on("setData", function () { c.unlockSelection(); CKEDITOR.env.webkit && b() }); c.on("contentDomUnload", function () { c.unlockSelection() }); if (CKEDITOR.env.ie9Compat) c.on("beforeDestroy",
-                b, null, null, 9); c.on("dataReady", function () { delete c._.fakeSelection; delete c._.hiddenSelectionContainer; c.selectionChange(1) }); c.on("loadSnapshot", function () { var a = CKEDITOR.dom.walker.nodeType(CKEDITOR.NODE_ELEMENT), b = c.editable().getLast(a); b && b.hasAttribute("data-cke-hidden-sel") && (b.remove(), CKEDITOR.env.gecko && (a = c.editable().getFirst(a)) && a.is("br") && a.getAttribute("_moz_editor_bogus_node") && a.remove()) }, null, null, 100); c.on("key", function (a) {
+                b, null, null, 9); c.on("dataReady", function () { delete c._.fakeSelection; delete c._.hiddenSelectionContainer; c.selectionChange(1) }); c.on("loadSnapshot", function () { var a = CKEDITOR.dom.walker.nodeType(CKEDITOR.NODE_ELEMENT), b = c.editable().getLast(a); b && b.hasAttribute("data-cke-hidden-sel") && (b.remove(), CKEDITOR.env.gecko && (a = c.editable().getFirst(a)) && a.is("br") && a.getAttribute("_moz_editor_bogus_node") && a.remove()) }, null, null, 100); c.on("KOD", function (a) {
                     if ("wysiwyg" == c.mode) {
                         var b = c.getSelection(); if (b.isFake) {
                             var d =
@@ -2153,10 +2153,10 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
                 return C(this.elements,
                     a, "children")
             }, add: function (a, b) { return D(this.elements, a, b, "children") }, remove: function (a) { E(this.elements, a, "children") }
-        }; var I, y = {}, t, v = {}, P = function (a) { var b = a.data.$.ctrlKey || a.data.$.metaKey, c = a.data.$.altKey, e = a.data.$.shiftKey, d = String.fromCharCode(a.data.$.keyCode); (b = v[(b ? "CTRL+" : "") + (c ? "ALT+" : "") + (e ? "SHIFT+" : "") + d]) && b.length && (b = b[b.length - 1], b.keydown && b.keydown.call(b.uiElement, b.dialog, b.key), a.data.preventDefault()) }, Q = function (a) {
+        }; var I, y = {}, t, v = {}, P = function (a) { var b = a.data.$.ctrlKey || a.data.$.metaKey, c = a.data.$.altKey, e = a.data.$.shiftKey, d = String.fromCharCode(a.data.$.keyCode); (b = v[(b ? "CTRL+" : "") + (c ? "ALT+" : "") + (e ? "SHIFT+" : "") + d]) && b.length && (b = b[b.length - 1], b.keydown && b.keydown.call(b.uiElement, b.dialog, b.KOD), a.data.preventDefault()) }, Q = function (a) {
             var b = a.data.$.ctrlKey || a.data.$.metaKey, c = a.data.$.altKey,
-            e = a.data.$.shiftKey, d = String.fromCharCode(a.data.$.keyCode); (b = v[(b ? "CTRL+" : "") + (c ? "ALT+" : "") + (e ? "SHIFT+" : "") + d]) && b.length && (b = b[b.length - 1], b.keyup && (b.keyup.call(b.uiElement, b.dialog, b.key), a.data.preventDefault()))
-        }, R = function (a, b, c, e, d) { (v[c] || (v[c] = [])).push({ uiElement: a, dialog: b, key: c, keyup: d || a.accessKeyUp, keydown: e || a.accessKeyDown }) }, aa = function (a) { for (var b in v) { for (var c = v[b], e = c.length - 1; 0 <= e; e--)c[e].dialog != a && c[e].uiElement != a || c.splice(e, 1); 0 === c.length && delete v[b] } }, ca = function (a,
+            e = a.data.$.shiftKey, d = String.fromCharCode(a.data.$.keyCode); (b = v[(b ? "CTRL+" : "") + (c ? "ALT+" : "") + (e ? "SHIFT+" : "") + d]) && b.length && (b = b[b.length - 1], b.keyup && (b.keyup.call(b.uiElement, b.dialog, b.KOD), a.data.preventDefault()))
+        }, R = function (a, b, c, e, d) { (v[c] || (v[c] = [])).push({ uiElement: a, dialog: b, KOD: c, keyup: d || a.accessKeyUp, keydown: e || a.accessKeyDown }) }, aa = function (a) { for (var b in v) { for (var c = v[b], e = c.length - 1; 0 <= e; e--)c[e].dialog != a && c[e].uiElement != a || c.splice(e, 1); 0 === c.length && delete v[b] } }, ca = function (a,
             b) { a._.accessKeyMap[b] && a.selectPage(a._.accessKeyMap[b]) }, ba = function () { }; (function () {
                 CKEDITOR.ui.dialog = {
                     uiElement: function (a, b, c, e, d, f, g) {
@@ -2287,7 +2287,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
                 function a(b) { var a = new CKEDITOR.dom.element("div"); a.setStyles({ position: "fixed", "margin-left": "-9999px" }); a.setAttributes({ "aria-live": "assertive", "aria-atomic": "true" }); a.setText(b); CKEDITOR.document.getBody().append(a); setTimeout(function () { a.remove() }, 100) } b._.notificationArea = new r(b); b.showNotification = function (a, d, e) {
                     var f, l; "progress" == d ? f = e : l = e; a = new CKEDITOR.plugins.notification(b,
                         { message: a, type: d, progress: f, duration: l }); a.show(); return a
-                }; b.on("key", function (c) { if (27 == c.data.keyCode) { var d = b._.notificationArea.notifications; d.length && (a(b.lang.notification.closed), d[d.length - 1].hide(), c.cancel()) } })
+                }; b.on("KOD", function (c) { if (27 == c.data.keyCode) { var d = b._.notificationArea.notifications; d.length && (a(b.lang.notification.closed), d[d.length - 1].hide(), c.cancel()) } })
             }
         }); q.prototype = {
             show: function () { !1 !== this.editor.fire("notificationShow", { notification: this }) && (this.area.add(this), this._hideAfterTimeout()) }, update: function (b) {
@@ -2462,7 +2462,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
                 var c = a.getSelection(), c = c && c.getRanges()[0]; if ((a.readOnly || c && c.checkReadOnly()) && b in { paste: 1, cut: 1 }) return CKEDITOR.TRISTATE_DISABLED; if ("paste" == b) return CKEDITOR.TRISTATE_OFF; b = a.getSelection(); c = b.getRanges(); return b.getType() == CKEDITOR.SELECTION_NONE || 1 == c.length && c[0].collapsed ?
                     CKEDITOR.TRISTATE_DISABLED : CKEDITOR.TRISTATE_OFF
             } var p = CKEDITOR.plugins.clipboard, m = 0, u = 0; (function () {
-                a.on("key", n); a.on("contentDom", b); a.on("selectionChange", t); if (a.contextMenu) { a.contextMenu.addListener(function () { return { cut: q("cut"), copy: q("copy"), paste: q("paste") } }); var c = null; a.on("menuShow", function () { c && (c.removeListener(), c = null); var b = a.contextMenu.findItemByCommandName("paste"); b && b.element && (c = b.element.on("touchend", function () { a._.forcePasteDialog = !0 })) }) } if (a.ui.addButton) a.once("instanceReady",
+                a.on("KOD", n); a.on("contentDom", b); a.on("selectionChange", t); if (a.contextMenu) { a.contextMenu.addListener(function () { return { cut: q("cut"), copy: q("copy"), paste: q("paste") } }); var c = null; a.on("menuShow", function () { c && (c.removeListener(), c = null); var b = a.contextMenu.findItemByCommandName("paste"); b && b.element && (c = b.element.on("touchend", function () { a._.forcePasteDialog = !0 })) }) } if (a.ui.addButton) a.once("instanceReady",
                     function () { a._.pasteButtons && CKEDITOR.tools.array.forEach(a._.pasteButtons, function (b) { if (b = a.ui.get(b)) if (b = CKEDITOR.document.getById(b._.id)) b.on("touchend", function () { a._.forcePasteDialog = !0 }) }) })
             })(); (function () {
                 function b(c, d, e, h, f) { var n = a.lang.clipboard[d]; a.addCommand(d, e); a.ui.addButton && a.ui.addButton(c, { label: n, command: d, toolbar: "clipboard," + h }); a.addMenuItems && a.addMenuItem(d, { label: n, command: d, group: "clipboard", order: f }) } b("Cut", "cut", c("cut"), 10, 1); b("Copy", "copy", c("copy"), 20, 4); b("Paste",
@@ -3199,7 +3199,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
             requires: "indent", init: function (f) {
                 function g(f) {
                     k.specificDefinition.apply(this,
-                        arguments); this.requiredContent = ["ul", "ol"]; f.on("key", function (g) { var c = f.elementPath(); if ("wysiwyg" == f.mode && g.data.keyCode == this.indentKey && c) { var m = this.getContext(c); !m || this.isIndent && CKEDITOR.plugins.indentList.firstItemInPath(this.context, c, m) || (f.execCommand(this.relatedGlobal), g.cancel()) } }, this); this.jobs[this.isIndent ? 10 : 30] = {
+                        arguments); this.requiredContent = ["ul", "ol"]; f.on("KOD", function (g) { var c = f.elementPath(); if ("wysiwyg" == f.mode && g.data.keyCode == this.indentKey && c) { var m = this.getContext(c); !m || this.isIndent && CKEDITOR.plugins.indentList.firstItemInPath(this.context, c, m) || (f.execCommand(this.relatedGlobal), g.cancel()) } }, this); this.jobs[this.isIndent ? 10 : 30] = {
                             refresh: this.isIndent ? function (f, c) { var g = this.getContext(c), b = CKEDITOR.plugins.indentList.firstItemInPath(this.context, c, g); return g && this.isIndent && !b ? v : u } : function (f,
                                 c) { return !this.getContext(c) || this.isIndent ? u : v }, exec: CKEDITOR.tools.bind(w, this)
                         }
@@ -3369,7 +3369,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
             }; CKEDITOR.plugins.add("list", {
                 requires: "indentlist", init: function (a) {
                     a.blockless || (a.addCommand("numberedlist", new C("numberedlist", "ol")), a.addCommand("bulletedlist", new C("bulletedlist", "ul")), a.ui.addButton && (a.ui.addButton("NumberedList", { label: a.lang.list.numberedlist, command: "numberedlist", directional: !0, toolbar: "list,10" }), a.ui.addButton("BulletedList",
-                        { label: a.lang.list.bulletedlist, command: "bulletedlist", directional: !0, toolbar: "list,20" })), a.on("key", function (l) {
+                        { label: a.lang.list.bulletedlist, command: "bulletedlist", directional: !0, toolbar: "list,20" })), a.on("KOD", function (l) {
                             var d = l.data.domEvent.getKey(), f; if ("wysiwyg" == a.mode && d in { 8: 1, 46: 1 }) {
                                 var e = a.getSelection().getRanges()[0], g = e && e.startPath(); if (e && e.collapsed) {
                                     var b = 8 == d, h = a.editable(), k = new CKEDITOR.dom.walker(e.clone()); k.evaluator = function (a) { return t(a) && !z(a) }; k.guard = function (a, b) { return !(b && a.type == CKEDITOR.NODE_ELEMENT && a.is("table")) }; d = e.clone(); if (b) {
@@ -3823,7 +3823,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
             }
         }, f = { exec: function (c) { c.container.focusPrevious(!0, c.tabIndex) } }; CKEDITOR.plugins.add("tab", {
             init: function (c) {
-                for (var d = !1 !== c.config.enableTabKeyTools, e = c.config.tabSpaces || 0, b = ""; e--;)b += " "; if (b) c.on("key", function (a) { 9 == a.data.keyCode && (c.insertText(b), a.cancel()) }); if (d) c.on("key", function (a) { (9 == a.data.keyCode && c.execCommand("selectNextCell") || a.data.keyCode == CKEDITOR.SHIFT + 9 && c.execCommand("selectPreviousCell")) && a.cancel() }); c.addCommand("blur", CKEDITOR.tools.extend(g, h)); c.addCommand("blurBack",
+                for (var d = !1 !== c.config.enableTabKeyTools, e = c.config.tabSpaces || 0, b = ""; e--;)b += " "; if (b) c.on("KOD", function (a) { 9 == a.data.keyCode && (c.insertText(b), a.cancel()) }); if (d) c.on("KOD", function (a) { (9 == a.data.keyCode && c.execCommand("selectNextCell") || a.data.keyCode == CKEDITOR.SHIFT + 9 && c.execCommand("selectPreviousCell")) && a.cancel() }); c.addCommand("blur", CKEDITOR.tools.extend(g, h)); c.addCommand("blurBack",
                     CKEDITOR.tools.extend(f, h)); c.addCommand("selectNextCell", k()); c.addCommand("selectPreviousCell", k(!0))
             }
         })
@@ -4300,7 +4300,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
             }); b.on("doubleclick", function (b) { var d = a.getByElement(b.data.element); if (d && !g.getNestedEditable(d.wrapper, b.data.element)) return d.fire("doubleclick", { element: b.data.element }) }, null, null, 1)
         }
         function R(a) {
-            a.editor.on("key", function (b) { var c = a.focused, d = a.widgetHoldingFocusedEditable, e; c ? e = c.fire("key", { keyCode: b.data.keyCode }) : d && (c = b.data.keyCode, b = d.focusedEditable, c == CKEDITOR.CTRL + 65 ? (c = b.getBogus(), d = d.editor.createRange(), d.selectNodeContents(b), c && d.setEndAt(c, CKEDITOR.POSITION_BEFORE_START), d.select(), e = !1) : 8 == c || 46 == c ? (e = d.editor.getSelection().getRanges(), d = e[0], e = !(1 == e.length && d.collapsed && d.checkBoundaryOfElement(b, CKEDITOR[8 == c ? "START" : "END"]))) : e = void 0); return e }, null,
+            a.editor.on("KOD", function (b) { var c = a.focused, d = a.widgetHoldingFocusedEditable, e; c ? e = c.fire("KOD", { keyCode: b.data.keyCode }) : d && (c = b.data.keyCode, b = d.focusedEditable, c == CKEDITOR.CTRL + 65 ? (c = b.getBogus(), d = d.editor.createRange(), d.selectNodeContents(b), c && d.setEndAt(c, CKEDITOR.POSITION_BEFORE_START), d.select(), e = !1) : 8 == c || 46 == c ? (e = d.editor.getSelection().getRanges(), d = e[0], e = !(1 == e.length && d.collapsed && d.checkBoundaryOfElement(b, CKEDITOR[8 == c ? "START" : "END"]))) : e = void 0); return e }, null,
                 null, 1)
         } function T(a) { function b(b) { a.focused && E(a.focused, "cut" == b.name) } var c = a.editor; c.on("contentDom", function () { var a = c.editable(); a.attachListener(a, "copy", b); a.attachListener(a, "cut", b) }) } function P(a) {
             var b = a.editor; b.on("selectionCheck", function () { a.fire("checkSelection") }); a.on("checkSelection", a.checkSelection, a); b.on("selectionChange", function (c) {
@@ -4376,7 +4376,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
                     b
             }
         } function U(a, b) {
-            ja(a); ia(a); ga(a); ha(a); ea(a); ca(a); da(a); if (CKEDITOR.env.ie && 9 > CKEDITOR.env.version) a.wrapper.on("dragstart", function (b) { var d = b.data.getTarget(); g.getNestedEditable(a, d) || a.inline && g.isDomDragHandler(d) || b.data.preventDefault() }); a.wrapper.removeClass("cke_widget_new"); a.element.addClass("cke_widget_element"); a.on("key", function (b) {
+            ja(a); ia(a); ga(a); ha(a); ea(a); ca(a); da(a); if (CKEDITOR.env.ie && 9 > CKEDITOR.env.version) a.wrapper.on("dragstart", function (b) { var d = b.data.getTarget(); g.getNestedEditable(a, d) || a.inline && g.isDomDragHandler(d) || b.data.preventDefault() }); a.wrapper.removeClass("cke_widget_new"); a.element.addClass("cke_widget_element"); a.on("KOD", function (b) {
                 b = b.data.keyCode; if (13 == b) a.edit(); else {
                     if (b == CKEDITOR.CTRL + 67 || b == CKEDITOR.CTRL + 88) { E(a, b == CKEDITOR.CTRL + 88); return } if (b in L || CKEDITOR.CTRL & b || CKEDITOR.ALT &
                         b) return

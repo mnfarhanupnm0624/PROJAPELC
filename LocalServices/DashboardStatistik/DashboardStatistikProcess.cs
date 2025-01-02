@@ -1,26 +1,44 @@
-﻿using APELC.Model;
-using APELC.PublicServices.Public;
-using APELC.PublicShared;
-using APELC.LocalServices.Senarai;
+﻿using Dapper;
+using APELC.Model;
 using APELC.LocalShared;
+using System.Net;
+using System.Collections.Specialized;
+using System;
+using System.Threading.Tasks;
+using System.IO;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Data.Odbc;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using Microsoft.CodeAnalysis.Editing;
+using Net6HrPublicLibrary.PublicShared;
+using Net6HrPublicLibrary.Model;
+using APELC.LocalServices.Senarai;
+using APELC.LocalServices.Selenggara;
 
 
-namespace APELC.LocalServices.Statistik
+namespace APELC.LocalServices.DashboardStatistik
 {
-    public class StatistikProcess
+    public class DashboardStatistikProcess
     {
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        static readonly string ConnMySQLHrUpnm = LocalConstant.ConnMySQLUpnmDbDs();
+        readonly static string _encryptCode = SecurityConstantsLocal.EncryptCode();
 
         //internal static CarianAduanMain MtdGetMaklumatAduanPemohon(string _aduanPkEnc)
         //{
         //    CarianAduanMain _data = new();
         //    int _aduanPk = _aduanPkEnc != null ? NumberHelper.ToIntiger(EncryptHr.NewDecrypt(_aduanPkEnc, _encryptCode)) : 0;
-        //    ModelHrPemohonMaklumat Pemohon = AduanDB.DB_MtdGetApelPemohon(_aduanPk);
-        //    if (Pemohon != null)
+        //    ModelHrPemohonMaklumat Peranan = AduanDB.DB_MtdGetApelPemohon(_aduanPk);
+        //    if (Peranan != null)
         //    {
-        //        if (Pemohon.COMPLAINER_FK != null) // Staff
+        //        if (Peranan.COMPLAINER_FK != null) // Staff
         //        {
-        //            int _stafPk = int.Parse(Pemohon.COMPLAINER_FK);
+        //            int _stafPk = int.Parse(Peranan.COMPLAINER_FK);
         //            ModelHrStaffMaklumatPeribadi peribadi = AduanDB.DB_MtdGetMaklumatAsas(_stafPk);
         //            if (peribadi != null)
         //            {
@@ -31,21 +49,21 @@ namespace APELC.LocalServices.Statistik
         //                _data.stafPeribadi = peribadi;
         //            }
         //        }
-        //        if (Pemohon.COMPLAINER_NO_KP != null) // Pelajar
+        //        if (Peranan.COMPLAINER_NO_KP != null) // Pelajar
         //        {
-        //            ModelMaklumatPeribadiPelajar pelajar = AduanDB.MtdGetDataPelajarByNokp(Pemohon.COMPLAINER_NO_KP);
+        //            ModelMaklumatPeribadiPelajar pelajar = AduanDB.MtdGetDataPelajarByNokp(Peranan.COMPLAINER_NO_KP);
         //            if (pelajar != null)
         //            {
         //                _data.pelajarInfo = pelajar;
         //            }
         //        }
 
-        //        Pemohon.LABEL_STATUS = LabelStatusDesc(Pemohon.STATUS_FK);
-        //        string[] n = Pemohon.LABEL_STATUS.Split('~');
-        //        Pemohon.STATUS_DESC = n[1];
+        //        Peranan.LABEL_STATUS = LabelStatusDesc(Peranan.STATUS_FK);
+        //        string[] n = Peranan.LABEL_STATUS.Split('~');
+        //        Peranan.STATUS_DESC = n[1];
 
-        //        Pemohon = MtdHrPemohonPindahFromLibrary(Pemohon);
-        //        _data.Pemohon = Pemohon;
+        //        Peranan = MtdHrPemohonPindahFromLibrary(Peranan);
+        //        _data.Peranan = Peranan;
         //    }
         //    return _data;
         //}
@@ -115,26 +133,26 @@ namespace APELC.LocalServices.Statistik
         //    return _list;
         //}
 
-        private static ModelHrStafPenyiasat MtdHrStaffPindahFromLibrary(ModelHrStafPenyiasat _data)
-        {
-            return new ModelHrStafPenyiasat()
-            {
+        //private static ModelHrStafPenyiasat MtdHrStaffPindahFromLibrary(ModelHrStafPenyiasat _data)
+        //{
+        //    return new ModelHrStafPenyiasat()
+        //    {
      
-                ADUAN_PK = _data.ADUAN_PK,
-                STAF_PP_FK = _data.STAF_PP_FK,
-                NAMA = _data.NAMA,
-                NO_PEKERJA = _data.NO_PEKERJA,
-                NO_KP_BARU = _data.NO_KP_BARU,
-                JAWATAN_DESC = _data.JAWATAN_DESC,
-                KAMPUS_DESC = _data.KAMPUS_DESC,
-                STATUS_AKTIF = _data.STATUS_AKTIF,
-                KOD_PRNN_PNYST = _data.KOD_PRNN_PNYST,
-                LABEL_STATUS = _data.LABEL_STATUS,
-                STATUSAKTIF_DESC = _data.STATUSAKTIF_DESC,
-                DATE_TKH_PNYST = _data.DATE_TKH_PNYST,
-                MASA_TKH_PNYST = _data.MASA_TKH_PNYST
-            };
-        }
+        //        ADUAN_PK = _data.ADUAN_PK,
+        //        STAF_PP_FK = _data.STAF_PP_FK,
+        //        NAMA = _data.NAMA,
+        //        NO_PEKERJA = _data.NO_PEKERJA,
+        //        NO_KP_BARU = _data.NO_KP_BARU,
+        //        JAWATAN_DESC = _data.JAWATAN_DESC,
+        //        KAMPUS_DESC = _data.KAMPUS_DESC,
+        //        STATUS_AKTIF = _data.STATUS_AKTIF,
+        //        KOD_PRNN_PNYST = _data.KOD_PRNN_PNYST,
+        //        LABEL_STATUS = _data.LABEL_STATUS,
+        //        STATUSAKTIF_DESC = _data.STATUSAKTIF_DESC,
+        //        DATE_TKH_PNYST = _data.DATE_TKH_PNYST,
+        //        MASA_TKH_PNYST = _data.MASA_TKH_PNYST
+        //    };
+        //}
 
         // Begin: Action Guide
         // dari Value Status FK - HR_BK_TINDAKAN
@@ -203,7 +221,7 @@ namespace APELC.LocalServices.Statistik
         //    }
         //    return _list;
         //}
-        //// DDL - Kategori Pemohon
+        //// DDL - Kategori Peranan
         //internal static IEnumerable<ModelParameterHr> ListKatPemohon()
         //{
         //    IEnumerable<ParameterHrModel> _dataLib = SelenggaraDB.DB_ListKatPemohon().ToList();
@@ -238,12 +256,12 @@ namespace APELC.LocalServices.Statistik
         //}
 
 
-        private static ModelParameterAPEL MtdPindahParameter(ParameterAPELModel row)
+        private static ModelParameterAPELC MtdPindahParameter(ModelParameterAPELC row)
         {
-            return new ModelParameterAPEL()
+            return new ModelParameterAPELC()
             {
-                Key = row.Key,
-                ViewField = row.ViewField
+                KOD = row.KOD,
+                NAMA_PARAMETER = row.NAMA_PARAMETER
             };
         }
 

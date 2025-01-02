@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -141,7 +141,7 @@
     }
 
     _createClass(o, [{
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(t) {
         var _o = t.element.getAttribute("type");
 

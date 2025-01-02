@@ -374,9 +374,9 @@ $(document).ready(function () {
 //    //        if (res != null) {
 //    //            $('#IdDdKategoriKod').html(_html);
 //    //            $('#IdDdKategoriKod').append('<option value="">-- Sila Pilih --</option>');
-//    //            _html = '<option value="' + res.Key + '">' + res.ViewField + '</option>';
+//    //            _html = '<option value="' + res.KOD + '">' + res.NAMA_PARAMETER + '</option>';
 //    //            $('#IdDdKategoriKod').append(_html);
-//    //            $('#IdPerananDoc').val(res.ViewField);
+//    //            $('#IdPerananDoc').val(res.NAMA_PARAMETER);
 //    //        }
 //    //    },
 //    //    error: function (xhr, httpStatusMessage, customErrorMessage) {
@@ -414,9 +414,9 @@ $(document).ready(function () {
 //            if (res != null) {
 //                $('#IdDdKategoriKod').html(_html);
 //                $('#IdDdKategoriKod').append('<option value="">-- Sila Pilih --</option>');
-//                _html = '<option value="' + res.Key + '">' + res.ViewField + '</option>';
+//                _html = '<option value="' + res.KOD + '">' + res.NAMA_PARAMETER + '</option>';
 //                $('#IdDdKategoriKod').append(_html);
-//                $('#IdPerananDoc').val(res.ViewField);
+//                $('#IdPerananDoc').val(res.NAMA_PARAMETER);
 //            }
 //        },
 //        error: function (xhr, httpStatusMessage, customErrorMessage) {

@@ -15,9 +15,9 @@ var KTSearch = function(element, options) {
     var defaultOptions = {
         minLength: 2,  // Miniam text lenght to query search
         keypress: true,  // Enable search on keypress 
-        enter: true,  // Enable search on enter key press
+        enter: true,  // Enable search on enter KOD press
         layout: 'menu',  // Use 'menu' or 'inline' layout options to display search results
-        responsive: null, // Pass integer value or bootstrap compatible breakpoint key(sm,md,lg,xl,xxl) to enable reponsive form mode for device width below the breakpoint value
+        responsive: null, // Pass integer value or bootstrap compatible breakpoint KOD(sm,md,lg,xl,xxl) to enable reponsive form mode for device width below the breakpoint value
         showOnFocus: true // Always show menu on input focus
     };
 
@@ -158,9 +158,9 @@ var KTSearch = function(element, options) {
 
     // Enter 
     var _enter = function(e) {
-        var key = e.charCode || e.keyCode || 0;
+        var KOD = e.charCode || e.keyCode || 0;
 
-        if (key == 13) {
+        if (KOD == 13) {
             e.preventDefault();
 
             _search();

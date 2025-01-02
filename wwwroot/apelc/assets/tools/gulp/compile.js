@@ -85,11 +85,11 @@ build.config.dist.forEach((d) => {
 build.config.dist = dist;
 
 const path = {};
-for (let key in build.config.path) {
-    if (!build.config.path.hasOwnProperty(key)) {
+for (let KOD in build.config.path) {
+    if (!build.config.path.hasOwnProperty(KOD)) {
         continue;
     }
-    path[key] = build.config.path[key]
+    path[KOD] = build.config.path[KOD]
         .replace("{demo}", demo)
         .replace("{theme}", theme);
 }
@@ -118,10 +118,10 @@ const rtlTask = (cb) => {
     let stream = null;
     objectWalkRecursive(
         build.build,
-        (val, key, userdata) => {
+        (val, KOD, userdata) => {
             if (val.hasOwnProperty("src") && val.hasOwnProperty("dist")) {
-                if (["custom", "media", "api", "misc"].indexOf(key) !== -1) {
-                    if (userdata.indexOf(key) === -1 && typeof val.styles !== "undefined") {
+                if (["custom", "media", "api", "misc"].indexOf(KOD) !== -1) {
+                    if (userdata.indexOf(KOD) === -1 && typeof val.styles !== "undefined") {
                         // rtl conversion in each plugins
                         for (let i in val.styles) {
                             if (!val.styles.hasOwnProperty(i)) {
@@ -162,9 +162,9 @@ const rtlTask = (cb) => {
 // task to bundle js/css
 let buildBundleTask = (cb) => {
     var streams = [];
-    objectWalkRecursive(build.build, function (val, key) {
+    objectWalkRecursive(build.build, function (val, KOD) {
         if (val.hasOwnProperty("src") && val.hasOwnProperty("dist")) {
-            if (["custom", "media", "api", "misc"].indexOf(key) !== -1) {
+            if (["custom", "media", "api", "misc"].indexOf(KOD) !== -1) {
                 outputFunc(val);
             } else {
                 streams = bundle(val);
@@ -189,9 +189,9 @@ if (args.presets && fs.existsSync(build.config.path.src + '/sass/presets')) {
 
     const presets = fs.readdirSync(build.config.path.src + '/sass/presets');
 
-    objectWalkRecursive(build.build, function (val, key) {
+    objectWalkRecursive(build.build, function (val, KOD) {
         if (val.hasOwnProperty("src") && val.hasOwnProperty("dist")) {
-            if (["custom", "media", "api", "misc"].indexOf(key) !== -1) {
+            if (["custom", "media", "api", "misc"].indexOf(KOD) !== -1) {
             } else {
                 // build for presets
                 if (typeof val.src.styles !== 'undefined') {

@@ -21,7 +21,7 @@ namespace APELC.Model
         public string? CPERINCIAN_PRCKPN_PK_ENC { set; get; }
 
 
-        public ModelHrStaffPeribadi stafPeribadi = new();
+        //public ModelHrStaffPeribadi stafPeribadi = new();
         public ModelHrRakaman butiran = new();
         public ModelPelajarPeribadi pelajarInfo = new();
         public List<ModelHrRakaman> ListRkmn = new();

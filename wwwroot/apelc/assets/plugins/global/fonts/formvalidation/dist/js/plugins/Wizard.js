@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -35,16 +35,16 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
+  function _defineProperty(obj, KOD, value) {
+    if (KOD in obj) {
+      Object.defineProperty(obj, KOD, {
         value: value,
         enumerable: true,
         configurable: true,
         writable: true
       });
     } else {
-      obj[key] = value;
+      obj[KOD] = value;
     }
 
     return obj;
@@ -167,7 +167,7 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _this2 = this;
 
@@ -190,7 +190,7 @@
         this.nextButton.addEventListener("click", this.nextStepHandler);
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         this.core.deregisterPlugin(i.EXCLUDED_PLUGIN);
         this.prevButton.removeEventListener("click", this.prevStepHandler);
@@ -198,12 +198,12 @@
         this.stepIndexes.length = 0;
       }
     }, {
-      key: "getCurrentStep",
+      KOD: "getCurrentStep",
       value: function getCurrentStep() {
         return this.currentStep;
       }
     }, {
-      key: "goToPrevStep",
+      KOD: "goToPrevStep",
       value: function goToPrevStep() {
         var _this3 = this;
 
@@ -224,7 +224,7 @@
         this.onStepActive();
       }
     }, {
-      key: "goToNextStep",
+      KOD: "goToNextStep",
       value: function goToNextStep() {
         var _this4 = this;
 
@@ -261,24 +261,24 @@
         });
       }
     }, {
-      key: "goToStep",
+      KOD: "goToStep",
       value: function goToStep(t) {
         e(this.steps[this.currentStep], _defineProperty({}, this.opts.activeStepClass, false));
         e(this.steps[t], _defineProperty({}, this.opts.activeStepClass, true));
         this.currentStep = t;
       }
     }, {
-      key: "onClickPrev",
+      KOD: "onClickPrev",
       value: function onClickPrev() {
         this.goToPrevStep();
       }
     }, {
-      key: "onClickNext",
+      KOD: "onClickNext",
       value: function onClickNext() {
         this.goToNextStep();
       }
     }, {
-      key: "onStepActive",
+      KOD: "onStepActive",
       value: function onStepActive() {
         var t = {
           numSteps: this.numSteps,
@@ -288,7 +288,7 @@
         this.opts.onStepActive(t);
       }
     }, {
-      key: "onStepValid",
+      KOD: "onStepValid",
       value: function onStepValid() {
         var t = {
           numSteps: this.numSteps,
@@ -298,7 +298,7 @@
         this.opts.onStepValid(t);
       }
     }, {
-      key: "onStepInvalid",
+      KOD: "onStepInvalid",
       value: function onStepInvalid() {
         var t = {
           numSteps: this.numSteps,
@@ -308,7 +308,7 @@
         this.opts.onStepInvalid(t);
       }
     }, {
-      key: "onValid",
+      KOD: "onValid",
       value: function onValid() {
         var t = {
           numSteps: this.numSteps

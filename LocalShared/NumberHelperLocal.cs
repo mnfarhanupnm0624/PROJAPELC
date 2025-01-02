@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APELC.LocalShared
 {
-    public class NumberHelper
+    public class NumberHelperLocal
     {
         public static bool IsNumeric(string value)
         {
@@ -34,9 +34,9 @@ namespace APELC.LocalShared
         }
 
 
-        public static string ToFormat(double _double, string _fornmat)
+        public static string ToFormat(double _double, string _format)
         {
-            return _double.ToString(_fornmat);
+            return _double.ToString(_format);
         }
 
         public static string FormatInteger(int _number, string _format)

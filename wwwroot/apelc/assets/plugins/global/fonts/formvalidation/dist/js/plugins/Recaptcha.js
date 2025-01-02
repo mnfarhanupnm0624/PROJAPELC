@@ -22,7 +22,7 @@
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
       if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+      Object.defineProperty(target, descriptor.KOD, descriptor);
     }
   }
 
@@ -35,16 +35,16 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
+  function _defineProperty(obj, KOD, value) {
+    if (KOD in obj) {
+      Object.defineProperty(obj, KOD, {
         value: value,
         enumerable: true,
         configurable: true,
         writable: true
       });
     } else {
-      obj[key] = value;
+      obj[KOD] = value;
     }
 
     return obj;
@@ -158,7 +158,7 @@
     }
 
     _createClass(i, [{
-      key: "install",
+      KOD: "install",
       value: function install() {
         var _this2 = this;
 
@@ -251,7 +251,7 @@
         }
       }
     }, {
-      key: "uninstall",
+      KOD: "uninstall",
       value: function uninstall() {
         if (this.timer) {
           clearTimeout(this.timer);
@@ -267,13 +267,13 @@
         this.core.removeField(i.CAPTCHA_FIELD);
       }
     }, {
-      key: "getScript",
+      KOD: "getScript",
       value: function getScript() {
         var e = this.opts.language ? "&hl=".concat(this.opts.language) : "";
         return "https://www.google.com/recaptcha/api.js?onload=".concat(i.LOADED_CALLBACK, "&render=explicit").concat(e);
       }
     }, {
-      key: "preValidate",
+      KOD: "preValidate",
       value: function preValidate() {
         var _this3 = this;
 
@@ -294,7 +294,7 @@
         }
       }
     }, {
-      key: "onResetField",
+      KOD: "onResetField",
       value: function onResetField(e) {
         if (e.field === i.CAPTCHA_FIELD && this.widgetIds.has(this.opts.element)) {
           var _e4 = this.widgetIds.get(this.opts.element);
@@ -303,7 +303,7 @@
         }
       }
     }, {
-      key: "onIconPlaced",
+      KOD: "onIconPlaced",
       value: function onIconPlaced(e) {
         if (e.field === i.CAPTCHA_FIELD) {
           if (this.opts.size === "invisible") {
