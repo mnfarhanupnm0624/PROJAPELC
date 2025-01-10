@@ -8,8 +8,9 @@
     }
   },
   "profiles": {
-    "APEL": {
-      "applicationUrl": "https://localhost:7152;http://localhost:5105",
+    "APELC": {
+      "applicationUrl": "https://localhost:7152;http://localhost:5105;",
+      //"applicationUrl": "http://www.localdevmyapelc.upnm.edu.my",
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {
@@ -19,24 +20,29 @@
     },
     "DatabaseMySQL8": {
       "commandName": "Executable",
-      "ConnectionStrings": {
-        "Default": "Server=172.16.2.247;User ID=apelUPNM;Password=AP3L@MySQL;Database=apelc"
+      "connectionString": {
+        "UPNMDBMYSQL": "server=172.16.2.247;port=3306;user=apelUPNM;password=AP3L@MySQL;database=APEL",
+        //"UPNMDBMYSQL": "DATA SOURCE=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.16.2.247)(PORT=3306))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=apelc)));PASSWORD=AP3L@MySQL;USER ID=apelUPNM"
+        //"UPNMDBHR": "server=172.16.2.14;uid=apel;pwd=AP3L@Sybase;database=stafdb"
       },
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "launchBrowser": true
     },
-    "DatabaseSybase": {
-      "commandName": "Executable",
-      "ConnectionStrings": {
-        "Default": "Server=172.16.2.14;User ID=apel;Password=AP3L@SybaseL;Database=stafdb;View=v630staf_apel"
-      },
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "launchBrowser": true
-    },
+
+
+    //"DatabaseSybase": {
+    //  "commandName": "Executable",
+    //  "ConnectionStrings": {
+    //    "Default": "server=172.16.2.14;uid=apel;pwd=AP3L@SybaseL;database=stafdb;View=v630staf_apel"
+    //DRIVER=Devart ODBC Driver for ASE;Data Source=172.16.2.14;Database=stafdb;User ID=apel;Password=$9,+ilDBHHnO$AD455F081$
+    //  },
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development"
+    //  },
+    //  "launchBrowser": true
+    //},
     //"DatabasePgSql": {
     //  "commandName": "Executable",
     //  "ConnectionStrings": {

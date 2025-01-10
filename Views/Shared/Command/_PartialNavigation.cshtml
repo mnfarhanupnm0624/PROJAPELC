@@ -1,6 +1,8 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
 @{
+    ViewData["Title"] = "APEL C";
+    Layout = "/Views/Shared/Command/_menuLeftSideApelC.cshtml";
     var _path = @Configuration.GetSection("MySetting")["ServerPath"];
     #pragma warning disable CS8602
     string _noaduan = HttpContextAccessor.HttpContext.Session.GetString("_noaduan") ?? "No Aduan";

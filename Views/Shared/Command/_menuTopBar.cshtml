@@ -1,21 +1,25 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
-@using APEL.Helper
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IJsonHelper Json
+@* @using APELC.Helper *@
 @{
+    ViewData["Title"] = "APEL C";
+    Layout = "/Views/Shared/Command/_menuTopBar.cshtml";
 #pragma warning disable CS8602
-    string _titleTop = HttpContextAccessor.HttpContext.Session.GetString("_titleTop") ?? "Dashboard";
-    string _titleSmall = HttpContextAccessor.HttpContext.Session.GetString("_titleSmall") ?? "Dashboard";
-    string _titleSmallSub = HttpContextAccessor.HttpContext.Session.GetString("_titleSmallSub") ?? "Dashboard";
-    string _titleSmallSubDtl = HttpContextAccessor.HttpContext.Session.GetString("_titleSmallSubDtl") ?? "Dashboard";
-    var _noreport = ApelUser.GetApel(Context.Session).REPORT_NO;
+    // string _titleTop = HttpContextAccessor.HttpContext.Session.GetString("_titleTop") ?? "Dashboard";
+    // string _titleSmall = HttpContextAccessor.HttpContext.Session.GetString("_titleSmall") ?? "Dashboard";
+    // string _titleSmallSub = HttpContextAccessor.HttpContext.Session.GetString("_titleSmallSub") ?? "Dashboard";
+    // string _titleSmallSubDtl = HttpContextAccessor.HttpContext.Session.GetString("_titleSmallSubDtl") ?? "Dashboard";
+    // var _idpengguna = ApelCUser.GetApel(Context.Session).PENGGUNA_UPNM_PK_ENC;
 #pragma warning restore CS8602
-    var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
-    var _path5 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
-    var url = Context.Request.Path;
-    string[] getUrl = url.ToString().Split('/');
-    string menus = getUrl[getUrl.Length - 1];
+    // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];
+    // var _path5 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+    // var url = Context.Request.Path;
+    // string[] getUrl = url.ToString().Split('/');
+    // string menus = getUrl[getUrl.Length - 1];
 
-    var _showDate = DateTime.Now.ToString("MMM dd");
+    // var _showDate = DateTime.Now.ToString("MMM dd");
 }
 <style>
     .card-title2 {
@@ -28,7 +32,7 @@
 </style>
 
 <!--begin::Toolbar-->
-<div class="toolbar d-flex align-items-stretch">
+@* <div class="toolbar d-flex align-items-stretch">
     <!--begin::Toolbar container-->
     <div class="container-fluid py-6 py-lg-0 d-flex flex-column flex-lg-row align-items-lg-stretch justify-content-lg-between">
         <!--begin::Page title-->
@@ -50,7 +54,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-muted">
-                    <a href="/apel/Senarai/AduanSkrinList" class="text-muted text-hover-primary">@_titleSmall</a>
+                    <a href="/apelc/Senarai/AduanSkrinList" class="text-muted text-hover-primary">@_titleSmall</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
@@ -81,7 +85,7 @@
         <!--end::Toolbar container  align-items-stretch overflow-auto pt-3 pt-lg-0-->
         <div class="d-flex">
             <div class="d-flex align-items-center">
-                <a href="#" class="btn btn-light-facebook font-weight-bolder btn-sm"><b><font color="black"> </font>@_noreport</b></a>
+                <a href="#" class="btn btn-light-facebook font-weight-bolder btn-sm"><b><font color="black"> </font>@_idpengguna</b></a>
                 <!--begin::Label fs-7 fw-bold text-gray-650 pe-4 text-nowrap d-none d-xxl-block-->
                 <span class="fs-2">
                     <button class="btn btn-light-info">Today : <b>@_showDate</b></button>
@@ -91,6 +95,6 @@
         </div>
     </div>
 
-</div>
+</div> *@
 <!--end::Toolbar-->
 

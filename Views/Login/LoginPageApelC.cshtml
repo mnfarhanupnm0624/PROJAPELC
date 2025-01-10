@@ -1,208 +1,964 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IJsonHelper Json
+@* @model WebClientCore.Models.DisplayModels.DashBoardViewModel *@
+@* @model ModelQRCode *@
+@* @using Net6HrPublicLibrary; *@
+@model APELC.Model.ModelParameterAPELC;
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Html
+@using Microsoft.AspNetCore.Builder;
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Routing;
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@using Microsoft.AspNetCore.Authentication;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Grpc;
+@using Microsoft.Extensions.Configuration;
+@using Microsoft.Extensions.DependencyInjection;
+@using Microsoft.Extensions.Logging;
+@using static Microsoft.Extensions.Configuration.IConfigurationBuilder;
+@using Microsoft.Extensions.Hosting;
+@using Microsoft.EntityFrameworkCore;
+@using Microsoft.Extensions.Configuration.Json;
+@using System.IdentityModel.Tokens.Jwt;
+@using System.Security.Cryptography.X509Certificates;
+@using System.Net.NetworkInformation;
+@using System.Collections.Specialized;
+@using System;
+@using System.Collections.Generic;
+@using System.ComponentModel.DataAnnotations;
+@using System.Threading.Tasks;
+@using System.IO;
+@using System.Data;
+@using System.Data.SqlClient;
+@using System.Data.Odbc;
+@using System.Net.Http.Json;
+@using System.Data.Entity;
+@using System.Configuration;
+@using System.Text;
+@using System.Linq;
+@using System.Windows;
+@using System.Web;
+@using MySql.Data;
+@using MySql.Data.MySqlClient;
+@* @using System.Web;
+@using System.Web.UI;
+@using System.Web.UI.WebControls; *@
+@* @using System.Web.Security; *@
+@* @using WebClientCore.Models.DisplayModels *@
+@* @using SecurityMaintenance.Models; *@
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Mvc.Razor;
+@using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+@using Pomelo.EntityFrameworkCore.MySql;
+@using APELC.Helper;
+@using APELC.LocalShared;
+
+@{
+#pragma warning disable CS8602
+    // var _getPath = Configuration.GetSection("MySetting")["ServerPath"];  // localhost test appsettings.json
+    /*  var _getPath = Configuration.GetSection("myConnectString")["settingsAppName"]; */ //Localhost test launchsettings.json
+    var _getPath = Configuration.GetSection("APELC")["applicationUrl"];
+    //var _path = System.Configuration.ConfigurationManager.AppSettings["serverPath"];
+    var _path01 = _getPath != null && _getPath.Length > 1 ? ('/' + _getPath) : _getPath;
+    var _showDate = DateTime.Now.ToString("MMM dd");
+    // var _disablelink = "disable-link";
+    // var _color = "color:lightgray";
+    // var _bullet = "";
+    // var _disablelinkS = "disable-link";
+    // var _colorS = "color:lightgray";
+    // var _bulletS = "";
+#pragma warning restore CS8602
+}
+<style>
+    .menu-item2 {
+        margin: 0 0 -5px 0;
+    }
+
+    .menu-item3 {
+        margin: 0 0 -15px 0;
+    }
+
+    .menu-item4 {
+        margin: -10px 0 -13px 0;
+    }
+
+    .disable-link {
+        pointer-events: none;
+        cursor: default;
+        color: lightgray;
+    }
+
+    .default {
+        cursor: default;
+        color: #696969;
+    }
+
+</style>
+
+@* @if (_statusRyApelC == "APPROVED")
+{
+    _disablelink = "";
+    _color = "";
+    _bullet = "bullet bullet-dot";
+}
+@if (_statusMhApelC == "N")
+{
+    _colorS = "";
+    _bulletS = "bullet bullet-dot";
+} *@
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sistem Pendaftaran APEL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> *@
+    <link rel="shortcut icon" href="apelc/images/favicon.png" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Sistem Pendaftaran APEL.C</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Vendor Stylesheets(used for this page only)-->
+    <link href="apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="apelc/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Vendor Stylesheets-->
     <!-- endinject -->
     <!-- plugin css for this page -->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="apelc/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    @*  <link href="apelc/assets/css/bootstrap.min.css" rel="stylesheet"> *@
+    <link href="apelc/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="apelc/assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/custom.css">
+    @* <link rel="stylesheet" href="apelc/css/style.css"> *@
+    @*  <link rel="stylesheet" href="apelc/css/custom.css"> *@
+    @* <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> *@
+    <script src="apelc/assets/js/select2.min.js"></script>
+    <!--begin::Google tag-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
-</head>
-
-<body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
-            <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
-                <div class="row w-100">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auto-form-wrapper" style="padding-left:0 !important; padding-right:0 !important">
-                            <form id="form1" name="form1" action="class/login_exe.php" method="post">
-                                <div class="col-12 grid-margin">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                <div class="col-md-12 text-center">
-                                                    <img src="images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" />
-                                                    <h3>Sistem Pendaftaran APEL</h3>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label">ID Pengguna</label>
-                                                        <div class="col-sm-8">
-                                                            <input id="username" name="username" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label">Kata Laluan</label>
-                                                        <div class="col-sm-8">
-                                                            <input type="password" name="password" id="password" class="form-control" placeholder="******" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label">Jenis APEL</label>
-                                                        <div class="col-sm-8">
-                                                            <select id="dd_jnsApel" name="dd_jnsApel" class="form-control" onChange="get_jnsApel()">
-                                                                <option value="">- SILA PILIH -</option>
-                                                                <option value="APEL.A"> APEL.A</option>
-                                                                <option value="APEL.C" disabled> APEL.C</option>
-                                                                <option value="APEL.C" disabled> APEL.Q</option>
-                                                            </select>
-                                                            <input id="txt_jnsApel" name="txt_jnsApel" type="hidden" value="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-4 col-form-label"><a href="PemohonRegistration.cshtml">Daftar Baru</a></label>
-                                                        <label class="col-sm-8 col-form-label">
-                                                            <a data-toggle="modal" href="#forgotpwdModal" class="float-right-lg"> Lupa Kata Laluan</a>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <button type="button" id="btn_login" name="btn_login" class="btn btn-primary submit-btn btn-block" onClick="validate_login()">Log Masuk</button>
-                                                <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-block text-center my-3">
-                                        <small><!--<a href="https://myapel.upnm.edu.my/admin" target="_blank">Pentadbir?</a> -->&copy; 2023 v2.0 Powered by BTMK,</br> Universiti Pertahanan Nasional Malaysia.</small>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- content-wrapper ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-    </div>
-
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
-    <script src="vendors/js/vendor.bundle.addons.js"></script>
-    <!-- endinject -->
-    <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/misc.js"></script>
-    <!-- endinject -->
-    <!-- Forgot Password Modal Start -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="forgotpwdModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="frmForgot" id="frmForgot" method="post" action="class/secure/forgot-password-recovery-mail.php">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Lupa Kata Laluan</h3>
-                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-                    </div>
-                    <div class="modal-body">
-
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" for="inputSuccess">ID Pengguna</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icon_profile"></i></span>
-                                    <input name="user-login-name" type="text" id="user-login-name" class="form-control" placeholder="eg: user@gmail.com" autofocus>
-                                </div>
-                                <br />
-                                <label class="col-lg-4 control-label" for="inputSuccess">Kata Laluan Baru</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icon_key"></i></span>
-                                    <input name="user-password" type="password" id="user-password" class="form-control" placeholder="********" autofocus>
-                                </div>
-                                <br />
-                                <label class="col-lg-6 control-label" for="inputSuccess">Pengesahan Kata Laluan Baru</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                                    <input class="form-control" type="password" name="user-repassword" id="user-repassword" placeholder="********">
-                                </div>
-                            </div>
-                        </fieldset>
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                        <button type="submit" id="forgot-password" name="forgot-password" class="btn btn-primary" onClick="return validate(this);">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Forgot Password Modal End -->
-
-    <script type="text/javascript">
-        function validate(btn) {
-            form = document.frmForgot;
-            var usrname = document.getElementById("user-login-name").value;
-            var usrpwd = document.getElementById("user-password").value;
-            var usrrepwd = document.getElementById("user-repassword").value;
-            var n = usrpwd.length;
-            <!--var usrmail = document.getElementById("user-email").value; -->
-
-                    if (btn.name == 'forgot-password') {
-                if (usrname == '' || usrpwd == '' || usrrepwd == '') {
-                    alert("Sila isi ID Pengguna, Kata Laluan dan Pengesahan Kata Laluan Baru!");
-                    document.getElementById("user-login-name").focus();
-                    return false;
-                } else if (n < 6) {
-                    alert("Pastikan Kata Laluan tidak kurang dari 6 digit.");
-                    document.getElementById("user-password").focus();
-                    return false;
-                } else if (usrpwd != usrrepwd) {
-                    alert("Kata Laluan tidak sepadan !");
-                    document.getElementById("user-password").focus();
-                    return false;
-                } else {
-                    form.submit();
-                }
-            }
-        }
-
-        function validate_login() {
-            form = document.form1;
-            var selected = document.getElementById("dd_jnsApel").value;
-
-            if (selected == "") {
-                alert("Sila pilih Jenis Apel.");
-                return;
-            } else {
-                form.submit();
-            }
-        }
-
-        function get_jnsApel() {
-            var selected = document.getElementById("dd_jnsApel").value;
-            document.getElementById("txt_jnsApel").value = selected;
+    <!--begin::Google tag-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-37564768-1');
+    </script>
+    <!--end::Google tag-->
+    <script>
+        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
+        if (window.top != window.self) {
+            window.top.location.replace(window.self.location.href);
         }
     </script>
+    <style>
+
+
+        /* .text {
+                                            font-size: 30px;
+                                            width: 60%;
+                                        } */
+        /*  .btn {
+                                                     margin-right: 50px;
+                                        } */
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+
+        /* .btn:hover {
+                                                background-color: green;
+                                            } */
+
+        body {
+            background-image: url("../images/UPNM.jpg");
+            background-color: #cccccc;
+        }
+    </style>
+    <style>
+        .tooltip-inner {
+            text-align: left;
+        }
+
+        .userStats {
+            display: block;
+            width: auto;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            padding: 12px;
+        }
+
+            .userStats .symbol {
+                float: left;
+                display: block;
+                margin-right: auto;
+                margin-top: auto;
+            }
+
+            .userStats .data {
+                float: left;
+                display: block;
+                position: relative;
+                width: 84%;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                padding-left: 10px;
+                padding-right: 20px;
+                padding-bottom: 5px;
+                line-height: 18px;
+            }
+
+        /* (A) SHARED CLASS */
+        .box {
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 15px;
+        }
+
+
+        /* (B) BOX VARIATIONS */
+        /* (B1) INFORMATION BOX */
+        .info {
+            color: black;
+            background: #ffffff;
+            border: 1px solid lightgray;
+            text-align: justify;
+        }
+
+        .multi-line {
+            height: 5em;
+        }
+
+    </style>
+</head>
+<!--begin::Body-->
+<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+    <!--begin::Theme mode setup on page load-->
+    <script>
+        var defaultThemeMode = "light";
+        var themeMode;
+
+        if (document.documentElement) {
+            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+            } else {
+                if (localStorage.getItem("data-bs-theme") !== null) {
+                    themeMode = localStorage.getItem("data-bs-theme");
+                } else {
+                    themeMode = defaultThemeMode;
+                }
+            }
+
+            if (themeMode === "system") {
+                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
+        }
+    </script>
+    <!--end::Theme mode setup on page load-->
+    <!--Begin::Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!--End::Google Tag Manager (noscript) -->
+    <input type="show" id="IdPathServerMain" value="@_path01">
+    <input type="show" id="IdFlagStatus">
+    @* <input type="hidden" id="IdImageAPI" value="https://dgmicro.utm.my/api/myutm/api/Image?system=PHOTO&amp;validation=KEYAPI-MYUTM-19X1-4X02"> *@
+     <input type="hidden" id="IdImageAPI" value="https://esmartcard.upnm.edu.my/img/staf/1854.jpg"> 
+    @* <input type="hidden" id="IdStafFkEnc" value="rrnAyiPJgQOtqmJvEpy54A=="> *@
+    @* <input type="hidden" id="IdNoReport">
+    <input type="hidden" id="IdStatusHantar" value="">
+    <input type="hidden" id="IdAduanPkEnc"> *@
+    <!--begin::App-->
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    @* <div class="d-flex flex-column flex-root app-root" id="kt_app_root" style="padding-left:0 !important; padding-right:0 !important"> *@
+        <!--begin::Page-->
+        <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+            <!--begin::Wrapper-->
+            <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+                <!--begin::Main-->
+                <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                    <!--begin::Content wrapper-->
+                    <div id="kt_app_content_wrapper" class="d-flex flex-column flex-column-fluid">
+                        <!--begin::Content-->
+                        <div id="kt_app_content" class="app-content flex-column-fluid">
+                            <!--begin::Content container-->
+                            <div id="kt_app_content_container" class="app-container container-fluid">
+                                <!--begin::Row-->
+                                @* <div class="row g-6 g-xl-9 mx-auto"> *@
+                                <div class="row w-200 mx-auto">
+                                    <!--begin::Col-->
+                                    <div class="col-lg-4 mx-auto">
+                                        @* <div class="d-flex flex-column mb-8 fv-row mx-auto"> *@
+                                        <!--begin::Card-->
+                                        <div class="card shadow-sm mb-5">
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-9 mx-auto">
+                                                <!--begin::Card Title-->
+                                                @* <div class="center"> *@
+                                                <div class="card-title m-0 mx-auto">
+                                                    <div class="flex-column mb-8 fv-row mx-auto">
+                                                        <!--begin::Avatar-->
+                                                        <img src="/apelc/images/logo_upnm.png" style="max-width: 100%; max-height: 100%;" alt="image" class="p-3 mx-auto" />
+                                                        <!--end::Avatar-->
+                                                        @* </div>
+                                                        <div class="d-flex flex-column mb-8 fv-row mx-auto"> *@
+                                                        <!--begin::Title-->
+                                                        <div class="fs-2hx fw-bold text-gray-800 text-center mb-13">
+                                                            @* <span class="me-2">     *@
+                                                            Sistem Pendaftaran APEL.C
+                                                            <!--begin::Description-->
+                                                            <p class="text-gray-400 fw-semibold fs-5 mt-1 mb-7">PUSAT APEL UPNM</p>
+                                                            <!--end::Description-->
+                                                        </div>
+                                                        <!--end::Title-->
+                                                    </div>
+                                                </div>
+                                                @* </div> *@
+                                                <!--end::Card Title-->
+                                            </div>
+                                            <!--end:: Card header-->
+                                            <!--begin:: Card body-->
+                                            <div class="card-body p-9">
+                                                <!--begin:Form-->
+                                                <form id="log_masuk_form" class="form" method="post" action="/Home/DashboardPageApelC">
+                                                    <!--begin::Input group-->
+                                                    <div class="d-flex flex-column mb-8 fv-row">
+                                                        <!--begin::Label-->
+                                                        <label for="username" class="col-sm-8 col-form-label">
+                                                            <span class="required">ID Pengguna atau No KP </span>
+                                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan ID Pengguna"></i>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <div class="d-flex">
+                                                            <input autocomplete="on" id="Idusername" name="Idusername" type="text" class="form-control" onkeyup="this.value = this.value.replace(/['+{}*<>=]/g, '')" autofocus placeholder="eg: user@gmail.com" data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Akaun Baru? Sila klik pada butang kanan untuk mendaftar akaun baru" />
+                                                            <a href="#" class="btn btn-outline-secondary ml-auto btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#modaldaftarAkaun">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                    <!--begin::Input group-->
+                                                    <div class="d-flex flex-column mb-8 fv-row">
+                                                        <!--begin::Label-->
+                                                        <label for="password" class="col-sm-8 col-form-label">
+                                                            <span class="required">Kata Laluan</span>
+                                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan Kata Laluan"></i>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <div class="d-flex">
+                                                            <input type="password" name="Idpassword" id="Idpassword" class="form-control" autofocus placeholder="******" data-bs-toggle="tooltip" data-bs-placement="top" title="Lupa Kata Laluan? Sila klik pada butang kanan untuk menetapkan semula kata laluan" />
+                                                            <a href="#" class="btn btn-outline-secondary ml-auto btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#forgotpwdModal">
+                                                                <i class="fa fa-question"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                    <!--begin::Input group-->
+                                                    <div class="row g-9 mb-8">
+                                                        <!--begin::Col-->
+                                                        <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                                            <!--begin::Label-->
+                                                            <label for="dd_jnsApel" class="col-sm-8 col-form-label">
+                                                                <span class="required">JENIS APEL</span>
+                                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih Jenis APEL"></i>
+                                                            </label>
+                                                            <!--end::Label-->  
+                                                                <select class="form-select form-select-solid" for="Idjenis_APEL_param" id="Idjenis_APEL_param" data-control="select2" items="ViewBag.ListjenisApelSelect" data-hide-search="true" data-placeholder="--Sila Pilih Jenis APEL--" name="Idjenis_APEL_param" onchange="loadJenisAPEL(this)">                                            
+                                                                @Html.DropDownListFor(m => m.NAMA_PARAMETER, new SelectList(Model.SelectListjenisApel), new { @class = "form-control", style = "background-color: #E5F7FC;" })
+                                                                @*<option value="--SILA PILIH--">--SILA PILIH--</option>*@
+                                                                @*@Html.DropDownListFor(m => m.SelectedItemId, Model.MySelectListjenisApel)*@
+                                                                @*@Html.DropDownListFor(n => n.SelectListjenisApel, Model.SelectListjenisApel, "Sila Pilih Jenis APEL ")*@                                                              
+                                                                @*@Html.DropDownListFor(m => m.ItemId,(SelectList)ViewBag.ItemsSelect)*@
+                                                                @*@Html.DropDownListFor(m => m.SelectListjenisApel, Model.MySelectListjenisApel, new { @class = "form-control" })*@
+                                                                @*@Html.DropDownListFor(m => m.SelectListjenisApel,(SelectList)ViewBag.ListjenisApelSelect, new { @class = "form-control" })*@
+                                                                @*@Html.DropDownListFor(model => model.Addres.CityId, new SelectList(Model.Cities, "Id", "Name", selectedCity.Id), new { @class = "form-control" })*@
+                                                                @*@Html.DropDownList("Idjenis_APEL_param",(IEnumerable<SelectListItem>)ViewBag.country, "--Sila pilih--")*@
+                                                              @* @Html.DropDownList("Idjenis_APEL_param", null, htmlAttributes: new { @class = "form-control" })*@
+                                                            </select>
+                                                            <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                                                @*@Html.DropDownList("WorksiteID", null, htmlAttributes: new { @class = "form-control" })*@
+                                                            </span>
+                                                            @*  <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                                            <span class="selection">
+                                                            <span class="select2-selection select2-selection--single form-select form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-target_assign-x5-container" aria-controls="select2-target_assign-x5-container">
+                                                            <span class="select2-selection__rendered" id="select2-target_assign-x5-container" role="textbox" aria-readonly="true" title="Sila pilih jenis APEL">
+                                                            <span class="select2-selection__placeholder">
+                                                            Sila pilih jenis APEL
+                                                            </span>
+                                                            </span>
+                                                            <span class="select2-selection__arrow" role="presentation">
+                                                            <b role="presentation"></b>
+                                                            </span>
+                                                            </span>
+                                                            </span>
+                                                            <span class="dropdown-wrapper" aria-hidden="true">
+                                                            </span>
+                                                            </span> *@
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                @*     <div class="form-group row">
+                                                        <label class="col-form-label text-right col-lg-3 col-sm-12">Placeholder</label>
+                                                        <div class=" col-lg-4 col-md-9 col-sm-12">
+                                                            <select class="form-control select2" id="kt_select2_4" name="param">
+                                                                <option label="Label"></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label text-right col-lg-3 col-sm-12">Nested Example</label>
+                                                        <div class=" col-lg-4 col-md-9 col-sm-12">
+                                                            <select class="form-control select2" id="kt_select2_2" name="param">
+                                                            </select>
+                                                        </div>
+                                                    </div> *@
+                                                    <!--begin::Actions-->
+                                                    <div class="center">
+                                                        <button style="margin-right: 50px;" type="submit" id="kt_modal_log_masuk_submit" class="btn btn-primary">
+                                                            <span class="indicator-label">Log Masuk</span>
+                                                            <span class="indicator-progress" id="kt_modal_log_masuk_submitGray" style="display: none;">
+                                                                Sila Tunggu...
+                                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                            </span>
+                                                        </button>
+                                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Set Semula</button>
+                                                    </div>
+                                                    <!--end::Actions-->
+                                                    <!--begin:Footer Link-->
+                                                    <div class="text-block text-center my-3">
+                                                        <small><!--<a href="https://www.upnm.edu.my/" target="_blank">Pentadbir?</a> -->&copy; 2023 v1.0 Powered by BTMK,<br> Universiti Pertahanan Nasional Malaysia.</small>
+                                                    </div>
+                                                    <!--end:Footer Link-->
+                                                </form>
+                                                <!--end:: Form-->
+                                            </div>
+                                            <!--end:: Card body-->
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Row-->
+                            </div>
+                            <!--end::Content container-->
+                        </div>
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Content wrapper-->
+                </div>
+                <!--end:::Main-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::App-->
+    <!--begin::Modal - Daftar Akaun-->
+    <div class="modal fade" id="modaldaftarAkaun" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form id="kt_modal_IddaftarAkaun_form" class="form" method="post" action="/Login/DaftarAkaunApelC">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">Daftar Akaun Baru</h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Heading-->
+                        <!--begin::Input group-->
+                        <div class="row g-9 mb-8">
+                            <!--begin::Col-->
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                <!--begin::Label-->
+                                <label for="kategoripengguna" class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                    <span class="required">KATEGORI PENGGUNA</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih kategori pengguna"></i>
+                                </label>
+                                <!--end::Label-->
+                                <select class="form-select form-select-solid" data-control="select2" for="IdkatpenggunaDaftar_Akaun_param" id="IdkatpenggunaDaftar_Akaun_param" data-hide-search="true" name="IdkatpenggunaDaftar_Akaun_param" data-placeholder="Sila Pilih kategori" data-select2-id="select2-data-13-vxuy" tabindex="-1" aria-hidden="true" data-kt-initialized="1" onchange="loadKatPenggunaDaftarAkaunAPEL(this)">
+                                 <option value="" data-select2-id="select2-data-15-ldry">Sila Pilih kategori pengguna...</option>
+                               @* @Html.DropDownListFor(m => m.NAMA_PARAMETER, new SelectList(Model.NAMA_PARAMETER, "Key", "Value", 0), new { @class = "form-control" }) *@
+                                </select>
+                                <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">                                   
+                                   @*  @Html.DropDownList("WorksiteID", null, htmlAttributes: new { @class = "form-control" }) *@
+                                </span>
+                            </div>
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">No matrik/No pekerja/No Kad Pengenalan/ID</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan No matrik/No pekerja/No Kad Pengenalan/ID"></i>
+                            </label>
+                            <!--end::Label-->
+                           <div class="d-flex">                                                       
+                            <input id="No_kad_pengenalan" type="text" class="form-control form-control-solid" autofocus placeholder="No kad pengenalan" name="No_kad_pengenalan"/>
+                             <button style="margin-right: 50px;" type="submit" id="kt_modal_cari_submit" class="btn btn-primary">
+                                <span class="indicator-label">Cari</span>
+                                <span class="indicator-progress">
+                                    Sila Tunggu...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                             </button>
+                                </div>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label for="kategoriperanan" class="col-sm-8 col-form-label">
+                                    <span class="required">KATEGORI PERANAN</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih kategori peranan"></i>
+                                </label>
+                                <!--end::Label-->
+                                <select class="form-select form-select-solid" data-control="select2" for="IdkatperananDaftar_Akaun_param" id="IdkatperananDaftar_Akaun_param" data-hide-search="true" name="IdkatperananDaftar_Akaun_param" data-placeholder="Sila Pilih kategori" data-select2-id="select2-data-17-m4dv" tabindex="-1" aria-hidden="true" data-kt-initialized="1" onchange="loadKatPerananDaftarAkaunAPEL(this)">
+                                     <option value="" data-select2-id="select2-data-15-ldry">-- Sila Pilih Kategori Peranan --</option>                                   
+                                </select>
+                              <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                  @* @Html.DropDownList("IdkatperananDaftar_Akaun_param") *@
+                                </span>
+                        </div>
+                        <!--end::Input group-->
+                        <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label for="kategori" class="col-sm-8 col-form-label">
+                                    <span class="required">FAKULTI</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih Fakulti"></i>
+                                </label>
+                                <!--end::Label-->
+                                <select class="form-select form-select-solid" data-control="select2" for="Idfakulti_param" id="Idfakulti_param" data-hide-search="true" name="Idfakulti_param" data-placeholder="Sila pilih fakulti" data-select2-id="select2-data-13-vxuy" tabindex="-1" aria-hidden="true" data-kt-initialized="1" onchange="loadfakulti(this)">
+                                    <option value="" data-select2-id="select2-data-15-ldry">Sila Pilih Fakulti/FPJB...</option>
+                                </select>
+                              <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                </span>
+                        </div>
+                        <!--end::Input group-->
+                        <!--end::Input group-->
+                        <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label for="kategori" class="col-sm-8 col-form-label">
+                                    <span class="required">PROGRAM</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih Program"></i>
+                                </label>
+                                <!--end::Label-->
+                                <select class="form-select form-select-solid" data-control="select2" for="Idprogram_param" id="Idprogram_param" data-hide-search="true" name="Idprogram_param" data-placeholder="Sila pilih program" data-select2-id="select2-data-13-vxuy" tabindex="-1" aria-hidden="true" data-kt-initialized="1" onchange="loadprogram(this)">
+                                    <option value="" data-select2-id="select2-data-15-ldry">Sila Pilih program...</option>
+                                </select>
+                              <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                </span>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="col-md-6 fv-row fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label for="kategori" class="col-sm-8 col-form-label">
+                                    <span class="required">KURSUS</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila pilih Kursus"></i>
+                                </label>
+                                <!--end::Label-->
+                                <select class="form-select form-select-solid" data-control="select2" for="Idkursus_param" id="Idkursus_param" data-hide-search="true" name="Idkursus_param" data-placeholder="Sila pilih kursus" data-select2-id="select2-data-13-vxuy" tabindex="-1" aria-hidden="true" data-kt-initialized="1" onchange="loadkursus(this)">
+                                    <option value="" data-select2-id="select2-data-15-ldry">Sila Pilih kursus...</option>
+                                </select>
+                              <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-8u8s" style="width: 100%;">
+                                </span>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Nama</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan nama"></i>
+                            </label>
+                            <!--end::Label-->
+                                <input id="Nama" type="text" class="form-control form-control-solid" autofocus placeholder="Nama" name="Nama" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Alamat Emel</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan alamat emel"></i>
+                            </label>
+                            <!--end::Label-->
+                                <input id="Alamat_Emel" type="text" class="form-control form-control-solid" autofocus placeholder="Alamat Emel" name="Alamat_Emel" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">No telefon</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan no telefon"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="No_telefon" type="text" class="form-control form-control-solid" autofocus placeholder="No telefon" name="No_telefon"/>
+                        </div>
+                        <!--end::Input group-->
+                       <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">ID Pengguna/No kad Pengenalan</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan id pengguna atau no kad pengenalan"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="No_kad_penegenalan" type="text" class="form-control form-control-solid" autofocus placeholder="ID Pengguna/No kad Pengenalan" name="No_kad_penegenalan"/>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Kata Laluan</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan kata laluan"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="Kata_Laluan" type="password" class="form-control form-control-solid" autofocus placeholder="Kata Laluan" name="Kata_Laluan"/>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Pengesahan Kata Laluan</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan pengesahan kata laluan"></i>
+                            </label>
+                            <!--end::Label-->
+                                <input id="Pengesahan_Kata_Laluan" type="password" class="form-control form-control-solid" autofocus placeholder="Pengesahan Kata Laluan" name="Pengesahan_Kata_Laluan" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="">Link profil foto</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila taip link profil foto"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="link_profil_foto" type="text" class="form-control form-control-solid" autofocus placeholder="Link profil foto" name="Link_profil_foto"/>
+                        </div>
+                        <!--end::Input group-->
+                         <!--begin::Input group-->
+                         <div class="d-flex flex-column mb-8 fv-row">
+                              <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="">Tanda tangan</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila taip tandatangan"></i>
+                            </label>
+                            <!--end::Label-->
+			               <input id="tandatangan" type="textarea" class="form-control form-control-solid" autofocus placeholder="Tandatangan" name="tandatangan"/>
+			                <script type="text/javascript">
+			                //<![CDATA[
+
+				             // This call can be placed at any point after the
+				             // <textarea>, or inside a <head><script> in a
+				            // window.onload event handler.
+                            // Replace the <textarea id="editor"> with an CKEditor
+				            // instance, using default configurations.
+                			//]]>
+                            CKEDITOR.replace( 'tandatangan' );
+			                </script>
+                         </div>
+                        <!--end::Input group-->
+                        <!--begin::Actions-->
+                        <div class="center">
+                            <button style="margin-right: 50px;" type="submit" id="kt_modal_register_submit" class="btn btn-primary">
+                                <span class="indicator-label">Daftar</span>
+                                <span class="indicator-progress" id="kt_modal_register_submitGray" style="display: none;">
+                                    Sila Tunggu...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Set Semula</button>
+                        </div>
+                        <!--end::Actions-->
+                        </div>
+                        <!--end::Col-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Daftar Akaun-->
+    <!--begin::Modal - Forgot Password-->
+    <div class="modal fade" id="forgotpwdModal" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form id="kt_modal_forgotpwdModal_form" class="form" method="post" action="/Login/ResetPwdApelC">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">Tetapan semula kata laluan</h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Heading-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Alamat Emel</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sila masukkan Alamat Emel"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" autofocus placeholder="Alamat Emel" name="No_KP" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Actions-->
+                        <div class="center">
+                            <button style="margin-right: 50px;" type="submit" id="kt_modal_reset_password_submit" class="btn btn-primary">
+                                <span class="indicator-label">Hantar</span>
+                                <span class="indicator-progress">
+                                    Sila Tunggu...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                            <button class="btn btn-secondary btn-block" type="reset">Set Semula</button>
+                        </div>
+                         <!--end::Input group-->
+                        <!--end::Actions-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Forgot Password-->
+    <!--begin::Modal - View Users-->
+    <!--begin::Modal footer-->
+    @*     <div class="modal-footer flex-right" style="background-color: antiquewhite;">
+    <button type="button" class="btn btn-secondary" id="IdButtonSubmitGray" style="display: none;">Please wait ...... </button>
+    <button type="button" class="btn btn-light-success" id="IdButtonSubmit">Submit</button>
+    &nbsp;
+    <button type="button" class="btn btn-secondary" id="IdButtonClose" data-bs-dismiss="modal"><span class="text-maroon">Close</span></button>
+    <div>
+    <small id="IdModalLoginLable"></small>
+    </div>
+    </div> *@
+    <!--end::Modal footer-->
+    <!--begin::Javascript-->
+    <script>var hostUrl = "apelc/";</script>
+    @* <script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function () {
+    $('.form-control select2').select2();
+    });
+    </script> *@
+    <script>
+
+        var _path = $('#IdPathServerMain').val();
+
+        //alert(_path);
+        //check session
+        var checkSessionTime = function () {
+            var time;
+            window.onload = resetTimer();
+
+            var timeIdle;
+            window.onload = resetIdleTimer;
+            // DOM Events
+            window.onload = resetIdleTimer;
+            window.onmousemove = resetIdleTimer;
+            window.onmousedown = resetIdleTimer;  // catches touchscreen presses as well
+            window.ontouchstart = resetIdleTimer; // catches touchscreen swipes as well
+            window.onclick = resetIdleTimer;      // catches touchpad clicks as well
+            window.onkeypress = resetIdleTimer;
+            window.addEventListener('scroll', resetIdleTimer, true); // improved; see comments
+
+            //check session
+            function checkLogout() {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: _path + '/Home/checkSession',
+                    data: '{}',
+                    success: function (data) {
+                        if (data.sessionValue == true) {
+                            resetTimer();
+                        }
+                        else {
+                            //alert(1);
+                            location.href = _path + '/Login/Logout';
+                        }
+                    },
+                    error: function (xhr) {
+                        //alert(2);
+                        location.href = _path + '/Login/Logout';
+                    }
+                });
+            }
+
+            //check session
+            function resetTimer() {
+                clearTimeout(time);
+                time = setTimeout(checkLogout, 900000)
+                // 1000 milliseconds = 1 second
+            }
+
+            //check idle
+            function logout() {
+                var url_back = window.location.href;
+
+                let timerInterval
+                Swal.fire({
+                    title: 'You have been idle for too long!',
+                    html: 'You will be logout in <b></b> seconds.<br> <strong>Continue?</strong>',
+                    type: "warning",
+                    confirmButtonText: 'Yes, stay login!',
+                    timer: 10000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        //Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                            Swal.getContent().querySelector('b')
+                                .textContent = Swal.getTimerLeft() / 1000
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        Swal.fire({
+                            title: 'Logging Out',
+                            text: 'Redirecting...',
+                            type: 'info',
+                            showConfirmButton: false
+                        });
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            //url:  _path + '/Home/setSession',
+                            url: _path + '/Login/Logout',
+                            data: '{}',
+                            success: function () {
+                            },
+                            error: function () {
+                            }
+                        });
+                        //location.href = '/Login/Logout/'
+                        //alert(123);
+                        //location.href =  _path + '/Login/Logout/?service=' + url_back;
+                        location.href = _path + '/Login/Logout';
+                    }
+                })
+            }
+
+            //check idle
+            function resetIdleTimer() {
+                clearTimeout(timeIdle);
+                timeIdle = setTimeout(logout, 900000)
+                //timeIdle = setTimeout(logout, 30000)
+            }
+        };
+
+        window.onload = function () {
+            checkSessionTime();
+        }
+
+    </script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="apelc/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="apelc/assets/js/scripts.bundle.js"></script>
+    <script src="apelc/js/apelc/Login.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!--begin::Vendors Javascript(used for this page only)-->
+    <script src="apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+    <script src="apelc/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <!--end::Vendors Javascript-->
+    <!-- inject:js -->
+    @*  <script src="apelc/js/off-canvas.js"></script>
+    <script src="apelc/js/misc.js"></script> *@
+    <!-- endinject -->
+    <!-- CKEditor -->
+    <script src="/apelc/js/CKEditor/ckeditor.js?dt=20240724021723&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
+    <!--end::Javascript-->
 </body>
 
 </html>
+

@@ -1,9 +1,9 @@
-﻿@using APEL.Models
+﻿@using APELC.Models
 @inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
 @model CarianApelCMain
 @{
-    ViewData["Title"] = "ListReqApelC";
+    ViewData["Title"] = "SenaraiPermohonanApelC";
     Layout = "/Views/Shared/Command/_LayoutDemo8AfterLogin.cshtml";
 #pragma warning disable CS8602
     string _stafFkEnc = HttpContextAccessor.HttpContext.Session.GetString("_hrStafFkEnc") ?? "0";
@@ -51,19 +51,19 @@
                 <div class="row">
                     <div class="col-6 mb-2">
                         <label class="form-label">Kampus</label>
-                        @* @Html.DropDownListFor(m => m.CKAMPUS, new SelectList(Model.ListKampus, "Key", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdDdCKampus" }) *@
+                        @* @Html.DropDownListFor(m => m.CKAMPUS, new SelectList(Model.ListKampus, "KOD", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdDdCKampus" }) *@
                     </div>
                     <div class="col-6 mb-2">
                         <label class="form-label">No rujukan permohonan</label>
-                       @*  @Html.DropDownListFor(m => m.CKATEGORIADUAN, new SelectList(Model.ListKatAduan, "Key", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdKatAduan" }) *@
+                       @*  @Html.DropDownListFor(m => m.CKATEGORIADUAN, new SelectList(Model.ListKatAduan, "KOD", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdKatAduan" }) *@
                     </div>
                     <div class="col-6 mb-2">
                         <label class="form-label">Kategori Aduan </label>
-                       @*  @Html.DropDownListFor(m => m.CKATEGORIADUAN, new SelectList(Model.ListKatAduan, "Key", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdKatAduan" }) *@
+                       @*  @Html.DropDownListFor(m => m.CKATEGORIADUAN, new SelectList(Model.ListKatAduan, "KOD", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdKatAduan" }) *@
                     </div>
                     <div class="col-6 mb-2">
                         <label class="form-label">Status Aduan </label>
-                        @* @Html.DropDownListFor(m => m.CSTSPENGADU, new SelectList(Model.ListStsAduan, "Key", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdStsAduan" }) *@
+                        @* @Html.DropDownListFor(m => m.CSTSPENGADU, new SelectList(Model.ListStsAduan, "KOD", "ViewField"), "-- Sila Pilih --", new { @class = "form-select", id = "IdStsAduan" }) *@
                     </div>                 
                     <div class="col-6 mb-2"></div>
                     <div class="col-6 mb-2">
@@ -133,7 +133,7 @@
                                         @using (Html.BeginForm("Daftar", "Siasatan", FormMethod.Post, new { id = "MyID" }))
                                         {
                                             <input type="hidden" id="idAduanPkEnc" name="CADUAN_PK_ENC" value="@_cari.ADUAN_PK_ENC" />
-                                            <input type="hidden" id="idSiasatanPkEnc" name="CSIASATAN_PK_ENC" value="@_cari.SIASATAN_PK_ENC" />
+                                            <input type="hidden" id="idSiasatanPkEnc" name="CSIASATAN_PK_ENC" value="@_cari.ADUAN_PK_ENC" />
                                             <a style="color:blue; cursor:pointer;" onclick="document.getElementById('Daftar@(rowNo)').click()">@_cari.REPORT_NO</a>
                                             <input type="submit" id="Daftar@(rowNo)" formaction="@_path/Siasatan/Daftar" style="display:none" />
                                         }

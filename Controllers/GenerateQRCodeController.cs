@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-//using Net6HrPublicLibrary.PublicShared;
-using APEL.LocalShared;
-using APEL.Models;
+//using APELC.PublicShared;
+using APELC.LocalShared;
+using APELC.Model;
 //using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace APEL.Controllers
+namespace APELC.Controllers
 {
 	public class GenerateQRCodeController : Controller
 	{
-        readonly static string _encryptCode = SecurityConstants.EncryptCode();
+        readonly static string _encryptCode = SecurityConstantsLocal.EncryptCode();
 
         public IActionResult Index()
         {

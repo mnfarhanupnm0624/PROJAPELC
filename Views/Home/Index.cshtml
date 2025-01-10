@@ -1,14 +1,4 @@
-﻿@* @{
-    ViewData["Title"] = "APEL C";
-} *@
-
-@* <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
- *@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--
 Author: Keenthemes
 Product Name: Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme
@@ -33,20 +23,20 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Sistem APEL" />
     <meta property="og:site_name" content="UPNM" />
-    <link rel="shortcut icon" href="/apel/images/logo_UPNM.jpg" />
+    <link rel="shortcut icon" href="/apelc/images/logo_UPNM.jpg" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used by this page)-->
-    <link href="/apel/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/apel/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/apelc/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="/apel/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/apel/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/apel/assets/css/demo8_mtepi.css" rel="stylesheet" type="text/css" />
-    <link href="/apel/css/sweetalert.css" rel="stylesheet" type="text/css" />
-    <link href="/apel/css/apel.css" rel="stylesheet" type="text/css" />
+    <link href="/apelc/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/apelc/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/apelc/assets/css/demo8_mtepi.css" rel="stylesheet" type="text/css" />
+    <link href="/apelc/css/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="/apelc/css/apelc.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
@@ -79,7 +69,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Info-->
                                 <div class="flex-grow-1">
                                     <!--begin::Username-->
-                                    <a href="#" class="text-maroon text-hover-primary fs-6 fw-bold">1845-24</a>
+                                    <a href="#" class="text-maroon text-hover-primary fs-6 fw-bold">1854-24</a>
                                     <!--end::Username-->
                                     <!--begin::Description-->
                                     <span class="text-gray-800 fw-semibold d-block fs-8 mt-1">
@@ -133,7 +123,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end::Menu separator-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="/apel/" class="menu-link px-5">My Profile</a>
+                                            <a href="/Views/" class="menu-link px-5">My Profile</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu separator-->
@@ -147,7 +137,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="/apel/Login/Logout" class="menu-link px-5">Sign Out</a>
+                                            <a href="/Views/Login/LoginPageApelC.cshtml" class="menu-link px-5">Sign Out</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
@@ -331,7 +321,7 @@ License: For each use you must have a valid license purchased only from above li
 
                             <li class="open" style="background-color: #e47662;padding: 8px;margin-top: 5px;">
                                 <div class="clearfix">
-                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd;text-decoration: underline;"><b>PASUKAN PENGURUS SISTEM APEL.C</b></font><br>
+                                    &nbsp;&nbsp;<font style="font-size:smaller;color:#fcfcfd;text-decoration: underline;"><b>PASUKAN PENGURUS SISTEM APELC.C</b></font><br>
                                 </div>
                             </li>
 
@@ -363,7 +353,7 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin:Menu item-->
                             <div class="menu-item bg-light-warning here show mt-5">
                                 <!--begin:Menu link-->
-                                <a class="menu-link active bg-light-warning" href="/apel/Login/Logout">
+                                <a class="menu-link active bg-light-warning" href="/apelc/Login/Logout">
                                     <span class="menu-icon bg-light-warning">
                                         <!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
                                         <span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -446,37 +436,37 @@ License: For each use you must have a valid license purchased only from above li
 
                         }
                     </script>
-                    <form action="/apel/Siasatan" method="post">
-                        <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="/apel/Siasatan/UnderConstraction" style="display: none;">Skrin Senarai Fail</button>
-                        <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="/apel/Siasatan/BackToDashboard" style="display: none;">Skrin Kelulusan</button>
+                    <form action="/apelc/Siasatan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="/apelc/Siasatan/UnderConstraction" style="display: none;">Skrin Senarai Fail</button>
+                        <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="/apelc/Siasatan/BackToDashboard" style="display: none;">Skrin Kelulusan</button>
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-                    </form><form action="/apel/Senarai" method="post">
-                        <button type="submit" class="menu-link" id="IdClickSiasatanList" formaction="/apel/Senarai/SiasatanSkrinList" style="display: none;">Skrin Senarai Siasatan</button>
-                        <button type="submit" class="menu-link" id="IdClickAduanList" formaction="/apel/Senarai/AduanSkrinList" style="display: none;">Skrin Senarai Aduan</button>
-                        <button type="submit" class="menu-link" id="IdClickAduanInvList" formaction="/apel/Senarai/AduanSkrinInvList" style="display: none;">Skrin Senarai Siasatan Aduan</button>
+                    </form><form action="/apelc/Senarai" method="post">
+                        <button type="submit" class="menu-link" id="IdClickSiasatanList" formaction="/apelc/Senarai/SiasatanSkrinList" style="display: none;">Skrin Senarai Permohonan </button>
+                        <button type="submit" class="menu-link" id="IdClickAduanList" formaction="/apelc/Senarai/AduanSkrinList" style="display: none;">Skrin Senarai Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickAduanInvList" formaction="/apelc/Senarai/AduanSkrinInvList" style="display: none;">Skrin Senarai Permohonan  Aduan</button>
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-                    </form><form action="/apel/Aduan" method="post">
-                        <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="/apel/Aduan/UnderConstraction" style="display: none;">Skrin Senarai Fail</button>
-                        <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="/apel/Aduan/BackToDashboard" style="display: none;">Skrin Kelulusan</button>
+                    </form><form action="/apelc/Aduan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickUnderConstraction" formaction="/apelc/Aduan/UnderConstraction" style="display: none;">Skrin Senarai Fail</button>
+                        <button type="submit" class="menu-link" id="IdClickBackToDashboard" formaction="/apelc/Aduan/BackToDashboard" style="display: none;">Skrin Kelulusan</button>
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-                    </form><form action="/apel/SelenggaraAduan" method="post">
-                        <button type="submit" class="menu-link" id="IdClickSelenggaraZonList" formaction="/apel/SelenggaraAduan/SelenggaraZonList" style="display: none;">Skrin Selenggara Zom</button>
-                        <button type="submit" class="menu-link" id="IdClickSelenggaraBlokList" formaction="/apel/SelenggaraAduan/SelenggaraBlokList" style="display: none;">Skrin Selenggara Blok</button>
-                        <button type="submit" class="menu-link" id="IdClickSelenggaraKatAduanList" formaction="/apel/SelenggaraAduan/SelenggaraKatAduanList" style="display: none;">Skrin Selenggara Kategori Aduan</button>
-                        <button type="submit" class="menu-link" id="IdClickSelenggaraSubKatAduanList" formaction="/apel/SelenggaraAduan/SelenggaraSubKatAduanList" style="display: none;">Skrin Selenggara Sub Kategori Aduan</button>
-                        <button type="submit" class="menu-link" id="IdClickSelenggaraJenisKenderaanList" formaction="/apel/SelenggaraAduan/SelenggaraJenisKenderaanList" style="display: none;">Skrin Selenggara Jenis Kenderaan</button>
+                    </form><form action="/apelc/SelenggaraAduan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraZonList" formaction="/apelc/SelenggaraAduan/SelenggaraZonList" style="display: none;">Skrin Selenggara Zom</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraBlokList" formaction="/apelc/SelenggaraAduan/SelenggaraBlokList" style="display: none;">Skrin Selenggara Blok</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraKatAduanList" formaction="/apelc/SelenggaraAduan/SelenggaraKatAduanList" style="display: none;">Skrin Selenggara Kategori Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraSubKatAduanList" formaction="/apelc/SelenggaraAduan/SelenggaraSubKatAduanList" style="display: none;">Skrin Selenggara Sub Kategori Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickSelenggaraJenisKenderaanList" formaction="/apelc/SelenggaraAduan/SelenggaraJenisKenderaanList" style="display: none;">Skrin Selenggara Jenis Kenderaan</button>
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-                    </form><form action="/apel/StatistikAduan" method="post">
-                        <button type="submit" class="menu-link" id="IdClickCarianStatistikAduan" formaction="/apel/StatistikAduan/CarianStatistikAduan" style="display: none;">Skrin Carian Statistik Aduan</button>
-                        <button type="submit" class="menu-link" id="IdClickDashboardStatistikAduan" formaction="/apel/StatistikAduan/DashboardStatistikAduan" style="display: none;">Skrin Dashboard Statistik Aduan</button>
-                        <button type="submit" class="menu-link" id="IdClickDashboardStatistikSiasatan" formaction="/apel/StatistikAduan/DashboardStatistikSiasatan" style="display: none;">Skrin Dashboard Statistik Siasatan</button>
+                    </form><form action="/apelc/StatistikAduan" method="post">
+                        <button type="submit" class="menu-link" id="IdClickCarianStatistikAduan" formaction="/apelc/StatistikAduan/CarianStatistikAduan" style="display: none;">Skrin Carian Statistik Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickDashboardStatistikAduan" formaction="/apelc/StatistikAduan/DashboardStatistikAduan" style="display: none;">Skrin Dashboard Statistik Aduan</button>
+                        <button type="submit" class="menu-link" id="IdClickDashboardStatistikSiasatan" formaction="/apelc/StatistikAduan/DashboardStatistikSiasatan" style="display: none;">Skrin Dashboard Statistik Siasatan</button>
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
                     </form>
-                    <form action="/apel/EKunci" method="post">
-                        <button type="submit" class="menu-link" id="IdClickCarianEKunci" formaction="/apel/EKunci/EKunci" style="display: none;">Skrin Carian E-Kunci</button>
+                    <form action="/apelc/EKunci" method="post">
+                        <button type="submit" class="menu-link" id="IdClickCarianEKunci" formaction="/apelc/EKunci/EKunci" style="display: none;">Skrin Carian E-Kunci</button>
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
-                    </form><form action="/apel/ESaman" method="post">
-                        <button type="submit" class="menu-link" id="IdClickCarianESaman" formaction="/apel/ESaman/ESaman" style="display: none;">Skrin Carian E-Saman</button>
+                    </form><form action="/apelc/ESaman" method="post">
+                        <button type="submit" class="menu-link" id="IdClickCarianESaman" formaction="/apelc/ESaman/ESaman" style="display: none;">Skrin Carian E-Saman</button>
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KVRG1qGp6FFrJ5b-7LjIPKDHXSUh2qA6Igdf62tfyyEkJTiEKZCAkhf9vTTmkrl1H0jcAhPBfACZTWykv3YBNT7-qyiVYbgu5PNrc5-170N30hHtqQR7H399ncK_dTKrZwYGutJ13z8YgtDHloTg9w" />
                     </form>
                 </div>
@@ -490,8 +480,8 @@ License: For each use you must have a valid license purchased only from above li
                     <!--begin::Brand-->
                     <div class="header-brand">
                         <!--begin::Logo-->
-                        <a href="/apel/Home/Dashboard">
-                            <img id="IdLayout_ImageKiri" alt="Logo" src="/apel/images/LOGO-UTM.png" class="h-50px h-lg-50px" />
+                        <a href="/Views/Home/Dashboard">
+                            <img id="IdLayout_ImageKiri" alt="Logo" src="/apelc/images/LOGO-UTM.png" class="h-50px h-lg-50px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Aside minimize-->
@@ -556,7 +546,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--end::Item-->
                                     <!--begin::Item-->
                                     <li class="breadcrumb-item text-muted">
-                                        <a href="/apel/Senarai/AduanSkrinList" class="text-muted text-hover-primary">Dashboard</a>
+                                        <a href="/apelc/Senarai/AduanSkrinList" class="text-muted text-hover-primary">Dashboard</a>
                                     </li>
                                     <!--end::Item-->
                                 </ul>
@@ -756,7 +746,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-semibold me-1">2022&copy;</span>
-                            <a href="https://www.utm.my" target="_blank" class="text-gray-800 text-hover-primary">Universiti Teknologi Malaysia</a>
+                            <a href="https://www.utm.my" target="_blank" class="text-gray-800 text-hover-primary">Universiti Pertahanan Nasional Malaysia</a>
                         </div>
                         <!--end::Copyright-->
                         <!--begin::Menu-->
@@ -867,22 +857,22 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Javascript-->
     <script>var hostUrl = "assets/";</script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="/apel/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/apel/assets/js/scripts.bundle.js"></script>
+    <script src="/apelc/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/apelc/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used by this page)-->
-    <script src="/apel/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
-    <script src="/apel/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/apelc/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="/apelc/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used by this page)-->
-    <script src="/apel/js/sweetalert.js"></script>
-    <script src="/apel/js/Home/Index.js"></script>
+    <script src="/apelc/js/sweetalert.js"></script>
+    <script src="/apelc/js/Home/Index.js"></script>
     <!-- script src="assets/js/widgets.bundle.js"></script>
     <script src="assets/js/custom/widgets.js"></script>
     <script src="assets/js/custom/apps/chat/chat.js"></script>
     <script src="assets/js/custom/utilities/modals/users-search.js"></script -->
 
-    <script src="/apel/js/Home/Dashboard.js?v=7Rm5ciT71oeTItdjeUuJ4gwUrKumu-CpHgaRMYrDPuA" type="text/javascript"></script>
+    <script src="/apelc/js/Home/Dashboard.js?v=7Rm5ciT71oeTItdjeUuJ4gwUrKumu-CpHgaRMYrDPuA" type="text/javascript"></script>
     <!--begin::Custom Javascript-->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"
@@ -891,7 +881,7 @@ License: For each use you must have a valid license purchased only from above li
     </script>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="/apel/js/dashboard.js?v=yPJo47PKv7cQr_A7o4rggkgyXlwYP9fPm88NBtCOJPY" type="text/javascript"></script>
+    <script src="/apelc/js/dashboard.js?v=yPJo47PKv7cQr_A7o4rggkgyXlwYP9fPm88NBtCOJPY" type="text/javascript"></script>
     <!--end::Custom Javascript-->
 
     <script>
@@ -989,7 +979,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--end::Body-->
 </html>
 
-<form action="/apel/Senarai/SiasatanSkrinList" method="post" id="myform"></form>
+<form action="/apelc/Views/SenaraiPermohonan/SenaraiPermohonanApelC" method="post" id="myform"></form>
 
 <script>
 
@@ -1107,5 +1097,5 @@ License: For each use you must have a valid license purchased only from above li
 
 </script>
 <!-- CKEditor -->
-<script src="/apel/js/CKEditor/ckeditor.js?dt=20240706090205&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
+<script src="/apelc/js/CKEditor/ckeditor.js?dt=20240706090205&amp;v=uRt2issIiFE172hs-h3BC44hrp1KpsR1JatZVuJNKqs"></script>
 

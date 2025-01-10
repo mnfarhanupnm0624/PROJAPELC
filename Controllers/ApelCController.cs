@@ -1,33 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using APEL.Helper;
-using APEL.LocalServices.Senarai;
-//using APEL.LocalServices.Aduan;
-using APEL.Models;
-//using Newtonsoft.Json;
-//using APEL.LocalServices.Public;
-//using Net6HrPublicLibrary.PublicShared;
+using APELC.Helper;
+using APELC.LocalServices.Senarai;
+using APELC.LocalServices.ApelC;
+using APELC.Model;
+using Newtonsoft.Json;
+using Net6HrPublicLibrary.PublicShared;
+using Net6HrPublicLibrary.Model;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authentication;
+using System.Text;
+using Microsoft.Net.Http.Headers;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Security.Claims;
 
 
-namespace APEL.Controllers
+
+namespace APELC.Controllers
 {
     public class ApelCController : Controller
     {
 
-        public IActionResult Index()
-        {
-            MtdGetDashboardSession("APELC - Index", "");
-            ModelUserDTO _data = new();
-            return View(_data);
-        }
         public IActionResult BackToDashboard()
         {
-            return Redirect("/Home/Dashboard");
+            return Redirect("./Views/Home/DashboardStatistik.cshtml");
         }
 
         private void MtdGetDashboardSession(string id, string id2)
         {
-            HttpContext.Session.SetString("_titleTop", "APEL UPNM");
+            HttpContext.Session.SetString("_titleTop", "APEL.C UPNM");
             HttpContext.Session.SetString("_titleSmall", id);
             HttpContext.Session.SetString("_titleSmallSub", id2);
         }
@@ -42,9 +45,10 @@ namespace APEL.Controllers
         //private bool saveAduanOnSession(CarianAduanMain aduanModel)
         //{
         //    var aduanHelper = new AduanHelper();
-        //    HttpContext.Session.SetString("ApelUser", JsonConvert.SerializeObject(aduanHelper.GetApelInfo(aduanModel)));
+        //    HttpContext.Session.SetString("ApelCUser", JsonConvert.SerializeObject(aduanHelper.GetApelInfo(aduanModel)));
         //    return true;
         //}
+
 
 
 
@@ -69,7 +73,7 @@ namespace APEL.Controllers
         //    MtdGetDashboardSession("Senarai Aduan", "Senarai Aduan");
 
         //    string _eUserIdIn = HttpContext.Session.GetString("_userId") ?? "";
-        //    string _aduanPkEnc = ApelUser.GetApel(HttpContext.Session).ADUAN_PK_ENC ?? "";
+        //    string _aduanPkEnc = ApelCUser.GetApel(HttpContext.Session).MOHON_PK_ENC ?? "";
 
         //    if (_eUserIdIn != "")
         //    {

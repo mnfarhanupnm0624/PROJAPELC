@@ -1,0 +1,224 @@
+2024-11-25 10:17:05.6749 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-25 10:17:05.8433 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-25 10:17:06.1051 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-25 10:17:06.6001 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-25 10:17:06.7180 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-25 10:17:06.7629 Info Configuration initialized.
+2024-11-25 11:30:41.4455 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-25 11:30:41.6410 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-25 11:30:41.8354 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-25 11:30:41.8522 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-25 11:30:41.9385 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-25 11:30:42.1563 Info Configuration initialized.
+2024-11-25 11:32:33.5693 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-25 11:32:33.6719 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-25 11:32:33.8074 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-25 11:32:33.8349 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-25 11:32:33.8701 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-25 11:32:33.9130 Info Configuration initialized.
+2024-11-26 11:59:24.0640 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-26 11:59:24.3180 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-26 11:59:24.6367 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-26 11:59:24.6721 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-26 11:59:26.7216 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-26 11:59:26.7814 Info Configuration initialized.
+2024-11-26 11:59:27.1118 Info FileTarget(Name=alldata): Archiving C:\Log\HrDDMS\HrDDMSLog.log to C:\Log\HrDDMS\HrDDMSLog-2024-11-26.txt
+2024-11-27 11:40:37.0588 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 11:40:37.2653 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 11:40:37.4454 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 11:40:37.4694 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 11:40:37.5149 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 11:40:37.5581 Info Configuration initialized.
+2024-11-27 11:40:37.7663 Info FileTarget(Name=alldata): Archiving C:\Log\HrDDMS\HrDDMSLog.log to C:\Log\HrDDMS\HrDDMSLog-2024-11-27.txt
+2024-11-27 11:46:45.7085 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 11:46:45.8975 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 11:46:46.1034 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 11:46:46.1289 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 11:46:46.1698 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 11:46:46.2046 Info Configuration initialized.
+2024-11-27 11:48:52.5783 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 11:48:53.0015 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 11:48:53.8449 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 11:48:53.9378 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 11:48:54.0762 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 11:48:54.2767 Info Configuration initialized.
+2024-11-27 11:50:29.0327 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 11:50:29.1763 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 11:50:29.3933 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 11:50:29.4399 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 11:50:29.4888 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 11:50:29.5425 Info Configuration initialized.
+2024-11-27 12:09:00.6311 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 12:09:00.8851 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 12:09:01.1961 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 12:09:01.2170 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 12:09:01.2564 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 12:09:01.3014 Info Configuration initialized.
+2024-11-27 12:16:03.3957 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 12:16:03.5266 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 12:16:03.6939 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 12:16:03.7287 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 12:16:04.1794 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 12:16:04.2470 Info Configuration initialized.
+2024-11-27 12:20:10.8567 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 12:20:11.5445 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 12:20:11.8360 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 12:20:11.8544 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 12:20:11.8956 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 12:20:11.9422 Info Configuration initialized.
+2024-11-27 12:23:34.7321 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 12:23:34.9140 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 12:23:35.0269 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 12:23:35.0396 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 12:23:35.0807 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 12:23:35.1672 Info Configuration initialized.
+2024-11-27 14:27:09.4178 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 14:27:09.7670 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 14:27:09.9792 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 14:27:10.0082 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 14:27:10.0536 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 14:27:10.1082 Info Configuration initialized.
+2024-11-27 14:31:47.1708 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 14:31:47.3528 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 14:31:48.0612 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 14:31:48.1381 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 14:31:48.1827 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 14:31:48.2575 Info Configuration initialized.
+2024-11-27 14:43:38.6819 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 14:43:38.8111 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 14:43:38.9463 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 14:43:38.9745 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 14:43:39.1273 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 14:43:39.3969 Info Configuration initialized.
+2024-11-27 14:45:20.6733 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 14:45:20.7703 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 14:45:20.9581 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 14:45:20.9825 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 14:45:21.2398 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 14:45:21.4902 Info Configuration initialized.
+2024-11-27 14:46:31.0586 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 14:46:31.3300 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 14:46:31.4965 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 14:46:31.5140 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 14:46:31.5582 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 14:46:31.6138 Info Configuration initialized.
+2024-11-27 16:02:30.8571 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 16:02:31.2254 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 16:02:31.4021 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 16:02:31.4240 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 16:02:31.4643 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 16:02:31.5230 Info Configuration initialized.
+2024-11-27 16:13:57.5695 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 16:13:57.7005 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 16:13:57.8650 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 16:13:57.8912 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 16:13:58.0525 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 16:13:58.1547 Info Configuration initialized.
+2024-11-27 16:18:51.0446 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-27 16:18:51.8552 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-27 16:18:52.6598 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-27 16:18:52.8435 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-27 16:18:52.9725 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-27 16:18:53.0557 Info Configuration initialized.
+2024-11-28 09:16:50.9653 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-28 09:16:51.2357 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-28 09:16:52.4960 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-28 09:16:52.7822 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-28 09:16:52.8555 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-28 09:16:52.9285 Info Configuration initialized.
+2024-11-28 09:16:53.3392 Info FileTarget(Name=alldata): Archiving C:\Log\HrDDMS\HrDDMSLog.log to C:\Log\HrDDMS\HrDDMSLog-2024-11-28.txt
+2024-11-28 14:13:36.6187 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-28 14:13:36.8040 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-28 14:13:37.0172 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-28 14:13:37.0355 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-28 14:13:37.0851 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-28 14:13:37.1261 Info Configuration initialized.
+2024-11-28 14:19:11.4524 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-28 14:19:11.5515 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-28 14:19:11.6790 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-28 14:19:11.6955 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-28 14:19:11.7306 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-28 14:19:11.7823 Info Configuration initialized.
+2024-11-28 14:27:40.0606 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-28 14:27:40.1517 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-28 14:27:40.3036 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-28 14:27:40.3036 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-28 14:27:40.3360 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-28 14:27:40.3781 Info Configuration initialized.
+2024-11-28 15:15:48.1302 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-28 15:15:48.4778 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-28 15:15:48.7175 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-28 15:15:48.8000 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-28 15:15:48.9547 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-28 15:15:48.9998 Info Configuration initialized.
+2024-11-28 15:21:33.5094 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-28 15:21:33.5987 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-28 15:21:33.7109 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-28 15:21:33.7264 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-28 15:21:33.8610 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-28 15:21:33.8897 Info Configuration initialized.
+2024-11-28 15:28:59.2458 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-28 15:28:59.3949 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-28 15:28:59.5114 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-28 15:28:59.5286 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-28 15:28:59.6484 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-28 15:28:59.6772 Info Configuration initialized.
+2024-11-29 08:59:41.1194 Info Loading assembly name: NLog.Web.AspNetCore
+2024-11-29 08:59:43.5042 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-11-29 08:59:44.1491 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-11-29 08:59:44.2399 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-29 08:59:44.3100 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-11-29 08:59:44.3737 Info Configuration initialized.
+2024-11-29 08:59:44.6667 Info FileTarget(Name=alldata): Archiving C:\Log\HrDDMS\HrDDMSLog.log to C:\Log\HrDDMS\HrDDMSLog-2024-11-29.txt
+2024-12-09 11:40:56.7106 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-09 11:40:56.9272 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-09 11:40:57.0744 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-09 11:40:57.0944 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-09 11:40:57.2286 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-09 11:40:57.2973 Info Configuration initialized.
+2024-12-09 11:40:57.6025 Info FileTarget(Name=alldata): Archiving C:\Log\HrDDMS\HrDDMSLog.log to C:\Log\HrDDMS\HrDDMSLog-2024-12-09.txt
+2024-12-09 12:03:20.3211 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-09 12:03:20.6245 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-09 12:03:20.9408 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-09 12:03:21.0546 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-09 12:03:21.1040 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-09 12:03:21.1441 Info Configuration initialized.
+2024-12-09 12:10:40.3727 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-09 12:10:40.6817 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-09 12:10:40.9332 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-09 12:10:41.0713 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-09 12:10:41.1375 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-09 12:10:41.1909 Info Configuration initialized.
+2024-12-09 12:15:39.2276 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-09 12:15:39.3150 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-09 12:15:39.4474 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-09 12:15:39.4776 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-09 12:15:39.5729 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-09 12:15:39.6064 Info Configuration initialized.
+2024-12-09 12:23:17.4246 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-09 12:23:17.5183 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-09 12:23:17.6439 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-09 12:23:17.6665 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-09 12:23:17.7007 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-09 12:23:17.8566 Info Configuration initialized.
+2024-12-09 12:32:00.2634 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-09 12:32:00.4717 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-09 12:32:00.6246 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-09 12:32:00.6466 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-09 12:32:00.6983 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-09 12:32:00.7400 Info Configuration initialized.
+2024-12-09 12:35:02.8281 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-09 12:35:03.0079 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-09 12:35:03.1620 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-09 12:35:03.1921 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-09 12:35:03.2247 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-09 12:35:03.2791 Info Configuration initialized.
+2024-12-09 22:46:27.8846 Info AppDomain Shutting down. LogFactory closing...
+2024-12-09 22:46:28.7641 Info LogFactory has been closed.
+2024-12-13 16:01:55.1246 Info Loading assembly name: NLog.Web.AspNetCore
+2024-12-13 16:01:55.4951 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.12.1137. Product version: 5.3.12+d71ff0bf66f938309ba6f4b88c7e43ee3c672bf9. GlobalAssemblyCache: False
+2024-12-13 16:01:55.8760 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2024-12-13 16:01:55.9276 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-12-13 16:01:55.9737 Info Validating config: TargetNames=alldata, ConfigItems=23, FilePath=C:\Users\mnfar\source\repos\apel\PROJAPELC\bin\Debug\net8.0\NLog.config
+2024-12-13 16:01:56.0470 Info Configuration initialized.
+2024-12-13 16:01:56.4033 Info FileTarget(Name=alldata): Archiving C:\Log\HrDDMS\HrDDMSLog.log to C:\Log\HrDDMS\HrDDMSLog-2024-12-13.txt

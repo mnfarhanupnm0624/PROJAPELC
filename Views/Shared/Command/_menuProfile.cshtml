@@ -1,6 +1,12 @@
 ﻿@inject IHttpContextAccessor HttpContextAccessor
 @inject IConfiguration Configuration
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IConfiguration Configuration
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject IJsonHelper Json
 @{
+	ViewData["Title"] = "APEL C";
+	Layout = "/Views/Shared/Command/_menuLeftSideApelC.cshtml";
 #pragma warning disable CS8602
 	string _userLogin = HttpContextAccessor.HttpContext.Session.GetString("_userId") ?? "";
 	string _userEmail = HttpContextAccessor.HttpContext.Session.GetString("_email") ?? "";

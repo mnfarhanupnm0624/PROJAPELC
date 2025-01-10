@@ -1,4 +1,11 @@
-﻿namespace APEL.LocalServices.Aduan
+﻿using APELC.LocalShared;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Org.BouncyCastle.Asn1.X509;
+using static LinqToDB.Reflection.Methods.LinqToDB;
+using static LinqToDB.Sql;
+
+
+namespace APELC.LocalServices.ApelC
 {
     public class ApelCSQL
     {
@@ -51,18 +58,18 @@
                             A.STAF_PK= :STAF_PK AND A.TKH_HAPUS IS NULL ";
         }
 
-        internal static string SqlGetApelPengaduInfo =
+        internal static string SqlGetApelPemohonInfo =
             @"SELECT
                 A.ADUAN_PK AS ADUAN_PK,
                 A.TKH_ADUAN,
-                A.REPORT_NO,
+                A.MOHON_NO,
                 TO_CHAR(A.TKH_ADUAN,'DD/MM/YYYY') AS DATE_TKH_ADUAN,
                 TO_CHAR(A.TKH_ADUAN,'HH:MI AM') AS MASA_TKH_ADUAN,
                 A.COMPLAINER_FK,
                 A.COMPLAINER_NO_KP,
                 A.MAKLUMAT_PERIBADI_FK,
                 (SELECT (UPPER(NAMA_PARAMETER)) FROM SMU_PARAMETER WHERE PARAM_PK = B.KATEGORI_KES_FK AND TKH_HAPUS IS NULL) AS KATEGORI_KES_DESC,
-                DECODE (SUBSTR(A.REPORT_NO,1,2), 'PG','PAGOH','KL','KUALA LUMPUR','JB','JOHOR BAHRU') AS KAMPUS_DESC,
+                DECODE (SUBSTR(A.MOHON_NO,1,2), 'PG','PAGOH','KL','KUALA LUMPUR','JB','JOHOR BAHRU') AS KAMPUS_DESC,
                 (SELECT (UPPER(TRIM(NAMA)) || '~' || NO_KP_BARU) FROM HR_MAKLUMAT_PERIBADI WHERE MAKLUMAT_PERIBADI_PK = A.MAKLUMAT_PERIBADI_FK AND TKH_HAPUS IS NULL) AS INFO_LAIN,
                 C.Aduan_PK AS Aduan_PK,
                 A.STATUS_FK AS STATUS_FK
@@ -72,9 +79,9 @@
                 INNER JOIN HR_INV_SIASATAN C ON C.TINDAKAN_FK = B.TINDAKAN_PK AND C.TKH_HAPUS IS NULL
              ";
 
-        internal static string SQL_MtdGetApelPengadu()
+        internal static string SQL_MtdGetApelPemohon()
         {
-            string _SQL = SqlGetApelPengaduInfo +
+            string _SQL = SqlGetApelPemohonInfo +
                 @" WHERE
                         A.TKH_HAPUS IS NULL
                         AND B.STATUS_FK IN ('378') ";
@@ -91,7 +98,7 @@
                 A.ADUAN_PK AS ADUAN_PK,
                 A.TKH_ADUAN,
                 A.STATUS_FK AS STATUS_FK,
-                C.SIASATAN_PK AS SIASATAN_PK,
+                C.ApelC_PK AS SIASATAN_PK,
                 D.STAF_PP_FK AS STAF_PP_FK,
                 D.KOD_PRNN_PNYST,
                 TO_CHAR(D.TKH_CIPTA,'DD/MM/YYYY') AS DATE_TKH_PNYST,
@@ -118,7 +125,7 @@
                 HR_BK_ADUAN A
                 LEFT JOIN HR_BK_TINDAKAN B ON B.ADUAN_FK = A.ADUAN_PK AND B.TKH_HAPUS IS NULL
                 INNER JOIN HR_INV_SIASATAN C ON C.TINDAKAN_FK = B.TINDAKAN_PK AND C.TKH_HAPUS IS NULL
-                INNER JOIN HR_INV_DAFTAR_PNYST D ON D.SIASATAN_FK = C.SIASATAN_PK AND D.TKH_HAPUS IS NULL
+                INNER JOIN HR_INV_DAFTAR_PNYST D ON D.ApelC_FK = C.ApelC_PK AND D.TKH_HAPUS IS NULL
              ";
 
         internal static string SQL_MtdGetStafPenyiasatList()
@@ -128,7 +135,7 @@
                        A.TKH_HAPUS IS NULL
                        AND B.STATUS_FK IN ('378') ";
 
-            _SQL += @" AND D.SIASATAN_FK = :SIASATAN_PK";
+            _SQL += @" AND D.ApelC_FK = :SIASATAN_PK";
 
             _SQL += @" ORDER BY A.TKH_ADUAN DESC ";
 
@@ -185,26 +192,57 @@
 
         // Begin:
         // DDL
-        internal static string SQL_ListKatAduan()
+        internal static string SQL_STATUS_KEPUTUSAN_PORTFOLIO()
         {
             return @"
-            SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField
-            FROM 
-                SMU_PARAMETER 
-            WHERE 
-                KUMPULAN_FK = 67 AND AKTIF = 'Y'
-                AND TKH_HAPUS IS NULL
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS STATUS_PORTFOLIO,
+            NAMA_PARAMETER_EN AS STATUS_PORTFOLIO_EN 
+            FROM  apelc.APELC_PARAMETER WHERE KUMPULAN_FK=16 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+        internal static string SQL_STATUS_KEPUTUSAN_UJIAN_CBRN()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS STATUS_UJIAN_CABARAN,
+            NAMA_PARAMETER_EN AS STATUS_UJIAN_CABARAN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=18 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
             ORDER BY PARAM_PK ";
         }
 
-        internal static string SQL_ListKatPengadu()
+
+        internal static string SQL_STATUS_PENGHANTARAN_PORTFOLIO()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS DESKRIPSI_STATUS_PENGAHANTARAN_PORTFOLIO,
+            NAMA_PARAMETER_EN AS DESKRIPSI_STATUS_PENGAHANTARAN_PORTFOLIO_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=29 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+
+        internal static string SQL_STATUS_KEHADIRAN_UJIAN_CBRN()
+        {
+            return @"
+            SELECT PARAM_PK AS PARAM_PK,
+            NAMA_PARAMETER AS DESKRIPSI_STATUS_KEHADIRAN_UJIAN_CBRN,
+            NAMA_PARAMETER_EN AS DESKRIPSI_STATUS_KEHADIRAN_UJIAN_CBRN_EN 
+            FROM apelc.APELC_PARAMETER WHERE KUMPULAN_FK=9 AND STATUS_AKTIF='Y'
+            AND TKH_HAPUS IS NULL
+            ORDER BY PARAM_PK ";
+        }
+
+
+        internal static string SQL_ListKatPemohon()
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -217,8 +255,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -231,8 +269,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -245,8 +283,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -259,8 +297,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -273,8 +311,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -287,8 +325,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -301,8 +339,8 @@
         {
             return @"
             SELECT 
-                PARAM_PK AS Key,
-                NAMA_PARAMETER AS ViewField 
+                PARAM_PK AS KOD,
+                NAMA_PARAMETER AS NAMA_PARAMETER 
             FROM 
                 SMU_PARAMETER 
             WHERE 
@@ -313,10 +351,10 @@
 
         public static string SqlJawatanList(string _kodjwtn)
         {
-            return @"SELECT A.KOD_JAWATAN as Key, A.KOD_JAWATAN || ' - ' || B.DESKRIPSI as ViewField 
+            return @"SELECT A.KOD_JAWATAN as KOD, A.KOD_JAWATAN || ' - ' || B.DESKRIPSI as NAMA_PARAMETER 
                     FROM HR_KOD_JAWATAN A, HR_KOD_JENIS_JAWATAN B 
                     WHERE A.KOD_JENIS_JAWATAN = B.KOD_JENIS_JAWATAN AND A.KOD_KLASIFIKASI = B.KOD_KLASIFIKASI 
-                    AND A.KOD_JAWATAN LIKE '" + _kodjwtn + "%' AND A.TKH_HAPUS is null ORDER BY Key ";
+                    AND A.KOD_JAWATAN LIKE '" + _kodjwtn + "%' AND A.TKH_HAPUS is null ORDER BY KOD ";
         }
 
         // End: 
@@ -515,7 +553,7 @@
         //    AND B.SSM_NOKP = ?";
         //}
 
-        internal static string SQL_CAPAI_PERINCIAN_PENGADU_PELAJAR()
+        internal static string SQL_CAPAI_PERINCIAN_Pemohon_PELAJAR()
         {
             return @"SELECT  
             Z.KAD_MATRIK_PELAJAR,  
@@ -539,11 +577,11 @@
             Z.CATATAN_ADUAN,  
             Z.COMPLAINER_CATEGORY_FK,  
             Z.TKH_ADUAN,  
-            Z.REPORT_NO,  
+            Z.MOHON_NO,  
             TO_CHAR(Z.MASA_ADUAN, 'HH24:MI:SS'),  
             Z.KENDERAAN1_FK, Z.KENDERAAN2_FK,  
-            (SELECT Y.NAMA_PARAMETER FROM SMU_PARAMETER Y WHERE Y.KUMPULAN_FK = 67 AND Y.KOD = Z.REPORT_CATEGORY_FK AND Y.TKH_HAPUS IS NULL) AS CATEGORY_PENGADU,  
-            (SELECT Y.NAMA_PARAMETER FROM SMU_PARAMETER Y WHERE Y.PARAM_PK = Z.REPORT_SUBCATEGORY_FK AND Y.TKH_HAPUS IS NULL) AS SUB_CATEGORY_PENGADU,  
+            (SELECT Y.NAMA_PARAMETER FROM SMU_PARAMETER Y WHERE Y.KUMPULAN_FK = 67 AND Y.KOD = Z.REPORT_CATEGORY_FK AND Y.TKH_HAPUS IS NULL) AS CATEGORY_Pemohon,  
+            (SELECT Y.NAMA_PARAMETER FROM SMU_PARAMETER Y WHERE Y.PARAM_PK = Z.REPORT_SUBCATEGORY_FK AND Y.TKH_HAPUS IS NULL) AS SUB_CATEGORY_Pemohon,  
             GET_DAY(Z.MASA_ADUAN,'dd/mm/yyy'),  
             Z.CATATAN_TINDAKAN   
             FROM HR_BK_ADUAN Z  
@@ -655,7 +693,7 @@
         {
             return @"SELECT  
             A.ADUAN_PK,    
-            A.REPORT_NO,     
+            A.MOHON_NO,     
             A.TKH_ADUAN,     
             TO_CHAR(MASA_ADUAN,'HH:MI:SS AM')AS MASA_ADUAN,     
             (SELECT B.NAMA_PARAMETER FROM SMU_PARAMETER B WHERE B.PARAM_PK=A.COMPLAINER_CATEGORY_FK) AS KATEGORI,   

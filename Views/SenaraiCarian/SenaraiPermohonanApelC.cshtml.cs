@@ -1,0 +1,12 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace APELC.Views.SenaraiCarian
+{
+    public class SenaraiPermohonanApelCModel : PageModel
+    {
+        public void OnGet()
+        {
+        }
+    }
+}
